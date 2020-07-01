@@ -1,0 +1,34 @@
+﻿@model WebApplication.Models.Logins
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            <form class="form-horizontal" asp-action="Privacy">
+                <div class="form-group">
+                    <label class="control-label">Username</label>
+                    <input asp-for="Login" class="form-control" type="text" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Password</label>
+                    <input asp-for="Password" class="form-control" type="password" />
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Submit"/>
+                </div>
+            </form>
+        </div>
+        <div class="col-sm-4"></div>
+    </div>
+</div>
+@{ 
+    if (TempData["msg"]!=null)
+    {
+        <sript>
+            alert('@TempData["msg"]')
+        </sript>
+    }
+}
