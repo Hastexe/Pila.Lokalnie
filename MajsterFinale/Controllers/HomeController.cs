@@ -15,7 +15,14 @@ namespace MajsterFinale.Controllers
         }
         public ActionResult Mainpage()
         {
-            return View();
+            if (Session["Login"] == null)
+            {
+                return RedirectToAction("login", "home");
+            }
+            else
+            {
+                return View();
+            }
         }
         public ActionResult Registration()
         {
@@ -37,7 +44,14 @@ namespace MajsterFinale.Controllers
         }
         public ActionResult Login()
         {
-            return View();
+            if (Session["Login"] != null)
+            {
+                return RedirectToAction("mainpage", "home", new { Login = Session["Login"].ToString() });
+            }
+            else
+            {
+                return View();
+            }
         }
 
         //logowanie jak na razie bez sesji
@@ -50,7 +64,11 @@ namespace MajsterFinale.Controllers
             {
                 ViewBag.message = "Zalogowano";
                 ViewBag.triedOnce = "Tak";
-                return RedirectToAction("mainpage", "home");
+
+                Session["Login"] = User.Login;
+
+
+                return RedirectToAction("mainpage", "home", new { Login=User.Login});
 
             }
             else
