@@ -29,17 +29,20 @@ namespace MajsterFinale.Controllers
             return View();
         }
 
-        //rejestracja na ten moment zawiera tylko dane do logowania, czyli podajemy login i hasło i po kliknięciu przycisku dane zostają zapisane w bazie
+        //Rejestracja, gdzie podajemy Login 2x hasło i 2xmaila
         [HttpPost]
         public ActionResult Registration(User obj)
         {
             if (ModelState.IsValid)
             {
-                MajsterRejestracja db = new MajsterRejestracja();
+                BazaLocal db = new BazaLocal();
                 db.Users.Add(obj);
                 db.SaveChanges();
                 ViewBag.message = "Rejestracja przebiegła pomyślnie";
+                //return RedirectToAction("login", "home");
             }
+            //ModelState.Clear();
+            //ViewBag.SuccessMessage = "Rejestracja przebiegła pomyślnie";
             return View(obj);
         }
         public ActionResult Login()
@@ -54,11 +57,11 @@ namespace MajsterFinale.Controllers
             }
         }
 
-        //logowanie jak na razie bez sesji
+        //logowanie z sesją
         [HttpPost]
         public ActionResult Login(User User)
         {
-            MajsterLogowanie db = new MajsterLogowanie();
+            BazaLocal db = new BazaLocal();
             var userLoggedIn = db.Users.SingleOrDefault(x => x.Login == User.Login && x.Password == User.Password);
             if (userLoggedIn != null)
             {
@@ -76,6 +79,18 @@ namespace MajsterFinale.Controllers
                 ViewBag.triedOnce = "Tak";
                 return View();
             }
+        }
+
+        /*public ActionResult LogOut()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Home");
+        }*/
+        public ActionResult Regulamin()
+        {
+            ViewBag.Message = "Tutaj będzie regulamin";
+
+            return View();
         }
         public ActionResult About()
         {

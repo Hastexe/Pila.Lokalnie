@@ -11,10 +11,49 @@ namespace MajsterFinale.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+
     public partial class User
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public User()
+        {
+            this.Advertisements = new HashSet<Advertisement>();
+            this.Advertisements1 = new HashSet<Advertisement>();
+            this.Comments = new HashSet<Comment>();
+            this.Comments1 = new HashSet<Comment>();
+        }
+        [Required(ErrorMessage = "To pole jest wymagane")]
         public string Login { get; set; }
+        [DisplayName("Has³o")]
+        [DataType(DataType.Password)]
+        [Required(ErrorMessage = "To pole jest wymagane")]
         public string Password { get; set; }
+        [DisplayName("Powtórz Has³o")]
+        [DataType(DataType.Password)]
+        [Required(ErrorMessage = "To pole jest wymagane")]
+        [Compare("Password")]
+        public string RePassword { get; set; }
+        [DisplayName("E-mail")]
+        [Required(ErrorMessage = "To pole jest wymagane")]
+        public string Mail { get; set; }
+        [DisplayName("Powtórz E-mail")]
+        [Required(ErrorMessage = "To pole jest wymagane")]
+        [Compare("Mail")]
+        public string ReMail { get; set; }
+        [Range(typeof(bool), "true", "true", ErrorMessage = "Nale¿y zapoznaæ siê z regulaminem")]
+        public bool TermsAndConditions { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Advertisement> Advertisements { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Advertisement> Advertisements1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Comment> Comments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Comment> Comments1 { get; set; }
+        public virtual Permission Permission { get; set; }
+        public virtual Users_Data Users_Data { get; set; }
     }
 }
