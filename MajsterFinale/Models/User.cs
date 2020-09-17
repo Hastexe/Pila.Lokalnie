@@ -24,26 +24,30 @@ namespace MajsterFinale.Models
             this.Comments = new HashSet<Comment>();
             this.Comments1 = new HashSet<Comment>();
         }
-        [Required(ErrorMessage = "To pole jest wymagane")]
+        [Required(ErrorMessage ="Pole jest wymagane")]
         public string Login { get; set; }
+
         [DisplayName("Has³o")]
         [DataType(DataType.Password)]
-        [Required(ErrorMessage = "To pole jest wymagane")]
+        [Required(ErrorMessage = "Pole jest wymagane")]
         public string Password { get; set; }
+
         [DisplayName("Powtórz Has³o")]
         [DataType(DataType.Password)]
-        [Required(ErrorMessage = "To pole jest wymagane")]
+        [Required(ErrorMessage = "Pole jest wymagane")]
         [Compare("Password")]
         public string RePassword { get; set; }
+
         [DisplayName("E-mail")]
-        [Required(ErrorMessage = "To pole jest wymagane")]
+        [DataType(DataType.EmailAddress)]
+        [Required(ErrorMessage = "Pole jest wymagane")]
         public string Mail { get; set; }
+
         [DisplayName("Powtórz E-mail")]
-        [Required(ErrorMessage = "To pole jest wymagane")]
+        [DataType(DataType.EmailAddress)]
+        [Required(ErrorMessage = "Pole jest wymagane")]
         [Compare("Mail")]
         public string ReMail { get; set; }
-        [Range(typeof(bool), "true", "true", ErrorMessage = "Nale¿y zapoznaæ siê z regulaminem")]
-        public bool TermsAndConditions { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Advertisement> Advertisements { get; set; }

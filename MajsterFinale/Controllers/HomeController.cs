@@ -17,35 +17,14 @@ namespace MajsterFinale.Controllers
         {
             if (Session["Login"] == null)
             {
-                return RedirectToAction("login", "home");
+                return RedirectToAction("Logowanie", "home");
             }
             else
             {
                 return View();
             }
         }
-        public ActionResult Registration()
-        {
-            return View();
-        }
-
-        //Rejestracja, gdzie podajemy Login 2x hasło i 2xmaila
-        [HttpPost]
-        public ActionResult Registration(User obj)
-        {
-            if (ModelState.IsValid)
-            {
-                BazaLocal db = new BazaLocal();
-                db.Users.Add(obj);
-                db.SaveChanges();
-                ViewBag.message = "Rejestracja przebiegła pomyślnie";
-                //return RedirectToAction("login", "home");
-            }
-            //ModelState.Clear();
-            //ViewBag.SuccessMessage = "Rejestracja przebiegła pomyślnie";
-            return View(obj);
-        }
-        public ActionResult Login()
+        public ActionResult Logowanie()
         {
             if (Session["Login"] != null)
             {
@@ -59,7 +38,7 @@ namespace MajsterFinale.Controllers
 
         //logowanie z sesją
         [HttpPost]
-        public ActionResult Login(User User)
+        public ActionResult Logowanie(User User)
         {
             BazaLocal db = new BazaLocal();
             var userLoggedIn = db.Users.SingleOrDefault(x => x.Login == User.Login && x.Password == User.Password);
@@ -71,7 +50,7 @@ namespace MajsterFinale.Controllers
                 Session["Login"] = User.Login;
 
 
-                return RedirectToAction("mainpage", "home", new { Login=User.Login});
+                return RedirectToAction("mainpage", "home", new { Login = User.Login });
 
             }
             else
@@ -80,7 +59,23 @@ namespace MajsterFinale.Controllers
                 return View();
             }
         }
-
+        public ActionResult Rejestracja(int id = 0)
+        {
+            User user = new User();
+            return View(user);
+        }
+        [HttpPost]
+        public ActionResult Rejestracja(User user)
+        {
+            using (BazaLocal db = new BazaLocal())
+            {
+                db.Users.Add(user);
+                db.SaveChanges();
+            }
+            ModelState.Clear();
+            ViewBag.SuccessMessage = "Rejestracja przebiegła pomślnie";
+            return View("Rejestracja", new User());
+        }
         /*public ActionResult LogOut()
         {
             FormsAuthentication.SignOut();
@@ -89,6 +84,11 @@ namespace MajsterFinale.Controllers
         public ActionResult Regulamin()
         {
             ViewBag.Message = "Tutaj będzie regulamin";
+
+            return View();
+        }
+        public ActionResult Message()
+        {
 
             return View();
         }

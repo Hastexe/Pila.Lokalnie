@@ -156,59 +156,11 @@
     <Compile Include="Models\Comment.cs">
       <DependentUpon>BazaPolaczenie.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Logging.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Logging.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Logging.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Logging.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Logging.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Logging.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Models\Old_Pass.cs">
       <DependentUpon>BazaPolaczenie.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Permission.cs">
       <DependentUpon>BazaPolaczenie.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Registration.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Registration.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Registration.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Registration.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Registration.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Registration.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Rejestracja.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Rejestracja.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Rejestracja.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Rejestracja.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Rejestracja.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Rejestracja.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>Rejestracja.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
       <DependentUpon>BazaPolaczenie.tt</DependentUpon>
@@ -237,59 +189,8 @@
       <DependentUpon>BazaPolaczenie.edmx</DependentUpon>
       <LastGenOutput>BazaPolaczenie.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\Logging.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Logging.edmx</DependentUpon>
-      <LastGenOutput>Logging.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\Logging.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Logging.edmx</DependentUpon>
-      <LastGenOutput>Logging.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\Registration.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Registration.Context.cs</LastGenOutput>
-      <DependentUpon>Registration.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\Registration.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Registration.edmx</DependentUpon>
-      <LastGenOutput>Registration.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\Rejestracja.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Rejestracja.edmx</DependentUpon>
-      <LastGenOutput>Rejestracja.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\Rejestracja.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Rejestracja.edmx</DependentUpon>
-      <LastGenOutput>Rejestracja.cs</LastGenOutput>
-    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\Registration.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Registration.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Registration.edmx.diagram">
-      <DependentUpon>Registration.edmx</DependentUpon>
-    </Content>
-    <EntityDeploy Include="Models\Logging.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Logging.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Logging.edmx.diagram">
-      <DependentUpon>Logging.edmx</DependentUpon>
-    </Content>
-    <EntityDeploy Include="Models\Rejestracja.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Rejestracja.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Rejestracja.edmx.diagram">
-      <DependentUpon>Rejestracja.edmx</DependentUpon>
-    </Content>
     <EntityDeploy Include="Models\BazaPolaczenie.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>BazaPolaczenie.Designer.cs</LastGenOutput>
@@ -322,10 +223,11 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\Registration.cshtml" />
-    <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\Mainpage.cshtml" />
     <Content Include="Views\Home\Regulamin.cshtml" />
+    <Content Include="Views\Home\Message.cshtml" />
+    <Content Include="Views\Home\Rejestracja.cshtml" />
+    <Content Include="Views\Home\Logowanie.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
