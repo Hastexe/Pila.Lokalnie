@@ -1,24 +1,315 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+﻿
+@media (max-width: 1440px) {
+    html {
+        font-size: 16px;
+        min-width: 1024px;
+    }
 }
 
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+body{
+    margin: 0;
+
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
-.dl-horizontal dt {
-    white-space: normal;
+.layout {
+    display: flex; /* or inline-flex */
+    flex-direction: column;
+    justify-content: center;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+.menu {
+    background-color: #white;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    height: 86px;
+    display: flex;
+    justify-content: flex-start;
+    box-shadow: 0px 2px 8px #888888;
+}
+.menu-wrapper {
+    width: 1000px;
+    height: 86px;
+    margin: auto;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+}
+
+
+.search {
+    background: #fff;
+    height: 45px;
+    display: inherit;
+    width: 1000px;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    border-radius: 10px;
+}
+
+.main {
+    background: #d8d8d8;
+    left: 0;
+    right: 0;
+    height: auto;
+    padding: 36px 0 82px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.main-wrapper {
+    display: flex;
+    min-width: 1000px;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+.categories-wrapper {
+    background-color: white;
+    width: 250px;
+    height: 500px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    box-shadow: 0px 2px 4px #888888;
+}
+
+.category{
+    height: 25px;
+    width: 150px;
+    margin: 2px;
+    background: #000000;
+}
+
+
+.recentads-wrapper {
+    width: 700px;
+    min-height: 600px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    background: #fff;
+    box-shadow: 0px 2px 4px #888888;
+}
+
+.adsmenu{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px 0 20px;
+    height: 80px;
+    width: 700px;
+    align-items: center;
+}
+
+.recentad {
+    height: 150px;
+    width: 600px;
+    background: #fff;
+    margin: 10px;
+    border: 2px #808080 solid;
+    box-shadow: 0px 2px 4px #888888;
+}
+
+
+.footer {
+    background: #fff;
+    min-height: 250px;
+    left: 0;
+    right: 0;
+    display: flex;
+    border-top: 2px solid #808080;
+}
+
+.footer-wrapper {
+    width: 1000px;
+    min-height: 250px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    justify-content: space-between;
+}
+
+.text-title {
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    font-size: 35px;
+    letter-spacing: 0px;
+    word-spacing: 0px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.recentadstitle {
+    flex-basis: 100%;
+    justify-content: center;
+    margin-bottom: 25px;
+    color: #000000;
+}
+
+.categoriestitle {
+    flex-basis: 100%;
+    justify-content: center;
+    margin-bottom: 25px;
+    color: #000000;
+}
+
+.menubuttonlogin {
+    display: flex;
+    border-radius: 15px;
+    border: none;
+    height: 45px;
+    padding: 0;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 100px;
+    margin-left: 15px;
+    align-items: center;
+    justify-content: center;
+    background-color: #4cb151;
+}
+
+.menubuttonprofile {
+    display: flex;
+    border-radius: 2px;
+    border: none;
+    height: 45px;
+    padding: 0;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 100px;
+    margin-left: 15px;
+    align-items: center;
+    justify-content: center;
+}
+
+.menubuttonadd {
+    display: flex;
+    border-radius: 2px;
+    border: none;
+    height: 45px;
+    padding: 0;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 150px;
+    margin-left: auto;
+    align-items: center;
+    justify-content: center;
+}
+.menubuttonlogo {
+    display: flex;
+    border-radius: 2px;
+    border: none;
+    height: 45px;
+    padding: 0;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 10%;
+    margin-right: auto;
+    align-items: center;
+    justify-content: center;
+}
+
+.ghost {
+    background-color: #4cb151;
+    color: #000;
+    border: 6px solid #fff;
+    transition: .2s ease;
+    text-decoration: none;
+}
+
+.ghost:hover {
+    background-color: #d8d8d8;
+    color: #FFF;
+    transition: .2s ease;
+}
+
+
+
+form.example {
+    display: flex;
+    font-size: 17px;
+    flex-basis: 100%;
+    background: #FFF;
+}
+    form.example input[type=text] {
+        display: flex;
+        padding: 10px;
+        font-size: 17px;
+        flex-basis: 80%;
+        background: #f1f1f1;
+        border: 0;
+        border-radius: 10px 0 0px 10px;
+        outline: none;
+    }
+
+/* Style the submit button */
+form.example button {
+    display: flex;
+    flex-basis: 20%;
+    background: #4cb151;
+    color: white;
+    font-size: 17px;
+    cursor: pointer;
+    border: 0;
+    outline: none;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0px 10px 10px 0px;
+}
+
+.login-wrapper {
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+    background: #fff;
+}
+
+.loginpanel{
+    min-height: 500px;
+    background: #fff;
+    width: 300px;
+}
+
+.message-menu {
+    background-color: white;
+    max-width: 1000px;
+    height: 150px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-left: 25px;
+    box-shadow: 0px 2px 4px #888888;
+    justify-content: space-evenly;
+}
+.msg-box-title{
+    display:flex;
+    width: 100%;
+}
+
+.msg-box-info{
+   display: flex;
+   width: 100%;
+   justify-content: space-between;
+}
+
+.msg {
+    background-color: white;
+    width: 1000px;
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    box-shadow: 0px 2px 4px #888888;
+    justify-content: space-evenly;
+    align-items:center;
+    margin: 15px 0 15px 0;
+}
+
+.message-text {
+    margin-top: 25px;
+    width: 1000px;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
