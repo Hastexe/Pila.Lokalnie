@@ -4,10 +4,10 @@
 @Scripts.Render("~/bundles/jqueryval")
 
 
-@using (Html.BeginForm("Rejestracja","Home",FormMethod.Post)) 
+@using (Html.BeginForm("Rejestracja", "Home", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Rejestracja</h4>
         <hr />
