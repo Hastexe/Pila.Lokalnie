@@ -31,7 +31,7 @@ Name varchar(50) NOT NULL,
 );
 
 create table Advertisement(
-ID int NOT NULL PRIMARY KEY,
+ID int NOT NULL PRIMARY KEY IDENTITY(1,1),
 Customer varchar(255) NOT NULL,
 Specialist varchar(255) NOT NULL,
 Date smalldatetime NOT NULL,
@@ -39,7 +39,7 @@ Text text,
 Price smallmoney,
 Category varchar(3) NOT NULL,
 Place varchar(50) NOT NULL,
-Picture varchar(155), /*tutaj bêdzie œcie¿ka do zdjêcia*/
+Picture varchar(155), /*tutaj bÃªdzie Å“cieÂ¿ka do zdjÃªcia*/
 );
 
 create table Permissions(
