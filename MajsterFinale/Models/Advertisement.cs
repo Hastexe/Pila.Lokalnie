@@ -27,5 +27,8 @@ namespace MajsterFinale.Models
         public string Category { get; set; }
         public string Place { get; set; }
         public string Picture { get; set; }
+    
+        public virtual User User { get; set; }
+        public virtual User User1 { get; set; }
     }
 }

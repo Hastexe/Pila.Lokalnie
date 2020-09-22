@@ -132,23 +132,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AddAdvertisement.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AddAdvertisement.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\AddAdvertisement.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AddAdvertisement.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\AddAdvertisement.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AddAdvertisement.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Models\Advertisement.cs">
-      <DependentUpon>AddAdvertisement.tt</DependentUpon>
+      <DependentUpon>BazaPolaczenie.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BazaPolaczenie.Context.cs">
       <AutoGen>True</AutoGen>
@@ -194,16 +179,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\AddAdvertisement.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>AddAdvertisement.edmx</DependentUpon>
-      <LastGenOutput>AddAdvertisement.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\AddAdvertisement.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>AddAdvertisement.edmx</DependentUpon>
-      <LastGenOutput>AddAdvertisement.cs</LastGenOutput>
-    </Content>
     <Content Include="Models\BazaPolaczenie.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>BazaPolaczenie.edmx</DependentUpon>
@@ -222,13 +197,6 @@
     </EntityDeploy>
     <Content Include="Models\BazaPolaczenie.edmx.diagram">
       <DependentUpon>BazaPolaczenie.edmx</DependentUpon>
-    </Content>
-    <EntityDeploy Include="Models\AddAdvertisement.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>AddAdvertisement.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\AddAdvertisement.edmx.diagram">
-      <DependentUpon>AddAdvertisement.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

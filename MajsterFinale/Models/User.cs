@@ -11,9 +11,7 @@ namespace MajsterFinale.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class User
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -24,31 +22,11 @@ namespace MajsterFinale.Models
             this.Comments = new HashSet<Comment>();
             this.Comments1 = new HashSet<Comment>();
         }
-        [Required(ErrorMessage ="Pole jest wymagane")]
+    
         public string Login { get; set; }
-
-        [DisplayName("Has³o")]
-        [DataType(DataType.Password)]
-        [Required(ErrorMessage = "Pole jest wymagane")]
         public string Password { get; set; }
-
-        [DisplayName("Powtórz Has³o")]
-        [DataType(DataType.Password)]
-        [Required(ErrorMessage = "Pole jest wymagane")]
-        [Compare("Password")]
-        public string RePassword { get; set; }
-
-        [DisplayName("E-mail")]
-        [DataType(DataType.EmailAddress)]
-        [Required(ErrorMessage = "Pole jest wymagane")]
         public string Mail { get; set; }
-
-        [DisplayName("Powtórz E-mail")]
-        [DataType(DataType.EmailAddress)]
-        [Required(ErrorMessage = "Pole jest wymagane")]
-        [Compare("Mail")]
-        public string ReMail { get; set; }
-
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Advertisement> Advertisements { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

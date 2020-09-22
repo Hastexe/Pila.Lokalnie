@@ -93,8 +93,10 @@ namespace MajsterFinale.Controllers
         {
             if (ModelState.IsValid)
             {
-                AddAdvertisement db = new AddAdvertisement();
-                db.Advertisement.Add(obj);
+                BazaLocal db = new BazaLocal();
+                obj.Specialist = Session["Login"].ToString();
+                obj.Customer = Session["Login"].ToString();
+                db.Advertisements.Add(obj);
                 db.SaveChanges();
             }
             return View(obj);
