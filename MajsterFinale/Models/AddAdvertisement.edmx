@@ -4,12 +4,12 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="MajsterModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="AddAdv.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Advertisement">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Customer" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="Specialist" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="Date" Type="smalldatetime" Nullable="false" />
@@ -19,19 +19,19 @@
           <Property Name="Place" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Picture" Type="varchar" MaxLength="155" />
         </EntityType>
-        <EntityContainer Name="MajsterModelStoreContainer">
+        <EntityContainer Name="AddAdvStoreContainer">
           <EntitySet Name="Advertisement" EntityType="Self.Advertisement" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="MajsterModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="AddAdv" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Advertisement">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Customer" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Specialist" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
@@ -41,7 +41,7 @@
           <Property Name="Place" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Picture" Type="String" MaxLength="155" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityContainer Name="MajsterEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="AddAdvertisement" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Advertisement" EntityType="Self.Advertisement" />
         </EntityContainer>
       </Schema>
@@ -49,9 +49,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="MajsterModelStoreContainer" CdmEntityContainer="MajsterEntities1">
+        <EntityContainerMapping StorageEntityContainer="AddAdvStoreContainer" CdmEntityContainer="AddAdvertisement">
           <EntitySetMapping Name="Advertisement">
-            <EntityTypeMapping TypeName="MajsterModel.Advertisement">
+            <EntityTypeMapping TypeName="AddAdv.Advertisement">
               <MappingFragment StoreEntitySet="Advertisement">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Customer" ColumnName="Customer" />

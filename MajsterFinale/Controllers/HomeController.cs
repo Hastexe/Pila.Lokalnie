@@ -81,6 +81,24 @@ namespace MajsterFinale.Controllers
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
         }*/
+
+        public ActionResult AddAdvertisement()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddAdvertisement(Advertisement obj)
+
+        {
+            if (ModelState.IsValid)
+            {
+                AddAdvertisement db = new AddAdvertisement();
+                db.Advertisement.Add(obj);
+                db.SaveChanges();
+            }
+            return View(obj);
+        }
         public ActionResult Regulamin()
         {
             ViewBag.Message = "Tutaj będzie regulamin";

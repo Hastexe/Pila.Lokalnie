@@ -13,10 +13,10 @@ namespace MajsterFinale.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class MajsterEntities1 : DbContext
+    public partial class AddAdvertisement : DbContext
     {
-        public MajsterEntities1()
-            : base("name=MajsterEntities1")
+        public AddAdvertisement()
+            : base("name=AddAdvertisement")
         {
         }
     

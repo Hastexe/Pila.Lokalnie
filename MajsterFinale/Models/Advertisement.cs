@@ -14,6 +14,10 @@ namespace MajsterFinale.Models
     
     public partial class Advertisement
     {
+        public Advertisement()
+        {
+            this.Date = DateTime.Now;
+        }
         public int ID { get; set; }
         public string Customer { get; set; }
         public string Specialist { get; set; }
@@ -23,8 +27,5 @@ namespace MajsterFinale.Models
         public string Category { get; set; }
         public string Place { get; set; }
         public string Picture { get; set; }
-    
-        public virtual User User { get; set; }
-        public virtual User User1 { get; set; }
     }
 }
