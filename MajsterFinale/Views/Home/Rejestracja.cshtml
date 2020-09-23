@@ -3,65 +3,88 @@
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/jqueryval")
 
-
 @using (Html.BeginForm("Rejestracja", "Home", FormMethod.Post))
 {
-    @Html.AntiForgeryToken()
+@Html.AntiForgeryToken()
+    <html>
+    <body>
+        <div class="form-horizontal">
+            <h4>Rejestracja</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Login, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Login, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Login, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
-    <div class="form-horizontal">
-        <h4>Rejestracja</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Login, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Login, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Login, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.RePassword, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.RePassword, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.RePassword, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Mail, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Mail, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Mail, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.RePassword, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.RePassword, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.RePassword, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.ReMail, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ReMail, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ReMail, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Mail, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Mail, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Mail, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.CheckBoxFor(model => model.Terms)
+                
+                    <label>Oświadczam, iż zapoznałem się z treścią @Html.ActionLink("Regulaminu", "regulamin", null, new { target = "_blank" }) i akceptuję jego wszystkie postanowienia. Akceptuję @Html.ActionLink("Politykę Ochrony Prywatności", "polityka", null, new { target = "_blank" }) - ogólne standardy ochrony.</label>
+                    <div class="col-md-10">
+                        @Html.ValidationMessageFor(model => model.Terms, "", new { @class = "text-danger" })
+                    </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ReMail, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ReMail, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ReMail, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <button type="submit" value="Załóż konto" class="btn btn-default">Załóż konto</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-2">
+                        <label class="label-success">@ViewBag.SuccessMessage</label>
+                    </div>
+                </div>
             </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Załóż konto" class="btn btn-default" />
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-2">
-                <label class="label-success">@ViewBag.SuccessMessage</label>
-            </div>
-        </div>
-    </div>
+        <script>
+            // extend range validator method to treat checkboxes differently
+            var defaultRangeValidator = $.validator.methods.range;
+            $.validator.methods.range = function (value, element, param) {
+                if (element.type === 'checkbox') {
+                    // if it's a checkbox return true if it is checked
+                    return element.checked;
+                } else {
+                    // otherwise run the default validation function
+                    return defaultRangeValidator.call(this, value, element, param);
+                }
+            }
+        </script>
+    </body>
+    </html>
 }
 
 @section Scripts{

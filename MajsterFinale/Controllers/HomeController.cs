@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Scrypt;
+using System.Web.Security;
 
 namespace MajsterFinale.Controllers
 {
@@ -67,20 +69,29 @@ namespace MajsterFinale.Controllers
         [HttpPost]
         public ActionResult Rejestracja(User user)
         {
-            using (BazaLocal db = new BazaLocal())
+            if (!ModelState.IsValid)
             {
-                db.Users.Add(user);
-                db.SaveChanges();
+                return View(user);
             }
-            ModelState.Clear();
-            ViewBag.SuccessMessage = "Rejestracja przebiegła pomślnie";
-            return View("Rejestracja", new User());
+            else
+
+            using (BazaLocal db = new BazaLocal())
+                {
+                    db.Users.Add(user);
+                    db.SaveChanges();
+                }
+                ModelState.Clear();
+                ViewBag.SuccessMessage = "Rejestracja przebiegła pomślnie";
+                return View("Rejestracja", new User());
         }
-        /*public ActionResult LogOut()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult LogOff()
         {
+            Session.Clear();
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
-        }*/
+        }
 
         public ActionResult AddAdvertisement()
         {
@@ -107,6 +118,12 @@ namespace MajsterFinale.Controllers
 
             return View();
         }
+        public ActionResult Polityka()
+        {
+            ViewBag.Message = "Tutaj będzie Polityka Ochrony Prywatności";
+
+            return View();
+        }
         public ActionResult Message()
         {
 
@@ -125,5 +142,6 @@ namespace MajsterFinale.Controllers
 
             return View();
         }
+        
     }
 }

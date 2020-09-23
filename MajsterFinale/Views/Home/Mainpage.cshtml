@@ -15,8 +15,13 @@
     <h3>Zostałeś zalogowany</h3>
     <h2>Witaj na stronie głównej</h2>
     <div>
-        @Html.ActionLink("Zaloguj się", "Logowanie")
-        @Html.ActionLink("Zarejestruj się","Rejestracja")
+        <!--@Html.ActionLink("Zaloguj się", "Logowanie")-->
+        <!--@Html.ActionLink("Zarejestruj się", "Rejestracja")-->
+        @using (Html.BeginForm("LogOff", "home", FormMethod.Post, new { role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            <input type="submit" value="Logout" class="btn btn-primary" />
+        }
     </div>
-</body>
-</html>
+    </body>
+    </html>

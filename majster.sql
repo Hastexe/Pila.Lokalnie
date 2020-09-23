@@ -7,6 +7,7 @@ create table Users(
 Login varchar(255) NOT NULL PRIMARY KEY,
 Password varchar(255) NOT NULL,
 Mail varchar(255) NOT NULL,
+EmailConfirm bit DEFAULT 0,
 );
 
 create table Old_Pass(

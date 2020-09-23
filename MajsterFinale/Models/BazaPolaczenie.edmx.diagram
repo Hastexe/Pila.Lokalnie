@@ -10,7 +10,7 @@
         <EntityTypeShape EntityType="BazaPolaczenie.Comment" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
         <EntityTypeShape EntityType="BazaPolaczenie.Old_Pass" Width="1.5" PointX="5.25" PointY="8.625" IsExpanded="true" />
         <EntityTypeShape EntityType="BazaPolaczenie.Permission" Width="1.5" PointX="3" PointY="8.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="BazaPolaczenie.User" Width="1.5" PointX="0.75" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BazaPolaczenie.User" Width="1.5" PointX="0.5" PointY="6" IsExpanded="true" />
         <EntityTypeShape EntityType="BazaPolaczenie.Users_Data" Width="1.5" PointX="3" PointY="11.125" IsExpanded="true" />
         <AssociationConnector Association="BazaPolaczenie.FK_Advertisement_Users" ManuallyRouted="false" />
         <AssociationConnector Association="BazaPolaczenie.FK_Advertisement_Users1" ManuallyRouted="false" />
