@@ -51,7 +51,7 @@ namespace MajsterFinale.Controllers
 
                 Session["Login"] = User.Login;
 
-
+                //po zalogowaniu przenosi nas mainpage(nie można wejść na tą stronę jeżeli nie jest się zalogowanym: jest to test sesji)
                 return RedirectToAction("mainpage", "home", new { Login = User.Login });
 
             }

@@ -7,7 +7,6 @@ create table Users(
 Login varchar(255) NOT NULL PRIMARY KEY,
 Password varchar(255) NOT NULL,
 Mail varchar(255) NOT NULL,
-EmailConfirm bit DEFAULT 0,
 );
 
 create table Old_Pass(
@@ -31,7 +30,7 @@ Tag varchar(3) NOT NULL PRIMARY KEY,
 Name varchar(50) NOT NULL,
 );
 
-create table Advertisement(
+Create table Advertisement(
 ID int NOT NULL PRIMARY KEY IDENTITY(1,1),
 Customer varchar(255) NOT NULL,
 Specialist varchar(255) NOT NULL,
@@ -41,6 +40,7 @@ Price smallmoney,
 Category varchar(3) NOT NULL,
 Place varchar(50) NOT NULL,
 Picture varchar(155), /*tutaj bêdzie œcie¿ka do zdjêcia*/
+Status varchar(25) DEFAULT 'Wolne',
 );
 
 create table Permissions(
@@ -92,3 +92,10 @@ REFERENCES [dbo].[Users] ([Login])
 GO
 ALTER TABLE [dbo].[Users_Data] CHECK CONSTRAINT [FK_Users_Data_Users]
 GO
+
+
+select * from Users
+insert into Users values ('Majster','123123','mail@mail.pl')
+
+
+select * from Advertisement
