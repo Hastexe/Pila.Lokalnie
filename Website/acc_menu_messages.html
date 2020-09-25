@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="pl">
+<head>
+    <title>Piłaloklanie</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+  <header id="header" class="fixed-top d-flex align-items-center bg-light shadow">
+    <div class="container d-flex align-items-center">
+      <div class="logo mr-auto">
+        <h1><a class="navbar-brand" href="index_main.html">
+          <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-house-door" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M7.646 1.146a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 .146.354v7a.5.5 0 0 1-.5.5H9.5a.5.5 0 0 1-.5-.5v-4H7v4a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .146-.354l6-6zM2.5 7.707V14H6v-4a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v4h3.5V7.707L8 2.207l-5.5 5.5z"/>
+              <path fill-rule="evenodd" d="M13 2.5V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+            </svg>
+          Piła<b>lokalnie</b>
+      </a></h1>
+      </div>
+      <div class="input-group col-md-6 mt-0">
+        <input class="form-control py-2" type="search" value="Czego szukasz?"  type="text">
+        <span class="input-group-append">
+          <button class="btn btn-outline-secondary" type="button">
+              <i class="fa fa-search"></i>
+          </button>
+        </span>
+      </div>
+      <nav class="nav-menu d-none d-lg-block">
+        <ul>
+          <li><a class="nav-link active " href="index_messages.html"><svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-chat-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h2.5a2 2 0 0 1 1.6.8L8 14.333 9.9 11.8a2 2 0 0 1 1.6-.8H14a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5a1 1 0 0 1 .8.4l1.9 2.533a1 1 0 0 0 1.6 0l1.9-2.533a1 1 0 0 1 .8-.4H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+          </svg></a></li>
+          <li><a class="nav-link active" href="#"><svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-bookmark" fill="black" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+          </svg></a></li>
+          <li><a class="nav-link active" href="index_register.html"><span class="mk">Moje konto</span><svg width="1.8em" height="1.8em" viewBox="0 0 16 16" class="bi bi-person" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M10 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm6 5c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+          </svg></a></li>
+        </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="acc">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 title">
+        <h1>Witaj użytkowniku!</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12" style="padding-bottom: 1em;">
+      <nav class="nav-menuacc topnav" >
+        <ul>
+          <li><a href="acc_menu_adv.html">Moje ogłoszenia</a></li>
+          <li><a href="acc_menu_messages.html" class="active">Wiadomości</a></li>
+          <li><a href="#">Obserwowane (not working)</a></li>
+          <li><a href="acc_settings_account.html">Ustawienia konta</a></li>
+          <li><a href="#">Zlecenia (not working)</a></li>
+          
+        </ul>
+      </nav>
+  </div>
+</div>
+</div>
+<div class="container">
+  <div class="row">
+  <div class="col-sm-12 bg-light" style="height: 31em">
+    <div class="list-group " style="padding-top: 1em;">
+      <a href="#" class="list-group-item list-group-item-action flex-column align-items-start " style="padding-top: 1em;">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">Tytuł pierwszego wpisu</h5>
+          <small>3 dni temu</small>
+        </div>
+        <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+        <small>Kategoria / Autor wpisu</small>
+      </a>
+      <br>
+      <a href="#" class="list-group-item list-group-item-action flex-column align-items-start " style="padding-top: 1em;">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">Tytuł pierwszego wpisu</h5>
+          <small>3 dni temu</small>
+        </div>
+        <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+        <small>Kategoria / Autor wpisu</small>
+      </a>
+      <br>
+      <a href="#" class="list-group-item list-group-item-action flex-column align-items-start " style="padding-top: 1em;">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">Tytuł pierwszego wpisu</h5>
+          <small>3 dni temu</small>
+        </div>
+        <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+        <small>Kategoria / Autor wpisu</small>
+      </a>
+      <br>
+    </div>
+  </div>
+  </div>
+</div>
+</div>
+ 
+</body>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</html>
+
+
+
+
+
+
+<!-- 
+@Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    -->
