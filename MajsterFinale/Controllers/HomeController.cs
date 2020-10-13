@@ -112,6 +112,15 @@ namespace MajsterFinale.Controllers
             }
             return View(obj);
         }
+
+        public ActionResult MojeOgloszenia()
+        {
+           BazaLocal db = new BazaLocal();
+           string login = Session["Login"].ToString();
+           var sesja = db.Advertisements.Where(Advertisement => Advertisement.Customer == login );
+           return View(sesja.ToList());
+            
+        }
         public ActionResult Regulamin()
         {
             ViewBag.Message = "Tutaj będzie regulamin";

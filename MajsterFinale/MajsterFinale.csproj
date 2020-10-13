@@ -233,6 +233,7 @@
     <Content Include="Views\Home\Logowanie.cshtml" />
     <Content Include="Views\Home\AddAdvertisement.cshtml" />
     <Content Include="Views\Home\Polityka.cshtml" />
+    <Content Include="Views\Home\MojeOgloszenia.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
