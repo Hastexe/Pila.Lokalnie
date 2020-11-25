@@ -17,7 +17,7 @@ namespace MajsterFinale.Controllers
         }
         public ActionResult Mainpage()
         {
-            if (Session["Login"] == null)
+            if (Session["ID"] == null)
             {
                 return RedirectToAction("Logowanie", "home");
             }
@@ -28,9 +28,9 @@ namespace MajsterFinale.Controllers
         }
         public ActionResult Logowanie()
         {
-            if (Session["Login"] != null)
+            if (Session["ID"] != null)
             {
-                return RedirectToAction("mainpage", "home", new { Login = Session["Login"].ToString() });
+                return RedirectToAction("mainpage", "home", new { ID = Session["ID"].ToString() });
             }
             else
             {
@@ -40,19 +40,19 @@ namespace MajsterFinale.Controllers
 
         //logowanie z sesją
         [HttpPost]
-        public ActionResult Logowanie(User User)
+        public ActionResult Logowanie(USERS USERS)
         {
             BazaLocal db = new BazaLocal();
-            var userLoggedIn = db.Users.SingleOrDefault(x => x.Login == User.Login && x.Password == User.Password);
+            var userLoggedIn = db.USERS.SingleOrDefault(x => x.LOGIN == USERS.LOGIN && x.PASSWORD == USERS.PASSWORD);
             if (userLoggedIn != null)
             {
                 ViewBag.message = "Zalogowano";
                 ViewBag.triedOnce = "Tak";
 
-                Session["Login"] = User.Login;
+                Session["ID"] = USERS.USER_ID;
 
                 //po zalogowaniu przenosi nas mainpage(nie można wejść na tą stronę jeżeli nie jest się zalogowanym: jest to test sesji)
-                return RedirectToAction("mainpage", "home", new { Login = User.Login });
+                return RedirectToAction("mainpage", "home", new { Login = USERS.LOGIN });
 
             }
             else
@@ -63,26 +63,26 @@ namespace MajsterFinale.Controllers
         }
         public ActionResult Rejestracja(int id = 0)
         {
-            User user = new User();
-            return View(user);
+            USERS USERS = new USERS();
+            return View(USERS);
         }
         [HttpPost]
-        public ActionResult Rejestracja(User user)
+        public ActionResult Rejestracja(USERS USERS)
         {
             if (!ModelState.IsValid)
             {
-                return View(user);
+                return View(USERS);
             }
             else
 
             using (BazaLocal db = new BazaLocal())
                 {
-                    db.Users.Add(user);
+                    db.USERS.Add(USERS);
                     db.SaveChanges();
                 }
                 ModelState.Clear();
                 ViewBag.SuccessMessage = "Rejestracja przebiegła pomślnie";
-                return View("Rejestracja", new User());
+                return View("Rejestracja", new USERS());
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -99,28 +99,27 @@ namespace MajsterFinale.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddAdvertisement(Advertisement obj)
+        public ActionResult AddAdvertisement(ADVERTS obj)
 
         {
             if (ModelState.IsValid)
             {
                 BazaLocal db = new BazaLocal();
-                obj.Specialist = Session["Login"].ToString();
-                obj.Customer = Session["Login"].ToString();
-                db.Advertisements.Add(obj);
+                //obj.USER_ID = Session["ID"].ToString();
+                //obj.USER_ID = Session["ID"].ToString();
+                db.ADVERTS.Add(obj);
                 db.SaveChanges();
             }
             return View(obj);
         }
 
-        public ActionResult MojeOgloszenia()
+        /*public ActionResult MojeOgloszenia()
         {
            BazaLocal db = new BazaLocal();
            string login = Session["Login"].ToString();
-           var sesja = db.Advertisements.Where(Advertisement => Advertisement.Customer == login );
+           var sesja = db.ADVERTS.Where(ADVERTS => ADVERTS.USER_ID == login );
            return View(sesja.ToList());
-            
-        }
+        }*/
         public ActionResult Regulamin()
         {
             ViewBag.Message = "Tutaj będzie regulamin";

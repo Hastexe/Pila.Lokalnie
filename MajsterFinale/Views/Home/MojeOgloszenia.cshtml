@@ -1,15 +1,15 @@
-﻿@model IEnumerable<MajsterFinale.Models.Advertisement>
+﻿@model IEnumerable<MajsterFinale.Models.ADVERTS>
 
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Text)
+            @Html.DisplayNameFor(model => model.TEXT)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Price)
+            @Html.DisplayNameFor(model => model.PRICE)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Category)
+            @Html.DisplayNameFor(model => model.CATEGORY)
         </th>
         <th></th>
     </tr>
@@ -20,13 +20,13 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Text)
+                @Html.DisplayFor(modelItem => item.TEXT)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Price)
+                @Html.DisplayFor(modelItem => item.PRICE)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Category)
+                @Html.DisplayFor(modelItem => item.CATEGORY)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |

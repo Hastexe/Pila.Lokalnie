@@ -4,21 +4,18 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="e48310557fbb4998ab4665640458b67b" Name="Diagram1">
-        <EntityTypeShape EntityType="BazaPolaczenie.Advertisement" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="BazaPolaczenie.Category" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BazaPolaczenie.Comment" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="BazaPolaczenie.Old_Pass" Width="1.5" PointX="5.25" PointY="8.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="BazaPolaczenie.Permission" Width="1.5" PointX="3" PointY="8.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="BazaPolaczenie.User" Width="1.5" PointX="0.5" PointY="6" IsExpanded="true" />
-        <EntityTypeShape EntityType="BazaPolaczenie.Users_Data" Width="1.5" PointX="3" PointY="11.125" IsExpanded="true" />
-        <AssociationConnector Association="BazaPolaczenie.FK_Advertisement_Users" ManuallyRouted="false" />
-        <AssociationConnector Association="BazaPolaczenie.FK_Advertisement_Users1" ManuallyRouted="false" />
-        <AssociationConnector Association="BazaPolaczenie.FK_Comments_Users" ManuallyRouted="false" />
-        <AssociationConnector Association="BazaPolaczenie.FK_Comments_Users1" ManuallyRouted="false" />
-        <AssociationConnector Association="BazaPolaczenie.FK_Old_Pass_Permissions" ManuallyRouted="false" />
-        <AssociationConnector Association="BazaPolaczenie.FK_Permissions_Users" ManuallyRouted="false" />
-        <AssociationConnector Association="BazaPolaczenie.FK_Users_Data_Users" ManuallyRouted="false" />
+      <Diagram DiagramId="7ee0efddad3444dc85d2d951d14fc167" Name="Diagram1">
+        <EntityTypeShape EntityType="BazaPolaczenie.ADVERTS" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BazaPolaczenie.CATEGORIES" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BazaPolaczenie.FAV" Width="1.5" PointX="5.25" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BazaPolaczenie.MESSAGE" Width="1.5" PointX="3" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BazaPolaczenie.USERS" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <AssociationConnector Association="BazaPolaczenie.FK_ADVERTS_CATEGORIES" ManuallyRouted="false" />
+        <AssociationConnector Association="BazaPolaczenie.FK_ADVERTS_USERS" ManuallyRouted="false" />
+        <AssociationConnector Association="BazaPolaczenie.FK_FAV_ADVERTS" ManuallyRouted="false" />
+        <AssociationConnector Association="BazaPolaczenie.FK_FAV_USERS" ManuallyRouted="false" />
+        <AssociationConnector Association="BazaPolaczenie.FK_MESSAGE_USERS" ManuallyRouted="false" />
+        <AssociationConnector Association="BazaPolaczenie.FK_MESSAGE_USERS1" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

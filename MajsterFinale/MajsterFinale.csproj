@@ -135,7 +135,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Advertisement.cs">
+    <Compile Include="Models\ADVERTS.cs">
       <DependentUpon>BazaPolaczenie.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BazaPolaczenie.Context.cs">
@@ -153,22 +153,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BazaPolaczenie.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Category.cs">
+    <Compile Include="Models\CATEGORIES.cs">
       <DependentUpon>BazaPolaczenie.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Comment.cs">
+    <Compile Include="Models\FAV.cs">
       <DependentUpon>BazaPolaczenie.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Old_Pass.cs">
+    <Compile Include="Models\MESSAGE.cs">
       <DependentUpon>BazaPolaczenie.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Permission.cs">
-      <DependentUpon>BazaPolaczenie.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\User.cs">
-      <DependentUpon>BazaPolaczenie.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Users_Data.cs">
+    <Compile Include="Models\USERS.cs">
       <DependentUpon>BazaPolaczenie.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
