@@ -1,91 +1,57 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-
-}
-<html>
+﻿
 <body>
-    <div class="layout">
-
-        <div class="menu">
-
-            <div class="menu-wrapper">
-                <div class="menubuttonlogo ghost">LOGO</div>
-                <div class="search">
-                    <form class="example" action="action_page.php">
-                        <input type="text" placeholder="Znajdź nasze ogłoszenia..." name="search">
-                        <button type="submit">Szukaj</button>
-                    </form>
+    <div class="container-sm padlow">
+        <section id="bgtitle" class="d-flex flex-column justify-content-center align-items-center">
+            <div class="container text-center text-md-left" data-aos="fade-up">
+                <h1>Witaj na Piła lokalnie</h1>
+                <h2>Przeglądaj ogłoszenia lokalne w twojej okolicy!</h2>
+                <input type="button" class="btn btn-info" value="Zarejestruj się" onclick="location.href='@Url.Action("Rejestracja", "Home")'" />
+            </div>
+        </section>
+        <main id="main">
+            <section id="kroki" class="kroki">
+                <div class="container">
+                    <div class="section-title">
+                        <h2>Wystarczą 3 kroki</h2>
+                        <p>Zarejestruj się i zacznij ogłaszać się lokalnie!</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                            <div class="icon-box">
+                                <div class="icon"></div>
+                                <h4><a href="">Zarejestruj się</a></h4>
+                                <p>Zarejestruj się, by móc dodawać ogłoszenia</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 d-flex align-items-stretch ">
+                            <div class="icon-box">
+                                <div class="icon"></div>
+                                <h4><a href="">Uzupełnij profil</a></h4>
+                                <p>Podaj niezbędne informację w profilu</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 d-flex align-items-stretch ">
+                            <div class="icon-box">
+                                <div class="icon"></div>
+                                <h4><a href="">Dodaj lub szukaj ogłoszeń</a></h4>
+                                <p>Wyszukuj lub dodawaj ogłoszenia bez limitu za darmo!</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="menubuttonadd ghost"><input type="submit" onclick="location.href='@Url.Action("AddAdvertisement", "Home")'" value="Dodaj ogłoszenie" /></div>
-                <div class="menubuttonlogin ghost">
-                    <input type="submit" onclick="location.href='@Url.Action("message", "Home")'" value="Wiadomosci" />
+            </section>
+            <section id="about" class="about">
+                <div class="container">
+                    <div class="row">
+                        <div>
+                            <h3>Czym jest Piła lokalnie?</h3>
+                            <p>
+                                Piła lokalnie jest serwisem ogłoszeniowym, który zrzesza mieszkańców okolic.
+                            </p>
+                        </div>
+                    </div>
                 </div>
-                <div class="menubuttonlogin ghost">
-                    <input type="submit" onclick="location.href='@Url.Action("Logowanie", "Home")'" value="Zaloguj się" />
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="main">
-        <div class="main-wrapper">
-            <div class="categories-wrapper">
-                <div class="text-title categoriestitle"> Kategorie</div>
-                <div class="category"></div>
-                <div class="category"></div>
-                <div class="category"></div>
-                <div class="category"></div>
-                <div class="category"></div>
-                <div class="category"></div>
-                <div class="category"></div>
-
-            </div>
-            <div class="recentads-wrapper">
-                <div class="adsmenu">
-                    <div> 1 z 2 ... </div>
-                    <div> Sortuj: </div>
-                </div>
-                <div class="text-title recentadstitle">Ostatnio dodane ogłoszenia</div>
-                <div class="recentad"></div>
-                <div class="recentad"></div>
-                <div class="recentad"></div>
-                <div class="recentad"></div>
-                <div class="recentad"></div>
-                <div class="recentad"></div>
-            </div>
-        </div>
-    </div>
-
-
-
-
-    <div class="footer">
-        <div class="footer-wrapper">
-            <div class="footer_col1">
-                <p>Przykładowy link</p>
-                <p>Przykładowy link</p>
-                <p>Przykładowy link</p>
-                <p>Przykładowy link</p>
-                <p>Przykładowy link</p>
-                <p>Przykładowy link</p>
-            </div>
-            <div class="footer_col2">
-                <p>Przykładowy link</p>
-                <p>Przykładowy link</p>
-                <p>Przykładowy link</p>
-                <p>Przykładowy link</p>
-                <p>Przykładowy link</p>
-                <p>Przykładowy link</p>
-            </div>
-            <div class="footer_col3">
-                <p>INSTAGRAM</p>
-                <p>FACEBOOK</p>
-                <p>TWITTER</p>
-            </div>
-        </div>
-    </div>
-
-
-    </div>
+            </section>
+        </main>
+    </div> 
 </body>
-</html>
