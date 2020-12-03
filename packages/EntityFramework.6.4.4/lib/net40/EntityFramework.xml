@@ -1579,12 +1579,16 @@
             Dereference.
             </summary>
         </member>
+<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/net40/EntityFramework.xml
         <member name="F:System.Data.Entity.Core.Common.CommandTrees.DbExpressionKind.Distinct">
             <summary>
             Duplicate removal.
             </summary>
         </member>
         <member name="F:System.Data.Entity.Core.Common.CommandTrees.DbExpressionKind.Divide">
+=======
+        <member name="M:System.Data.Entity.DbConfiguration.SetTableExistenceChecker(System.String,System.Data.Entity.Infrastructure.TableExistenceChecker)">
+>>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net40/EntityFramework.xml
             <summary>
             Division.
             </summary>
@@ -8918,6 +8922,7 @@
             <returns>The spatial services.</returns>
             <param name="manifestToken">The token information associated with the provider manifest.</param>
         </member>
+<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/net40/EntityFramework.xml
         <member name="M:System.Data.Entity.Core.Common.DbProviderServices.GetSpatialServices(System.Data.Entity.Infrastructure.DbProviderInfo)">
             <summary>Gets the spatial services for the <see cref="T:System.Data.Entity.Core.Common.DbProviderServices" />.</summary>
             <returns>The spatial services.</returns>
@@ -9077,6 +9082,9 @@
             <param name="resolver">The resolver to add.</param>
         </member>
         <member name="M:System.Data.Entity.Core.Common.DbProviderServices.GetService(System.Type,System.Object)">
+=======
+        <member name="T:System.Data.Entity.Infrastructure.DependencyResolution.IDbDependencyResolver">
+>>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net40/EntityFramework.xml
             <summary>
             Called to resolve additional default provider services when a derived type is registered as an
             EF provider either using an entry in the application's config file or through code-based
@@ -9153,6 +9161,7 @@
             A collection of type <see cref="T:System.Collections.ObjectModel.ReadOnlyCollection`1" /> that contains the list of provider-supported functions.
             </returns>
         </member>
+<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/net40/EntityFramework.xml
         <member name="T:System.Data.Entity.Core.Common.EntityRecordInfo">
             <summary>
             EntityRecordInfo class providing a simple way to access both the type information and the column information.
@@ -9178,6 +9187,9 @@
             <param name="entitySet">The entity set to which the entity belongs.</param>
         </member>
         <member name="P:System.Data.Entity.Core.Common.EntityRecordInfo.EntityKey">
+=======
+        <member name="T:System.Data.Entity.Infrastructure.Design.AppConfigReader">
+>>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net40/EntityFramework.xml
             <summary>
             Gets the <see cref="T:System.Data.Entity.Core.EntityKey" /> for the entity.
             </summary>
@@ -9871,6 +9883,7 @@
             <param name="connectionString">The provider-specific connection string.</param>
             <exception cref="T:System.ArgumentException">An invalid connection string keyword has been provided, or a required connection string keyword has not been provided.</exception>
         </member>
+<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/net40/EntityFramework.xml
         <member name="M:System.Data.Entity.Core.EntityClient.EntityConnection.#ctor(System.Data.Entity.Core.Metadata.Edm.MetadataWorkspace,System.Data.Common.DbConnection)">
             <summary>
             Initializes a new instance of the <see cref="T:System.Data.Entity.Core.EntityClient.EntityConnection" /> class with a specified
@@ -9897,6 +9910,9 @@
             <param name="entityConnectionOwnsStoreConnection"> If set to true the store connection is disposed when the entity connection is disposed, otherwise the caller must dispose the store connection. </param>
         </member>
         <member name="P:System.Data.Entity.Core.EntityClient.EntityConnection.ConnectionString">
+=======
+        <member name="M:System.Data.Entity.Infrastructure.Interception.MutableInterceptionContext`1.SuppressExecution">
+>>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net40/EntityFramework.xml
             <summary>
             Gets or sets the <see cref="T:System.Data.Entity.Core.EntityClient.EntityConnection" /> connection string.
             </summary>
@@ -10775,6 +10791,7 @@
             to execute statements.
             </summary>
         </member>
+<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/net40/EntityFramework.xml
         <member name="M:System.Data.Entity.Core.EntityCommandCompilationException.#ctor">
             <summary>
             Initializes a new instance of <see cref="T:System.Data.Entity.Core.EntityCommandCompilationException" />.
@@ -10783,38 +10800,75 @@
         <member name="M:System.Data.Entity.Core.EntityCommandCompilationException.#ctor(System.String)">
             <summary>
             Initializes a new instance of <see cref="T:System.Data.Entity.Core.EntityCommandCompilationException" />.
+=======
+        <member name="M:System.Data.Entity.Infrastructure.Interception.DatabaseLogFormatter.NonQueryExecuting(System.Data.Common.DbCommand,System.Data.Entity.Infrastructure.Interception.DbCommandInterceptionContext{System.Int32})">
+            <summary>
+            This method is called before a call to <see cref="M:System.Data.Common.DbCommand.ExecuteNonQuery"/> or
+            one of its async counterparts is made.
+            The default implementation calls <see cref="M:System.Data.Entity.Infrastructure.Interception.DatabaseLogFormatter.Executing``1(System.Data.Common.DbCommand,System.Data.Entity.Infrastructure.Interception.DbCommandInterceptionContext{``0})"/> and starts <see cref="P:System.Data.Entity.Infrastructure.Interception.DatabaseLogFormatter.Stopwatch"/>.
+>>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net40/EntityFramework.xml
             </summary>
             <param name="message">The message that describes the error.</param>
         </member>
         <member name="M:System.Data.Entity.Core.EntityCommandCompilationException.#ctor(System.String,System.Exception)">
             <summary>
+<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/net40/EntityFramework.xml
             Initializes a new instance of <see cref="T:System.Data.Entity.Core.EntityCommandCompilationException" />.
+=======
+            This method is called after a call to <see cref="M:System.Data.Common.DbCommand.ExecuteNonQuery"/> or
+            one of its async counterparts is made.
+            The default implementation stops <see cref="P:System.Data.Entity.Infrastructure.Interception.DatabaseLogFormatter.Stopwatch"/> and calls <see cref="M:System.Data.Entity.Infrastructure.Interception.DatabaseLogFormatter.Executed``1(System.Data.Common.DbCommand,System.Data.Entity.Infrastructure.Interception.DbCommandInterceptionContext{``0})"/>.
+>>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net40/EntityFramework.xml
             </summary>
             <param name="message">The error message that explains the reason for the exception.</param>
             <param name="innerException">The exception that caused the current exception, or a null reference (Nothing in Visual Basic) if no inner exception is specified.</param>
         </member>
         <member name="T:System.Data.Entity.Core.EntityCommandExecutionException">
             <summary>
+<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/net40/EntityFramework.xml
             Represents a failure while trying to prepare or execute a CommandExecution
             This exception is intended to provide a common exception that people can catch to
             hold provider exceptions (SqlException, OracleException) when using the EntityCommand
             to execute statements.
+=======
+            This method is called before a call to <see cref="M:System.Data.Common.DbCommand.ExecuteReader(System.Data.CommandBehavior)"/> or
+            one of its async counterparts is made.
+            The default implementation calls <see cref="M:System.Data.Entity.Infrastructure.Interception.DatabaseLogFormatter.Executing``1(System.Data.Common.DbCommand,System.Data.Entity.Infrastructure.Interception.DbCommandInterceptionContext{``0})"/> and starts <see cref="P:System.Data.Entity.Infrastructure.Interception.DatabaseLogFormatter.Stopwatch"/>.
+>>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net40/EntityFramework.xml
             </summary>
         </member>
         <member name="M:System.Data.Entity.Core.EntityCommandExecutionException.#ctor">
             <summary>
+<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/net40/EntityFramework.xml
             Initializes a new instance of <see cref="T:System.Data.Entity.Core.EntityCommandExecutionException" />.
+=======
+            This method is called after a call to <see cref="M:System.Data.Common.DbCommand.ExecuteReader(System.Data.CommandBehavior)"/> or
+            one of its async counterparts is made.
+            The default implementation stops <see cref="P:System.Data.Entity.Infrastructure.Interception.DatabaseLogFormatter.Stopwatch"/> and calls <see cref="M:System.Data.Entity.Infrastructure.Interception.DatabaseLogFormatter.Executed``1(System.Data.Common.DbCommand,System.Data.Entity.Infrastructure.Interception.DbCommandInterceptionContext{``0})"/>.
+>>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net40/EntityFramework.xml
             </summary>
         </member>
         <member name="M:System.Data.Entity.Core.EntityCommandExecutionException.#ctor(System.String)">
             <summary>
+<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/net40/EntityFramework.xml
             Initializes a new instance of <see cref="T:System.Data.Entity.Core.EntityCommandExecutionException" />.
+=======
+            This method is called before a call to <see cref="M:System.Data.Common.DbCommand.ExecuteScalar"/>  or
+            one of its async counterparts is made.
+            The default implementation calls <see cref="M:System.Data.Entity.Infrastructure.Interception.DatabaseLogFormatter.Executing``1(System.Data.Common.DbCommand,System.Data.Entity.Infrastructure.Interception.DbCommandInterceptionContext{``0})"/> and starts <see cref="P:System.Data.Entity.Infrastructure.Interception.DatabaseLogFormatter.Stopwatch"/>.
+>>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net40/EntityFramework.xml
             </summary>
             <param name="message">The message that describes the error.</param>
         </member>
         <member name="M:System.Data.Entity.Core.EntityCommandExecutionException.#ctor(System.String,System.Exception)">
             <summary>
+<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/net40/EntityFramework.xml
             Initializes a new instance of <see cref="T:System.Data.Entity.Core.EntityCommandExecutionException" />.
+=======
+            This method is called after a call to <see cref="M:System.Data.Common.DbCommand.ExecuteScalar"/>  or
+            one of its async counterparts is made.
+            The default implementation stops <see cref="P:System.Data.Entity.Infrastructure.Interception.DatabaseLogFormatter.Stopwatch"/> and calls <see cref="M:System.Data.Entity.Infrastructure.Interception.DatabaseLogFormatter.Executed``1(System.Data.Common.DbCommand,System.Data.Entity.Infrastructure.Interception.DbCommandInterceptionContext{``0})"/>.
+>>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net40/EntityFramework.xml
             </summary>
             <param name="message">The error message that explains the reason for the exception.</param>
             <param name="innerException">The exception that caused the current exception, or a null reference (Nothing in Visual Basic) if no inner exception is specified.</param>
@@ -10826,7 +10880,14 @@
         </member>
         <member name="M:System.Data.Entity.Core.EntityException.#ctor">
             <summary>
+<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/net40/EntityFramework.xml
             Initializes a new instance of the <see cref="T:System.Data.Entity.Core.EntityException" /> class.
+=======
+            Called whenever a command has completed executing. The default implementation of this method
+            filters by <see cref="T:System.Data.Entity.DbContext"/> set into <see cref="P:System.Data.Entity.Infrastructure.Interception.DatabaseLogFormatter.Context"/>, if any, and then calls
+            <see cref="M:System.Data.Entity.Infrastructure.Interception.DatabaseLogFormatter.LogResult``1(System.Data.Common.DbCommand,System.Data.Entity.Infrastructure.Interception.DbCommandInterceptionContext{``0})"/>. This method would typically only be overridden to change the context
+            filtering behavior.
+>>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net40/EntityFramework.xml
             </summary>
         </member>
         <member name="M:System.Data.Entity.Core.EntityException.#ctor(System.String)">
@@ -11168,7 +11229,15 @@
         </member>
         <member name="M:System.Data.Entity.Core.InvalidCommandTreeException.#ctor(System.String,System.Exception)">
             <summary>
+<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/net40/EntityFramework.xml
             Initializes a new instance of the <see cref="T:System.Data.Entity.Core.InvalidCommandTreeException" /> class  with the specified message and inner exception.
+=======
+            The stop watch used to time executions. This stop watch is started at the end of
+            <see cref="M:System.Data.Entity.Infrastructure.Interception.DatabaseLogFormatter.NonQueryExecuting(System.Data.Common.DbCommand,System.Data.Entity.Infrastructure.Interception.DbCommandInterceptionContext{System.Int32})"/>, <see cref="M:System.Data.Entity.Infrastructure.Interception.DatabaseLogFormatter.ScalarExecuting(System.Data.Common.DbCommand,System.Data.Entity.Infrastructure.Interception.DbCommandInterceptionContext{System.Object})"/>, and <see cref="M:System.Data.Entity.Infrastructure.Interception.DatabaseLogFormatter.ReaderExecuting(System.Data.Common.DbCommand,System.Data.Entity.Infrastructure.Interception.DbCommandInterceptionContext{System.Data.Common.DbDataReader})"/>
+            methods and is stopped at the beginning of the <see cref="M:System.Data.Entity.Infrastructure.Interception.DatabaseLogFormatter.NonQueryExecuted(System.Data.Common.DbCommand,System.Data.Entity.Infrastructure.Interception.DbCommandInterceptionContext{System.Int32})"/>, <see cref="M:System.Data.Entity.Infrastructure.Interception.DatabaseLogFormatter.ScalarExecuted(System.Data.Common.DbCommand,System.Data.Entity.Infrastructure.Interception.DbCommandInterceptionContext{System.Object})"/>,
+            and <see cref="M:System.Data.Entity.Infrastructure.Interception.DatabaseLogFormatter.ReaderExecuted(System.Data.Common.DbCommand,System.Data.Entity.Infrastructure.Interception.DbCommandInterceptionContext{System.Data.Common.DbDataReader})"/> methods. If these methods are overridden and the stop watch is being used
+            then the overrides should either call the base method or start/stop the watch themselves.
+>>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net40/EntityFramework.xml
             </summary>
             <param name="message">The exception message.</param>
             <param name="innerException">
@@ -11220,6 +11289,7 @@
             There will be only one TypeMap under AssociationSetMap.
             </example>
         </member>
+<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/net40/EntityFramework.xml
         <member name="M:System.Data.Entity.Core.Mapping.AssociationSetMapping.#ctor(System.Data.Entity.Core.Metadata.Edm.AssociationSet,System.Data.Entity.Core.Metadata.Edm.EntitySet,System.Data.Entity.Core.Mapping.EntityContainerMapping)">
             <summary>
             Initializes a new AssociationSetMapping instance.
@@ -11234,6 +11304,9 @@
             </summary>
         </member>
         <member name="P:System.Data.Entity.Core.Mapping.AssociationSetMapping.AssociationTypeMapping">
+=======
+        <member name="M:System.Data.Entity.Infrastructure.Interception.MutableInterceptionContext.AsAsync">
+>>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net40/EntityFramework.xml
             <summary>
             Gets the contained association type mapping.
             </summary>
@@ -11359,6 +11432,7 @@
             Gets the association type being mapped.
             </summary>
         </member>
+<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/net40/EntityFramework.xml
         <member name="P:System.Data.Entity.Core.Mapping.AssociationTypeMapping.MappingFragment">
             <summary>
             Gets the single mapping fragment.
@@ -11406,6 +11480,9 @@
             </example>
         </member>
         <member name="M:System.Data.Entity.Core.Mapping.ComplexPropertyMapping.#ctor(System.Data.Entity.Core.Metadata.Edm.EdmProperty)">
+=======
+        <member name="M:System.Data.Entity.Infrastructure.Interception.PropertyInterceptionContext`1.WithValue(`0)">
+>>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net40/EntityFramework.xml
             <summary>
             Construct a new Complex Property mapping object
             </summary>
@@ -11673,6 +11750,7 @@
             </summary>
             <param name="setMapping">The entity set mapping to add.</param>
         </member>
+<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/net40/EntityFramework.xml
         <member name="M:System.Data.Entity.Core.Mapping.EntityContainerMapping.RemoveSetMapping(System.Data.Entity.Core.Mapping.EntitySetMapping)">
             <summary>
             Removes an association set mapping.
@@ -11686,6 +11764,9 @@
             <param name="setMapping">The association set mapping to add.</param>
         </member>
         <member name="M:System.Data.Entity.Core.Mapping.EntityContainerMapping.RemoveSetMapping(System.Data.Entity.Core.Mapping.AssociationSetMapping)">
+=======
+        <member name="M:System.Data.Entity.Infrastructure.Interception.DbCommandInterceptionContext`1.SuppressExecution">
+>>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net40/EntityFramework.xml
             <summary>
             Removes an association set mapping.
             </summary>
@@ -11840,6 +11921,7 @@
             entity type mapping through this class.
             </example>
         </member>
+<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/net40/EntityFramework.xml
         <member name="M:System.Data.Entity.Core.Mapping.EntityTypeMapping.#ctor(System.Data.Entity.Core.Mapping.EntitySetMapping)">
             <summary>
             Creates an EntityTypeMapping instance.
@@ -11850,6 +11932,10 @@
             <summary>
             Gets the EntitySetMapping that contains this EntityTypeMapping.
             </summary>
+=======
+        <member name="M:System.Data.Entity.Infrastructure.Interception.DbCommandTreeInterceptionContext.Clone">
+            <inheritdoc />
+>>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net40/EntityFramework.xml
         </member>
         <member name="P:System.Data.Entity.Core.Mapping.EntityTypeMapping.EntityType">
             <summary>
@@ -12909,9 +12995,17 @@
             <summary>
             Returns the name of the End role for this <see cref="T:System.Data.Entity.Core.Metadata.Edm.AssociationSetEnd" />.
             </summary>
+<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/net40/EntityFramework.xml
             <returns>
             The name of the End role for this <see cref="T:System.Data.Entity.Core.Metadata.Edm.AssociationSetEnd" />.
             </returns>
+=======
+            <remarks>
+            This transaction handler uses <see cref="P:System.Data.Entity.Infrastructure.CommitFailureHandler.TransactionContext"/> to store the transaction information
+            the schema used can be configured by creating a class derived from <see cref="P:System.Data.Entity.Infrastructure.CommitFailureHandler.TransactionContext"/>
+            that overrides DbContext.OnModelCreating(DbModelBuilder) and passing it to the constructor of this class.
+            </remarks>
+>>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net40/EntityFramework.xml
         </member>
         <member name="T:System.Data.Entity.Core.Metadata.Edm.AssociationType">
             <summary>
@@ -12931,6 +13025,7 @@
             .
             </returns>
         </member>
+<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/net40/EntityFramework.xml
         <member name="P:System.Data.Entity.Core.Metadata.Edm.AssociationType.AssociationEndMembers">
             <summary>
             Gets the list of ends for this <see cref="T:System.Data.Entity.Core.Metadata.Edm.AssociationType" />.
@@ -12941,6 +13036,10 @@
                 cref="T:System.Data.Entity.Core.Metadata.Edm.AssociationType" />
             .
             </returns>
+=======
+        <member name="M:System.Data.Entity.Infrastructure.CommitFailureHandler.Initialize(System.Data.Entity.Core.Objects.ObjectContext)">
+            <inheritdoc/>
+>>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net40/EntityFramework.xml
         </member>
         <member name="P:System.Data.Entity.Core.Metadata.Edm.AssociationType.Constraint">
             <summary>Gets or sets the referential constraint.</summary>
@@ -13027,12 +13126,16 @@
             Complex Type Kind
             </summary>
         </member>
+<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/net40/EntityFramework.xml
         <member name="F:System.Data.Entity.Core.Metadata.Edm.BuiltInTypeKind.Documentation">
             <summary>
             Documentation Kind
             </summary>
         </member>
         <member name="F:System.Data.Entity.Core.Metadata.Edm.BuiltInTypeKind.OperationAction">
+=======
+        <member name="P:System.Data.Entity.Infrastructure.CommitFailureHandler.PruningLimit">
+>>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net40/EntityFramework.xml
             <summary>
             DeleteAction Type Kind
             </summary>
@@ -13411,6 +13514,7 @@
             .
             </returns>
         </member>
+<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/net40/EntityFramework.xml
         <member name="P:System.Data.Entity.Core.Metadata.Edm.Documentation.Summary">
             <summary>
             Gets the summary for this <see cref="T:System.Data.Entity.Core.Metadata.Edm.Documentation" />.
@@ -13493,6 +13597,9 @@
             </returns>
         </member>
         <member name="M:System.Data.Entity.Core.Metadata.Edm.EdmFunction.AddParameter(System.Data.Entity.Core.Metadata.Edm.FunctionParameter)">
+=======
+        <member name="T:System.Data.Entity.ModelConfiguration.Configuration.TypeConventionConfiguration">
+>>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net40/EntityFramework.xml
             <summary>
             Adds a parameter to this function.
             </summary>
@@ -15854,6 +15961,7 @@
             Allow Type Promotion between given and formal argument types.
             </summary>
         </member>
+<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/net40/EntityFramework.xml
         <member name="F:System.Data.Entity.Core.Metadata.Edm.ParameterTypeSemantics.ExactMatchOnly">
             <summary>
             Use strict Equivalence only.
@@ -15865,6 +15973,9 @@
             </summary>
         </member>
         <member name="P:System.Data.Entity.Core.Metadata.Edm.PrimitiveType.BuiltInTypeKind">
+=======
+        <member name="M:System.Data.Entity.Core.Objects.EntityFunctions.AsUnicode(System.String)">
+>>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net40/EntityFramework.xml
             <summary>
             Gets the built-in type kind for this <see cref="T:System.Data.Entity.Core.Metadata.Edm.PrimitiveType" />.
             </summary>
@@ -16115,10 +16226,57 @@
             Geographic multi-polygon type kind
             </summary>
         </member>
+<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/net40/EntityFramework.xml
         <member name="F:System.Data.Entity.Core.Metadata.Edm.PrimitiveTypeKind.GeographyCollection">
             <summary>
             Geographic collection type kind
             </summary>
+=======
+        <member name="M:System.Data.Entity.Core.Common.DbProviderManifest.GetStoreTypes">
+            <summary>When overridden in a derived class, returns the set of primitive types supported by the data source.</summary>
+            <returns>The set of types supported by the data source.</returns>
+        </member>
+        <member name="M:System.Data.Entity.Core.Common.DbProviderManifest.GetStoreFunctions">
+            <summary>When overridden in a derived class, returns a collection of EDM functions supported by the provider manifest.</summary>
+            <returns>A collection of EDM functions.</returns>
+        </member>
+        <member name="M:System.Data.Entity.Core.Common.DbProviderManifest.GetFacetDescriptions(System.Data.Entity.Core.Metadata.Edm.EdmType)">
+            <summary>Returns the FacetDescription objects for a particular type.</summary>
+            <returns>The FacetDescription objects for the specified EDM type.</returns>
+            <param name="edmType">The EDM type to return the facet description for.</param>
+        </member>
+        <member name="M:System.Data.Entity.Core.Common.DbProviderManifest.GetEdmType(System.Data.Entity.Core.Metadata.Edm.TypeUsage)">
+            <summary>When overridden in a derived class, this method maps the specified storage type and a set of facets for that type to an EDM type.</summary>
+            <returns>
+            The <see cref="T:System.Data.Entity.Core.Metadata.Edm.TypeUsage" /> instance that describes an EDM type and a set of facets for that type.
+            </returns>
+            <param name="storeType">The TypeUsage instance that describes a storage type and a set of facets for that type to be mapped to the EDM type.</param>
+        </member>
+        <member name="M:System.Data.Entity.Core.Common.DbProviderManifest.GetStoreType(System.Data.Entity.Core.Metadata.Edm.TypeUsage)">
+            <summary>When overridden in a derived class, this method maps the specified EDM type and a set of facets for that type to a storage type.</summary>
+            <returns>The TypeUsage instance that describes a storage type and a set of facets for that type.</returns>
+            <param name="edmType">The TypeUsage instance that describes the EDM type and a set of facets for that type to be mapped to a storage type.</param>
+        </member>
+        <member name="M:System.Data.Entity.Core.Common.DbProviderManifest.GetDbInformation(System.String)">
+            <summary>When overridden in a derived class, this method returns provider-specific information.</summary>
+            <returns>The XmlReader object that represents the mapping to the underlying data store catalog.</returns>
+            <param name="informationType">The type of the information to return.</param>
+        </member>
+        <member name="M:System.Data.Entity.Core.Common.DbProviderManifest.GetInformation(System.String)">
+            <summary>Gets the provider-specific information.</summary>
+            <returns>The provider-specific information.</returns>
+            <param name="informationType">The type of the information to return.</param>
+        </member>
+        <member name="M:System.Data.Entity.Core.Common.DbProviderManifest.SupportsEscapingLikeArgument(System.Char@)">
+            <summary>Indicates if the provider supports escaping strings to be used as patterns in a Like expression.</summary>
+            <returns>True if this provider supports escaping strings to be used as patterns in a Like expression; otherwise, false.</returns>
+            <param name="escapeCharacter">If the provider supports escaping, the character that would be used as the escape character.</param>
+        </member>
+        <member name="M:System.Data.Entity.Core.Common.DbProviderManifest.EscapeLikeArgument(System.String)">
+            <summary>Provider writers should override this method to return the argument with the wildcards and the escape character escaped. This method is only used if SupportsEscapingLikeArgument returns true.</summary>
+            <returns>The argument with the wildcards and the escape character escaped.</returns>
+            <param name="argument">The argument to be escaped.</param>
+>>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net40/EntityFramework.xml
         </member>
         <member name="F:System.Data.Entity.Core.Metadata.Edm.PrimitiveTypeKind.HierarchyId">
             <summary>
@@ -16163,6 +16321,7 @@
         <member name="M:System.Data.Entity.Core.Metadata.Edm.ReadOnlyMetadataCollection`1.Enumerator.Dispose">
             <summary>Disposes of this enumerator.</summary>
         </member>
+<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/net40/EntityFramework.xml
         <member name="M:System.Data.Entity.Core.Metadata.Edm.ReadOnlyMetadataCollection`1.Enumerator.MoveNext">
             <summary>
             Moves to the next member in the collection of type
@@ -16188,6 +16347,12 @@
         <member name="P:System.Data.Entity.Core.Metadata.Edm.ReadOnlyMetadataCollection`1.IsReadOnly">
             <summary>Gets a value indicating whether this collection is read-only.</summary>
             <returns>true if this collection is read-only; otherwise, false.</returns>
+=======
+        <member name="M:System.Data.Entity.Core.Common.DbProviderServices.GetProviderManifestToken(System.Data.Common.DbConnection)">
+            <summary>Returns provider manifest token given a connection.</summary>
+            <returns>The provider manifest token.</returns>
+            <param name="connection">Connection to provider.</param>
+>>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net40/EntityFramework.xml
         </member>
         <member name="P:System.Data.Entity.Core.Metadata.Edm.ReadOnlyMetadataCollection`1.Item(System.String)">
             <summary>Gets an item from this collection by using the specified identity.</summary>
@@ -17556,6 +17721,7 @@
             </summary>
             <returns>Always returns false.</returns>
         </member>
+<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/net40/EntityFramework.xml
         <member name="P:System.Data.Entity.Core.Objects.DataClasses.EntityCollection`1.System#ComponentModel#IListSource#ContainsListCollection">
             <summary>
             IListSource.ContainsListCollection implementation. Always returns false.
@@ -17564,6 +17730,9 @@
             </summary>
         </member>
         <member name="M:System.Data.Entity.Core.Objects.DataClasses.EntityCollection`1.System#ComponentModel#IListSource#GetList">
+=======
+        <member name="T:System.Data.Entity.Infrastructure.ExecutionStrategyKey">
+>>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net40/EntityFramework.xml
             <summary>
             Returns the collection as an <see cref="T:System.Collections.IList" /> used for data binding.
             </summary>
@@ -32039,6 +32208,7 @@
             <param name="connection">The connection that was opened.</param>
             <param name="interceptionContext">Contextual information associated with the call.</param>
         </member>
+<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/net40/EntityFramework.xml
         <member name="M:System.Data.Entity.Infrastructure.Interception.IDbConnectionInterceptor.ServerVersionGetting(System.Data.Common.DbConnection,System.Data.Entity.Infrastructure.Interception.DbConnectionInterceptionContext{System.String})">
             <summary>
             Called before <see cref="P:System.Data.Common.DbConnection.ServerVersion" /> is retrieved.
@@ -32054,6 +32224,9 @@
             <param name="interceptionContext">Contextual information associated with the call.</param>
         </member>
         <member name="M:System.Data.Entity.Infrastructure.Interception.IDbConnectionInterceptor.StateGetting(System.Data.Common.DbConnection,System.Data.Entity.Infrastructure.Interception.DbConnectionInterceptionContext{System.Data.ConnectionState})">
+=======
+        <member name="M:System.Data.Entity.DbFunctions.AsUnicode(System.String)">
+>>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net40/EntityFramework.xml
             <summary>
             Called before <see cref="P:System.Data.Common.DbConnection.State" /> is retrieved.
             </summary>
@@ -32697,8 +32870,14 @@
         </member>
         <member name="M:System.Data.Entity.Infrastructure.MappingViews.DbMappingViewCacheTypeAttribute.#ctor(System.Type,System.Type)">
             <summary>
+<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/net40/EntityFramework.xml
             Creates a <see cref="T:System.Data.Entity.Infrastructure.MappingViews.DbMappingViewCacheTypeAttribute" />  instance that associates a context type
             with a mapping view cache type.
+=======
+            Gets or sets the string used to distinguish migrations belonging to this configuration
+            from migrations belonging to other configurations using the same database.
+            This property enables migrations from multiple different models to be applied to applied to a single database.
+>>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net40/EntityFramework.xml
             </summary>
             <param name="contextType">
             A subclass of <see cref="T:System.Data.Entity.Core.Objects.ObjectContext" /> or <see cref="T:System.Data.Entity.DbContext" />.
@@ -33494,6 +33673,7 @@
             <param name="interceptionContext">Contextual information associated with the call.</param>
             <seealso cref="M:System.Data.Entity.Infrastructure.Interception.IDbConnectionInterceptor.StateGetting(System.Data.Common.DbConnection,System.Data.Entity.Infrastructure.Interception.DbConnectionInterceptionContext{System.Data.ConnectionState})"/>
         </member>
+<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/net40/EntityFramework.xml
         <member name="M:System.Data.Entity.Infrastructure.TransactionHandler.StateGot(System.Data.Common.DbConnection,System.Data.Entity.Infrastructure.Interception.DbConnectionInterceptionContext{System.Data.ConnectionState})">
             <summary>
             Can be implemented in a derived class.
@@ -33551,6 +33731,9 @@
             <seealso cref="M:System.Data.Entity.Infrastructure.Interception.IDbTransactionInterceptor.Committed(System.Data.Common.DbTransaction,System.Data.Entity.Infrastructure.Interception.DbTransactionInterceptionContext)"/>
         </member>
         <member name="M:System.Data.Entity.Infrastructure.TransactionHandler.Disposing(System.Data.Common.DbTransaction,System.Data.Entity.Infrastructure.Interception.DbTransactionInterceptionContext)">
+=======
+        <member name="T:System.Data.Entity.Migrations.Design.ToolingFacade">
+>>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net40/EntityFramework.xml
             <summary>
             Can be implemented in a derived class.
             </summary>
@@ -34287,6 +34470,7 @@
             <param name="currentValueParameterName">The current value parameter name.</param>
             <param name="originalValueParameterName">The original value parameter name.</param>
         </member>
+<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/net40/EntityFramework.xml
         <member name="M:System.Data.Entity.ModelConfiguration.Configuration.ConventionUpdateModificationStoredProcedureConfiguration.Result(System.String,System.String)">
             <summary>
             Configures a column of the result for this stored procedure to map to a property.
@@ -34297,6 +34481,20 @@
             <param name="columnName">The name of the result column.</param>
         </member>
         <member name="M:System.Data.Entity.ModelConfiguration.Configuration.ConventionUpdateModificationStoredProcedureConfiguration.Result(System.Reflection.PropertyInfo,System.String)">
+=======
+        <member name="M:System.Data.Entity.Migrations.Model.AddPrimaryKeyOperation.#ctor(System.Object)">
+             <summary>
+             Initializes a new instance of the AddPrimaryKeyOperation class.
+             The Table and Columns properties should also be populated.
+            
+             Entity Framework Migrations APIs are not designed to accept input provided by untrusted sources 
+             (such as the end user of an application). If input is accepted from such sources it should be validated 
+             before being passed to these APIs to protect against SQL injection attacks etc.
+             </summary>
+             <param name="anonymousArguments"> Additional arguments that may be processed by providers. Use anonymous type syntax to specify arguments e.g. 'new { SampleArgument = "MyValue" }'. </param>
+        </member>
+        <member name="P:System.Data.Entity.Migrations.Model.AddPrimaryKeyOperation.Inverse">
+>>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net40/EntityFramework.xml
             <summary>
             Configures a column of the result for this stored procedure to map to a property.
             This is used for database generated columns.
@@ -34305,10 +34503,26 @@
             <param name="propertyInfo"> The property to configure the result for. </param>
             <param name="columnName">The name of the result column.</param>
         </member>
+<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/net40/EntityFramework.xml
         <member name="M:System.Data.Entity.ModelConfiguration.Configuration.ConventionUpdateModificationStoredProcedureConfiguration.RowsAffectedParameter(System.String)">
             <summary>Configures the output parameter that returns the rows affected by this stored procedure.</summary>
             <returns> The same configuration instance so that multiple calls can be chained. </returns>
             <param name="parameterName">The name of the parameter.</param>
+=======
+        <member name="P:System.Data.Entity.Migrations.Model.AddPrimaryKeyOperation.IsClustered">
+            <summary>
+            Gets or sets whether this is a clustered primary key.
+            </summary>
+        </member>
+        <member name="T:System.Data.Entity.Migrations.Model.AlterColumnOperation">
+             <summary>
+             Represents altering an existing column.
+            
+             Entity Framework Migrations APIs are not designed to accept input provided by untrusted sources 
+             (such as the end user of an application). If input is accepted from such sources it should be validated 
+             before being passed to these APIs to protect against SQL injection attacks etc.
+             </summary>
+>>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net40/EntityFramework.xml
         </member>
         <member name="M:System.Data.Entity.ModelConfiguration.Configuration.ConventionUpdateModificationStoredProcedureConfiguration.ToString">
             <inheritdoc />
@@ -35049,6 +35263,7 @@
             <param name="schemaName"> Schema of the table. </param>
             <returns> The same configuration instance so that multiple calls can be chained. </returns>
         </member>
+<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/net40/EntityFramework.xml
         <member name="M:System.Data.Entity.ModelConfiguration.Configuration.EntityMappingConfiguration`1.HasTableAnnotation(System.String,System.Object)">
             <summary>
             Sets an annotation in the model for the table to which this entity is mapped. The annotation
@@ -35065,6 +35280,9 @@
             <returns>The same configuration instance so that multiple calls can be chained.</returns>
         </member>
         <member name="M:System.Data.Entity.ModelConfiguration.Configuration.EntityMappingConfiguration`1.Requires(System.String)">
+=======
+        <member name="M:System.Data.Entity.Migrations.Sql.MigrationSqlGenerator.BuildStoreTypeUsage(System.String,System.Data.Entity.Migrations.Model.PropertyModel)">
+>>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net40/EntityFramework.xml
             <summary>
             Configures the discriminator column used to differentiate between types in an inheritance hierarchy.
             </summary>
@@ -40788,6 +41006,7 @@
             <param name="defaultValue"> The value to be used as the default. </param>
             <returns> Code representing the default value. </returns>
         </member>
+<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/net40/EntityFramework.xml
         <member name="M:System.Data.Entity.Migrations.Design.VisualBasicMigrationCodeGenerator.Generate(System.TimeSpan)">
             <summary>
             Generates code to specify the default value for a <see cref="T:System.TimeSpan" /> column.
@@ -40796,6 +41015,9 @@
             <returns> Code representing the default value. </returns>
         </member>
         <member name="M:System.Data.Entity.Migrations.Design.VisualBasicMigrationCodeGenerator.Generate(System.Data.Entity.Hierarchy.HierarchyId)">
+=======
+        <member name="M:System.Data.Entity.DbSet.#ctor">
+>>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net40/EntityFramework.xml
             <summary>
             Generates code to specify the default value for a <see cref="T:System.Data.Entity.Hierarchy.HierarchyId" /> column.
             </summary>
@@ -40979,12 +41201,16 @@
             Gets or sets the state of the model after this migration was applied.
             </summary>
         </member>
+<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/net40/EntityFramework.xml
         <member name="P:System.Data.Entity.Migrations.History.HistoryRow.ProductVersion">
             <summary>
             Gets or sets the version of Entity Framework that created this entry.
             </summary>
         </member>
         <member name="T:System.Data.Entity.Migrations.Infrastructure.AutomaticDataLossException">
+=======
+        <member name="T:System.Data.Entity.IDbSet`1">
+>>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net40/EntityFramework.xml
             <summary>
             Represents an error that occurs when an automatic migration would result in data loss.
             </summary>
@@ -46517,6 +46743,7 @@
             <returns> <c>true</c> if the value is null or greater than or equal to the specified minimum length, otherwise <c>false</c> </returns>
             <exception cref="T:System.InvalidOperationException">Length is less than zero.</exception>
         </member>
+<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/net40/EntityFramework.xml
         <member name="M:System.ComponentModel.DataAnnotations.MinLengthAttribute.FormatErrorMessage(System.String)">
             <summary>
             Applies formatting to a specified error message. (Overrides <see cref="M:System.ComponentModel.DataAnnotations.ValidationAttribute.FormatErrorMessage(System.String)" />)
@@ -46530,6 +46757,9 @@
             </summary>
         </member>
         <member name="T:System.ComponentModel.DataAnnotations.Schema.ColumnAttribute">
+=======
+        <member name="M:System.Data.Entity.ModelConfiguration.EntityTypeConfiguration`1.HasEntitySetName(System.String)">
+>>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net40/EntityFramework.xml
             <summary>
             Specifies the database column that a property is mapped to.
             </summary>
