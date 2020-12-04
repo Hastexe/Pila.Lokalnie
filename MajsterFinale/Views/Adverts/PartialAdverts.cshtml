@@ -5,9 +5,8 @@
     foreach (var item in Model)
 
     {
-
-        <tr href="@Url.Action("Details", "Ads", new { id = @item.ID })" class="btn btn-xs btn-green tooltips" data-placement="top" data-original-title="View List">
-            class="fa fa-eye">
+        //href="@Url.Action("Details", "Adverts", new { id = @item.ID })"
+        <tr data-placement="top" data-original-title="View List">
 
             <td>@item.ID</td>
 

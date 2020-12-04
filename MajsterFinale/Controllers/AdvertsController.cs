@@ -18,7 +18,11 @@ namespace MajsterFinale.Controllers
         // HTTP-GET: /Ads/
         public ActionResult Index()
         {
-            return View();
+            int pagesize = 35;
+
+            var rowdata = ADVERTS.GetAds(1, pagesize);
+
+            return View(rowdata);
         }
 
         //
@@ -86,7 +90,6 @@ namespace MajsterFinale.Controllers
         [ChildActionOnly]
 
         public ActionResult PartialAdverts(List<ADVERTS> Model)
-
         {
 
             return PartialView(Model);

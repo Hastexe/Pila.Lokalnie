@@ -44,9 +44,9 @@ namespace MajsterFinale.Models
 
         {
 
-            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["con"].ConnectionString);
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["AdsLoad"].ConnectionString);
 
-            SqlCommand com = new SqlCommand("Ads_LazyLoad", con);
+            SqlCommand com = new SqlCommand("Sp_Ads_LazyLoad", con);
 
             com.CommandType = CommandType.StoredProcedure;
 
@@ -74,7 +74,7 @@ namespace MajsterFinale.Models
 
                     ID = Convert.ToInt32(dr["id"]),
 
-                    USER_ID = Convert.ToInt32(dr["name"]),
+                    USER_ID = Convert.ToInt32(dr["USER_ID"]),
 
                     TITLE = dr["title"].ToString(),
 
