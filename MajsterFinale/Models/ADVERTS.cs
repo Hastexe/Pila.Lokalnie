@@ -11,13 +11,7 @@ namespace MajsterFinale.Models
 {
     using System;
     using System.Collections.Generic;
-
-    using System.Data.SqlClient;
-
-    using System.Data;
-
-    using System.Configuration;
-
+    
     public partial class ADVERTS
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -25,7 +19,7 @@ namespace MajsterFinale.Models
         {
             this.FAV = new HashSet<FAV>();
         }
-
+    
         public int ID { get; set; }
         public int USER_ID { get; set; }
         public int CATEGORY { get; set; }
@@ -34,64 +28,10 @@ namespace MajsterFinale.Models
         public string PRICE { get; set; }
         public string IMAGE { get; set; }
         public Nullable<bool> IS_ARCHIVED { get; set; }
-
+    
         public virtual CATEGORIES CATEGORIES { get; set; }
         public virtual USERS USERS { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FAV> FAV { get; set; }
-
-        public static List<ADVERTS> GetAds(int pageindex, int pagesize)
-
-        {
-
-            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["con"].ConnectionString);
-
-            SqlCommand com = new SqlCommand("Ads_LazyLoad", con);
-
-            com.CommandType = CommandType.StoredProcedure;
-
-            com.Parameters.AddWithValue("@PageIndex", pageindex);
-
-            com.Parameters.AddWithValue("@PageSize", pagesize);
-
-            List<ADVERTS> listemp = new List<ADVERTS>();
-
-
-
-            SqlDataAdapter da = new SqlDataAdapter(com);
-
-            DataSet ds = new DataSet();
-
-            da.Fill(ds);
-
-            foreach (DataRow dr in ds.Tables[0].Rows)
-
-            {
-
-                listemp.Add(new ADVERTS
-
-                {
-
-                    ID = Convert.ToInt32(dr["id"]),
-
-                    USER_ID = Convert.ToInt32(dr["name"]),
-
-                    TITLE = dr["title"].ToString(),
-
-                    DESCRIPTION = dr["description"].ToString(),
-
-                    PRICE = dr["price"].ToString(),
-
-                    CATEGORY = Convert.ToInt32(dr["category"])
-
-
-
-                }); ;
-
-            }
-
-            return listemp;
-
-        }
     }
 }

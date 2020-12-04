@@ -1579,16 +1579,12 @@
             Dereference.
             </summary>
         </member>
-<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/netstandard2.1/EntityFramework.xml
         <member name="F:System.Data.Entity.Core.Common.CommandTrees.DbExpressionKind.Distinct">
             <summary>
             Duplicate removal.
             </summary>
         </member>
         <member name="F:System.Data.Entity.Core.Common.CommandTrees.DbExpressionKind.Divide">
-=======
-        <member name="M:System.Data.Entity.DbConfiguration.SetTableExistenceChecker(System.String,System.Data.Entity.Infrastructure.TableExistenceChecker)">
->>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net45/EntityFramework.xml
             <summary>
             Division.
             </summary>
@@ -8922,7 +8918,6 @@
             <returns>The spatial services.</returns>
             <param name="manifestToken">The token information associated with the provider manifest.</param>
         </member>
-<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/netstandard2.1/EntityFramework.xml
         <member name="M:System.Data.Entity.Core.Common.DbProviderServices.GetSpatialServices(System.Data.Entity.Infrastructure.DbProviderInfo)">
             <summary>Gets the spatial services for the <see cref="T:System.Data.Entity.Core.Common.DbProviderServices" />.</summary>
             <returns>The spatial services.</returns>
@@ -9082,9 +9077,6 @@
             <param name="resolver">The resolver to add.</param>
         </member>
         <member name="M:System.Data.Entity.Core.Common.DbProviderServices.GetService(System.Type,System.Object)">
-=======
-        <member name="T:System.Data.Entity.Infrastructure.DependencyResolution.IDbDependencyResolver">
->>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net45/EntityFramework.xml
             <summary>
             Called to resolve additional default provider services when a derived type is registered as an
             EF provider either using an entry in the application's config file or through code-based
@@ -9161,7 +9153,6 @@
             A collection of type <see cref="T:System.Collections.ObjectModel.ReadOnlyCollection`1" /> that contains the list of provider-supported functions.
             </returns>
         </member>
-<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/netstandard2.1/EntityFramework.xml
         <member name="T:System.Data.Entity.Core.Common.EntityRecordInfo">
             <summary>
             EntityRecordInfo class providing a simple way to access both the type information and the column information.
@@ -9187,9 +9178,6 @@
             <param name="entitySet">The entity set to which the entity belongs.</param>
         </member>
         <member name="P:System.Data.Entity.Core.Common.EntityRecordInfo.EntityKey">
-=======
-        <member name="T:System.Data.Entity.Infrastructure.Design.AppConfigReader">
->>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net45/EntityFramework.xml
             <summary>
             Gets the <see cref="T:System.Data.Entity.Core.EntityKey" /> for the entity.
             </summary>
@@ -9970,7 +9958,6 @@
             <param name="connectionString">The provider-specific connection string.</param>
             <exception cref="T:System.ArgumentException">An invalid connection string keyword has been provided, or a required connection string keyword has not been provided.</exception>
         </member>
-<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/netstandard2.1/EntityFramework.xml
         <member name="M:System.Data.Entity.Core.EntityClient.EntityConnection.#ctor(System.Data.Entity.Core.Metadata.Edm.MetadataWorkspace,System.Data.Common.DbConnection)">
             <summary>
             Initializes a new instance of the <see cref="T:System.Data.Entity.Core.EntityClient.EntityConnection" /> class with a specified
@@ -9997,9 +9984,6 @@
             <param name="entityConnectionOwnsStoreConnection"> If set to true the store connection is disposed when the entity connection is disposed, otherwise the caller must dispose the store connection. </param>
         </member>
         <member name="P:System.Data.Entity.Core.EntityClient.EntityConnection.ConnectionString">
-=======
-        <member name="M:System.Data.Entity.Infrastructure.Interception.MutableInterceptionContext`1.SuppressExecution">
->>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net45/EntityFramework.xml
             <summary>
             Gets or sets the <see cref="T:System.Data.Entity.Core.EntityClient.EntityConnection" /> connection string.
             </summary>
@@ -10706,7 +10690,6 @@
             </summary>
             <returns>The number of digits used to represent the value.</returns>
         </member>
-<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/netstandard2.1/EntityFramework.xml
         <member name="P:System.Data.Entity.Core.EntityClient.EntityParameter.Scale">
             <summary>
             Gets or sets the number of decimal places to which
@@ -10733,73 +10716,19 @@
         <member name="P:System.Data.Entity.Core.EntityClient.EntityParameter.Size">
             <summary>Gets or sets the maximum size of the data within the column.</summary>
             <returns>The maximum size of the data within the column.</returns>
-=======
-        <member name="M:System.Data.Entity.Infrastructure.Interception.DatabaseLogFormatter.NonQueryExecuting(System.Data.Common.DbCommand,System.Data.Entity.Infrastructure.Interception.DbCommandInterceptionContext{System.Int32})">
-            <summary>
-            This method is called before a call to <see cref="M:System.Data.Common.DbCommand.ExecuteNonQuery"/> or
-            one of its async counterparts is made.
-            The default implementation calls <see cref="M:System.Data.Entity.Infrastructure.Interception.DatabaseLogFormatter.Executing``1(System.Data.Common.DbCommand,System.Data.Entity.Infrastructure.Interception.DbCommandInterceptionContext{``0})"/> and starts <see cref="P:System.Data.Entity.Infrastructure.Interception.DatabaseLogFormatter.Stopwatch"/>.
-            </summary>
-            <param name="command">The command being executed.</param>
-            <param name="interceptionContext">Contextual information associated with the call.</param>
-        </member>
-        <member name="M:System.Data.Entity.Infrastructure.Interception.DatabaseLogFormatter.NonQueryExecuted(System.Data.Common.DbCommand,System.Data.Entity.Infrastructure.Interception.DbCommandInterceptionContext{System.Int32})">
-            <summary>
-            This method is called after a call to <see cref="M:System.Data.Common.DbCommand.ExecuteNonQuery"/> or
-            one of its async counterparts is made.
-            The default implementation stops <see cref="P:System.Data.Entity.Infrastructure.Interception.DatabaseLogFormatter.Stopwatch"/> and calls <see cref="M:System.Data.Entity.Infrastructure.Interception.DatabaseLogFormatter.Executed``1(System.Data.Common.DbCommand,System.Data.Entity.Infrastructure.Interception.DbCommandInterceptionContext{``0})"/>.
-            </summary>
-            <param name="command">The command being executed.</param>
-            <param name="interceptionContext">Contextual information associated with the call.</param>
-        </member>
-        <member name="M:System.Data.Entity.Infrastructure.Interception.DatabaseLogFormatter.ReaderExecuting(System.Data.Common.DbCommand,System.Data.Entity.Infrastructure.Interception.DbCommandInterceptionContext{System.Data.Common.DbDataReader})">
-            <summary>
-            This method is called before a call to <see cref="M:System.Data.Common.DbCommand.ExecuteReader(System.Data.CommandBehavior)"/> or
-            one of its async counterparts is made.
-            The default implementation calls <see cref="M:System.Data.Entity.Infrastructure.Interception.DatabaseLogFormatter.Executing``1(System.Data.Common.DbCommand,System.Data.Entity.Infrastructure.Interception.DbCommandInterceptionContext{``0})"/> and starts <see cref="P:System.Data.Entity.Infrastructure.Interception.DatabaseLogFormatter.Stopwatch"/>.
-            </summary>
-            <param name="command">The command being executed.</param>
-            <param name="interceptionContext">Contextual information associated with the call.</param>
-        </member>
-        <member name="M:System.Data.Entity.Infrastructure.Interception.DatabaseLogFormatter.ReaderExecuted(System.Data.Common.DbCommand,System.Data.Entity.Infrastructure.Interception.DbCommandInterceptionContext{System.Data.Common.DbDataReader})">
-            <summary>
-            This method is called after a call to <see cref="M:System.Data.Common.DbCommand.ExecuteReader(System.Data.CommandBehavior)"/> or
-            one of its async counterparts is made.
-            The default implementation stops <see cref="P:System.Data.Entity.Infrastructure.Interception.DatabaseLogFormatter.Stopwatch"/> and calls <see cref="M:System.Data.Entity.Infrastructure.Interception.DatabaseLogFormatter.Executed``1(System.Data.Common.DbCommand,System.Data.Entity.Infrastructure.Interception.DbCommandInterceptionContext{``0})"/>.
-            </summary>
-            <param name="command">The command being executed.</param>
-            <param name="interceptionContext">Contextual information associated with the call.</param>
->>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net45/EntityFramework.xml
         </member>
         <member name="P:System.Data.Entity.Core.EntityClient.EntityParameter.SourceColumn">
             <summary>
-<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/netstandard2.1/EntityFramework.xml
             Gets or sets the name of the source column mapped to the <see cref="T:System.Data.DataSet" /> and used for loading or returning the
             <see
                 cref="P:System.Data.Entity.Core.EntityClient.EntityParameter.Value" />
             .
-=======
-            This method is called before a call to <see cref="M:System.Data.Common.DbCommand.ExecuteScalar"/>  or
-            one of its async counterparts is made.
-            The default implementation calls <see cref="M:System.Data.Entity.Infrastructure.Interception.DatabaseLogFormatter.Executing``1(System.Data.Common.DbCommand,System.Data.Entity.Infrastructure.Interception.DbCommandInterceptionContext{``0})"/> and starts <see cref="P:System.Data.Entity.Infrastructure.Interception.DatabaseLogFormatter.Stopwatch"/>.
->>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net45/EntityFramework.xml
             </summary>
             <returns>The name of the source column mapped to the dataset and used for loading or returning the value.</returns>
         </member>
-<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/netstandard2.1/EntityFramework.xml
         <member name="P:System.Data.Entity.Core.EntityClient.EntityParameter.SourceColumnNullMapping">
             <summary>Gets or sets a value that indicates whether source column is nullable.</summary>
             <returns>true if source column is nullable; otherwise, false.</returns>
-=======
-        <member name="M:System.Data.Entity.Infrastructure.Interception.DatabaseLogFormatter.ScalarExecuted(System.Data.Common.DbCommand,System.Data.Entity.Infrastructure.Interception.DbCommandInterceptionContext{System.Object})">
-            <summary>
-            This method is called after a call to <see cref="M:System.Data.Common.DbCommand.ExecuteScalar"/>  or
-            one of its async counterparts is made.
-            The default implementation stops <see cref="P:System.Data.Entity.Infrastructure.Interception.DatabaseLogFormatter.Stopwatch"/> and calls <see cref="M:System.Data.Entity.Infrastructure.Interception.DatabaseLogFormatter.Executed``1(System.Data.Common.DbCommand,System.Data.Entity.Infrastructure.Interception.DbCommandInterceptionContext{``0})"/>.
-            </summary>
-            <param name="command">The command being executed.</param>
-            <param name="interceptionContext">Contextual information associated with the call.</param>
->>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net45/EntityFramework.xml
         </member>
         <member name="P:System.Data.Entity.Core.EntityClient.EntityParameter.SourceVersion">
             <summary>
@@ -10811,14 +10740,7 @@
         </member>
         <member name="M:System.Data.Entity.Core.EntityClient.EntityParameter.ResetDbType">
             <summary>
-<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/netstandard2.1/EntityFramework.xml
             Resets the type associated with the <see cref="T:System.Data.Entity.Core.EntityClient.EntityParameter" />.
-=======
-            Called whenever a command has completed executing. The default implementation of this method
-            filters by <see cref="T:System.Data.Entity.DbContext"/> set into <see cref="P:System.Data.Entity.Infrastructure.Interception.DatabaseLogFormatter.Context"/>, if any, and then calls
-            <see cref="M:System.Data.Entity.Infrastructure.Interception.DatabaseLogFormatter.LogResult``1(System.Data.Common.DbCommand,System.Data.Entity.Infrastructure.Interception.DbCommandInterceptionContext{``0})"/>. This method would typically only be overridden to change the context
-            filtering behavior.
->>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net45/EntityFramework.xml
             </summary>
         </member>
         <member name="M:System.Data.Entity.Core.EntityClient.EntityParameter.ToString">
@@ -11146,15 +11068,7 @@
         </member>
         <member name="P:System.Data.Entity.Core.EntityKey.IsTemporary">
             <summary>
-<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/netstandard2.1/EntityFramework.xml
             Gets a value that indicates whether the <see cref="T:System.Data.Entity.Core.EntityKey" /> is temporary.
-=======
-            The stop watch used to time executions. This stop watch is started at the end of
-            <see cref="M:System.Data.Entity.Infrastructure.Interception.DatabaseLogFormatter.NonQueryExecuting(System.Data.Common.DbCommand,System.Data.Entity.Infrastructure.Interception.DbCommandInterceptionContext{System.Int32})"/>, <see cref="M:System.Data.Entity.Infrastructure.Interception.DatabaseLogFormatter.ScalarExecuting(System.Data.Common.DbCommand,System.Data.Entity.Infrastructure.Interception.DbCommandInterceptionContext{System.Object})"/>, and <see cref="M:System.Data.Entity.Infrastructure.Interception.DatabaseLogFormatter.ReaderExecuting(System.Data.Common.DbCommand,System.Data.Entity.Infrastructure.Interception.DbCommandInterceptionContext{System.Data.Common.DbDataReader})"/>
-            methods and is stopped at the beginning of the <see cref="M:System.Data.Entity.Infrastructure.Interception.DatabaseLogFormatter.NonQueryExecuted(System.Data.Common.DbCommand,System.Data.Entity.Infrastructure.Interception.DbCommandInterceptionContext{System.Int32})"/>, <see cref="M:System.Data.Entity.Infrastructure.Interception.DatabaseLogFormatter.ScalarExecuted(System.Data.Common.DbCommand,System.Data.Entity.Infrastructure.Interception.DbCommandInterceptionContext{System.Object})"/>,
-            and <see cref="M:System.Data.Entity.Infrastructure.Interception.DatabaseLogFormatter.ReaderExecuted(System.Data.Common.DbCommand,System.Data.Entity.Infrastructure.Interception.DbCommandInterceptionContext{System.Data.Common.DbDataReader})"/> methods. If these methods are overridden and the stop watch is being used
-            then the overrides should either call the base method or start/stop the watch themselves.
->>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net45/EntityFramework.xml
             </summary>
             <returns>
             true if the <see cref="T:System.Data.Entity.Core.EntityKey" /> is temporary; otherwise, false.
@@ -11222,7 +11136,6 @@
             A <see cref="T:System.Data.Entity.Core.EntityKey" /> to compare.
             </param>
         </member>
-<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/netstandard2.1/EntityFramework.xml
         <member name="M:System.Data.Entity.Core.EntityKey.OnDeserializing(System.Runtime.Serialization.StreamingContext)">
             <summary>
             Helper method that is used to deserialize an <see cref="T:System.Data.Entity.Core.EntityKey" />.
@@ -11236,9 +11149,6 @@
             <param name="context">Describes the source and destination of a given serialized stream and provides an additional caller-defined context.</param>
         </member>
         <member name="T:System.Data.Entity.Core.EntityKeyMember">
-=======
-        <member name="M:System.Data.Entity.Infrastructure.Interception.MutableInterceptionContext.AsAsync">
->>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net45/EntityFramework.xml
             <summary>
             Information about a key that is part of an EntityKey.
             A key member contains the key name and value.
@@ -11384,7 +11294,6 @@
             its internals, it can be a breaking change
             </summary>
         </member>
-<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/netstandard2.1/EntityFramework.xml
         <member name="M:System.Data.Entity.Core.MappingException.#ctor">
             <summary>
             Initializes a new instance of <see cref="T:System.Data.Entity.Core.MappingException" />.
@@ -11397,9 +11306,6 @@
             <param name="message">The message that describes the error.</param>
         </member>
         <member name="M:System.Data.Entity.Core.MappingException.#ctor(System.String,System.Exception)">
-=======
-        <member name="M:System.Data.Entity.Infrastructure.Interception.PropertyInterceptionContext`1.WithValue(`0)">
->>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net45/EntityFramework.xml
             <summary>
             Initializes a new instance of <see cref="T:System.Data.Entity.Core.MappingException" /> that uses a specified error message and a reference to the inner exception.
             </summary>
@@ -11723,7 +11629,6 @@
             above example.
             </example>
         </member>
-<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/netstandard2.1/EntityFramework.xml
         <member name="P:System.Data.Entity.Core.Mapping.ConditionPropertyMapping.Property">
             <summary>
             Gets an EdmProperty that specifies the mapped property.
@@ -11735,9 +11640,6 @@
             </summary>
         </member>
         <member name="T:System.Data.Entity.Core.Mapping.EndPropertyMapping">
-=======
-        <member name="M:System.Data.Entity.Infrastructure.Interception.DbCommandInterceptionContext`1.SuppressExecution">
->>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net45/EntityFramework.xml
             <summary>
             Mapping metadata for End property of an association.
             </summary>
@@ -11878,7 +11780,6 @@
             Gets a flag that indicates whether to generate the update views or not.
             </summary>
         </member>
-<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/netstandard2.1/EntityFramework.xml
         <member name="M:System.Data.Entity.Core.Mapping.EntityContainerMapping.AddSetMapping(System.Data.Entity.Core.Mapping.EntitySetMapping)">
             <summary>
             Adds an entity set mapping.
@@ -11890,10 +11791,6 @@
             Removes an association set mapping.
             </summary>
             <param name="setMapping">The association set mapping to remove.</param>
-=======
-        <member name="M:System.Data.Entity.Infrastructure.Interception.DbCommandTreeInterceptionContext.Clone">
-            <inheritdoc />
->>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net45/EntityFramework.xml
         </member>
         <member name="M:System.Data.Entity.Core.Mapping.EntityContainerMapping.AddSetMapping(System.Data.Entity.Core.Mapping.AssociationSetMapping)">
             <summary>
@@ -13078,7 +12975,6 @@
             <summary>
             Gets the parent association set of this <see cref="T:System.Data.Entity.Core.Metadata.Edm.AssociationSetEnd" />.
             </summary>
-<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/netstandard2.1/EntityFramework.xml
             <returns>
             An <see cref="T:System.Data.Entity.Core.Metadata.Edm.AssociationSet" /> object that represents the parent association set of this
             <see
@@ -13086,13 +12982,6 @@
             .
             </returns>
             <exception cref="T:System.InvalidOperationException">Thrown if Setter is called when the AssociationSetEnd instance is in ReadOnly state</exception>
-=======
-            <remarks>
-            This transaction handler uses <see cref="P:System.Data.Entity.Infrastructure.CommitFailureHandler.TransactionContext"/> to store the transaction information
-            the schema used can be configured by creating a class derived from <see cref="P:System.Data.Entity.Infrastructure.CommitFailureHandler.TransactionContext"/>
-            that overrides DbContext.OnModelCreating(DbModelBuilder) and passing it to the constructor of this class.
-            </remarks>
->>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net45/EntityFramework.xml
         </member>
         <member name="P:System.Data.Entity.Core.Metadata.Edm.AssociationSetEnd.CorrespondingAssociationEndMember">
             <summary>
@@ -13114,7 +13003,6 @@
             The name of the End for this <see cref="T:System.Data.Entity.Core.Metadata.Edm.AssociationSetEnd" />.
             </returns>
         </member>
-<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/netstandard2.1/EntityFramework.xml
         <member name="P:System.Data.Entity.Core.Metadata.Edm.AssociationSetEnd.Role">
             <summary>
             Gets the name of the End role for this <see cref="T:System.Data.Entity.Core.Metadata.Edm.AssociationSetEnd" />.
@@ -13123,16 +13011,6 @@
             The name of the End role for this <see cref="T:System.Data.Entity.Core.Metadata.Edm.AssociationSetEnd" />.
             </returns>
             <exception cref="T:System.InvalidOperationException">Thrown if Setter is called when the AssociationSetEnd instance is in ReadOnly state</exception>
-=======
-        <member name="M:System.Data.Entity.Infrastructure.CommitFailureHandler.Initialize(System.Data.Entity.Core.Objects.ObjectContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.Data.Entity.Infrastructure.CommitFailureHandler.Initialize(System.Data.Entity.DbContext,System.Data.Common.DbConnection)">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.Data.Entity.Infrastructure.CommitFailureHandler.Dispose(System.Boolean)">
-            <inheritdoc/>
->>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net45/EntityFramework.xml
         </member>
         <member name="P:System.Data.Entity.Core.Metadata.Edm.AssociationSetEnd.EntitySet">
             <summary>Gets the entity set referenced by this End role. </summary>
@@ -13262,16 +13140,12 @@
             Complex Type Kind
             </summary>
         </member>
-<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/netstandard2.1/EntityFramework.xml
         <member name="F:System.Data.Entity.Core.Metadata.Edm.BuiltInTypeKind.Documentation">
             <summary>
             Documentation Kind
             </summary>
         </member>
         <member name="F:System.Data.Entity.Core.Metadata.Edm.BuiltInTypeKind.OperationAction">
-=======
-        <member name="P:System.Data.Entity.Infrastructure.CommitFailureHandler.PruningLimit">
->>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net45/EntityFramework.xml
             <summary>
             DeleteAction Type Kind
             </summary>
@@ -13658,7 +13532,6 @@
             The summary for this <see cref="T:System.Data.Entity.Core.Metadata.Edm.Documentation" />.
             </returns>
         </member>
-<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/netstandard2.1/EntityFramework.xml
         <member name="P:System.Data.Entity.Core.Metadata.Edm.Documentation.LongDescription">
             <summary>
             Gets the long description for this <see cref="T:System.Data.Entity.Core.Metadata.Edm.Documentation" />.
@@ -13733,77 +13606,6 @@
             </returns>
         </member>
         <member name="M:System.Data.Entity.Core.Metadata.Edm.EdmFunction.AddParameter(System.Data.Entity.Core.Metadata.Edm.FunctionParameter)">
-=======
-        <member name="M:System.Data.Entity.Migrations.Model.ParameterModel.#ctor(System.Data.Entity.Core.Metadata.Edm.PrimitiveTypeKind)">
-             <summary>
-             Initializes a new instance of the ParameterModel class.
-            
-             Entity Framework Migrations APIs are not designed to accept input provided by untrusted sources 
-             (such as the end user of an application). If input is accepted from such sources it should be validated 
-             before being passed to these APIs to protect against SQL injection attacks etc.
-             </summary>
-             <param name="type"> The data type for this parameter. </param>
-        </member>
-        <member name="M:System.Data.Entity.Migrations.Model.ParameterModel.#ctor(System.Data.Entity.Core.Metadata.Edm.PrimitiveTypeKind,System.Data.Entity.Core.Metadata.Edm.TypeUsage)">
-             <summary>
-             Initializes a new instance of the ParameterModel class.
-            
-             Entity Framework Migrations APIs are not designed to accept input provided by untrusted sources 
-             (such as the end user of an application). If input is accepted from such sources it should be validated 
-             before being passed to these APIs to protect against SQL injection attacks etc.
-             </summary>
-             <param name="type"> The data type for this parameter. </param>
-             <param name="typeUsage"> Additional details about the data type. This includes details such as maximum length, nullability etc. </param>
-        </member>
-        <member name="P:System.Data.Entity.Migrations.Model.ParameterModel.IsOutParameter">
-            <summary>
-            Gets or sets a value indicating whether this instance is out parameter.
-            </summary>
-            <value>
-            <c>true</c> if this instance is out parameter; otherwise, <c>false</c>.
-            </value>
-        </member>
-        <member name="T:System.Data.Entity.Migrations.Model.DropProcedureOperation">
-             <summary>
-             Drops a stored procedure from the database.
-            
-             Entity Framework Migrations APIs are not designed to accept input provided by untrusted sources 
-             (such as the end user of an application). If input is accepted from such sources it should be validated 
-             before being passed to these APIs to protect against SQL injection attacks etc.
-             </summary>
-        </member>
-        <member name="M:System.Data.Entity.Migrations.Model.DropProcedureOperation.#ctor(System.String,System.Object)">
-             <summary>
-             Initializes a new instance of the <see cref="T:System.Data.Entity.Migrations.Model.DropProcedureOperation"/> class.
-            
-             Entity Framework Migrations APIs are not designed to accept input provided by untrusted sources 
-             (such as the end user of an application). If input is accepted from such sources it should be validated 
-             before being passed to these APIs to protect against SQL injection attacks etc.
-             </summary>
-             <param name="name">The name of the stored procedure to drop.</param>
-             <param name="anonymousArguments"> Use anonymous type syntax to specify arguments e.g. 'new { SampleArgument = "MyValue" }'. </param>
-        </member>
-        <member name="P:System.Data.Entity.Migrations.Model.DropProcedureOperation.Name">
-            <summary>
-            Gets the name of the stored procedure to drop.
-            </summary>
-            <value>
-            The name of the stored procedure to drop.
-            </value>
-        </member>
-        <member name="P:System.Data.Entity.Migrations.Model.DropProcedureOperation.Inverse">
-            <summary>
-            Gets an operation that will revert this operation. 
-            Always returns a <see cref="T:System.Data.Entity.Migrations.Model.NotSupportedOperation"/>.
-            </summary>
-        </member>
-        <member name="P:System.Data.Entity.Migrations.Model.DropProcedureOperation.IsDestructiveChange">
-            <summary>
-            Gets a value indicating if this operation may result in data loss. Always returns false.
-            </summary>
-        </member>
-        <member name="T:System.Data.Entity.ModelConfiguration.Configuration.TypeConventionConfiguration">
->>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net45/EntityFramework.xml
             <summary>
             Adds a parameter to this function.
             </summary>
@@ -18684,7 +18486,6 @@
             <param name="entityCollection">An existing EntityCollection.</param>
             <typeparam name="TTargetEntity"> Type of the entity represented by targetRoleName </typeparam>
         </member>
-<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/netstandard2.1/EntityFramework.xml
         <member name="M:System.Data.Entity.Core.Objects.DataClasses.RelationshipManager.GetRelatedCollection``1(System.String,System.String)">
             <summary>
             Gets an <see cref="T:System.Data.Entity.Core.Objects.DataClasses.EntityCollection`1" /> of related objects with the specified relationship name and target role name.
@@ -18731,19 +18532,6 @@
                 cref="T:System.Data.Entity.Core.Objects.DataClasses.IRelatedEnd" />
             . An empty enumeration is returned when the relationships have not yet been populated.
             </returns>
-=======
-        <member name="M:System.Data.Entity.Core.Objects.EntityFunctions.AsUnicode(System.String)">
-            <summary>
-            When used as part of a LINQ to Entities query, this method acts as an operator that ensures the input
-            is treated as a Unicode string.
-            </summary>
-            <remarks>
-            You cannot call this function directly. This function can only appear within a LINQ to Entities query.
-            This function impacts the way the LINQ query is translated to a query that can be run in the database.
-            </remarks>
-            <param name="value"> The input string. </param>
-            <returns> The input string treated as a Unicode string. </returns>
->>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net45/EntityFramework.xml
         </member>
         <member name="M:System.Data.Entity.Core.Objects.DataClasses.RelationshipManager.OnSerializing(System.Runtime.Serialization.StreamingContext)">
             <summary>
@@ -19133,7 +18921,6 @@
             </param>
             <param name="propertyName">The name of the property that is being validated.</param>
         </member>
-<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/netstandard2.1/EntityFramework.xml
         <member name="M:System.Data.Entity.Core.Objects.DataClasses.StructuralObject.SetValidValue(System.Nullable{System.DateTimeOffset})">
             <summary>
             Makes sure the <see cref="T:System.DateTimeOffset" /> value being set for a property is valid.
@@ -19144,12 +18931,6 @@
             <param name="value">
             The nullable <see cref="T:System.DateTimeOffset" /> value.
             </param>
-=======
-        <member name="M:System.Data.Entity.Core.Common.DbProviderManifest.EscapeLikeArgument(System.String)">
-            <summary>Provider writers should override this method to return the argument with the wildcards and the escape character escaped. This method is only used if SupportsEscapingLikeArgument returns true.</summary>
-            <returns>The argument with the wildcards and the escape character escaped.</returns>
-            <param name="argument">The argument to be escaped.</param>
->>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net45/EntityFramework.xml
         </member>
         <member name="M:System.Data.Entity.Core.Objects.DataClasses.StructuralObject.SetValidValue(System.Decimal,System.String)">
             <summary>
@@ -19243,7 +19024,6 @@
             The nullable <see cref="T:System.Double" /> value.
             </param>
         </member>
-<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/netstandard2.1/EntityFramework.xml
         <member name="M:System.Data.Entity.Core.Objects.DataClasses.StructuralObject.SetValidValue(System.Single,System.String)">
             <summary>Makes sure the Single value being set for a property is valid.</summary>
             <returns>
@@ -19279,35 +19059,6 @@
             <summary>
             Makes sure the <see cref="T:System.Single" /> value being set for a property is valid.
             </summary>
-=======
-        <member name="M:System.Data.Entity.Core.Common.DbProviderServices.GetProviderManifestToken(System.Data.Common.DbConnection)">
-            <summary>Returns provider manifest token given a connection.</summary>
-            <returns>The provider manifest token.</returns>
-            <param name="connection">Connection to provider.</param>
-        </member>
-        <member name="M:System.Data.Entity.Core.Common.DbProviderServices.GetDbProviderManifestToken(System.Data.Common.DbConnection)">
-            <summary>
-            Returns provider manifest token for a given connection.
-            </summary>
-            <param name="connection"> Connection to find manifest token from. </param>
-            <returns> The provider manifest token for the specified connection. </returns>
-        </member>
-        <member name="M:System.Data.Entity.Core.Common.DbProviderServices.GetProviderManifest(System.String)">
-            <summary>Returns the provider manifest by using the specified version information.</summary>
-            <returns>The provider manifest by using the specified version information.</returns>
-            <param name="manifestToken">The token information associated with the provider manifest.</param>
-        </member>
-        <member name="M:System.Data.Entity.Core.Common.DbProviderServices.GetDbProviderManifest(System.String)">
-            <summary>When overridden in a derived class, returns an instance of a class that derives from the DbProviderManifest.</summary>
-            <returns>A DbProviderManifest object that represents the provider manifest.</returns>
-            <param name="manifestToken">The token information associated with the provider manifest.</param>
-        </member>
-        <member name="M:System.Data.Entity.Core.Common.DbProviderServices.GetExecutionStrategy(System.Data.Common.DbConnection)">
-            <summary>
-            Gets the <see cref="T:System.Data.Entity.Infrastructure.IDbExecutionStrategy"/> that will be used to execute methods that use the specified connection.
-            </summary>
-            <param name="connection">The database connection</param>
->>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net45/EntityFramework.xml
             <returns>
             The nullable <see cref="T:System.Single" /> value being set.
             </returns>
@@ -20190,7 +19941,6 @@
             <param name="collection"> The collection over which to perform the calculation. </param>
             <returns> The variance. </returns>
         </member>
-<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/netstandard2.1/EntityFramework.xml
         <member name="M:System.Data.Entity.Core.Objects.EntityFunctions.Var(System.Collections.Generic.IEnumerable{System.Nullable{System.Decimal}})">
             <summary>
             When used as part of a LINQ to Entities query, this method invokes the canonical Var EDM function to calculate
@@ -20204,9 +19954,6 @@
             <returns> The variance. </returns>
         </member>
         <member name="M:System.Data.Entity.Core.Objects.EntityFunctions.Var(System.Collections.Generic.IEnumerable{System.Double})">
-=======
-        <member name="T:System.Data.Entity.Infrastructure.ExecutionStrategyKey">
->>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net45/EntityFramework.xml
             <summary>
             When used as part of a LINQ to Entities query, this method invokes the canonical Var EDM function to calculate
             the variance of the collection.
@@ -35712,7 +35459,6 @@
             that should be used.
             </summary>
         </member>
-<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/netstandard2.1/EntityFramework.xml
         <member name="M:System.Data.Entity.Infrastructure.SqlCeConnectionFactory.CreateConnection(System.String)">
             <summary>
             Creates a connection for SQL Server Compact Edition based on the given database name or connection string.
@@ -35738,9 +35484,6 @@
             </remarks>
         </member>
         <member name="M:System.Data.Entity.Infrastructure.SqlConnectionFactory.#ctor">
-=======
-        <member name="M:System.Data.Entity.DbFunctions.AsUnicode(System.String)">
->>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net45/EntityFramework.xml
             <summary>
             Creates a new connection factory with a default BaseConnectionString property of
             'Data Source=.\SQLEXPRESS; Integrated Security=True; MultipleActiveResultSets=True;'.
@@ -39052,13 +38795,7 @@
         </member>
         <member name="M:System.Data.Entity.ModelConfiguration.Configuration.LengthPropertyConfiguration.IsMaxLength">
             <summary>
-<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/netstandard2.1/EntityFramework.xml
             Configures the property to allow the maximum length supported by the database provider.
-=======
-            Gets or sets the string used to distinguish migrations belonging to this configuration
-            from migrations belonging to other configurations using the same database.
-            This property enables migrations from multiple different models to be applied to applied to a single database.
->>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net45/EntityFramework.xml
             </summary>
             <returns> The same LengthPropertyConfiguration instance so that multiple calls can be chained. </returns>
         </member>
@@ -40066,7 +39803,6 @@
         <member name="M:System.Data.Entity.ModelConfiguration.Configuration.StructuralTypeConfiguration`1.GetHashCode">
             <inheritdoc/>
         </member>
-<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/netstandard2.1/EntityFramework.xml
         <member name="M:System.Data.Entity.ModelConfiguration.Configuration.StructuralTypeConfiguration`1.GetType">
             <summary>
             Gets the <see cref="T:System.Type" /> of the current instance.
@@ -40122,9 +39858,6 @@
             <inheritdoc/>
         </member>
         <member name="T:System.Data.Entity.ModelConfiguration.Conventions.DatabaseGeneratedAttributeConvention">
-=======
-        <member name="T:System.Data.Entity.Migrations.Design.ToolingFacade">
->>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net45/EntityFramework.xml
             <summary>
             Convention to process instances of <see cref="T:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute" /> found on properties in the model.
             </summary>
@@ -41495,7 +41228,6 @@
         <member name="M:System.Data.Entity.Migrations.Builders.ParameterBuilder.ToString">
             <inheritdoc />
         </member>
-<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/netstandard2.1/EntityFramework.xml
         <member name="M:System.Data.Entity.Migrations.Builders.ParameterBuilder.Equals(System.Object)">
             <inheritdoc />
         </member>
@@ -41515,9 +41247,6 @@
             <returns>A shallow copy of the current <see cref="T:System.Object" />.</returns>
         </member>
         <member name="T:System.Data.Entity.Migrations.Builders.TableBuilder`1">
-=======
-        <member name="M:System.Data.Entity.Migrations.Model.AddPrimaryKeyOperation.#ctor(System.Object)">
->>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net45/EntityFramework.xml
              <summary>
              Helper class that is used to further configure a table being created from a CreateTable call on
              <see
@@ -41537,16 +41266,7 @@
             <param name="createTableOperation"> The table creation operation to be further configured. </param>
             <param name="migration"> The migration the table is created in. </param>
         </member>
-<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/netstandard2.1/EntityFramework.xml
         <member name="M:System.Data.Entity.Migrations.Builders.TableBuilder`1.PrimaryKey(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.Boolean,System.Object)">
-=======
-        <member name="P:System.Data.Entity.Migrations.Model.AddPrimaryKeyOperation.IsClustered">
-            <summary>
-            Gets or sets whether this is a clustered primary key.
-            </summary>
-        </member>
-        <member name="T:System.Data.Entity.Migrations.Model.AlterColumnOperation">
->>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net45/EntityFramework.xml
              <summary>
              Specifies a primary key for the table.
             
@@ -42381,7 +42101,6 @@
              (such as the end user of an application). If input is accepted from such sources it should be validated 
              before being passed to these APIs to protect against SQL injection attacks etc.
              </summary>
-<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/netstandard2.1/EntityFramework.xml
              <param name="table">
              The name of the table that contains the index to be renamed. Schema name is optional, if no
              schema is specified then dbo is assumed.
@@ -42392,64 +42111,6 @@
              Additional arguments that may be processed by providers. Use anonymous type syntax to
              specify arguments e.g. 'new { SampleArgument = "MyValue" }'.
              </param>
-=======
-             <param name="sql"> The SQL to be executed. </param>
-             <param name="anonymousArguments"> Additional arguments that may be processed by providers. Use anonymous type syntax to specify arguments e.g. 'new { SampleArgument = "MyValue" }'. </param>
-        </member>
-        <member name="P:System.Data.Entity.Migrations.Model.SqlOperation.Sql">
-            <summary>
-            Gets the SQL to be executed.
-            </summary>
-        </member>
-        <member name="P:System.Data.Entity.Migrations.Model.SqlOperation.SuppressTransaction">
-            <summary>
-            Gets or sets a value indicating whether this statement should be performed outside of
-            the transaction scope that is used to make the migration process transactional.
-            If set to true, this operation will not be rolled back if the migration process fails.
-            </summary>
-        </member>
-        <member name="P:System.Data.Entity.Migrations.Model.SqlOperation.IsDestructiveChange">
-            <inheritdoc />
-        </member>
-        <member name="T:System.Data.Entity.Migrations.Sql.MigrationSqlGenerator">
-            <summary>
-            Common base class for providers that convert provider agnostic migration
-            operations into database provider specific SQL commands.
-            </summary>
-        </member>
-        <member name="M:System.Data.Entity.Migrations.Sql.MigrationSqlGenerator.Generate(System.Collections.Generic.IEnumerable{System.Data.Entity.Migrations.Model.MigrationOperation},System.String)">
-            <summary>
-            Converts a set of migration operations into database provider specific SQL.
-            </summary>
-            <param name="migrationOperations"> The operations to be converted. </param>
-            <param name="providerManifestToken"> Token representing the version of the database being targeted. </param>
-            <returns> A list of SQL statements to be executed to perform the migration operations. </returns>
-        </member>
-        <member name="M:System.Data.Entity.Migrations.Sql.MigrationSqlGenerator.GenerateProcedureBody(System.Collections.Generic.ICollection{System.Data.Entity.Core.Common.CommandTrees.DbModificationCommandTree},System.String,System.String)">
-            <summary>
-            Generates the SQL body for a stored procedure.
-            </summary>
-            <param name="commandTrees">The command trees representing the commands for an insert, update or delete operation.</param>
-            <param name="rowsAffectedParameter">The rows affected parameter name.</param>
-            <param name="providerManifestToken">The provider manifest token.</param>
-            <returns>The SQL body for the stored procedure.</returns>
-        </member>
-        <member name="M:System.Data.Entity.Migrations.Sql.MigrationSqlGenerator.BuildStoreTypeUsage(System.String,System.Data.Entity.Migrations.Model.PropertyModel)">
-            <summary>
-            Builds the store type usage for the specified <paramref name="storeTypeName"/> using the facets from the specified <paramref name="propertyModel"/>.
-            </summary>
-            <param name="storeTypeName">Name of the store type.</param>
-            <param name="propertyModel">The target property.</param>
-            <returns>A store-specific TypeUsage</returns>
-        </member>
-        <member name="P:System.Data.Entity.Migrations.Sql.MigrationSqlGenerator.ProviderManifest">
-            <summary>
-            Gets or sets the provider manifest.
-            </summary>
-            <value>
-            The provider manifest.
-            </value>
->>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net45/EntityFramework.xml
         </member>
         <member name="M:System.Data.Entity.Migrations.DbMigration.Sql(System.String,System.Boolean,System.Object)">
              <summary>
@@ -45891,7 +45552,6 @@
             Writes a line terminator.
             </summary>
         </member>
-<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/netstandard2.1/EntityFramework.xml
         <member name="M:System.Data.Entity.Migrations.Utilities.IndentedTextWriter.WriteLine(System.Boolean)">
             <summary>
             Writes the text representation of a Boolean, followed by a line terminator, to the text stream.
@@ -45899,9 +45559,6 @@
             <param name="value"> The Boolean to write. </param>
         </member>
         <member name="M:System.Data.Entity.Migrations.Utilities.IndentedTextWriter.WriteLine(System.Char)">
-=======
-        <member name="M:System.Data.Entity.DbSet.#ctor">
->>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net45/EntityFramework.xml
             <summary>
             Writes a character, followed by a line terminator, to the text stream.
             </summary>
@@ -46353,7 +46010,6 @@
             The task result contains an array that contains elements from the input sequence.
             </returns>
         </member>
-<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/netstandard2.1/EntityFramework.xml
         <member name="M:System.Data.Entity.QueryableExtensions.ToArrayAsync``1(System.Linq.IQueryable{``0},System.Threading.CancellationToken)">
             <summary>
             Creates an array from an <see cref="T:System.Linq.IQueryable`1" /> by enumerating it asynchronously.
@@ -46377,9 +46033,6 @@
             </returns>
         </member>
         <member name="M:System.Data.Entity.QueryableExtensions.ToDictionaryAsync``2(System.Linq.IQueryable{``0},System.Func{``0,``1})">
-=======
-        <member name="T:System.Data.Entity.IDbSet`1">
->>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net45/EntityFramework.xml
             <summary>
             Creates a <see cref="T:System.Collections.Generic.Dictionary`2" /> from an <see cref="T:System.Linq.IQueryable`1" /> by enumerating it asynchronously
             according to a specified key selector function.
@@ -53838,7 +53491,6 @@
             is not compatible with this spatial services implementation.
             </exception>
         </member>
-<<<<<<< Updated upstream:packages/EntityFramework.6.4.4/lib/netstandard2.1/EntityFramework.xml
         <member name="M:System.Data.Entity.Spatial.DbSpatialServices.GetPointOnSurface(System.Data.Entity.Spatial.DbGeometry)">
             <summary>
             Returns a <see cref="T:System.Data.Entity.Spatial.DbGeometry" /> value that represents a point on the surface of the given DbGeometry value, which may be null if the value does not represent a surface.
@@ -53872,9 +53524,6 @@
             </exception>
         </member>
         <member name="M:System.Data.Entity.Spatial.DbSpatialServices.GetInteriorRingCount(System.Data.Entity.Spatial.DbGeometry)">
-=======
-        <member name="M:System.Data.Entity.ModelConfiguration.EntityTypeConfiguration`1.HasEntitySetName(System.String)">
->>>>>>> Stashed changes:packages/EntityFramework.6.1.3/lib/net45/EntityFramework.xml
             <summary>
             Returns the number of interior rings in the given <see cref="T:System.Data.Entity.Spatial.DbGeometry" /> value, if it represents a polygon.
             </summary>
