@@ -7,115 +7,72 @@ using System.Web.Mvc;
 using Scrypt;
 using System.Web.Security;
 using System.IO;
-
+using PagedList;
+using System.Dynamic;
 
 namespace MajsterFinale.Controllers
 {
     public class AdvertsController : Controller
     {
-        AdvertRespository advertRespository = new AdvertRespository();
+        private BazaLocal db = new BazaLocal();
+        AdvertRepository advertRepository = new AdvertRepository();
         //
-        // HTTP-GET: /Ads/
+        // HTTP-GET: /Adverts/
         public ActionResult Index()
         {
-            int pagesize = 35;
-
-            var rowdata = ADVERTS.GetAds(1, pagesize);
-
-            return View(rowdata);
+            return View();
         }
-
-        //
-        // GET: /Ads/Details/id
+        // GET: /Adverts/Details/id
         public ActionResult Details(int id)
         {
-            ADVERTS advert = advertRespository.GetAdverts(id);
+            ADVERTS advert = advertRepository.GetDetails(id);
+            var uID = Convert.ToInt32(Session["ID"]);
+            USERS LoggedUser = advertRepository.GetUserData(uID);
             if (advert == null)
                 return HttpNotFound();
             else
                 return View("Details", advert);
+            //if(message)
         }
 
-        public ActionResult Adverts()
-
+        /*[HttpPost]
+        public ActionResult Display()
         {
-
-            int pagesize = 20;
-
-            var rowdata = ADVERTS.GetAds(1, pagesize);
-
-            return View(rowdata);
-
+            string message = Request["Message"].ToString();
+            ViewBag.triedOnce = "Tak";
+            return View();
         }
-
-        protected string renderPartialViewtostring(string Viewname, object model)
-
+        */
+        public ActionResult Category(int id, int? page)
         {
-
-            if (string.IsNullOrEmpty(Viewname))
-
-
-
-                Viewname = ControllerContext.RouteData.GetRequiredString("action");
-
-            ViewData.Model = model;
-
-            using (StringWriter sw = new StringWriter())
-
-            {
-
-                ViewEngineResult viewresult = ViewEngines.Engines.FindPartialView(ControllerContext, Viewname);
-
-                ViewContext viewcontext = new ViewContext(ControllerContext, viewresult.View, ViewData, TempData, sw);
-
-                viewresult.View.Render(viewcontext, sw);
-
-                return sw.GetStringBuilder().ToString();
-
-            }
-
-
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(new AdvertRepository().GetAdsByCategory(id).ToPagedList(pageNumber, pageSize));
         }
 
-        public class JsonModel
-
+        public ActionResult Adverts(int? page)
         {
-
-            public string HTMLString { get; set; }
-
-            public bool NoMoredata { get; set; }
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(new AdvertRepository().GetAdsList().ToPagedList(pageNumber, pageSize));
 
         }
 
-        [ChildActionOnly]
-
-        public ActionResult PartialAdverts(List<ADVERTS> Model)
+        /// <summary>  
+        /// Render Student List  
+        /// </summary>  
+        /// <returns></returns>  
+        public PartialViewResult RenderDetails()
         {
-
-            return PartialView(Model);
-
+            return PartialView();
         }
 
-        [HttpPost]
-
-        public ActionResult InfiniteScroll(int pageindex)
-
+        public ActionResult Message()
         {
-
-            System.Threading.Thread.Sleep(1000);
-
-            int pagesize = 20;
-
-            var tbrow = ADVERTS.GetAds(pageindex, pagesize);
-
-            JsonModel jsonmodel = new JsonModel();
-
-            jsonmodel.NoMoredata = tbrow.Count < pagesize;
-
-            jsonmodel.HTMLString = renderPartialViewtostring("PartialAdverts", tbrow);
-
-            return Json(jsonmodel);
-
+            return View(new AdvertRepository().GetMessage());
+            //return View(new AdvertRepository().GetMessage().ToList());
         }
+
+
     }
 }

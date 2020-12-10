@@ -685,3 +685,7 @@ C:\Users\Radek\Documents\GitHub\majster\MajsterFinale\bin\roslyn\vbc.exe.config
 C:\Users\Radek\Documents\GitHub\majster\MajsterFinale\bin\roslyn\vbc.rsp
 C:\Users\Radek\Documents\GitHub\majster\MajsterFinale\bin\roslyn\VBCSCompiler.exe
 C:\Users\Radek\Documents\GitHub\majster\MajsterFinale\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Radek\Documents\GitHub\majster\MajsterFinale\bin\PagedList.dll
+C:\Users\Radek\Documents\GitHub\majster\MajsterFinale\bin\PagedList.Mvc.dll
+C:\Users\Radek\Documents\GitHub\majster\MajsterFinale\bin\PagedList.xml
+C:\Users\Radek\Documents\GitHub\majster\MajsterFinale\bin\PagedList.Mvc.xml

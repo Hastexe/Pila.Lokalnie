@@ -18,6 +18,11 @@ namespace MajsterFinale
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+            routes.MapRoute(
+                name: "Adverts",
+                url: "{controller}/{id}",
+                defaults: new { controller = "Adverts", action = "Adverts", id = UrlParameter.Optional }
+            );
         }
     }
 }
