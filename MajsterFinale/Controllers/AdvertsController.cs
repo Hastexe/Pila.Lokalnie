@@ -69,15 +69,6 @@ namespace MajsterFinale.Controllers
 
         }
 
-        /// <summary>  
-        /// Render Student List  
-        /// </summary>  
-        /// <returns></returns>  
-        public PartialViewResult RenderDetails()
-        {
-            return PartialView();
-        }
-
         public ActionResult Message()
         {
             return View(new AdvertRepository().GetMessage());

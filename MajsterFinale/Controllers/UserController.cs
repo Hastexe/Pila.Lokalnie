@@ -30,7 +30,12 @@ namespace MajsterFinale.Controllers
         }
         public ActionResult Messages(int id)
         {
-
+            if (Session["ID"] != null)
+            {
+                int uID = Convert.ToInt32(Session["ID"]);
+                MESSAGE UsersMessage = new UserRepository().GetUserMessages(uID);
+            }
+            return View();
         }
     }
 }
