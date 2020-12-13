@@ -43,17 +43,15 @@ namespace MajsterFinale.Controllers
         public ActionResult Logowanie(USERS USERS)
         {
             BazaLocal db = new BazaLocal();
-            var userLoggedIn = db.USERS.SingleOrDefault(x => x.LOGIN == USERS.LOGIN && x.PASSWORD == USERS.PASSWORD);
+            var userLoggedIn = db.USERS.Single(x => x.LOGIN == USERS.LOGIN && x.PASSWORD == USERS.PASSWORD);
             if (userLoggedIn != null)
             {
                 ViewBag.message = "Zalogowano";
                 ViewBag.triedOnce = "Tak";
 
-                Session["ID"] = USERS.USER_ID;
-
+                Session["ID"] = Convert.ToInt32(userLoggedIn.USER_ID);
                 //po zalogowaniu przenosi nas mainpage(nie można wejść na tą stronę jeżeli nie jest się zalogowanym: jest to test sesji)
-                return RedirectToAction("mainpage", "home", new { Login = USERS.LOGIN });
-
+                return RedirectToAction("mainpage", "home", new { Login = userLoggedIn.LOGIN });
             }
             else
             {

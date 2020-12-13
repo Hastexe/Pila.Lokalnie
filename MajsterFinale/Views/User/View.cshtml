@@ -1,0 +1,51 @@
+﻿@model IEnumerable<MajsterFinale.Models.MESSAGE>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TEXT)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DATE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IS_READ)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.USERS.LOGIN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.USERS1.LOGIN)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TEXT)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DATE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IS_READ)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.USERS.LOGIN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.USERS1.LOGIN)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

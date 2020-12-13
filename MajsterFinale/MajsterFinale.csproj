@@ -138,6 +138,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdvertsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -163,6 +164,8 @@
     <Compile Include="Models\CATEGORIES.cs">
       <DependentUpon>BazaPolaczenie.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UserRepository.cs" />
+    <Compile Include="Models\DisplayRepository.cs" />
     <Compile Include="Models\FAV.cs">
       <DependentUpon>BazaPolaczenie.tt</DependentUpon>
     </Compile>
@@ -348,6 +351,7 @@
     <Content Include="Views\Adverts\Adverts.cshtml" />
     <Content Include="Views\Adverts\SendMessage.cshtml" />
     <Content Include="Views\Adverts\Display.cshtml" />
+    <Content Include="Views\User\View.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

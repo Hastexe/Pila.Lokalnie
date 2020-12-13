@@ -16,6 +16,7 @@ namespace MajsterFinale.Controllers
     {
         private BazaLocal db = new BazaLocal();
         AdvertRepository advertRepository = new AdvertRepository();
+        DisplayModel displayModel= new DisplayModel();
         //
         // HTTP-GET: /Adverts/
         public ActionResult Index()
@@ -23,26 +24,36 @@ namespace MajsterFinale.Controllers
             return View();
         }
         // GET: /Adverts/Details/id
+
         public ActionResult Details(int id)
         {
-            ADVERTS advert = advertRepository.GetDetails(id);
-            var uID = Convert.ToInt32(Session["ID"]);
-            USERS LoggedUser = advertRepository.GetUserData(uID);
-            if (advert == null)
+
+            displayModel.AdvertDetails = advertRepository.GetDetails(id);
+            // var login = Convert.ToInt32(Session["Login"]);
+            if (Session["ID"] != null)
+            {
+                int uID = Convert.ToInt32(Session["ID"]);
+                displayModel.LoggedUser = advertRepository.GetUserData(uID);
+            }
+            if (displayModel.AdvertDetails == null)
                 return HttpNotFound();
             else
-                return View("Details", advert);
-            //if(message)
+                return View("Details", displayModel);
         }
-
-        /*[HttpPost]
-        public ActionResult Display()
+        [HttpPost]
+        public ActionResult Details(string message)
         {
-            string message = Request["Message"].ToString();
-            ViewBag.triedOnce = "Tak";
+            MESSAGE NewMessage = new MESSAGE
+            {
+                MSG_FROM = Convert.ToInt32(Session["ID"]),
+                MSG_TO = displayModel.AdvertDetails.USER_ID,
+                TEXT = message,
+                DATE = System.DateTime.Now
+            };
+            db.MESSAGE.Add(NewMessage);
+            db.SaveChanges();
             return View();
         }
-        */
         public ActionResult Category(int id, int? page)
         {
             int pageSize = 10;

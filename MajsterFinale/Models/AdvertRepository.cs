@@ -40,5 +40,9 @@ namespace MajsterFinale.Models
             return db.USERS.SingleOrDefault(x => x.USER_ID == uID);
         }
     }
-
+    public class DisplayModel
+    {
+        public ADVERTS AdvertDetails { get; set; }
+        public USERS LoggedUser { get; set; }
+    }
 }

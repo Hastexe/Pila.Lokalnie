@@ -1,62 +1,80 @@
-﻿@model MajsterFinale.Models.ADVERTS
+﻿@model MajsterFinale.Models.DisplayModel
 
 <div>
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.TITLE)
+            @Html.DisplayNameFor(model => model.AdvertDetails.TITLE)
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.TITLE)
+            @Html.DisplayFor(model => model.AdvertDetails.TITLE)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.DESCRIPTION)
+            @Html.DisplayNameFor(model => model.AdvertDetails.DESCRIPTION)
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.DESCRIPTION)
+            @Html.DisplayFor(model => model.AdvertDetails.DESCRIPTION)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.PRICE)
+            @Html.DisplayNameFor(model => model.AdvertDetails.PRICE)
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.PRICE)
+            @Html.DisplayFor(model => model.AdvertDetails.PRICE)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.IMAGE)
+            @Html.DisplayNameFor(model => model.AdvertDetails.IMAGE)
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.IMAGE)
+            @Html.DisplayFor(model => model.AdvertDetails.IMAGE)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.IS_ARCHIVED)
+            @Html.DisplayNameFor(model => model.AdvertDetails.IS_ARCHIVED)
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.IS_ARCHIVED)
+            @Html.DisplayFor(model => model.AdvertDetails.IS_ARCHIVED)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.CATEGORIES.TAG)
+            @Html.DisplayNameFor(model => model.AdvertDetails.CATEGORIES.TAG)
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.CATEGORIES.TAG)
+            @Html.DisplayFor(model => model.AdvertDetails.CATEGORIES.TAG)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.USERS.LOGIN)
+            @Html.DisplayNameFor(model => model.AdvertDetails.USERS.LOGIN)
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.USERS.LOGIN)
+            @Html.DisplayFor(model => model.AdvertDetails.USERS.LOGIN)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LoggedUser.USER_ID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LoggedUser.USER_ID)
         </dd>
 
     </dl>
+    <div>
+        @{
+            if(Model.LoggedUser.USER_ID != null)
+            {
+            int userid = Convert.ToInt32(Model.LoggedUser.USER_ID);
+            if ( userid > 0)
+            {
+                <p>Wyślij wiadomość</p>
+                using (Html.BeginForm("Details", "Adverts"))
+                {
+                    <input type="text" name="message" />
+                    <br />
+                    <input type="submit" value="wyślij" />
+                }
+            }
+            else
+            {
+                <p>Zaloguj się by wysłać wiadomość</p>
+            }
+
+            }
+         }
+</div>
+
+
 </div>
