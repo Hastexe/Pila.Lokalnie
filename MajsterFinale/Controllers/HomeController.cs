@@ -43,15 +43,18 @@ namespace MajsterFinale.Controllers
         public ActionResult Logowanie(USERS USERS)
         {
             BazaLocal db = new BazaLocal();
-            var userLoggedIn = db.USERS.Single(x => x.LOGIN == USERS.LOGIN && x.PASSWORD == USERS.PASSWORD);
+            var userLoggedIn = db.USERS.SingleOrDefault(x => x.LOGIN == USERS.LOGIN && x.PASSWORD == USERS.PASSWORD);
             if (userLoggedIn != null)
             {
                 ViewBag.message = "Zalogowano";
                 ViewBag.triedOnce = "Tak";
 
-                Session["ID"] = Convert.ToInt32(userLoggedIn.USER_ID);
+                Session["ID"] = USERS.USER_ID;
+                Session["Login"] = USERS.LOGIN;
+
                 //po zalogowaniu przenosi nas mainpage(nie można wejść na tą stronę jeżeli nie jest się zalogowanym: jest to test sesji)
-                return RedirectToAction("mainpage", "home", new { Login = userLoggedIn.LOGIN });
+                return RedirectToAction("mainpage", "home", new { Login = USERS.LOGIN });
+
             }
             else
             {
@@ -90,12 +93,13 @@ namespace MajsterFinale.Controllers
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
         }
-
         public ActionResult AddAdvertisement()
         {
+            BazaLocal db = new BazaLocal();
+            IEnumerable<SelectListItem> List = new SelectList(db.CATEGORIES, "ID", "NAME");
+            ViewBag.CATLIST = List;
             return View();
         }
-
         [HttpPost]
         public ActionResult AddAdvertisement(ADVERTS obj)
 
@@ -103,21 +107,23 @@ namespace MajsterFinale.Controllers
             if (ModelState.IsValid)
             {
                 BazaLocal db = new BazaLocal();
-                //obj.USER_ID = Session["ID"].ToString();
-                //obj.USER_ID = Session["ID"].ToString();
+                //obj.USER_ID = (int)Session["ID"];
+                obj.USER_ID = 1;
+                obj.IS_ARCHIVED = false;
                 db.ADVERTS.Add(obj);
                 db.SaveChanges();
             }
             return View(obj);
         }
 
-        /*public ActionResult MojeOgloszenia()
+        public ActionResult MojeOgloszenia()
         {
-           BazaLocal db = new BazaLocal();
-           string login = Session["Login"].ToString();
-           var sesja = db.ADVERTS.Where(ADVERTS => ADVERTS.USER_ID == login );
-           return View(sesja.ToList());
-        }*/
+            BazaLocal db = new BazaLocal();
+            int idSesji = 1; //(int)Session["ID"]; 
+            var sesja = db.ADVERTS.Where(ADVERTS => ADVERTS.USER_ID == idSesji);
+            return View(sesja.ToList());
+        }
+
         public ActionResult Regulamin()
         {
             ViewBag.Message = "Tutaj będzie regulamin";

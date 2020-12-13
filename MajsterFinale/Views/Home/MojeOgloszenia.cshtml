@@ -3,13 +3,13 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.TEXT)
+            @Html.DisplayNameFor(model => model.TITLE)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.PRICE)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CATEGORY)
+            @Html.DisplayNameFor(model => model.CATEGORIES.NAME)
         </th>
         <th></th>
     </tr>
@@ -20,13 +20,13 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.TEXT)
+                @Html.DisplayFor(modelItem => item.TITLE)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PRICE)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CATEGORY)
+                @Html.DisplayFor(modelItem => item.CATEGORIES.NAME)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
@@ -36,3 +36,4 @@
     }
 
 </table>
+<b>@Session["ID"]</b>
