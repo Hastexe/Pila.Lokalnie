@@ -18,6 +18,7 @@ namespace MajsterFinale.Models
         public ADVERTS()
         {
             this.FAV = new HashSet<FAV>();
+            this.MESSAGE = new HashSet<MESSAGE>();
         }
     
         public int ID { get; set; }
@@ -34,5 +35,7 @@ namespace MajsterFinale.Models
         public virtual USERS USERS { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FAV> FAV { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MESSAGE> MESSAGE { get; set; }
     }
 }

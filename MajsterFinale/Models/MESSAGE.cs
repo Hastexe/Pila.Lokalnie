@@ -20,8 +20,10 @@ namespace MajsterFinale.Models
         public string TEXT { get; set; }
         public System.DateTime DATE { get; set; }
         public Nullable<bool> IS_READ { get; set; }
+        public int ADVERT_ID { get; set; }
     
         public virtual USERS USERS { get; set; }
         public virtual USERS USERS1 { get; set; }
+        public virtual ADVERTS ADVERTS { get; set; }
     }
 }

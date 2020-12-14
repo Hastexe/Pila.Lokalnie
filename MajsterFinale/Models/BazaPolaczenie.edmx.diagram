@@ -5,10 +5,10 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="7ee0efddad3444dc85d2d951d14fc167" Name="Diagram1">
-        <EntityTypeShape EntityType="BazaPolaczenie.ADVERTS" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BazaPolaczenie.ADVERTS" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BazaPolaczenie.CATEGORIES" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BazaPolaczenie.FAV" Width="1.5" PointX="5.25" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="BazaPolaczenie.MESSAGE" Width="1.5" PointX="3" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BazaPolaczenie.FAV" Width="1.5" PointX="6.875" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BazaPolaczenie.MESSAGE" Width="1.5" PointX="6.5" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BazaPolaczenie.USERS" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
         <AssociationConnector Association="BazaPolaczenie.FK_ADVERTS_CATEGORIES" ManuallyRouted="false" />
         <AssociationConnector Association="BazaPolaczenie.FK_ADVERTS_USERS" ManuallyRouted="false" />
@@ -16,6 +16,7 @@
         <AssociationConnector Association="BazaPolaczenie.FK_FAV_USERS" ManuallyRouted="false" />
         <AssociationConnector Association="BazaPolaczenie.FK_MESSAGE_USERS" ManuallyRouted="false" />
         <AssociationConnector Association="BazaPolaczenie.FK_MESSAGE_USERS1" ManuallyRouted="false" />
+        <AssociationConnector Association="BazaPolaczenie.FK_FAV_MESSAGE" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

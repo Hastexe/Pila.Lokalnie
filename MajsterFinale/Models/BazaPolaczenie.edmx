@@ -40,6 +40,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ADVERT_ID" Type="int" Nullable="false" />
           <Property Name="MSG_FROM" Type="int" Nullable="false" />
           <Property Name="MSG_TO" Type="int" Nullable="false" />
           <Property Name="TEXT" Type="text" Nullable="false" />
@@ -92,6 +93,18 @@
             </Principal>
             <Dependent Role="FAV">
               <PropertyRef Name="ADV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FAV_MESSAGE">
+          <End Role="ADVERTS" Type="Self.ADVERTS" Multiplicity="1" />
+          <End Role="MESSAGE" Type="Self.MESSAGE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ADVERTS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MESSAGE">
+              <PropertyRef Name="ADVERT_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -149,6 +162,10 @@
             <End Role="ADVERTS" EntitySet="ADVERTS" />
             <End Role="FAV" EntitySet="FAV" />
           </AssociationSet>
+          <AssociationSet Name="FK_FAV_MESSAGE" Association="Self.FK_FAV_MESSAGE">
+            <End Role="ADVERTS" EntitySet="ADVERTS" />
+            <End Role="MESSAGE" EntitySet="MESSAGE" />
+          </AssociationSet>
           <AssociationSet Name="FK_FAV_USERS" Association="Self.FK_FAV_USERS">
             <End Role="USERS" EntitySet="USERS" />
             <End Role="FAV" EntitySet="FAV" />
@@ -182,6 +199,7 @@
           <NavigationProperty Name="USERS" Relationship="Self.FK_ADVERTS_USERS" FromRole="ADVERTS" ToRole="USERS" />
           <NavigationProperty Name="FAV" Relationship="Self.FK_FAV_ADVERTS" FromRole="ADVERTS" ToRole="FAV" />
           <Property Name="DATE" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="MESSAGE" Relationship="BazaPolaczenie.FK_FAV_MESSAGE" FromRole="ADVERTS" ToRole="MESSAGE" />
         </EntityType>
         <EntityType Name="CATEGORIES">
           <Key>
@@ -214,6 +232,8 @@
           <Property Name="IS_READ" Type="Boolean" />
           <NavigationProperty Name="USERS" Relationship="Self.FK_MESSAGE_USERS" FromRole="MESSAGE" ToRole="USERS" />
           <NavigationProperty Name="USERS1" Relationship="Self.FK_MESSAGE_USERS1" FromRole="MESSAGE" ToRole="USERS" />
+          <Property Name="ADVERT_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ADVERTS" Relationship="BazaPolaczenie.FK_FAV_MESSAGE" FromRole="MESSAGE" ToRole="ADVERTS" />
         </EntityType>
         <EntityType Name="USERS">
           <Key>
@@ -334,7 +354,23 @@
             <End Role="USERS" EntitySet="USERS" />
             <End Role="MESSAGE" EntitySet="MESSAGE" />
           </AssociationSet>
+          <AssociationSet Name="FK_FAV_MESSAGE" Association="BazaPolaczenie.FK_FAV_MESSAGE">
+            <End Role="ADVERTS" EntitySet="ADVERTS" />
+            <End Role="MESSAGE" EntitySet="MESSAGE" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_FAV_MESSAGE">
+          <End Type="BazaPolaczenie.ADVERTS" Role="ADVERTS" Multiplicity="1" />
+          <End Type="BazaPolaczenie.MESSAGE" Role="MESSAGE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ADVERTS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MESSAGE">
+              <PropertyRef Name="ADVERT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -377,6 +413,7 @@
           <EntitySetMapping Name="MESSAGE">
             <EntityTypeMapping TypeName="BazaPolaczenie.MESSAGE">
               <MappingFragment StoreEntitySet="MESSAGE">
+                <ScalarProperty Name="ADVERT_ID" ColumnName="ADVERT_ID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="MSG_FROM" ColumnName="MSG_FROM" />
                 <ScalarProperty Name="MSG_TO" ColumnName="MSG_TO" />
