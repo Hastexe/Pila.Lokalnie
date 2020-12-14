@@ -15,6 +15,8 @@
     <NavigationProperty Name="CATEGORIES" Relationship="Self.FK_ADVERTS_CATEGORIES" FromRole="ADVERTS" ToRole="CATEGORIES" />
     <NavigationProperty Name="USERS" Relationship="Self.FK_ADVERTS_USERS" FromRole="ADVERTS" ToRole="USERS" />
     <NavigationProperty Name="FAV" Relationship="Self.FK_FAV_ADVERTS" FromRole="ADVERTS" ToRole="FAV" />
+    <Property Name="DATE" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="MESSAGE" Relationship="BazaPolaczenie.FK_FAV_MESSAGE" FromRole="ADVERTS" ToRole="MESSAGE" />
   </EntityType>
   <EntityType Name="CATEGORIES">
     <Key>
@@ -47,6 +49,8 @@
     <Property Name="IS_READ" Type="Boolean" />
     <NavigationProperty Name="USERS" Relationship="Self.FK_MESSAGE_USERS" FromRole="MESSAGE" ToRole="USERS" />
     <NavigationProperty Name="USERS1" Relationship="Self.FK_MESSAGE_USERS1" FromRole="MESSAGE" ToRole="USERS" />
+    <Property Name="ADVERT_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ADVERTS" Relationship="BazaPolaczenie.FK_FAV_MESSAGE" FromRole="MESSAGE" ToRole="ADVERTS" />
   </EntityType>
   <EntityType Name="USERS">
     <Key>
@@ -167,5 +171,21 @@
       <End Role="USERS" EntitySet="USERS" />
       <End Role="MESSAGE" EntitySet="MESSAGE" />
     </AssociationSet>
+    <AssociationSet Name="FK_FAV_MESSAGE" Association="BazaPolaczenie.FK_FAV_MESSAGE">
+      <End Role="ADVERTS" EntitySet="ADVERTS" />
+      <End Role="MESSAGE" EntitySet="MESSAGE" />
+    </AssociationSet>
   </EntityContainer>
+  <Association Name="FK_FAV_MESSAGE">
+    <End Type="BazaPolaczenie.ADVERTS" Role="ADVERTS" Multiplicity="1" />
+    <End Type="BazaPolaczenie.MESSAGE" Role="MESSAGE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ADVERTS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MESSAGE">
+        <PropertyRef Name="ADVERT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

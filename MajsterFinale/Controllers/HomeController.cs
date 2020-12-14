@@ -107,8 +107,8 @@ namespace MajsterFinale.Controllers
             if (ModelState.IsValid)
             {
                 BazaLocal db = new BazaLocal();
-                //obj.USER_ID = (int)Session["ID"];
-                obj.USER_ID = 1;
+                int uID = Convert.ToInt32(Session["ID"]);
+                obj.USER_ID = uID;
                 obj.IS_ARCHIVED = false;
                 db.ADVERTS.Add(obj);
                 db.SaveChanges();
@@ -119,9 +119,13 @@ namespace MajsterFinale.Controllers
         public ActionResult MojeOgloszenia()
         {
             BazaLocal db = new BazaLocal();
-            int idSesji = 1; //(int)Session["ID"]; 
-            var sesja = db.ADVERTS.Where(ADVERTS => ADVERTS.USER_ID == idSesji);
-            return View(sesja.ToList());
+            if (Session["ID"] != null)
+            {
+                int uID = Convert.ToInt32(Session["ID"]);
+                ViewBag.ID = uID;
+                return View(db.ADVERTS.Where(x => x.USER_ID == uID).ToList());
+            }
+            else return HttpNotFound();
         }
 
         public ActionResult Regulamin()

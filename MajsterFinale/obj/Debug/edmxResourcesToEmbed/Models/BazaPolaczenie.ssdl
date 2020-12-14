@@ -9,6 +9,7 @@
     <Property Name="CATEGORY" Type="int" Nullable="false" />
     <Property Name="TITLE" Type="varchar" MaxLength="255" Nullable="false" />
     <Property Name="DESCRIPTION" Type="text" Nullable="false" />
+    <Property Name="DATE" Type="datetime" Nullable="false" />
     <Property Name="PRICE" Type="varchar" MaxLength="255" Nullable="false" />
     <Property Name="IMAGE" Type="varchar" MaxLength="255" />
     <Property Name="IS_ARCHIVED" Type="bit" />
@@ -34,6 +35,7 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ADVERT_ID" Type="int" Nullable="false" />
     <Property Name="MSG_FROM" Type="int" Nullable="false" />
     <Property Name="MSG_TO" Type="int" Nullable="false" />
     <Property Name="TEXT" Type="text" Nullable="false" />
@@ -86,6 +88,18 @@
       </Principal>
       <Dependent Role="FAV">
         <PropertyRef Name="ADV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FAV_MESSAGE">
+    <End Role="ADVERTS" Type="Self.ADVERTS" Multiplicity="1" />
+    <End Role="MESSAGE" Type="Self.MESSAGE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ADVERTS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MESSAGE">
+        <PropertyRef Name="ADVERT_ID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -142,6 +156,10 @@
     <AssociationSet Name="FK_FAV_ADVERTS" Association="Self.FK_FAV_ADVERTS">
       <End Role="ADVERTS" EntitySet="ADVERTS" />
       <End Role="FAV" EntitySet="FAV" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FAV_MESSAGE" Association="Self.FK_FAV_MESSAGE">
+      <End Role="ADVERTS" EntitySet="ADVERTS" />
+      <End Role="MESSAGE" EntitySet="MESSAGE" />
     </AssociationSet>
     <AssociationSet Name="FK_FAV_USERS" Association="Self.FK_FAV_USERS">
       <End Role="USERS" EntitySet="USERS" />

@@ -19,6 +19,7 @@ namespace MajsterFinale.Models
         {
             this.FAV = new HashSet<FAV>();
             this.MESSAGE = new HashSet<MESSAGE>();
+            this.DATE =  DateTime.Now;
         }
     
         public int ID { get; set; }

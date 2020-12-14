@@ -4,6 +4,7 @@
     <EntitySetMapping Name="ADVERTS">
       <EntityTypeMapping TypeName="BazaPolaczenie.ADVERTS">
         <MappingFragment StoreEntitySet="ADVERTS">
+          <ScalarProperty Name="DATE" ColumnName="DATE" />
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
           <ScalarProperty Name="CATEGORY" ColumnName="CATEGORY" />
@@ -36,6 +37,7 @@
     <EntitySetMapping Name="MESSAGE">
       <EntityTypeMapping TypeName="BazaPolaczenie.MESSAGE">
         <MappingFragment StoreEntitySet="MESSAGE">
+          <ScalarProperty Name="ADVERT_ID" ColumnName="ADVERT_ID" />
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="MSG_FROM" ColumnName="MSG_FROM" />
           <ScalarProperty Name="MSG_TO" ColumnName="MSG_TO" />
