@@ -49,8 +49,9 @@ namespace MajsterFinale.Controllers
                 ViewBag.message = "Zalogowano";
                 ViewBag.triedOnce = "Tak";
 
-                Session["ID"] = USERS.USER_ID;
-                Session["Login"] = USERS.LOGIN;
+                //int ID = db.USERS.Where(x => x.LOGIN == USERS.LOGIN).Select(x => x.USER_ID);
+                Session["ID"] = userLoggedIn.USER_ID;
+                Session["Login"] = userLoggedIn.LOGIN;
 
                 //po zalogowaniu przenosi nas mainpage(nie można wejść na tą stronę jeżeli nie jest się zalogowanym: jest to test sesji)
                 return RedirectToAction("mainpage", "home", new { Login = USERS.LOGIN });

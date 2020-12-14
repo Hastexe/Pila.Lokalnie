@@ -11,7 +11,8 @@ namespace MajsterFinale.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Web.Mvc;
+
     public partial class ADVERTS
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -31,7 +32,6 @@ namespace MajsterFinale.Models
         public string IMAGE { get; set; }
         public Nullable<bool> IS_ARCHIVED { get; set; }
         public System.DateTime DATE { get; set; }
-    
         public virtual CATEGORIES CATEGORIES { get; set; }
         public virtual USERS USERS { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
