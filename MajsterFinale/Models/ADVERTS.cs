@@ -11,13 +11,7 @@ namespace MajsterFinale.Models
 {
     using System;
     using System.Collections.Generic;
-
-    using System.Data.SqlClient;
-
-    using System.Data;
-
-    using System.Configuration;
-
+    
     public partial class ADVERTS
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -25,7 +19,7 @@ namespace MajsterFinale.Models
         {
             this.FAV = new HashSet<FAV>();
         }
-
+    
         public int ID { get; set; }
         public int USER_ID { get; set; }
         public int CATEGORY { get; set; }
@@ -34,11 +28,11 @@ namespace MajsterFinale.Models
         public string PRICE { get; set; }
         public string IMAGE { get; set; }
         public Nullable<bool> IS_ARCHIVED { get; set; }
-
+        public System.DateTime DATE { get; set; }
+    
         public virtual CATEGORIES CATEGORIES { get; set; }
         public virtual USERS USERS { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FAV> FAV { get; set; }
-     
     }
 }
