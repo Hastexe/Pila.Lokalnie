@@ -6,6 +6,9 @@ using System.Web;
 using System.Web.Mvc;
 using Scrypt;
 using System.Web.Security;
+using System.Security.Cryptography;
+using System.Text;
+using System.Data.Entity.Validation;
 
 namespace MajsterFinale.Controllers
 {
@@ -43,6 +46,7 @@ namespace MajsterFinale.Controllers
         public ActionResult Logowanie(USERS USERS)
         {
             BazaLocal db = new BazaLocal();
+            USERS.PASSWORD = encryption(USERS.PASSWORD);
             var userLoggedIn = db.USERS.SingleOrDefault(x => x.LOGIN == USERS.LOGIN && x.PASSWORD == USERS.PASSWORD);
             if (userLoggedIn != null)
             {
@@ -79,12 +83,29 @@ namespace MajsterFinale.Controllers
 
             using (BazaLocal db = new BazaLocal())
                 {
+                    USERS.PASSWORD = encryption(USERS.PASSWORD);
+                    USERS.REPASSWORD = encryption(USERS.REPASSWORD);
                     db.USERS.Add(USERS);
                     db.SaveChanges();
                 }
                 ModelState.Clear();
-                ViewBag.SuccessMessage = "Rejestracja przebiegła pomślnie";
+                ViewBag.SuccessMessage = "Rejestracja przebiegła pomyślnie";
                 return View("Rejestracja", new USERS());
+        }
+        public string encryption(String PASSWORD)
+        {
+            MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
+            byte[] encrypt;
+            UTF8Encoding encode = new UTF8Encoding();
+            //encrypt the given password string into Encrypted data  
+            encrypt = md5.ComputeHash(encode.GetBytes(PASSWORD));
+            StringBuilder encryptdata = new StringBuilder();
+            //Create a new string by using the encrypted data  
+            for (int i = 0; i < encrypt.Length; i++)
+            {
+                encryptdata.Append(encrypt[i].ToString());
+            }
+            return encryptdata.ToString();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
