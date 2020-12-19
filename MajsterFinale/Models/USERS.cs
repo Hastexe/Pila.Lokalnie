@@ -52,6 +52,8 @@ namespace MajsterFinale.Models
         [Compare("MAIL")]
         public string REMAIL { get; set; }
 
+        [DisplayName("Imiê")]
+        [Required(ErrorMessage = "Pole jest wymagane")]
         public string FNAME { get; set; }
         public string LNAME { get; set; }
         public Nullable<bool> VERIFIED { get; set; }
@@ -75,5 +77,6 @@ namespace MajsterFinale.Models
         {
             return value is bool && (bool)value;
         }
+
     }
 }

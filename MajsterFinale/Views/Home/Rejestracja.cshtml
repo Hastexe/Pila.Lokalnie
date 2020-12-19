@@ -21,6 +21,14 @@
             </div>
 
             <div class="form-group">
+                @Html.LabelFor(model => model.FNAME, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.FNAME, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FNAME, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
                 @Html.LabelFor(model => model.PASSWORD, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.PASSWORD, new { htmlAttributes = new { @class = "form-control" } })
@@ -52,24 +60,24 @@
 
             <div class="form-group">
                 @Html.CheckBoxFor(model => model.TERMS)
-                
-                    <label>Oświadczam, iż zapoznałem się z treścią @Html.ActionLink("Regulaminu", "regulamin", null, new { target = "_blank" }) i akceptuję jego wszystkie postanowienia. Akceptuję @Html.ActionLink("Politykę Ochrony Prywatności", "polityka", null, new { target = "_blank" }) - ogólne standardy ochrony.</label>
-                    <div class="col-md-10">
-                        @Html.ValidationMessageFor(model => model.TERMS, "", new { @class = "text-danger" })
-                    </div>
+
+                <label>Oświadczam, iż zapoznałem się z treścią @Html.ActionLink("Regulaminu", "regulamin", null, new { target = "_blank" }) i akceptuję jego wszystkie postanowienia. Akceptuję @Html.ActionLink("Politykę Ochrony Prywatności", "polityka", null, new { target = "_blank" }) - ogólne standardy ochrony.</label>
+                <div class="col-md-10">
+                    @Html.ValidationMessageFor(model => model.TERMS, "", new { @class = "text-danger" })
+                </div>
             </div>
 
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <button type="submit" value="Załóż konto" class="btn btn-default">Załóż konto</button>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-2">
-                        <label class="label-success">@ViewBag.SuccessMessage</label>
-                    </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button type="submit" value="Załóż konto" class="btn btn-default">Załóż konto</button>
                 </div>
             </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-2">
+                    <label class="label-success">@ViewBag.SuccessMessage</label>
+                </div>
+            </div>
+        </div>
         <script>
             // extend range validator method to treat checkboxes differently
             var defaultRangeValidator = $.validator.methods.range;

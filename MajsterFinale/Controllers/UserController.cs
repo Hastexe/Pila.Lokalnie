@@ -28,6 +28,7 @@ namespace MajsterFinale.Controllers
             }
             return View();
         }
+       
         public ActionResult Messages(int id)
         {
             if (Session["ID"] != null)

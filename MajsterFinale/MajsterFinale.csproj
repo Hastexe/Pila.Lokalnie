@@ -352,6 +352,7 @@
     <Content Include="Views\Adverts\SendMessage.cshtml" />
     <Content Include="Views\Adverts\Display.cshtml" />
     <Content Include="Views\User\View.cshtml" />
+    <Content Include="Views\User\Panel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

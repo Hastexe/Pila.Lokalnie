@@ -47,7 +47,8 @@ namespace MajsterFinale.Controllers
         {
             BazaLocal db = new BazaLocal();
             USERS.PASSWORD = encryption(USERS.PASSWORD);
-            var userLoggedIn = db.USERS.SingleOrDefault(x => x.LOGIN == USERS.LOGIN && x.PASSWORD == USERS.PASSWORD);
+            
+            var userLoggedIn = db.USERS.SingleOrDefault(x => x.MAIL == USERS.MAIL && x.PASSWORD == USERS.PASSWORD);
             if (userLoggedIn != null)
             {
                 ViewBag.message = "Zalogowano";
@@ -83,6 +84,19 @@ namespace MajsterFinale.Controllers
 
             using (BazaLocal db = new BazaLocal())
                 {
+                    var isMailExist = IsEmailExist(USERS.MAIL);
+                     if (isMailExist)
+                     {
+                         ViewBag.SuccessMessage = "Email jest już w użyciu";
+                         return View();
+                     }
+                     var isLoginExist = IsLoginExist(USERS.LOGIN);
+                     if (isLoginExist)
+                     {
+                         ViewBag.SuccessMessage = "Login jest już w użyciu";
+                         return View();
+                     }
+
                     USERS.PASSWORD = encryption(USERS.PASSWORD);
                     USERS.REPASSWORD = encryption(USERS.REPASSWORD);
                     db.USERS.Add(USERS);
@@ -97,15 +111,35 @@ namespace MajsterFinale.Controllers
             MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
             byte[] encrypt;
             UTF8Encoding encode = new UTF8Encoding();
-            //encrypt the given password string into Encrypted data  
+            //szyfrowanie hasła  
             encrypt = md5.ComputeHash(encode.GetBytes(PASSWORD));
             StringBuilder encryptdata = new StringBuilder();
-            //Create a new string by using the encrypted data  
+            //tworzenie nowego ciągu z zaszyfrowanego hasła 
             for (int i = 0; i < encrypt.Length; i++)
             {
                 encryptdata.Append(encrypt[i].ToString());
             }
             return encryptdata.ToString();
+        }
+
+        [NonAction]
+        public bool IsEmailExist(string MAIL)
+        {
+            using (BazaLocal db = new BazaLocal())
+            {
+                var v = db.USERS.Where(a => a.MAIL == MAIL).FirstOrDefault();
+                return v != null;
+            }
+        }
+
+        [NonAction]
+        public bool IsLoginExist(string LOGIN)
+        {
+            using (BazaLocal db = new BazaLocal())
+            {
+                var v = db.USERS.Where(a => a.LOGIN == LOGIN).FirstOrDefault();
+                return v != null;
+            }
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -180,6 +214,8 @@ namespace MajsterFinale.Controllers
 
             return View();
         }
+
         
+
     }
 }
