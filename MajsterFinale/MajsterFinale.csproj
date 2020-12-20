@@ -346,13 +346,17 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Adverts\Details.cshtml" />
-    <Content Include="Views\Adverts\PartialAdverts.cshtml" />
     <Content Include="Views\Adverts\Category.cshtml" />
     <Content Include="Views\Adverts\Adverts.cshtml" />
+<<<<<<< Updated upstream
     <Content Include="Views\Adverts\SendMessage.cshtml" />
     <Content Include="Views\Adverts\Display.cshtml" />
     <Content Include="Views\User\View.cshtml" />
     <Content Include="Views\User\Panel.cshtml" />
+=======
+    <Content Include="Views\User\Messages.cshtml" />
+    <Content Include="Views\User\Conversation.cshtml" />
+>>>>>>> Stashed changes
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

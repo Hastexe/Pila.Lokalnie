@@ -29,6 +29,10 @@ namespace MajsterFinale.Models
         {
             return db.ADVERTS.OrderByDescending(a => a.ID).ToList();
         }
+        public List<ADVERTS> GetAds()
+        {
+            return db.ADVERTS.ToList();
+        }
 
         public List<MESSAGE> GetMessage()
         {
@@ -39,10 +43,11 @@ namespace MajsterFinale.Models
         {
             return db.USERS.SingleOrDefault(x => x.USER_ID == uID);
         }
+        
+        public List<ADVERTS> GetUserAdverts(int uID)
+        {
+            return db.ADVERTS.Where(x => x.USER_ID == uID).ToList();
+        }
     }
-    public class DisplayModel
-    {
-        public ADVERTS AdvertDetails { get; set; }
-        public USERS LoggedUser { get; set; }
-    }
+
 }

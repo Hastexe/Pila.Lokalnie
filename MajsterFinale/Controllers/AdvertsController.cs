@@ -15,8 +15,8 @@ namespace MajsterFinale.Controllers
     public class AdvertsController : Controller
     {
         private BazaLocal db = new BazaLocal();
-        AdvertRepository advertRepository = new AdvertRepository();
-        DisplayModel displayModel= new DisplayModel();
+        private AdvertRepository advertRepository = new AdvertRepository();
+        private DisplayRepository displayRepository = new DisplayRepository();
         //
         // HTTP-GET: /Adverts/
         public ActionResult Index()
@@ -28,32 +28,41 @@ namespace MajsterFinale.Controllers
         public ActionResult Details(int id)
         {
 
-            displayModel.AdvertDetails = advertRepository.GetDetails(id);
+            displayRepository.AdvertDetails = advertRepository.GetDetails(id);
             // var login = Convert.ToInt32(Session["Login"]);
             if (Session["ID"] != null)
             {
                 int uID = Convert.ToInt32(Session["ID"]);
-                displayModel.LoggedUser = advertRepository.GetUserData(uID);
+                displayRepository.LoggedUser = advertRepository.GetUserData(uID);
             }
-            if (displayModel.AdvertDetails == null)
+            if (displayRepository.AdvertDetails == null)
                 return HttpNotFound();
             else
-                return View("Details", displayModel);
+                return View("Details", displayRepository);
         }
         [HttpPost]
-        public ActionResult Details(string message)
+        public ActionResult Details(int id, string message)
         {
-            MESSAGE NewMessage = new MESSAGE
+            displayRepository.AdvertDetails = advertRepository.GetDetails(id);
+            if (Session["ID"] != null)
+            {
+                int uID = Convert.ToInt32(Session["ID"]);
+                displayRepository.LoggedUser = advertRepository.GetUserData(uID);
+            }
+            MESSAGE NewMessage = new MESSAGE()
             {
                 MSG_FROM = Convert.ToInt32(Session["ID"]),
-                MSG_TO = displayModel.AdvertDetails.USER_ID,
+                MSG_TO = displayRepository.AdvertDetails.USER_ID,
                 TEXT = message,
-                DATE = System.DateTime.Now
+                DATE = System.DateTime.Now,
+                ADVERT_ID = displayRepository.AdvertDetails.ID
             };
             db.MESSAGE.Add(NewMessage);
             db.SaveChanges();
-            return View();
+            return View("Details", displayRepository);
         }
+
+
         public ActionResult Category(int id, int? page)
         {
             int pageSize = 10;
