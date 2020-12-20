@@ -33,12 +33,8 @@ namespace MajsterFinale.Controllers
             return View();
         }
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
        
         public ActionResult Messages(int id)
-=======
-        public ActionResult Messages()
->>>>>>> Stashed changes
 =======
         public ActionResult Messages()
 >>>>>>> Stashed changes
