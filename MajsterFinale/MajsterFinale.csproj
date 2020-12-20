@@ -349,10 +349,15 @@
     <Content Include="Views\Adverts\Category.cshtml" />
     <Content Include="Views\Adverts\Adverts.cshtml" />
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     <Content Include="Views\Adverts\SendMessage.cshtml" />
     <Content Include="Views\Adverts\Display.cshtml" />
     <Content Include="Views\User\View.cshtml" />
     <Content Include="Views\User\Panel.cshtml" />
+=======
+    <Content Include="Views\User\Messages.cshtml" />
+    <Content Include="Views\User\Conversation.cshtml" />
+>>>>>>> Stashed changes
 =======
     <Content Include="Views\User\Messages.cshtml" />
     <Content Include="Views\User\Conversation.cshtml" />
