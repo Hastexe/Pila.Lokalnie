@@ -1,4 +1,4 @@
-﻿@model MajsterFinale.Models.DisplayModel
+﻿@model MajsterFinale.Models.DisplayRepository
 
 <div>
     <dl class="dl-horizontal">
@@ -54,10 +54,7 @@
     </dl>
     <div>
         @{
-            if(Model.LoggedUser.USER_ID != null)
-            {
-            int userid = Convert.ToInt32(Model.LoggedUser.USER_ID);
-            if ( userid > 0)
+            if (Session["ID"] != null)
             {
                 <p>Wyślij wiadomość</p>
                 using (Html.BeginForm("Details", "Adverts"))
@@ -71,10 +68,8 @@
             {
                 <p>Zaloguj się by wysłać wiadomość</p>
             }
-
-            }
-         }
-</div>
+        }
+    </div>
 
 
 </div>

@@ -12,9 +12,18 @@ namespace MajsterFinale.Models
         {
             return db.USERS.SingleOrDefault(x => x.USER_ID == uID);
         }
-        public MESSAGE GetUserMessages(int uID)
+        public List<MESSAGE> GetUserMessages(int uID)
         {
-            return null;
+            return db.MESSAGE.Where(x => x.MSG_TO == uID || x.MSG_FROM == uID ).OrderByDescending(x => x.ID).ToList();
+        }
+        public List<MESSAGE> GetConversation(int AdvertId, int UserA, int UserB)
+        {
+            return db.MESSAGE.Where(x => x.ADVERT_ID == AdvertId && ((x.MSG_TO == UserA && x.MSG_FROM == UserB) || (x.MSG_TO == UserB && x.MSG_FROM == UserA))).OrderByDescending(x => x.ID).ToList();
+        }
+
+        public List<USERS> GetUsers()
+        {
+            return db.USERS.ToList();
         }
     }
 }
