@@ -9,11 +9,12 @@ using System.Web.Security;
 using System.Security.Cryptography;
 using System.Text;
 using System.Data.Entity.Validation;
-
 namespace MajsterFinale.Controllers
 {
     public class HomeController : Controller
     {
+        private RegisterRepository registerRepository = new RegisterRepository();
+  
         public ActionResult Index()
         {
             return View();
@@ -46,7 +47,7 @@ namespace MajsterFinale.Controllers
         public ActionResult Logowanie(USERS USERS)
         {
             BazaLocal db = new BazaLocal();
-            USERS.PASSWORD = encryption(USERS.PASSWORD);
+            USERS.PASSWORD = registerRepository.Encryption(USERS.PASSWORD);
             
             var userLoggedIn = db.USERS.SingleOrDefault(x => x.MAIL == USERS.MAIL && x.PASSWORD == USERS.PASSWORD);
             if (userLoggedIn != null)
@@ -84,21 +85,21 @@ namespace MajsterFinale.Controllers
 
             using (BazaLocal db = new BazaLocal())
                 {
-                    var isMailExist = IsEmailExist(USERS.MAIL);
+                    var isMailExist = registerRepository.IsEmailExist(USERS.MAIL);
                      if (isMailExist)
                      {
                          ViewBag.SuccessMessage = "Email jest już w użyciu";
                          return View();
                      }
-                     var isLoginExist = IsLoginExist(USERS.LOGIN);
+                     var isLoginExist = registerRepository.IsLoginExist(USERS.LOGIN);
                      if (isLoginExist)
                      {
                          ViewBag.SuccessMessage = "Login jest już w użyciu";
                          return View();
                      }
 
-                    USERS.PASSWORD = encryption(USERS.PASSWORD);
-                    USERS.REPASSWORD = encryption(USERS.REPASSWORD);
+                    USERS.PASSWORD = registerRepository.Encryption(USERS.PASSWORD);
+                    USERS.REPASSWORD = registerRepository.Encryption(USERS.REPASSWORD);
                     db.USERS.Add(USERS);
                     db.SaveChanges();
                 }
@@ -106,41 +107,8 @@ namespace MajsterFinale.Controllers
                 ViewBag.SuccessMessage = "Rejestracja przebiegła pomyślnie";
                 return View("Rejestracja", new USERS());
         }
-        public string encryption(String PASSWORD)
-        {
-            MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
-            byte[] encrypt;
-            UTF8Encoding encode = new UTF8Encoding();
-            //szyfrowanie hasła  
-            encrypt = md5.ComputeHash(encode.GetBytes(PASSWORD));
-            StringBuilder encryptdata = new StringBuilder();
-            //tworzenie nowego ciągu z zaszyfrowanego hasła 
-            for (int i = 0; i < encrypt.Length; i++)
-            {
-                encryptdata.Append(encrypt[i].ToString());
-            }
-            return encryptdata.ToString();
-        }
 
-        [NonAction]
-        public bool IsEmailExist(string MAIL)
-        {
-            using (BazaLocal db = new BazaLocal())
-            {
-                var v = db.USERS.Where(a => a.MAIL == MAIL).FirstOrDefault();
-                return v != null;
-            }
-        }
 
-        [NonAction]
-        public bool IsLoginExist(string LOGIN)
-        {
-            using (BazaLocal db = new BazaLocal())
-            {
-                var v = db.USERS.Where(a => a.LOGIN == LOGIN).FirstOrDefault();
-                return v != null;
-            }
-        }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()

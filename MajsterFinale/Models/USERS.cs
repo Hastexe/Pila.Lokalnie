@@ -26,6 +26,7 @@ namespace MajsterFinale.Models
         }
 
         public int USER_ID { get; set; }
+
         [DisplayName("Login")]
         [Required(ErrorMessage = "Pole jest wymagane")]
         public string LOGIN { get; set; }

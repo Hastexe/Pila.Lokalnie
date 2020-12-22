@@ -164,6 +164,7 @@
     <Compile Include="Models\CATEGORIES.cs">
       <DependentUpon>BazaPolaczenie.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\RegisterRepository.cs" />
     <Compile Include="Models\UserRepository.cs" />
     <Compile Include="Models\DisplayRepository.cs" />
     <Compile Include="Models\FAV.cs">
@@ -346,13 +347,13 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Adverts\Details.cshtml" />
-    <Content Include="Views\Adverts\PartialAdverts.cshtml" />
     <Content Include="Views\Adverts\Category.cshtml" />
     <Content Include="Views\Adverts\Adverts.cshtml" />
-    <Content Include="Views\Adverts\SendMessage.cshtml" />
-    <Content Include="Views\Adverts\Display.cshtml" />
-    <Content Include="Views\User\View.cshtml" />
     <Content Include="Views\User\Panel.cshtml" />
+    <Content Include="Views\User\Conversation.cshtml" />
+    <Content Include="Views\User\Messages.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
+    <Content Include="Views\Adverts\View.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
