@@ -1,0 +1,35 @@
+﻿@model MajsterFinale.Models.USERS
+
+@{
+    Layout = null;
+}
+
+
+@{
+    ViewBag.Title = "Confirm";
+}
+
+<br />
+<br />
+<div class="alert alert-warning" id="previous">
+    <strong>Aktywuj swoje konto</strong>
+    <input type="submit" class="btn btn-warning" value="Confirm" onclick="Verified()" />
+</div>
+<div class="alert alert-success" id="after" style="display:none">
+    <strong><span class="glyphicon glyphicon-ok"></span> Twoje konto zostało aktywowane</strong>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+    function Verified() {
+         $.ajax({
+            type: "post",
+            url: "/Home/AccountConfirm",
+            data: { 'uID': '@ViewBag.UID' },
+            success: function (msg) {
+                $("#previous").hide();
+                $("#after").show();
+                alert(msg);
+            }
+        })
+    }
+</script>

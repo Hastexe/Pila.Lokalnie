@@ -11,6 +11,7 @@
     <Property Name="DESCRIPTION" Type="text" Nullable="false" />
     <Property Name="DATE" Type="datetime" Nullable="false" />
     <Property Name="PRICE" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="PHONE_NUMBER" Type="varchar" MaxLength="9" />
     <Property Name="IMAGE" Type="varchar" MaxLength="255" />
     <Property Name="IS_ARCHIVED" Type="bit" />
   </EntityType>
@@ -39,7 +40,7 @@
     <Property Name="MSG_FROM" Type="int" Nullable="false" />
     <Property Name="MSG_TO" Type="int" Nullable="false" />
     <Property Name="TEXT" Type="text" Nullable="false" />
-    <Property Name="DATE" Type="date" Nullable="false" />
+    <Property Name="DATE" Type="datetime" Nullable="false" />
     <Property Name="IS_READ" Type="bit" />
   </EntityType>
   <EntityType Name="USERS">
@@ -50,10 +51,12 @@
     <Property Name="LOGIN" Type="varchar" MaxLength="255" Nullable="false" />
     <Property Name="PASSWORD" Type="varchar" MaxLength="255" Nullable="false" />
     <Property Name="MAIL" Type="varchar" MaxLength="255" Nullable="false" />
-    <Property Name="FNAME" Type="varchar" MaxLength="255" />
+    <Property Name="FNAME" Type="varchar" MaxLength="255" Nullable="false" />
     <Property Name="LNAME" Type="varchar" MaxLength="255" />
+    <Property Name="PHONE_NUMBER" Type="varchar" MaxLength="9" />
     <Property Name="VERIFIED" Type="bit" />
     <Property Name="IS_ADMIN" Type="bit" />
+    <Property Name="ACTIVATIONCODE" Type="uniqueidentifier" Nullable="false" />
   </EntityType>
   <Association Name="FK_ADVERTS_CATEGORIES">
     <End Role="CATEGORIES" Type="Self.CATEGORIES" Multiplicity="1" />

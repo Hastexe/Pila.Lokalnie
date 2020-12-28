@@ -9,12 +9,20 @@ using System.Web.Security;
 using System.Security.Cryptography;
 using System.Text;
 using System.Data.Entity.Validation;
+using System.Net.Mail;
+using System.Net;
+using System.Windows;
+using System.Threading.Tasks;
+using System.Data;
+
 namespace MajsterFinale.Controllers
 {
     public class HomeController : Controller
     {
+        private BazaLocal db = new BazaLocal();
+        private AdvertRepository advertRepository = new AdvertRepository();
+        private DisplayRepository displayRepository = new DisplayRepository();
         private RegisterRepository registerRepository = new RegisterRepository();
-  
         public ActionResult Index()
         {
             return View();
@@ -34,7 +42,7 @@ namespace MajsterFinale.Controllers
         {
             if (Session["ID"] != null)
             {
-                return RedirectToAction("mainpage", "home", new { ID = Session["ID"].ToString() });
+                return RedirectToAction("Index", "home", new { ID = Session["ID"].ToString() });
             }
             else
             {
@@ -59,8 +67,8 @@ namespace MajsterFinale.Controllers
                 Session["ID"] = userLoggedIn.USER_ID;
                 Session["Login"] = userLoggedIn.LOGIN;
 
-                //po zalogowaniu przenosi nas mainpage(nie można wejść na tą stronę jeżeli nie jest się zalogowanym: jest to test sesji)
-                return RedirectToAction("mainpage", "home", new { Login = USERS.LOGIN });
+                //po zalogowaniu przenosi nas index
+                return RedirectToAction("Index", "home", new { Login = USERS.LOGIN });
 
             }
             else
@@ -75,6 +83,7 @@ namespace MajsterFinale.Controllers
             return View(USERS);
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Rejestracja(USERS USERS)
         {
             if (!ModelState.IsValid)
@@ -97,17 +106,116 @@ namespace MajsterFinale.Controllers
                          ViewBag.SuccessMessage = "Login jest już w użyciu";
                          return View();
                      }
-
+                    var arePasswordsSame = registerRepository.ArePasswordsSame(USERS);
+                    if (arePasswordsSame)
+                    {
+                        ViewBag.SuccessMessage = "Podane hasła muszą być takie same";
+                        return View();
+                    }
+                    var areMailsSame = registerRepository.AreMailsSame(USERS);
+                    if (areMailsSame)
+                    {
+                        ViewBag.SuccessMessage = "Podane maile muszą być takie same";
+                        return View();
+                    }
+                    var arePasswordsNull = registerRepository.IsPasswordNotNull(USERS);
+                    if (arePasswordsNull)
+                    {
+                        ViewBag.SuccessMessage = "Oba pola przeznaczone do wprowadzenia hasła muszą być uzupełnione";
+                        return View();
+                    }
+                    var areMailsNull = registerRepository.IsMailNotNull(USERS);
+                    if (areMailsNull)
+                    {
+                        ViewBag.SuccessMessage = "Oba pola przeznaczone do wprowadzenia maila muszą być uzupełnione";
+                        return View();
+                    }
+                    var areTermsAccepted = registerRepository.AreTermsAccepted(USERS);
+                    if (areTermsAccepted)
+                    {
+                        ViewBag.SuccessMessage = "Należy zaakceptować regulamin i politykę prywatności";
+                        return View();
+                    }
                     USERS.PASSWORD = registerRepository.Encryption(USERS.PASSWORD);
                     USERS.REPASSWORD = registerRepository.Encryption(USERS.REPASSWORD);
+                    USERS.VERIFIED = false;
+                    //USERS.ACTIVATIONCODE = Guid.NewGuid();
                     db.USERS.Add(USERS);
                     db.SaveChanges();
+                    SendVerificationLinkEmail(USERS.MAIL, USERS.USER_ID);
                 }
                 ModelState.Clear();
-                ViewBag.SuccessMessage = "Rejestracja przebiegła pomyślnie";
-                return View("Rejestracja", new USERS());
+                ViewBag.SuccessMessage = "Rejestracja przebiegła pomyślnie." +
+                "Przesłaliśmy maila aktywacyjnego na maila:" + USERS.MAIL;
+            /*ViewBag.Message = "Rejestracja przebiegła pomyślnie." +
+            "Przesłaliśmy maila aktywacyjnego na maila:" + USERS.MAIL;*/
+                return View();
         }
+       
 
+        [HttpPost]
+        public void SendVerificationLinkEmail(string MAIL, int UID)
+        {
+            //var link = "https://localhost:44318/Home/AktywacjaKonta";
+            var regInfo = db.USERS.Where(x => x.USER_ID == UID).FirstOrDefault();
+            var link = "https://localhost:44318/" + "Home/Confirm?uID=" + UID;
+                string host = "smtp.gmail.com";
+                SmtpClient client = new SmtpClient(host, 587);
+                client.Credentials = new NetworkCredential("pilalokalnie@gmail.com", "Jklmynuilop.acx.qfe");
+                client.EnableSsl = true;
+                MailAddress from = new MailAddress("pilalokalnie@gmail.com");
+
+                MailAddress to = new MailAddress(MAIL);
+                MailMessage message = new MailMessage(from, to);
+                message.IsBodyHtml = true;
+                
+                message.Body = "Dziękujemy za rejestracje na Piła.Lokalnie"+ "<br/><br/>" 
+                +"W celu zakończenia rejestracji należy kliknąć przycisk na stronie z poniższego linku.<br/><br/>"
+                + "<a href = "+link+">Przejdz na stronę</a>";
+                message.Subject = "Konto zostało utworzone!";
+
+                client.Send(message);
+                client.Dispose();
+                MessageBox.Show("Wyslano maila");
+            
+        }
+        public ActionResult Confirm(int uID)
+        {
+            ViewBag.UID = uID;
+            return View();
+        }
+        
+        public ActionResult AccountConfirm(int uID)
+        {
+            try
+            {
+            BazaLocal db = new BazaLocal();
+            USERS Data = db.USERS.Where(x => x.USER_ID == uID).FirstOrDefault();
+            //USERS Data = db.USERS.SingleOrDefault(x => x.USER_ID == uID);
+            
+            Data.VERIFIED = true;
+            
+                db.SaveChanges();
+            }
+            catch (DbEntityValidationException ex)
+            {
+                // Retrieve the error messages as a list of strings.
+                var errorMessages = ex.EntityValidationErrors
+                        .SelectMany(x => x.ValidationErrors)
+                        .Select(x => x.ErrorMessage);
+
+                // Join the list to a single string.
+                var fullErrorMessage = string.Join("; ", errorMessages);
+
+                // Combine the original exception message with the new one.
+                var exceptionMessage = string.Concat(ex.Message, " The validation errors are: ", fullErrorMessage);
+
+                // Throw a new DbEntityValidationException with the improved exception message.
+                throw new DbEntityValidationException(exceptionMessage, ex.EntityValidationErrors);
+            }
+            var msg = "Twoje konto zostało zweryfikowane!";
+            return Json(msg, JsonRequestBehavior.AllowGet);
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -149,9 +257,8 @@ namespace MajsterFinale.Controllers
                 ViewBag.ID = uID;
                 return View(db.ADVERTS.Where(x => x.USER_ID == uID).ToList());
             }
-            else return HttpNotFound();
+            else return View("Logowanie");
         }
-
         public ActionResult Regulamin()
         {
             ViewBag.Message = "Tutaj będzie regulamin";
@@ -182,8 +289,6 @@ namespace MajsterFinale.Controllers
 
             return View();
         }
-
         
-
     }
 }

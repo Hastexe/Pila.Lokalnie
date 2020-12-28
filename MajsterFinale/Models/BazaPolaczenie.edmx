@@ -16,6 +16,7 @@
           <Property Name="DESCRIPTION" Type="text" Nullable="false" />
           <Property Name="DATE" Type="datetime" Nullable="false" />
           <Property Name="PRICE" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="PHONE_NUMBER" Type="varchar" MaxLength="9" />
           <Property Name="IMAGE" Type="varchar" MaxLength="255" />
           <Property Name="IS_ARCHIVED" Type="bit" />
         </EntityType>
@@ -44,7 +45,7 @@
           <Property Name="MSG_FROM" Type="int" Nullable="false" />
           <Property Name="MSG_TO" Type="int" Nullable="false" />
           <Property Name="TEXT" Type="text" Nullable="false" />
-          <Property Name="DATE" Type="date" Nullable="false" />
+          <Property Name="DATE" Type="datetime" Nullable="false" />
           <Property Name="IS_READ" Type="bit" />
         </EntityType>
         <EntityType Name="USERS">
@@ -55,10 +56,12 @@
           <Property Name="LOGIN" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="PASSWORD" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="MAIL" Type="varchar" MaxLength="255" Nullable="false" />
-          <Property Name="FNAME" Type="varchar" MaxLength="255" />
+          <Property Name="FNAME" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="LNAME" Type="varchar" MaxLength="255" />
+          <Property Name="PHONE_NUMBER" Type="varchar" MaxLength="9" />
           <Property Name="VERIFIED" Type="bit" />
           <Property Name="IS_ADMIN" Type="bit" />
+          <Property Name="ACTIVATIONCODE" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <Association Name="FK_ADVERTS_CATEGORIES">
           <End Role="CATEGORIES" Type="Self.CATEGORIES" Multiplicity="1" />
@@ -200,6 +203,7 @@
           <NavigationProperty Name="FAV" Relationship="Self.FK_FAV_ADVERTS" FromRole="ADVERTS" ToRole="FAV" />
           <Property Name="DATE" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="MESSAGE" Relationship="BazaPolaczenie.FK_FAV_MESSAGE" FromRole="ADVERTS" ToRole="MESSAGE" />
+          <Property Name="PHONE_NUMBER" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="CATEGORIES">
           <Key>
@@ -228,7 +232,7 @@
           <Property Name="MSG_FROM" Type="Int32" Nullable="false" />
           <Property Name="MSG_TO" Type="Int32" Nullable="false" />
           <Property Name="TEXT" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="DATE" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DATE" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="IS_READ" Type="Boolean" />
           <NavigationProperty Name="USERS" Relationship="Self.FK_MESSAGE_USERS" FromRole="MESSAGE" ToRole="USERS" />
           <NavigationProperty Name="USERS1" Relationship="Self.FK_MESSAGE_USERS1" FromRole="MESSAGE" ToRole="USERS" />
@@ -243,7 +247,7 @@
           <Property Name="LOGIN" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="PASSWORD" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="MAIL" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="FNAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="FNAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="LNAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="VERIFIED" Type="Boolean" />
           <Property Name="IS_ADMIN" Type="Boolean" />
@@ -251,6 +255,8 @@
           <NavigationProperty Name="FAV" Relationship="Self.FK_FAV_USERS" FromRole="USERS" ToRole="FAV" />
           <NavigationProperty Name="MESSAGE" Relationship="Self.FK_MESSAGE_USERS" FromRole="USERS" ToRole="MESSAGE" />
           <NavigationProperty Name="MESSAGE1" Relationship="Self.FK_MESSAGE_USERS1" FromRole="USERS" ToRole="MESSAGE" />
+          <Property Name="PHONE_NUMBER" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Name="ACTIVATIONCODE" Type="Guid" Nullable="false" />
         </EntityType>
         <Association Name="FK_ADVERTS_CATEGORIES">
           <End Role="CATEGORIES" Type="Self.CATEGORIES" Multiplicity="1" />
@@ -380,6 +386,7 @@
           <EntitySetMapping Name="ADVERTS">
             <EntityTypeMapping TypeName="BazaPolaczenie.ADVERTS">
               <MappingFragment StoreEntitySet="ADVERTS">
+                <ScalarProperty Name="PHONE_NUMBER" ColumnName="PHONE_NUMBER" />
                 <ScalarProperty Name="DATE" ColumnName="DATE" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
@@ -426,6 +433,8 @@
           <EntitySetMapping Name="USERS">
             <EntityTypeMapping TypeName="BazaPolaczenie.USERS">
               <MappingFragment StoreEntitySet="USERS">
+                <ScalarProperty Name="ACTIVATIONCODE" ColumnName="ACTIVATIONCODE" />
+                <ScalarProperty Name="PHONE_NUMBER" ColumnName="PHONE_NUMBER" />
                 <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
                 <ScalarProperty Name="LOGIN" ColumnName="LOGIN" />
                 <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />

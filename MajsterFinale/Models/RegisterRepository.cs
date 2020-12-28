@@ -49,5 +49,68 @@ namespace MajsterFinale.Models
                 return v != null;
             }
         }
+
+        [NonAction]
+        public bool ArePasswordsSame(USERS USERS)
+        {
+            var password = USERS.PASSWORD;
+            var repassword = USERS.REPASSWORD;
+
+            if (password != repassword)
+            {
+            return true;
+            }
+            else return false;   
+        }
+
+        [NonAction]
+        public bool AreMailsSame(USERS USERS)
+        {
+            var mail = USERS.MAIL;
+            var remail = USERS.REMAIL;
+
+            if (mail != remail)
+            {
+                return true;
+            }
+            else return false;
+        }
+
+        [NonAction]
+        public bool IsPasswordNotNull(USERS USERS)
+        {
+            var password = USERS.PASSWORD;
+            var repassword = USERS.REPASSWORD;
+
+            if (password == null || repassword == null)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        [NonAction]
+        public bool IsMailNotNull(USERS USERS)
+        {
+            var mail = USERS.MAIL;
+            var remail = USERS.REMAIL;
+
+            if (mail == null || remail == null)
+            {
+                return true;
+            }
+            return false;
+        }
+        [NonAction]
+        public bool AreTermsAccepted(USERS USERS)
+        {
+            var terms = USERS.TERMS;
+
+            if (terms != true)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

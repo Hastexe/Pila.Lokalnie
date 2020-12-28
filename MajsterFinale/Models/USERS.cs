@@ -13,7 +13,7 @@ namespace MajsterFinale.Models
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
-
+    
     public partial class USERS
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -26,31 +26,24 @@ namespace MajsterFinale.Models
         }
 
         public int USER_ID { get; set; }
-
         [DisplayName("Login")]
         [Required(ErrorMessage = "Pole jest wymagane")]
         public string LOGIN { get; set; }
 
         [DisplayName("Has³o")]
         [DataType(DataType.Password)]
-        [Required(ErrorMessage = "Pole jest wymagane")]
         public string PASSWORD { get; set; }
 
         [DisplayName("Powtórz Has³o")]
         [DataType(DataType.Password)]
-        [Required(ErrorMessage = "Pole jest wymagane")]
-        [Compare("PASSWORD")]
         public string REPASSWORD { get; set; }
 
         [DisplayName("E-mail")]
         [DataType(DataType.EmailAddress)]
-        [Required(ErrorMessage = "Pole jest wymagane")]
         public string MAIL { get; set; }
 
         [DisplayName("Powtórz E-mail")]
         [DataType(DataType.EmailAddress)]
-        [Required(ErrorMessage = "Pole jest wymagane")]
-        [Compare("MAIL")]
         public string REMAIL { get; set; }
 
         [DisplayName("Imiê")]
@@ -59,8 +52,13 @@ namespace MajsterFinale.Models
         public string LNAME { get; set; }
         public Nullable<bool> VERIFIED { get; set; }
         public Nullable<bool> IS_ADMIN { get; set; }
+        public string PHONE_NUMBER { get; set; }
+        public System.Guid ACTIVATIONCODE { get; set; }
+        
+        [DisplayName("Kod aktywacyjny")]
+        public System.Guid REACTIVATIONCODE { get; set; }
 
-        [MustBeTrue(ErrorMessage = "Nale¿y zaakceptowaæ regulamin oraz zapoznaæ siê z polityk¹ ochrony prywatnoœci")]
+        //[MustBeTrue(ErrorMessage = "Nale¿y zaakceptowaæ regulamin oraz zapoznaæ siê z polityk¹ ochrony prywatnoœci")]
         public bool TERMS { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

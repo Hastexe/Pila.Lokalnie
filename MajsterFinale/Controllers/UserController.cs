@@ -8,7 +8,6 @@ using Scrypt;
 using System.Web.Security;
 using System.IO;
 using System.Dynamic;
-using System.Data.Entity;
 
 namespace MajsterFinale.Controllers
 {
@@ -25,6 +24,27 @@ namespace MajsterFinale.Controllers
         {
             return View();
         }
+        /*public ActionResult Panel()
+        {
+            if (Session["ID"] != null)
+            {
+                int uID = Convert.ToInt32(Session["ID"]);
+                USERS Currentuser = new UserRepository().GetUserData(uID);
+            }
+            return View();
+        }*/
+
+        public ActionResult Panel()
+        {
+            if (Session["ID"] != null)
+            {
+                int uID = Convert.ToInt32(Session["ID"]);
+                USERS Currentuser = new UserRepository().GetUserData(uID);
+                return View(Currentuser);
+            }
+            else return View("Index", "Home");
+        }
+
         public ActionResult Messages()
         {
             if (Session["ID"] != null)
@@ -80,17 +100,6 @@ namespace MajsterFinale.Controllers
             return View("Conversation", "Messages", new { AdvertId, UserFrom, UserTo });
         }
 
-        public ActionResult Panel()
-        {
-            if (Session["ID"] != null)
-            {
-                int uID = Convert.ToInt32(Session["ID"]);
-                USERS Currentuser = new UserRepository().GetUserData(uID);
-                return View(Currentuser);
-            }
-            else return View("Index", "Home");
-        }
-
         public ActionResult Edit()
         {
             if (Session["ID"] != null)
@@ -104,7 +113,7 @@ namespace MajsterFinale.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(string OldPassword, string NewPassword, string ConfirmNewPassword, string NewEmail, string ConfirmEmail, int Change) 
+        public ActionResult Edit(string OldPassword, string NewPassword, string ConfirmNewPassword, string NewEmail, string ConfirmEmail, int Change)
         {
             ViewBag.Message = null;
             if (Session["ID"] != null)
@@ -142,7 +151,7 @@ namespace MajsterFinale.Controllers
                         ViewBag.Message = "Uzupelnij wszystkie pola - hasło";
                     }
                 }
-                else if(Change == 1)
+                else if (Change == 1)
                 {
                     if (NewEmail != "" && ConfirmEmail != "")
                     {

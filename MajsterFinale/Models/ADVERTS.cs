@@ -20,7 +20,7 @@ namespace MajsterFinale.Models
         {
             this.FAV = new HashSet<FAV>();
             this.MESSAGE = new HashSet<MESSAGE>();
-            this.DATE =  DateTime.Now;
+            this.DATE = DateTime.Now;
         }
     
         public int ID { get; set; }
@@ -32,6 +32,8 @@ namespace MajsterFinale.Models
         public string IMAGE { get; set; }
         public Nullable<bool> IS_ARCHIVED { get; set; }
         public System.DateTime DATE { get; set; }
+        public string PHONE_NUMBER { get; set; }
+    
         public virtual CATEGORIES CATEGORIES { get; set; }
         public virtual USERS USERS { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -4,6 +4,7 @@
     <EntitySetMapping Name="ADVERTS">
       <EntityTypeMapping TypeName="BazaPolaczenie.ADVERTS">
         <MappingFragment StoreEntitySet="ADVERTS">
+          <ScalarProperty Name="PHONE_NUMBER" ColumnName="PHONE_NUMBER" />
           <ScalarProperty Name="DATE" ColumnName="DATE" />
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
@@ -50,6 +51,8 @@
     <EntitySetMapping Name="USERS">
       <EntityTypeMapping TypeName="BazaPolaczenie.USERS">
         <MappingFragment StoreEntitySet="USERS">
+          <ScalarProperty Name="ACTIVATIONCODE" ColumnName="ACTIVATIONCODE" />
+          <ScalarProperty Name="PHONE_NUMBER" ColumnName="PHONE_NUMBER" />
           <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
           <ScalarProperty Name="LOGIN" ColumnName="LOGIN" />
           <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
