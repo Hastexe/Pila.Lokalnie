@@ -13,7 +13,7 @@ namespace MajsterFinale.Models
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
-    
+
     public partial class USERS
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -24,28 +24,20 @@ namespace MajsterFinale.Models
             this.MESSAGE = new HashSet<MESSAGE>();
             this.MESSAGE1 = new HashSet<MESSAGE>();
         }
-
+    
         public int USER_ID { get; set; }
-        [DisplayName("Login")]
-        [Required(ErrorMessage = "Pole jest wymagane")]
-        public string LOGIN { get; set; }
-
         [DisplayName("Has³o")]
         [DataType(DataType.Password)]
         public string PASSWORD { get; set; }
-
         [DisplayName("Powtórz Has³o")]
         [DataType(DataType.Password)]
         public string REPASSWORD { get; set; }
-
         [DisplayName("E-mail")]
         [DataType(DataType.EmailAddress)]
         public string MAIL { get; set; }
-
         [DisplayName("Powtórz E-mail")]
         [DataType(DataType.EmailAddress)]
         public string REMAIL { get; set; }
-
         [DisplayName("Imiê")]
         [Required(ErrorMessage = "Pole jest wymagane")]
         public string FNAME { get; set; }
@@ -53,12 +45,6 @@ namespace MajsterFinale.Models
         public Nullable<bool> VERIFIED { get; set; }
         public Nullable<bool> IS_ADMIN { get; set; }
         public string PHONE_NUMBER { get; set; }
-        public System.Guid ACTIVATIONCODE { get; set; }
-        
-        [DisplayName("Kod aktywacyjny")]
-        public System.Guid REACTIVATIONCODE { get; set; }
-
-        //[MustBeTrue(ErrorMessage = "Nale¿y zaakceptowaæ regulamin oraz zapoznaæ siê z polityk¹ ochrony prywatnoœci")]
         public bool TERMS { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -69,12 +55,14 @@ namespace MajsterFinale.Models
         public virtual ICollection<MESSAGE> MESSAGE { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MESSAGE> MESSAGE1 { get; set; }
-    }
-    internal class MustBeTrueAttribute : ValidationAttribute
-    {
-        public override bool IsValid(object value)
+
+        internal class MustBeTrueAttribute : ValidationAttribute
         {
-            return value is bool && (bool)value;
+            public override bool IsValid(object value)
+            {
+                return value is bool && (bool)value;
+            }
+
         }
 
     }

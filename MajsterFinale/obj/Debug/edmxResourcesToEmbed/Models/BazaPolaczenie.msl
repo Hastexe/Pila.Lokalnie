@@ -51,16 +51,24 @@
     <EntitySetMapping Name="USERS">
       <EntityTypeMapping TypeName="BazaPolaczenie.USERS">
         <MappingFragment StoreEntitySet="USERS">
-          <ScalarProperty Name="ACTIVATIONCODE" ColumnName="ACTIVATIONCODE" />
           <ScalarProperty Name="PHONE_NUMBER" ColumnName="PHONE_NUMBER" />
           <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
-          <ScalarProperty Name="LOGIN" ColumnName="LOGIN" />
           <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
           <ScalarProperty Name="MAIL" ColumnName="MAIL" />
           <ScalarProperty Name="FNAME" ColumnName="FNAME" />
           <ScalarProperty Name="LNAME" ColumnName="LNAME" />
           <ScalarProperty Name="VERIFIED" ColumnName="VERIFIED" />
           <ScalarProperty Name="IS_ADMIN" ColumnName="IS_ADMIN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="IMAGES">
+      <EntityTypeMapping TypeName="BazaPolaczenie.IMAGES">
+        <MappingFragment StoreEntitySet="IMAGES">
+          <ScalarProperty Name="IMAGE_PATH" ColumnName="IMAGE_PATH" />
+          <ScalarProperty Name="IMAGE_BYTE" ColumnName="IMAGE_BYTE" />
+          <ScalarProperty Name="IMAGE_TITLE" ColumnName="IMAGE_TITLE" />
+          <ScalarProperty Name="IMAGE_ID" ColumnName="IMAGE_ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

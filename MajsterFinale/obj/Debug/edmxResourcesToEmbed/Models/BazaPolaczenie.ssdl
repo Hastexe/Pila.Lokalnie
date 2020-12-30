@@ -12,7 +12,7 @@
     <Property Name="DATE" Type="datetime" Nullable="false" />
     <Property Name="PRICE" Type="varchar" MaxLength="255" Nullable="false" />
     <Property Name="PHONE_NUMBER" Type="varchar" MaxLength="9" />
-    <Property Name="IMAGE" Type="varchar" MaxLength="255" />
+    <Property Name="IMAGE" Type="nvarchar" MaxLength="255" />
     <Property Name="IS_ARCHIVED" Type="bit" />
   </EntityType>
   <EntityType Name="CATEGORIES">
@@ -31,6 +31,15 @@
     <Property Name="USER" Type="int" Nullable="false" />
     <Property Name="ADV" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="IMAGES">
+    <Key>
+      <PropertyRef Name="IMAGE_ID" />
+    </Key>
+    <Property Name="IMAGE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IMAGE_TITLE" Type="nvarchar" MaxLength="500" />
+    <Property Name="IMAGE_BYTE" Type="image" />
+    <Property Name="IMAGE_PATH" Type="nvarchar" MaxLength="500" />
+  </EntityType>
   <EntityType Name="MESSAGE">
     <Key>
       <PropertyRef Name="ID" />
@@ -48,15 +57,13 @@
       <PropertyRef Name="USER_ID" />
     </Key>
     <Property Name="USER_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="LOGIN" Type="varchar" MaxLength="255" Nullable="false" />
-    <Property Name="PASSWORD" Type="varchar" MaxLength="255" Nullable="false" />
     <Property Name="MAIL" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="PASSWORD" Type="varchar" MaxLength="255" Nullable="false" />
     <Property Name="FNAME" Type="varchar" MaxLength="255" Nullable="false" />
     <Property Name="LNAME" Type="varchar" MaxLength="255" />
     <Property Name="PHONE_NUMBER" Type="varchar" MaxLength="9" />
     <Property Name="VERIFIED" Type="bit" />
     <Property Name="IS_ADMIN" Type="bit" />
-    <Property Name="ACTIVATIONCODE" Type="uniqueidentifier" Nullable="false" />
   </EntityType>
   <Association Name="FK_ADVERTS_CATEGORIES">
     <End Role="CATEGORIES" Type="Self.CATEGORIES" Multiplicity="1" />
@@ -146,6 +153,7 @@
     <EntitySet Name="ADVERTS" EntityType="Self.ADVERTS" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CATEGORIES" EntityType="Self.CATEGORIES" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="FAV" EntityType="Self.FAV" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="IMAGES" EntityType="Self.IMAGES" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="MESSAGE" EntityType="Self.MESSAGE" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="USERS" EntityType="Self.USERS" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_ADVERTS_CATEGORIES" Association="Self.FK_ADVERTS_CATEGORIES">

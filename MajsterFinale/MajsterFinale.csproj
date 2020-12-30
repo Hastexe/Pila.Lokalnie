@@ -165,6 +165,10 @@
     <Compile Include="Models\CATEGORIES.cs">
       <DependentUpon>BazaPolaczenie.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\IMAGES.cs">
+      <DependentUpon>BazaPolaczenie.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ImageViewModel.cs" />
     <Compile Include="Models\RegisterRepository.cs" />
     <Compile Include="Models\UserRepository.cs" />
     <Compile Include="Models\DisplayRepository.cs" />
@@ -359,9 +363,11 @@
     <Content Include="Views\Home\Confirm.cshtml" />
     <Content Include="Views\Adverts\View.cshtml" />
     <Content Include="Views\User\Edit.cshtml" />
+    <Content Include="Views\Home\DodawanieZdjec.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="UploadImage\" />
     <Folder Include="Views\ActivateAccount\" />
     <Folder Include="Views\RegisterRepository\" />
   </ItemGroup>

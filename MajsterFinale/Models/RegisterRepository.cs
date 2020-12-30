@@ -39,7 +39,7 @@ namespace MajsterFinale.Models
                 return v != null;
             }
         }
-
+        /*
         [NonAction]
         public bool IsLoginExist(string LOGIN)
         {
@@ -49,6 +49,7 @@ namespace MajsterFinale.Models
                 return v != null;
             }
         }
+        */
 
         [NonAction]
         public bool ArePasswordsSame(USERS USERS)
@@ -93,9 +94,9 @@ namespace MajsterFinale.Models
         public bool IsMailNotNull(USERS USERS)
         {
             var mail = USERS.MAIL;
-            var remail = USERS.REMAIL;
+            //var remail = USERS.REMAIL;
 
-            if (mail == null || remail == null)
+            if (mail == null)
             {
                 return true;
             }

@@ -30,5 +30,6 @@ namespace MajsterFinale.Models
         public virtual DbSet<FAV> FAV { get; set; }
         public virtual DbSet<MESSAGE> MESSAGE { get; set; }
         public virtual DbSet<USERS> USERS { get; set; }
+        public virtual DbSet<IMAGES> IMAGES { get; set; }
     }
 }

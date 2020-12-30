@@ -14,6 +14,8 @@ using System.Net;
 using System.Windows;
 using System.Threading.Tasks;
 using System.Data;
+using System.IO;
+//using UploadImageInDataBase.Models;
 
 namespace MajsterFinale.Controllers
 {
@@ -65,10 +67,10 @@ namespace MajsterFinale.Controllers
 
                 //int ID = db.USERS.Where(x => x.LOGIN == USERS.LOGIN).Select(x => x.USER_ID);
                 Session["ID"] = userLoggedIn.USER_ID;
-                Session["Login"] = userLoggedIn.LOGIN;
+                //Session["Login"] = userLoggedIn.LOGIN;
 
                 //po zalogowaniu przenosi nas index
-                return RedirectToAction("Index", "home", new { Login = USERS.LOGIN });
+                return RedirectToAction("Index", "home", new { ID = USERS.USER_ID });
 
             }
             else
@@ -100,24 +102,28 @@ namespace MajsterFinale.Controllers
                          ViewBag.SuccessMessage = "Email jest już w użyciu";
                          return View();
                      }
-                     var isLoginExist = registerRepository.IsLoginExist(USERS.LOGIN);
-                     if (isLoginExist)
-                     {
-                         ViewBag.SuccessMessage = "Login jest już w użyciu";
-                         return View();
-                     }
+                    /*
+                    var isLoginExist = registerRepository.IsLoginExist(USERS.LOGIN);
+                    if (isLoginExist)
+                    {
+                        ViewBag.SuccessMessage = "Login jest już w użyciu";
+                        return View();
+                    } 
+                    */
                     var arePasswordsSame = registerRepository.ArePasswordsSame(USERS);
                     if (arePasswordsSame)
                     {
                         ViewBag.SuccessMessage = "Podane hasła muszą być takie same";
                         return View();
                     }
+                    /*
                     var areMailsSame = registerRepository.AreMailsSame(USERS);
                     if (areMailsSame)
                     {
                         ViewBag.SuccessMessage = "Podane maile muszą być takie same";
                         return View();
                     }
+                    */
                     var arePasswordsNull = registerRepository.IsPasswordNotNull(USERS);
                     if (arePasswordsNull)
                     {
@@ -127,7 +133,7 @@ namespace MajsterFinale.Controllers
                     var areMailsNull = registerRepository.IsMailNotNull(USERS);
                     if (areMailsNull)
                     {
-                        ViewBag.SuccessMessage = "Oba pola przeznaczone do wprowadzenia maila muszą być uzupełnione";
+                        ViewBag.SuccessMessage = "Pole przeznaczone do wprowadzenia maila muszą być uzupełnione";
                         return View();
                     }
                     var areTermsAccepted = registerRepository.AreTermsAccepted(USERS);
@@ -147,8 +153,6 @@ namespace MajsterFinale.Controllers
                 ModelState.Clear();
                 ViewBag.SuccessMessage = "Rejestracja przebiegła pomyślnie." +
                 "Przesłaliśmy maila aktywacyjnego na maila:" + USERS.MAIL;
-            /*ViewBag.Message = "Rejestracja przebiegła pomyślnie." +
-            "Przesłaliśmy maila aktywacyjnego na maila:" + USERS.MAIL;*/
                 return View();
         }
        
@@ -258,6 +262,39 @@ namespace MajsterFinale.Controllers
                 return View(db.ADVERTS.Where(x => x.USER_ID == uID).ToList());
             }
             else return View("Logowanie");
+        }
+        public JsonResult ImageUpload(ImageViewModel model)
+        {
+            BazaLocal db = new BazaLocal();
+            int imgId = 0;
+            var file = model.ImageFile;
+            byte[] imagebyte = null;
+            if (file != null)
+            {
+                file.SaveAs(Server.MapPath("/UploadImage/" + file.FileName));
+                BinaryReader reader = new BinaryReader(file.InputStream);
+                imagebyte = reader.ReadBytes(file.ContentLength);
+                IMAGES img = new IMAGES();
+                img.IMAGE_TITLE = file.FileName;
+                img.IMAGE_BYTE = imagebyte;
+                img.IMAGE_PATH = "/UploadImage/" + file.FileName;
+                db.IMAGES.Add(img);
+                db.SaveChanges();
+                imgId = img.IMAGE_ID;
+            }
+            return Json(imgId, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult DisplayingImage(int imgid)
+        {
+            BazaLocal db = new BazaLocal();
+
+            var img = db.IMAGES.SingleOrDefault(x => x.IMAGE_ID == imgid);
+            return File(img.IMAGE_BYTE, "image/jpg");
+        }
+        public ActionResult DodawanieZdjec()
+        {
+            return View();
         }
         public ActionResult Regulamin()
         {

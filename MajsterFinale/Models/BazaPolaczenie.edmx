@@ -17,7 +17,7 @@
           <Property Name="DATE" Type="datetime" Nullable="false" />
           <Property Name="PRICE" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="PHONE_NUMBER" Type="varchar" MaxLength="9" />
-          <Property Name="IMAGE" Type="varchar" MaxLength="255" />
+          <Property Name="IMAGE" Type="nvarchar" MaxLength="255" />
           <Property Name="IS_ARCHIVED" Type="bit" />
         </EntityType>
         <EntityType Name="CATEGORIES">
@@ -36,6 +36,15 @@
           <Property Name="USER" Type="int" Nullable="false" />
           <Property Name="ADV" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="IMAGES">
+          <Key>
+            <PropertyRef Name="IMAGE_ID" />
+          </Key>
+          <Property Name="IMAGE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IMAGE_TITLE" Type="nvarchar" MaxLength="500" />
+          <Property Name="IMAGE_BYTE" Type="image" />
+          <Property Name="IMAGE_PATH" Type="nvarchar" MaxLength="500" />
+        </EntityType>
         <EntityType Name="MESSAGE">
           <Key>
             <PropertyRef Name="ID" />
@@ -53,15 +62,13 @@
             <PropertyRef Name="USER_ID" />
           </Key>
           <Property Name="USER_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="LOGIN" Type="varchar" MaxLength="255" Nullable="false" />
-          <Property Name="PASSWORD" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="MAIL" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="PASSWORD" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="FNAME" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="LNAME" Type="varchar" MaxLength="255" />
           <Property Name="PHONE_NUMBER" Type="varchar" MaxLength="9" />
           <Property Name="VERIFIED" Type="bit" />
           <Property Name="IS_ADMIN" Type="bit" />
-          <Property Name="ACTIVATIONCODE" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <Association Name="FK_ADVERTS_CATEGORIES">
           <End Role="CATEGORIES" Type="Self.CATEGORIES" Multiplicity="1" />
@@ -151,6 +158,7 @@
           <EntitySet Name="ADVERTS" EntityType="Self.ADVERTS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CATEGORIES" EntityType="Self.CATEGORIES" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FAV" EntityType="Self.FAV" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IMAGES" EntityType="Self.IMAGES" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MESSAGE" EntityType="Self.MESSAGE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="USERS" EntityType="Self.USERS" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_ADVERTS_CATEGORIES" Association="Self.FK_ADVERTS_CATEGORIES">
@@ -196,7 +204,7 @@
           <Property Name="TITLE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="PRICE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="IMAGE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="IMAGE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="IS_ARCHIVED" Type="Boolean" />
           <NavigationProperty Name="CATEGORIES" Relationship="Self.FK_ADVERTS_CATEGORIES" FromRole="ADVERTS" ToRole="CATEGORIES" />
           <NavigationProperty Name="USERS" Relationship="Self.FK_ADVERTS_USERS" FromRole="ADVERTS" ToRole="USERS" />
@@ -244,7 +252,6 @@
             <PropertyRef Name="USER_ID" />
           </Key>
           <Property Name="USER_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="LOGIN" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="PASSWORD" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="MAIL" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="FNAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
@@ -256,7 +263,6 @@
           <NavigationProperty Name="MESSAGE" Relationship="Self.FK_MESSAGE_USERS" FromRole="USERS" ToRole="MESSAGE" />
           <NavigationProperty Name="MESSAGE1" Relationship="Self.FK_MESSAGE_USERS1" FromRole="USERS" ToRole="MESSAGE" />
           <Property Name="PHONE_NUMBER" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
-          <Property Name="ACTIVATIONCODE" Type="Guid" Nullable="false" />
         </EntityType>
         <Association Name="FK_ADVERTS_CATEGORIES">
           <End Role="CATEGORIES" Type="Self.CATEGORIES" Multiplicity="1" />
@@ -364,6 +370,7 @@
             <End Role="ADVERTS" EntitySet="ADVERTS" />
             <End Role="MESSAGE" EntitySet="MESSAGE" />
           </AssociationSet>
+          <EntitySet Name="IMAGES" EntityType="BazaPolaczenie.IMAGES" />
         </EntityContainer>
         <Association Name="FK_FAV_MESSAGE">
           <End Type="BazaPolaczenie.ADVERTS" Role="ADVERTS" Multiplicity="1" />
@@ -377,6 +384,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="IMAGES">
+          <Key>
+            <PropertyRef Name="IMAGE_ID" />
+          </Key>
+          <Property Name="IMAGE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IMAGE_TITLE" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IMAGE_BYTE" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="IMAGE_PATH" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -433,16 +449,24 @@
           <EntitySetMapping Name="USERS">
             <EntityTypeMapping TypeName="BazaPolaczenie.USERS">
               <MappingFragment StoreEntitySet="USERS">
-                <ScalarProperty Name="ACTIVATIONCODE" ColumnName="ACTIVATIONCODE" />
                 <ScalarProperty Name="PHONE_NUMBER" ColumnName="PHONE_NUMBER" />
                 <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
-                <ScalarProperty Name="LOGIN" ColumnName="LOGIN" />
                 <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
                 <ScalarProperty Name="MAIL" ColumnName="MAIL" />
                 <ScalarProperty Name="FNAME" ColumnName="FNAME" />
                 <ScalarProperty Name="LNAME" ColumnName="LNAME" />
                 <ScalarProperty Name="VERIFIED" ColumnName="VERIFIED" />
                 <ScalarProperty Name="IS_ADMIN" ColumnName="IS_ADMIN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IMAGES">
+            <EntityTypeMapping TypeName="BazaPolaczenie.IMAGES">
+              <MappingFragment StoreEntitySet="IMAGES">
+                <ScalarProperty Name="IMAGE_PATH" ColumnName="IMAGE_PATH" />
+                <ScalarProperty Name="IMAGE_BYTE" ColumnName="IMAGE_BYTE" />
+                <ScalarProperty Name="IMAGE_TITLE" ColumnName="IMAGE_TITLE" />
+                <ScalarProperty Name="IMAGE_ID" ColumnName="IMAGE_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
