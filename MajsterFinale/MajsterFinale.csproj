@@ -191,6 +191,13 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\CSS\login_register.css" />
+    <Content Include="Content\CSS\main_page.css" />
+    <Content Include="Content\IMAGES\3steps.png" />
+    <Content Include="Content\IMAGES\logo_nav.png" />
+    <Content Include="Content\IMAGES\slider1.jpg" />
+    <Content Include="Content\IMAGES\slider2.jpg" />
+    <Content Include="Content\IMAGES\slider3.jpg" />
     <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -235,6 +242,8 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Content\FILES\regulamin.pdf" />
+    <Content Include="Content\FILES\polityka.pdf" />
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Scripts\JavaScript.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
@@ -335,12 +344,12 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Mainpage.cshtml" />
-    <Content Include="Views\Home\Regulamin.cshtml" />
+    <Content Include="Views\Home\Regulamin%28możliwe usunięcie%29.cshtml" />
     <Content Include="Views\Home\Message.cshtml" />
     <Content Include="Views\Home\Rejestracja.cshtml" />
     <Content Include="Views\Home\Logowanie.cshtml" />
     <Content Include="Views\Home\AddAdvertisement.cshtml" />
-    <Content Include="Views\Home\Polityka.cshtml" />
+    <Content Include="Views\Home\Polityka%28możliwe usunięcie%29.cshtml" />
     <Content Include="Views\Home\MojeOgloszenia.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
@@ -367,6 +376,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\BOOTSTRAP\" />
     <Folder Include="UploadImage\" />
     <Folder Include="Views\ActivateAccount\" />
     <Folder Include="Views\RegisterRepository\" />

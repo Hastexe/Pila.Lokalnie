@@ -298,15 +298,11 @@ namespace MajsterFinale.Controllers
         }
         public ActionResult Regulamin()
         {
-            ViewBag.Message = "Tutaj będzie regulamin";
-
-            return View();
+            return File("~/Content/files/regulamin.pdf", "application/pdf");
         }
         public ActionResult Polityka()
         {
-            ViewBag.Message = "Tutaj będzie Polityka Ochrony Prywatności";
-
-            return View();
+            return File("~/Content/files/polityka.pdf", "application/pdf");
         }
         public ActionResult Message()
         {
