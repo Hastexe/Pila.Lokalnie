@@ -229,40 +229,7 @@ namespace MajsterFinale.Controllers
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
         }
-        public ActionResult AddAdvertisement()
-        {
-            BazaLocal db = new BazaLocal();
-            IEnumerable<SelectListItem> List = new SelectList(db.CATEGORIES, "ID", "NAME");
-            ViewBag.CATLIST = List;
-            return View();
-        }
-        [HttpPost]
-        public ActionResult AddAdvertisement(ADVERTS obj)
-
-        {
-            if (ModelState.IsValid)
-            {
-                BazaLocal db = new BazaLocal();
-                int uID = Convert.ToInt32(Session["ID"]);
-                obj.USER_ID = uID;
-                obj.IS_ARCHIVED = false;
-                db.ADVERTS.Add(obj);
-                db.SaveChanges();
-            }
-            return View(obj);
-        }
-
-        public ActionResult MojeOgloszenia()
-        {
-            BazaLocal db = new BazaLocal();
-            if (Session["ID"] != null)
-            {
-                int uID = Convert.ToInt32(Session["ID"]);
-                ViewBag.ID = uID;
-                return View(db.ADVERTS.Where(x => x.USER_ID == uID).ToList());
-            }
-            else return View("Logowanie");
-        }
+ 
         public JsonResult ImageUpload(ImageViewModel model)
         {
             BazaLocal db = new BazaLocal();

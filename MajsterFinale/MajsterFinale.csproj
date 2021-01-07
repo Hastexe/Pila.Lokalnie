@@ -165,6 +165,7 @@
     <Compile Include="Models\CATEGORIES.cs">
       <DependentUpon>BazaPolaczenie.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\AddingAdsRepository.cs" />
     <Compile Include="Models\IMAGES.cs">
       <DependentUpon>BazaPolaczenie.tt</DependentUpon>
     </Compile>
@@ -348,9 +349,9 @@
     <Content Include="Views\Home\Message.cshtml" />
     <Content Include="Views\Home\Rejestracja.cshtml" />
     <Content Include="Views\Home\Logowanie.cshtml" />
-    <Content Include="Views\Home\AddAdvertisement.cshtml" />
+    <Content Include="Views\Adverts\AddAdvertisement.cshtml" />
     <Content Include="Views\Home\Polityka%28możliwe usunięcie%29.cshtml" />
-    <Content Include="Views\Home\MojeOgloszenia.cshtml" />
+    <Content Include="Views\Adverts\MojeOgloszenia.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
     <Content Include="Scripts\umd\popper.js.flow" />
@@ -362,17 +363,15 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Adverts\Details.cshtml" />
-    <Content Include="Views\Adverts\PartialAdverts.cshtml" />
     <Content Include="Views\Adverts\Category.cshtml" />
     <Content Include="Views\Adverts\Adverts.cshtml" />
-    <Content Include="Views\Adverts\SendMessage.cshtml" />
-    <Content Include="Views\Adverts\Display.cshtml" />
     <Content Include="Views\User\View.cshtml" />
     <Content Include="Views\User\Panel.cshtml" />
     <Content Include="Views\Home\Confirm.cshtml" />
-    <Content Include="Views\Adverts\View.cshtml" />
     <Content Include="Views\User\Edit.cshtml" />
     <Content Include="Views\Home\DodawanieZdjec.cshtml" />
+    <Content Include="Views\User\Conversation.cshtml" />
+    <Content Include="Views\User\Messages.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

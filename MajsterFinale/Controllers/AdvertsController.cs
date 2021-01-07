@@ -17,6 +17,7 @@ namespace MajsterFinale.Controllers
         private BazaLocal db = new BazaLocal();
         private AdvertRepository advertRepository = new AdvertRepository();
         private DisplayRepository displayRepository = new DisplayRepository();
+        private AddingAdsRepository addingAdsRepository = new AddingAdsRepository();
         //
         // HTTP-GET: /Adverts/
         public ActionResult Index()
@@ -83,7 +84,55 @@ namespace MajsterFinale.Controllers
             return View(new AdvertRepository().GetMessage());
             //return View(new AdvertRepository().GetMessage().ToList());
         }
+        public ActionResult AddAdvertisement()
+        {
+            if (Session["ID"] != null)
+            {
+                AddingAdsRepository model = new AddingAdsRepository();
+                model.CategoryID = -1;
+                model.Categories = addingAdsRepository.GetList();
+                return View(model);
+            }
+            else return View("~/Views/Home/Index.cshtml");
 
+        }
+        [HttpPost]
+        public ActionResult AddAdvertisement(AddingAdsRepository obj)
+
+        {
+            if (ModelState.IsValid)
+            {
+                int uID = Convert.ToInt32(Session["ID"]);
+                ADVERTS newAdvert = new ADVERTS()
+                {
+                    CATEGORY = obj.CategoryID,
+                    TITLE = obj.Advert.TITLE,
+                    USER_ID = uID,
+                    DESCRIPTION = obj.Advert.DESCRIPTION,
+                    DATE = System.DateTime.Now,
+                    IS_ARCHIVED = obj.Advert.IS_ARCHIVED,
+                    PRICE = obj.Advert.PRICE
+                };
+                db.ADVERTS.Add(newAdvert);
+                db.SaveChanges();
+                return View("~/Views/Home/Index.cshtml");
+            }
+            obj.Categories = addingAdsRepository.GetList();
+            obj.CategoryID = -1;
+            return View(obj);
+        }
+
+        public ActionResult MojeOgloszenia()
+        {
+            BazaLocal db = new BazaLocal();
+            if (Session["ID"] != null)
+            {
+                int uID = Convert.ToInt32(Session["ID"]);
+                ViewBag.ID = uID;
+                return View(db.ADVERTS.Where(x => x.USER_ID == uID).ToList());
+            }
+            else return View("Logowanie");
+        }
 
     }
 }
