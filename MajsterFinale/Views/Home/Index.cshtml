@@ -57,12 +57,12 @@
     </div>
 
     <div class="main">
-        @using (Html.BeginForm("SearchedAds", "Home", FormMethod.Post))
+        @using (Html.BeginForm("SearchedAds", "Home", FormMethod.Get))
         {
             <div class="container-fluid">
                 <div class="searchbar">
                     <div class="input-group">
-                        @Html.DropDownListFor(model => model.CategoryID, new SelectList(Model.Categories, "ID", "Name"), htmlAttributes: new { @class = "form-control" })
+                        @Html.DropDownListFor(model => model.CategoryID, new SelectList(Model.Categories, "ID", "NAME"), htmlAttributes: new { @class = "form-control" })
                         @Html.TextBox("search")
                         <div class="input-group-append">
                             <button class="btn btn-custom" type="submit">
