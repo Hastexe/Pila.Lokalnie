@@ -15,6 +15,8 @@ using System.Windows;
 using System.Threading.Tasks;
 using System.Data;
 using System.IO;
+using PagedList;
+using System.Web.UI;
 //using UploadImageInDataBase.Models;
 
 namespace MajsterFinale.Controllers
@@ -25,9 +27,21 @@ namespace MajsterFinale.Controllers
         private AdvertRepository advertRepository = new AdvertRepository();
         private DisplayRepository displayRepository = new DisplayRepository();
         private RegisterRepository registerRepository = new RegisterRepository();
+        private AddingAdsRepository addingAdsRepository = new AddingAdsRepository();
         public ActionResult Index()
         {
-            return View();
+            AddingAdsRepository model = new AddingAdsRepository();
+            model.CategoryID = -1;
+            model.Categories = addingAdsRepository.GetList();
+            return View(model);
+        }
+
+        public ActionResult SearchedAds(int? page, string search, AddingAdsRepository obj)
+        {
+            var category = obj.CategoryID;
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(new AdvertRepository().GetAdsBySearch(search, category).ToPagedList(pageNumber, pageSize));
         }
         public ActionResult Mainpage()
         {
