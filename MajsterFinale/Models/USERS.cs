@@ -38,12 +38,19 @@ namespace MajsterFinale.Models
         [DisplayName("Powtórz E-mail")]
         [DataType(DataType.EmailAddress)]
         public string REMAIL { get; set; }
+
         [DisplayName("Imiê")]
         [Required(ErrorMessage = "Pole jest wymagane")]
         public string FNAME { get; set; }
         public string LNAME { get; set; }
         public Nullable<bool> VERIFIED { get; set; }
         public Nullable<bool> IS_ADMIN { get; set; }
+
+        [Display(Name = "Numer Telefonu")]
+        [DataType(DataType.PhoneNumber)]
+        [MinLength(9)]
+        [MaxLength(9)]
+        [RegularExpression(@"^\(?([1-9]{1})\)?([0-9]{8})$", ErrorMessage = "Nieprawid³owy numer telefonu. Poprawny format: 123456789")]
         public string PHONE_NUMBER { get; set; }
         public bool TERMS { get; set; }
 

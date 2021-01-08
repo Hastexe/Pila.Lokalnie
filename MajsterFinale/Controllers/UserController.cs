@@ -19,21 +19,12 @@ namespace MajsterFinale.Controllers
         private PanelMessageModel panelMessageModel = new PanelMessageModel();
         private UserRepository userRepository = new UserRepository();
         private RegisterRepository registerRepository = new RegisterRepository();
+        private UserEditPassword userEditPassword = new UserEditPassword();
         // GET: User
         public ActionResult Index()
         {
             return View();
         }
-        /*public ActionResult Panel()
-        {
-            if (Session["ID"] != null)
-            {
-                int uID = Convert.ToInt32(Session["ID"]);
-                USERS Currentuser = new UserRepository().GetUserData(uID);
-            }
-            return View();
-        }*/
-
         public ActionResult Panel()
         {
             if (Session["ID"] != null)
@@ -42,7 +33,7 @@ namespace MajsterFinale.Controllers
                 USERS Currentuser = new UserRepository().GetUserData(uID);
                 return View(Currentuser);
             }
-            else return View("Index", "Home");
+            else return RedirectToAction("Logowanie", "Home");
         }
 
         public ActionResult Messages()
@@ -55,7 +46,7 @@ namespace MajsterFinale.Controllers
                 panelMessageModel.MessageAdvertDetails = new AdvertRepository().GetAds().ToList();
                 return View(panelMessageModel);
             }
-            return View("Index", "Home");
+            return RedirectToAction("Logowanie", "Home");
         }
         public ActionResult Conversation(int AdvertId, int UserA, int UserB)
         {
@@ -80,7 +71,7 @@ namespace MajsterFinale.Controllers
 
                 return View(messageModel);
             }
-            return View("Home", "Index");
+            return RedirectToAction("Logowanie", "Home");
         }
 
         [HttpPost]
@@ -100,92 +91,91 @@ namespace MajsterFinale.Controllers
             return View("Conversation", "Messages", new { AdvertId, UserFrom, UserTo });
         }
 
-        public ActionResult Edit()
+        public ActionResult EditPassword()
         {
             if (Session["ID"] != null)
             {
                 int uID = Convert.ToInt32(Session["ID"]);
-                USERS Currentuser = new UserRepository().GetUserData(uID);
-
-                return View(Currentuser);
+                UserEditPassword model = new UserEditPassword
+                {
+                    user = new UserRepository().GetUserData(uID)
+                };
+                return View(model);
             }
-            return View("Index", "Home");
+            else return RedirectToAction("Logowanie", "Home");
         }
-
         [HttpPost]
-        public ActionResult Edit(string OldPassword, string NewPassword, string ConfirmNewPassword, string NewEmail, string ConfirmEmail, int Change)
+        public ActionResult EditPassword(UserEditPassword form)
         {
             ViewBag.Message = null;
             if (Session["ID"] != null)
             {
                 int uID = Convert.ToInt32(Session["ID"]);
                 USERS Currentuser = new UserRepository().GetUserData(uID);
-                if (Change == 0)
+                if (ModelState.IsValid)
                 {
-                    if (OldPassword != "" && NewPassword != "" && ConfirmNewPassword != "")
+                    var EncryptedOldPassword = registerRepository.Encryption(form.OldPassword);
+                    if (EncryptedOldPassword == Currentuser.PASSWORD)
                     {
-                        var EncryptedOldPassword = registerRepository.Encryption(OldPassword);
-                        if (EncryptedOldPassword == Currentuser.PASSWORD)
-                        {
-                            if (NewPassword == ConfirmNewPassword)
-                            {
-                                Currentuser.PASSWORD = registerRepository.Encryption(NewPassword);
-                                db.SaveChanges();
-                                ViewBag.Message = "Hasło zmienione";
-                                return View();
-                            }
-                            else
-                            {
-                                ViewBag.Message = "Nowe hasła różnią się od siebie";
-                                return View();
-                            }
-                        }
-                        else
-                        {
-                            ViewBag.Message = "Podano złe obecne hasło " + EncryptedOldPassword + " " + Currentuser.PASSWORD;
-                            return View();
-                        }
-                    }
-                    else
-                    {
-                        ViewBag.Message = "Uzupelnij wszystkie pola - hasło";
-                    }
-                }
-                else if (Change == 1)
-                {
-                    if (NewEmail != "" && ConfirmEmail != "")
-                    {
-                        if (registerRepository.IsEmailExist(NewEmail) == false)
-                        {
-                            if (NewEmail == ConfirmEmail)
-                            {
-                                Currentuser.MAIL = NewEmail;
-                                db.SaveChanges();
-                                ViewBag.Message = "Adres email zmieniony";
-                                return View();
-                            }
-                            else
-                            {
-                                ViewBag.Message = "Podane adresy różnią się od siebie";
-                                return View();
-                            }
-                        }
-                        else
-                        {
-                            ViewBag.Message = "Podany email jest już w użyciu ";
-                            return View();
-                        }
-                    }
-                    else
-                    {
-                        ViewBag.Message = "Uzupelnij wszystkie pola - email";
-                    }
-                }
+                        Currentuser.PASSWORD = registerRepository.Encryption(form.NewPassword);
+                        db.Entry(Currentuser).State = System.Data.Entity.EntityState.Modified;
+                        db.SaveChanges();
+                        ViewBag.Message = "Hasło zmienione";
+                        return View();
 
+                    }
+                    else
+                    {
+                        ViewBag.Message = "Podano złe aktualne hasło";
+                        return View();
+                    }
+                }
+                else
+                {
+                    return View();
+                }
             }
-            return View();
+            return RedirectToAction("Logowanie", "Home");
         }
 
+        public ActionResult EditData()
+        {
+            if (Session["ID"] != null)
+            {
+                int uID = Convert.ToInt32(Session["ID"]);
+
+                USERS currentUser = new UserRepository().GetUserData(uID);
+
+                return View(currentUser);
+            }
+            else return RedirectToAction("Logowanie", "Home");
+        }
+        [HttpPost]
+        public ActionResult EditData(USERS form)
+        {
+            ViewBag.Message = null;
+            if (Session["ID"] != null)
+            {
+                int uID = Convert.ToInt32(Session["ID"]);
+                USERS Currentuser = new UserRepository().GetUserData(uID);
+                if (ModelState.IsValid)
+                {
+                        Currentuser.FNAME = form.FNAME;
+                        Currentuser.LNAME = form.LNAME;
+                        Currentuser.PHONE_NUMBER = form.PHONE_NUMBER;
+                        db.Entry(Currentuser).State = System.Data.Entity.EntityState.Modified;
+                        db.SaveChanges();
+                        ViewBag.Message = "Zaktualizowano dane";
+                        return View();
+                }
+                else
+                {
+                    ViewBag.Message = "Popraw dane";
+                    return View();
+                }
+            }
+            return RedirectToAction("Logowanie", "Home");
+        }
 
     }
 }

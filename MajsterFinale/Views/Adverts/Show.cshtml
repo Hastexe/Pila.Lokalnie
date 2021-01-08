@@ -19,10 +19,7 @@
                         @Html.DisplayFor(modelItem => item.IMAGE)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.IS_ARCHIVED)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CATEGORIES.TAG)
+                        @Html.DisplayFor(modelItem => item.CATEGORIES.NAME)
                     </td>
                     <td>
                         <a href="@Url.Action("Details", "Adverts", new { id = item.ID }) ">Szczegóły</a>
@@ -31,13 +28,6 @@
     }
 
 </table>
-
-<script>
-    jQuery(document).ready(function ($) {
-        $(".clickable-row").click(function () {
-            window.location = $(this).data("href");
-        });
-</script>
 
 Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 

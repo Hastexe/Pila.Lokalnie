@@ -27,7 +27,7 @@ namespace MajsterFinale.Models
 
         public List<ADVERTS> GetAdsList()
         {
-            return db.ADVERTS.OrderByDescending(a => a.ID).ToList();
+            return db.ADVERTS.OrderByDescending(a => a.DATE).ToList();
         }
         public List<ADVERTS> GetAds()
         {

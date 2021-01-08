@@ -71,7 +71,7 @@ namespace MajsterFinale.Controllers
             return View(new AdvertRepository().GetAdsByCategory(id).ToPagedList(pageNumber, pageSize));
         }
 
-        public ActionResult Adverts(int? page)
+        public ActionResult Show(int? page)
         {
             int pageSize = 10;
             int pageNumber = (page ?? 1);

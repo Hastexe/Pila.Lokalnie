@@ -12,14 +12,14 @@
                     @if (Model.CoversationMessages[i].MSG_FROM == Model.LoggedUser.USER_ID)
                     {
                         <td style="background-color: black; color:white; height: 50px;">
-                            @Model.LoggedUser.LOGIN: @Html.DisplayFor(modelItem => Model.CoversationMessages[i].TEXT)
+                            @Model.LoggedUser.FNAME: @Html.DisplayFor(modelItem => Model.CoversationMessages[i].TEXT)
                         </td>
                     }
 
                     @if (Model.CoversationMessages[i].MSG_FROM == Model.SecondConversationUser.USER_ID)
                     {
                         <td style="background-color: Gray; color:white; height: 50px;">
-                            @Model.SecondConversationUser.LOGIN: @Html.DisplayFor(modelItem => Model.CoversationMessages[i].TEXT)
+                            @Model.SecondConversationUser.FNAME: @Html.DisplayFor(modelItem => Model.CoversationMessages[i].TEXT)
                         </td>
                     }
                 </tr>

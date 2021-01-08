@@ -7,10 +7,11 @@ namespace MajsterFinale.Models
 {
     public class UserRepository
     {
+        private RegisterRepository registerRepository = new RegisterRepository();
         private BazaLocal db = new BazaLocal();
         public USERS GetUserData(int uID)
         {
-            return db.USERS.SingleOrDefault(x => x.USER_ID == uID);
+            return db.USERS.AsNoTracking().SingleOrDefault(x => x.USER_ID == uID);
         }
         public List<MESSAGE> GetUserMessages(int uID)
         {
@@ -27,3 +28,4 @@ namespace MajsterFinale.Models
         }
     }
 }
+
