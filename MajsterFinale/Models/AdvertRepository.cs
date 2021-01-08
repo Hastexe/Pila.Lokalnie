@@ -20,6 +20,12 @@ namespace MajsterFinale.Models
         {
             return db.ADVERTS.Where(x => x.CATEGORY == id).ToList();
         }
+        public List<ADVERTS> GetAdsBySearch(string search, int category)
+        {
+            return db.ADVERTS.Where(x=>x.CATEGORY == category && ((x.TITLE.Contains(search))||(x.DESCRIPTION.Contains(search)))).OrderByDescending(x => x.ID).ToList(); ;
+            //return db.ADVERTS.Where((x => x.CATEGORY == category && (x => x.CATEGORY == category && x.TITLE == search) ).ToList();
+            //return db.MESSAGE.Where(x => x.ADVERT_ID == AdvertId && ((x.MSG_TO == UserA && x.MSG_FROM == UserB) || (x.MSG_TO == UserB && x.MSG_FROM == UserA))).OrderByDescending(x => x.ID).ToList();
+        }
         public List<CATEGORIES> GetCategoriesNames()
         {
             return db.CATEGORIES.ToList();

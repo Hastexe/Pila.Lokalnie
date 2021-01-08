@@ -1,4 +1,6 @@
-﻿@{
+﻿@model MajsterFinale.Models.AddingAdsRepository
+
+@{
     Layout = null;
 }
 
@@ -55,19 +57,22 @@
     </div>
 
     <div class="main">
-        <div class="container-fluid">
-            <div class="searchbar">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Czego szukasz?">
-                    <div class="input-group-append">
-                        <button class="btn btn-custom" type="button">
-                            <i class="fa fa-search"></i>
-                        </button>
+        @using (Html.BeginForm("SearchedAds", "Home", FormMethod.Post))
+        {
+            <div class="container-fluid">
+                <div class="searchbar">
+                    <div class="input-group">
+                        @Html.DropDownListFor(model => model.CategoryID, new SelectList(Model.Categories, "ID", "Name"), htmlAttributes: new { @class = "form-control" })
+                        @Html.TextBox("search")
+                        <div class="input-group-append">
+                            <button class="btn btn-custom" type="submit">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-
+        }
 
         <div class="slider">
             <div class="container">
