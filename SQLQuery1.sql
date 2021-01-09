@@ -1,2 +1,2 @@
 select * from ADVERTS
-update adverts set IS_ARCHIVED=0;
+insert into CATEGORIES ("TAG","NAME") values ('MUR','Murarz')
