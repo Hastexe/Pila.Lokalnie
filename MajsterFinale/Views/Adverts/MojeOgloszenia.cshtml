@@ -18,22 +18,25 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.TITLE)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PRICE)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CATEGORIES.NAME)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-            </td>
-        </tr>
+        using (Html.BeginForm())
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TITLE)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PRICE)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CATEGORIES.NAME)
+                </td>
+                <td>
+                    <button type="submit" value="@item.ID" name="Edit" onclick="return @item.ID;">Edytuj</button>|
+
+                    <button type="submit" value="@item.ID" name="Delete" onclick="return @item.ID;">Usuń</button>
+                </td>
+            </tr>
+        }
     }
 
 </table>
-<b>@ViewBag.ID</b>
