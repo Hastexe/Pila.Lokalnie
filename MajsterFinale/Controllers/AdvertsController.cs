@@ -122,16 +122,75 @@ namespace MajsterFinale.Controllers
             return View(obj);
         }
 
+        [HttpGet]
         public ActionResult MojeOgloszenia()
         {
-            BazaLocal db = new BazaLocal();
             if (Session["ID"] != null)
             {
                 int uID = Convert.ToInt32(Session["ID"]);
-                ViewBag.ID = uID;
-                return View(db.ADVERTS.Where(x => x.USER_ID == uID).ToList());
+                displayRepository.LoggedUser = advertRepository.GetUserData(uID);
+                return View(new AdvertRepository().GetUserAdverts(uID));
             }
-            else return View("Logowanie");
+            else return HttpNotFound();
+        }
+
+        [HttpPost]
+        public ActionResult MojeOgloszenia(string Delete, string Edit)
+        {
+            if (Delete != null)
+            {
+                return (DeleteAdvertisement(Delete));
+            }
+            else if (Edit != null)
+            {
+                return (EditAdvertisement(Edit));
+            }
+            else
+            {
+                return View(MojeOgloszenia());
+            }
+        }
+
+        private ActionResult DeleteAdvertisement(string id)
+        {
+            int AdID = Int32.Parse(id);
+            db.ADVERTS.Single(s => s.ID == AdID).IS_ARCHIVED = true;
+            db.SaveChanges();
+            int uID = Convert.ToInt32(Session["ID"]);
+            displayRepository.LoggedUser = advertRepository.GetUserData(uID);
+            return View(new AdvertRepository().GetUserAdverts(uID));
+        }
+        [HttpGet]
+        public ActionResult EditAdvertisement(string id)
+        {
+            int AdID = Int32.Parse(id);
+            var AdData = new AdvertRepository().GetAdData(AdID);
+            return View(AdData);
+        }
+        [HttpPost]
+        public ActionResult EditAdvertisement(ADVERTS AdData)
+        {
+            var EditedAd = new AdvertRepository().GetDetails(AdData.ID);
+            if (ModelState.IsValid)
+            {
+
+                EditedAd.IS_ARCHIVED = AdData.IS_ARCHIVED;
+                EditedAd.DATE = AdData.DATE;
+                EditedAd.CATEGORY = AdData.CATEGORY;
+                EditedAd.TITLE = AdData.TITLE;
+                EditedAd.DESCRIPTION = AdData.DESCRIPTION;
+                EditedAd.PRICE = AdData.PRICE;
+                EditedAd.IMAGE = AdData.IMAGE;
+                db.Entry(EditedAd).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                ViewBag.Message = "Zaktualizowano ogłoszenie";
+                return View();
+            }
+            else
+            {
+                ViewBag.Message = "Popraw dane";
+                return View();
+            }
         }
 
     }

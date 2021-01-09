@@ -52,7 +52,11 @@ namespace MajsterFinale.Models
         
         public List<ADVERTS> GetUserAdverts(int uID)
         {
-            return db.ADVERTS.Where(x => x.USER_ID == uID).ToList();
+            return db.ADVERTS.Where(x => x.USER_ID == uID && x.IS_ARCHIVED==false).ToList();
+        }
+        public IEnumerable<ADVERTS> GetAdData(int id)
+        {
+            return db.ADVERTS.Where(d => d.ID == id).ToList();
         }
     }
 
