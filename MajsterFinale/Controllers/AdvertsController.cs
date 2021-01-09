@@ -139,7 +139,7 @@ namespace MajsterFinale.Controllers
         {
             if (Delete != null)
             {
-                return (DeleteAdvertisement(Delete));
+                return (ArchiveAdvertisement(Delete));
             }
             else if (Edit != null)
             {
@@ -151,7 +151,7 @@ namespace MajsterFinale.Controllers
             }
         }
 
-        private ActionResult DeleteAdvertisement(string id)
+        private ActionResult ArchiveAdvertisement(string id)
         {
             int AdID = Int32.Parse(id);
             db.ADVERTS.Single(s => s.ID == AdID).IS_ARCHIVED = true;
@@ -192,6 +192,54 @@ namespace MajsterFinale.Controllers
                 return View();
             }
         }
+
+        [HttpGet]
+        public ActionResult ArchiveAd()
+        {
+            if (Session["ID"] != null)
+            {
+                int uID = Convert.ToInt32(Session["ID"]);
+                displayRepository.LoggedUser = advertRepository.GetUserData(uID);
+                return View(new AdvertRepository().GetUserArchivedAdverts(uID));
+            }
+            else return HttpNotFound();
+        }
+        [HttpPost]
+        public ActionResult ArchiveAd(string Delete, string Restore)
+        {
+            if (Delete != null)
+            {
+                return (DeleteAdvertisement(Delete));
+            }
+            else if (Restore != null)
+            {
+                return (RestoreAdvertisement(Restore));
+            }
+            else
+            {
+                return View(MojeOgloszenia());
+            }
+        }
+        private ActionResult DeleteAdvertisement(string id)
+        {
+            int AdID = Int32.Parse(id);
+            db.ADVERTS.Remove(db.ADVERTS.Single(s => s.ID == AdID));
+            db.SaveChanges();
+            int uID = Convert.ToInt32(Session["ID"]);
+            displayRepository.LoggedUser = advertRepository.GetUserData(uID);
+            return View(new AdvertRepository().GetUserArchivedAdverts(uID));
+        }
+        private ActionResult RestoreAdvertisement(string id)
+        {
+            int AdID = Int32.Parse(id);
+            db.ADVERTS.Single(s => s.ID == AdID).IS_ARCHIVED = false;
+            db.SaveChanges();
+            int uID = Convert.ToInt32(Session["ID"]);
+            displayRepository.LoggedUser = advertRepository.GetUserData(uID);
+            return View(new AdvertRepository().GetUserArchivedAdverts(uID));
+        }
+
+
 
     }
 }

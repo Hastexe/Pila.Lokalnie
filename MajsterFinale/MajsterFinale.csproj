@@ -376,6 +376,7 @@
     <Content Include="Views\User\Conversation.cshtml" />
     <Content Include="Views\User\Messages.cshtml" />
     <Content Include="Views\User\EditData.cshtml" />
+    <Content Include="Views\Adverts\ArchiveAd.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

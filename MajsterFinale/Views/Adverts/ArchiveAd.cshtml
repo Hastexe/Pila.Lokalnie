@@ -1,0 +1,42 @@
+﻿@model IEnumerable<MajsterFinale.Models.ADVERTS>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TITLE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PRICE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CATEGORIES.NAME)
+        </th>
+        <th></th>
+    </tr>
+
+
+
+    @foreach (var item in Model)
+    {
+        using (Html.BeginForm())
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TITLE)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PRICE)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CATEGORIES.NAME)
+                </td>
+                <td>
+                    <button type="submit" value="@item.ID" name="Restore" onclick="return @item.ID;">Przywróć</button>|
+
+                    <button type="submit" value="@item.ID" name="Delete" onclick="return @item.ID;">Usuń</button>
+                </td>
+            </tr>
+        }
+    }
+
+</table>
