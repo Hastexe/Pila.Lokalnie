@@ -48,30 +48,35 @@ namespace MajsterFinale.Controllers
             }
             return RedirectToAction("Logowanie", "Home");
         }
-        public ActionResult Conversation(int AdvertId, int UserA, int UserB)
+        public ActionResult Conversation(int? AdvertId, int? UserA, int? UserB)
         {
-            if (Session["ID"] != null)
-            {
-                int userID = Convert.ToInt32(Session["ID"]);
-                if (userID == UserA)
+            if (AdvertId != null && UserA != null && UserB != null) 
                 {
-                    messageModel.LoggedUser = new UserRepository().GetUserData(UserA);
-                    messageModel.SecondConversationUser = new UserRepository().GetUserData(UserB);
-                    messageModel.LoggedUserAdverts = new AdvertRepository().GetUserAdverts(UserA).ToList();
-                    messageModel.SecondUserAdverts = new AdvertRepository().GetUserAdverts(UserB).ToList();
-                }
-                if (userID == UserB)
+                if (Session["ID"] != null)
                 {
-                    messageModel.LoggedUser = new UserRepository().GetUserData(UserB);
-                    messageModel.SecondConversationUser = new UserRepository().GetUserData(UserA);
-                    messageModel.LoggedUserAdverts = new AdvertRepository().GetUserAdverts(UserB).ToList();
-                    messageModel.SecondUserAdverts = new AdvertRepository().GetUserAdverts(UserA).ToList();
+                    int userID = Convert.ToInt32(Session["ID"]);
+                    if (userID != UserA || userID != UserB)
+                    {
+                        if (userID == UserA)
+                        {
+                            messageModel.LoggedUser = new UserRepository().GetUserData((int)UserA);
+                            messageModel.SecondConversationUser = new UserRepository().GetUserData((int)UserB);
+                            messageModel.LoggedUserAdverts = new AdvertRepository().GetUserAdverts((int)UserA).ToList();
+                        }
+                        if (userID == UserB)
+                        {
+                            messageModel.LoggedUser = new UserRepository().GetUserData((int)UserB);
+                            messageModel.SecondConversationUser = new UserRepository().GetUserData((int)UserA);
+                            messageModel.LoggedUserAdverts = new AdvertRepository().GetUserAdverts((int)UserB).ToList();
+                        }
+                        messageModel.CoversationMessages = new UserRepository().GetConversation((int)AdvertId, (int)UserA, (int)UserB).ToList();
+                        return View(messageModel);
+                    }
+                    return RedirectToAction("messages", "User");
                 }
-                messageModel.CoversationMessages = new UserRepository().GetConversation(AdvertId, UserA, UserB).ToList();
-
-                return View(messageModel);
+                return RedirectToAction("Logowanie", "Home");
             }
-            return RedirectToAction("Logowanie", "Home");
+            else return RedirectToAction("Mainpage", "Home");
         }
 
         [HttpPost]
@@ -88,7 +93,7 @@ namespace MajsterFinale.Controllers
             int UserFrom = Convert.ToInt32(Session["ID"]);
             db.MESSAGE.Add(NewMessage);
             db.SaveChanges();
-            return View("Conversation", "Messages", new { AdvertId, UserFrom, UserTo });
+            return RedirectToAction("Conversation", new {AdvertId = AdvertId, UserA = UserTo, UserB=UserFrom });
         }
 
         public ActionResult EditPassword()

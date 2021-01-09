@@ -170,6 +170,8 @@
       <DependentUpon>BazaPolaczenie.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ImageViewModel.cs" />
+    <Compile Include="Models\MessageModel.cs" />
+    <Compile Include="Models\PanelMessageModel.cs" />
     <Compile Include="Models\RegisterRepository.cs" />
     <Compile Include="Models\UserEditPassword.cs" />
     <Compile Include="Models\UserRepository.cs" />

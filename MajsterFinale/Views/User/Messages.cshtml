@@ -48,11 +48,11 @@
                     var User2 = Model.Users.Where(x => x.USER_ID == msglist[2, i]).Select(x => x.USER_ID).SingleOrDefault();
                     if (User1 == Convert.ToInt32(Session["ID"]))
                     {
-                        ConversationWith = Model.Users.Where(x => x.USER_ID == msglist[2, i]).Select(x => x.LOGIN).SingleOrDefault();
+                        ConversationWith = Model.Users.Where(x => x.USER_ID == msglist[2, i]).Select(x => x.FNAME).SingleOrDefault();
                     }
                     else
                     {
-                        ConversationWith = Model.Users.Where(x => x.USER_ID == msglist[1, i]).Select(x => x.LOGIN).SingleOrDefault();
+                        ConversationWith = Model.Users.Where(x => x.USER_ID == msglist[1, i]).Select(x => x.FNAME).SingleOrDefault();
                     }
                 }
                 Konwersacja z: @ConversationWith
@@ -60,7 +60,17 @@
             <td>
                 @{
                     Msg = Model.UserMessages.Where(x => x.ID == msglist[3, i]).Select(x => x.TEXT).SingleOrDefault();
-                    @Msg
+                    if (Model.UserMessages.Where(x => x.ID == msglist[3, i]).Select(x => x.IS_READ).SingleOrDefault() == false)
+                    {
+                        if (Model.UserMessages.Where(x => x.ID == msglist[3, i]).Select(x => x.MSG_TO).SingleOrDefault() == Convert.ToInt32(Session["ID"]))
+                        {
+                            <span> Nieodczytana: </span>@Msg
+                        }
+                        else
+                        {
+                            @Msg
+                        }a
+                    }
                 }
             </td>
             <td>

@@ -15,7 +15,7 @@ namespace MajsterFinale.Models
         }
         public List<MESSAGE> GetUserMessages(int uID)
         {
-            return db.MESSAGE.Where(x => x.MSG_TO == uID || x.MSG_FROM == uID ).OrderByDescending(x => x.ID).ToList();
+            return db.MESSAGE.Where(x => x.MSG_TO == uID || x.MSG_FROM == uID ).OrderByDescending(x => x.DATE).ToList();
         }
         public List<MESSAGE> GetConversation(int AdvertId, int UserA, int UserB)
         {
