@@ -11,7 +11,15 @@ namespace MajsterFinale.Models
 {
     using System;
     using System.Collections.Generic;
+<<<<<<< Updated upstream
     
+=======
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+    using System.Collections.Generic;
+    using System.Web.Mvc;
+
+>>>>>>> Stashed changes
     public partial class ADVERTS
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,10 +31,21 @@ namespace MajsterFinale.Models
     
         public int ID { get; set; }
         public int USER_ID { get; set; }
+        [DisplayName("Kategoria")]
         public int CATEGORY { get; set; }
+        [DisplayName("Tytu³")]
+        [StringLength(30, MinimumLength = 5)]
+        [Required(ErrorMessage = "Pole jest wymagane")]
         public string TITLE { get; set; }
+        [DisplayName("Opis")]
+        [StringLength(250, MinimumLength = 5)]
+        [Required(ErrorMessage = "Pole jest wymagane")]
         public string DESCRIPTION { get; set; }
+        [DisplayName("Cena")]
+        [DefaultValue("Do uzgodnienia")]
+        [RegularExpression("^[0-9]*$", ErrorMessage = "Cena musi sk³adaæ siê z cyfr.")]
         public string PRICE { get; set; }
+        [DisplayName("Zdjêcia")]
         public string IMAGE { get; set; }
         public Nullable<bool> IS_ARCHIVED { get; set; }
         public System.DateTime DATE { get; set; }
@@ -38,5 +57,14 @@ namespace MajsterFinale.Models
         public virtual ICollection<FAV> FAV { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MESSAGE> MESSAGE { get; set; }
+
+        internal class MustBeTrueAttribute : ValidationAttribute
+        {
+            public override bool IsValid(object value)
+            {
+                return value is bool && (bool)value;
+            }
+
+        }
     }
 }
