@@ -11,8 +11,7 @@ namespace MajsterFinale.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.Web.Mvc;
-
+    
     public partial class ADVERTS
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,7 +19,6 @@ namespace MajsterFinale.Models
         {
             this.FAV = new HashSet<FAV>();
             this.MESSAGE = new HashSet<MESSAGE>();
-            this.DATE = DateTime.Now;
         }
     
         public int ID { get; set; }

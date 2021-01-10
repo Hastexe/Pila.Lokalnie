@@ -62,15 +62,5 @@ namespace MajsterFinale.Models
         public virtual ICollection<MESSAGE> MESSAGE { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MESSAGE> MESSAGE1 { get; set; }
-
-        internal class MustBeTrueAttribute : ValidationAttribute
-        {
-            public override bool IsValid(object value)
-            {
-                return value is bool && (bool)value;
-            }
-
-        }
-
     }
 }
