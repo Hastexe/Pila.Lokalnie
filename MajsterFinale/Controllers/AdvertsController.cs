@@ -115,7 +115,7 @@ namespace MajsterFinale.Controllers
                 };
                 db.ADVERTS.Add(newAdvert);
                 db.SaveChanges();
-                return View("~/Views/Home/Index.cshtml");
+                return View("~/Views/Adverts/MojeOgloszenia.cshtml");
             }
             obj.Categories = addingAdsRepository.GetList();
             obj.CategoryID = -1;

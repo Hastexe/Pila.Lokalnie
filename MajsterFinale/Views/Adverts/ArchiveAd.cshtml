@@ -1,42 +1,122 @@
 ﻿@model IEnumerable<MajsterFinale.Models.ADVERTS>
+@{
+    Layout = null;
+}
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.TITLE)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PRICE)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CATEGORIES.NAME)
-        </th>
-        <th></th>
-    </tr>
+<!doctype html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Piłalokalnie - serwis ogłoszeń lokalnych</title>
+    <meta name="description" content="Serwisz ogłoszeń lokalnych w Pile">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link href="~/Content/CSS/background.css" rel="stylesheet" />
+    <link href="~/Content/CSS/main.css" rel="stylesheet" />
+    <link href="~/Content/CSS/my_adv.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg navbar-dark py-1">
+            <div class="container-fluid navbarmar">
+                <a class="navbar-brand " href="@Url.Action("Mainpage", "Home", null)">
+                    <img src="~/Content/IMAGES/logo_nav.png" width="50" height="50" class="d-inline-block align-top" alt="Logo"><h1 class="icontex underline">Piła lokalnie</h1>
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="nav navbar ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Messages", "Home", null)"><i class="far fa-envelope"><span class="badge badge-warning">4</span></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="far fa-bookmark"></i></a>
+                        </li>
+                        <li class="nav-item dropdown active">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-weight: 600;">Moje konto</a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <h6 class="dropdown-header" style="font-weight: bold; font-size: 1.0rem; margin-bottom: 5px;">Twoje konto:</h6>
+                                <a class="dropdown-item" href="@Url.Action("MojeOgloszenia", "Adverts", null)">Ogłoszenia</a>
+                                <a class="dropdown-item" href="@Url.Action("Messages", "User", null)">Wiadomości</a>
+                                <a class="dropdown-item" href="@Url.Action("Panel", "User", null)">Ustawienia</a>
+                                <h6 class="dropdown-header " style="font-weight: bold; font-size: 1.0rem; margin-bottom: 5px;">Obserwowane:</h6>
+                                <a class="dropdown-item" href="#">Ogłoszenia</a>
+                                <div class="dropdown-divider"></div>
+
+                                @using (Html.BeginForm("LogOff", "home", FormMethod.Post, new { role = "form" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <input type="submit" value="Wyloguj się" class="dropdown-item" />}
+                            </div>
+                        </li>
+                    </ul>
+                    <a class="btn btn-custom" href="@Url.Action("AddAdvertisement", "Adverts", null)" role="button">Dodaj ogłoszenie</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!-- NAVBAR -->
+    <div>
+        <div class="container-fluid">
+            <div class="row sizeadv">
+                <div class="col-sm-12"><h1>Twoje ogłoszenia</h1></div>
+                <div class="col-sm-12">
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <a class="nav-link  navcolor" href="@Url.Action("MojeOgloszenia", "Adverts", null)">Ogłoszenia</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link  navcolor" href="@Url.Action("#", "Adverts", null)">Obserwowane</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link navcolor" href="@Url.Action("Messages", "User", null)">Wiadomości</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link navcolor active" href="@Url.Action("ArchiveAd", "Adverts", null)">Kosz</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link navcolor" href="@Url.Action("Panel", "User", null)">Ustawienia</a>
+                        </li>
+                    </ul>
+                </div>
+                <hr>
+                <!-- CONTENT -->
+                <div class="col-sm-12" style="margin-top: 30px;">
+                    @foreach (var item in Model)
+                    {
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card bg-light border-0">
+                                    <div class="card-horizontal">
+                                        <div class="img-square-wrapper">
+                                            <a href="@Url.Action("Details", "Adverts", new { id = item.ID }) "><img class="" src="http://via.placeholder.com/200x140" alt="Card image cap"></a>
+                                        </div>
+                                        <div class="card-body link">
+                                            <h4 class="card-title"> <a href="@Url.Action("Details", "Adverts", new { id = item.ID })"></a>@Html.DisplayFor(modelItem => item.TITLE) </h4>
+                                            <!-- <p class="card-text">Kategoria: @Html.DisplayFor(modelItem => item.CATEGORIES.NAME)</p>-->
+                                            <button type="submit" value="@item.ID" name="Restore" onclick="return @item.ID;">Przywróć</button>|
+                                            <button type="submit" value="@item.ID" name="Delete" onclick="return @item.ID;">Usuń</button>
+                                            <p class="card-text text-right">@Html.DisplayFor(modelItem => item.PRICE) zł</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 
-    @foreach (var item in Model)
-    {
-        using (Html.BeginForm())
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TITLE)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PRICE)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CATEGORIES.NAME)
-                </td>
-                <td>
-                    <button type="submit" value="@item.ID" name="Restore" onclick="return @item.ID;">Przywróć</button>|
-
-                    <button type="submit" value="@item.ID" name="Delete" onclick="return @item.ID;">Usuń</button>
-                </td>
-            </tr>
-        }
-    }
-
-</table>
+    <script src="https://cdn.jsdelivr.net/gh/Wruczek/Bootstrap-Cookie-Alert@gh-pages/cookiealert.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

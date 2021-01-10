@@ -1,58 +1,137 @@
 ﻿@model MajsterFinale.Models.AddingAdsRepository
-
-
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-
-<div class="form-horizontal">
-    <h4>ADVERTS</h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Advert.CATEGORY, "Kategoria", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownListFor(model => model.CategoryID, new SelectList(Model.Categories, "ID", "Name"), htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Advert.CATEGORY, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(model => model.Advert.TITLE, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Advert.TITLE, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Advert.TITLE, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Advert.DESCRIPTION, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Advert.DESCRIPTION, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Advert.DESCRIPTION, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Advert.PRICE, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Advert.PRICE, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Advert.PRICE, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-
-
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
-        </div>
-    </div>
-</div>
+@{
+    Layout = null;
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+<!doctype html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Piłalokalnie - serwis ogłoszeń lokalnych</title>
+    <meta name="description" content="Serwisz ogłoszeń lokalnych w Pile">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link href="~/Content/CSS/main.css" rel="stylesheet" />
+    <link href="~/Content/CSS/cookies.css" rel="stylesheet" />
+    <link href="~/Content/CSS/bg.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg navbar-dark py-1">
+            <div class="container-fluid navbarmar">
+                <a class="navbar-brand " href="@Url.Action("Mainpage", "home", null)">
+                    <img src="~/Content/IMAGES/logo_nav.png" width="50" height="50" class="d-inline-block align-top" alt="Logo"><h1 class="icontex underline">Piła lokalnie</h1>
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="nav navbar ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Message", "home", null)"><i class="far fa-envelope"><span class="badge badge-warning">4</span></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="far fa-bookmark"></i></a>
+                        </li>
+                        <li class="nav-item dropdown active">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-weight: 600;">Moje konto</a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <h6 class="dropdown-header" style="font-weight: bold; font-size: 1.0rem; margin-bottom: 5px;">Twoje konto:</h6>
+                                <a class="dropdown-item" href="@Url.Action("MojeOgloszenia", "home", null)">Ogłoszenia</a>
+                                <a class="dropdown-item" href="@Url.Action("Message", "home", null)">Wiadomości</a>
+                                <a class="dropdown-item" href="@Url.Action("Panel", "home", null)">Ustawienia</a>
+                                <h6 class="dropdown-header " style="font-weight: bold; font-size: 1.0rem; margin-bottom: 5px;">Obserwowane:</h6>
+                                <a class="dropdown-item" href="#">Ogłoszenia</a>
+                                <div class="dropdown-divider"></div>
+
+                                @using (Html.BeginForm("LogOff", "home", FormMethod.Post, new { role = "form" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <input type="submit" value="Wyloguj się" class="dropdown-item" />}
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="container advsize">
+            <div class="form-horizontal">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <h4>Dodaj ogłoszenie</h4>
+                    </div>
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+                    <div class="col-md-12">
+                        <h3>Wpisz tytuł</h3>
+                        <div class="form-group name">
+                            @Html.EditorFor(model => model.Advert.TITLE, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Advert.TITLE, "", new { @class = "text-danger" })
+                            <small class="form-text text-muted">
+                                <sup style="color:red">&#42;</sup>Dodaj tytuł ogłoszenia
+                            </small>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="col-md-12">
+                        <h3>Dodaj zdjęcia (PLACEHOLDER)</h3>
+                        <form>
+                            <div class="form-group">
+                               
+                                <small class="form-text text-muted">
+                                    Dodaj zdjęcie do ogłoszenia
+                                </small>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-12">
+                        <h3>Wybierz kategorię</h3>
+                        <div class="form-group name">
+                            @Html.DropDownListFor(model => model.CategoryID, new SelectList(Model.Categories, "ID", "Name"), htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Advert.CATEGORY, "", new { @class = "text-danger" })
+                            <small class="form-text text-muted">
+                                <sup style="color:red">&#42;</sup>Wybierz kategorię
+                            </small>
+                        </div>
+                    </div>
+
+                    <br>
+                    <div class="col-md-12">
+                        <h3>Opis ogłoszenia</h3>
+                        <div class="form-group test rows-3" style="height: 200px;">
+                            @Html.EditorFor(model => model.Advert.DESCRIPTION, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Advert.DESCRIPTION, "", new { @class = "text-danger" })
+                            <small class="form-text text-muted">
+                                <sup style="color:red">&#42;</sup>Dodaj opis
+                            </small>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <h3>Cena</h3>
+                        <div class="form-group name">
+                            @Html.EditorFor(model => model.Advert.PRICE, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Advert.PRICE, "", new { @class = "text-danger" })
+                            <small class="form-text text-muted">
+                                <sup style="color:red">&#42;</sup>Podaj Cenę
+                            </small>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Dodaj ogłoszenie" class="btn btn-custom" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    }
+
+</body>
+</html>

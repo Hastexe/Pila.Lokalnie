@@ -84,7 +84,7 @@ namespace MajsterFinale.Controllers
                 //Session["Login"] = userLoggedIn.LOGIN;
 
                 //po zalogowaniu przenosi nas index
-                return RedirectToAction("Index", "home", new { ID = USERS.USER_ID });
+                return RedirectToAction("Mainpage", "home", new { ID = USERS.USER_ID });
 
             }
             else

@@ -16,22 +16,8 @@ body
   transform: scale(1.1); 
   }
 
-.wave-container {
-    position: relative;
-    transform: rotate(-180deg);
-    text-align: center;
-    overflow: hidden;
-   
-  }
 
-@keyframes animateWave {
-    0% {
-      transform: scale(1,0);
-    }
-    100% {
-      transform: scale(1,1);
-    }
-  }
+
   
 .wave-container > svg {
     display: block;
@@ -95,13 +81,15 @@ body
     display: block;
   }
 
-.dropdown>.dropdown-toggle:active {
+.dropdown > .dropdown-toggle:active {
     /*Without this, clicking will make it sticky*/
-      pointer-events: none;
-  }
+    /*pointer-events: none;*/
+    padding-top: 10px;
+}
 
 .nav-link  {
     color: white;
+    padding-top:10px;
     }
 .nav-link:hover {
     color: whitesmoke;

@@ -1,75 +1,79 @@
+body {
+    background-image: url('../IMAGES/background2.svg');
+}
+
 
 .form-signin {
-  width: 100%;
-  max-width: 330px;
-  padding: 15px;
-  margin: 10 auto;
-}
-.form-signin .checkbox {
-  font-weight: 400;
-}
-.form-signin .form-control {
-  position: relative;
-  box-sizing: border-box;
-  height: auto;
-  padding: 10px;
-  font-size: 16px;
-}
-.form-signin .form-control:focus {
-  z-index: 2;
-  
-}
-.form-signin input[type="email"] {
-  margin-bottom: -1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-}
-.form-signin input[type="password"] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: 10 auto;
 }
 
-.reg{
-  margin-top:20px;
-  font-size: 10px;
-  
-}
-.container-fluid{
-  padding: 0 !important;
-}
-p{
-  text-align: left;
-  margin-top: 10px;
+    .form-signin .checkbox {
+        font-weight: 400;
+    }
+
+    .form-signin .form-control {
+        position: relative;
+        box-sizing: border-box;
+        height: auto;
+        padding: 10px;
+        font-size: 16px;
+    }
+
+        .form-signin .form-control:focus {
+            z-index: 2;
+        }
+
+    .form-signin input[type="email"] {
+        margin-bottom: -1px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    .form-signin input[type="password"] {
+        margin-bottom: 10px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+
+.reg {
+    margin-top: 20px;
+    font-size: 10px;
 }
 
-.btn-custom
-{
-  color: #FFFFFF;
-  
-  
+.container-fluid {
+    padding: 0 !important;
 }
 
-.checkreq{
-  margin-top: 15px;
-  margin-bottom: 15px;
-  text-align: left;
+p {
+    text-align: left;
+    margin-top: 10px;
 }
 
-h1{
-  text-align: center;
-  margin-top: 20px;
+.btn-custom {
+    color: #FFFFFF;
 }
 
-.smalltext
-{
-  margin-top: 20px;
-  margin-bottom: 20px;
-  font-weight: 400;
-  text-align: center;
+.checkreq {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    text-align: left;
 }
 
-.loginreg{
-  padding-top: 3%;
+h1 {
+    text-align: center;
+    margin-top: 20px;
+}
 
+.smalltext {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-weight: 400;
+    text-align: center;
+}
+
+.loginreg {
+    padding-top: 2%;
 }
