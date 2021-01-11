@@ -60,17 +60,20 @@
             <td>
                 @{
                     Msg = Model.UserMessages.Where(x => x.ID == msglist[3, i]).Select(x => x.TEXT).SingleOrDefault();
-                    if (Model.UserMessages.Where(x => x.ID == msglist[3, i]).Select(x => x.IS_READ).SingleOrDefault() == false)
+                    if (Model.UserMessages.Where(x => x.ID == msglist[3, i]).Select(x => x.MSG_TO).SingleOrDefault() == Convert.ToInt32(Session["ID"]))
                     {
-                        if (Model.UserMessages.Where(x => x.ID == msglist[3, i]).Select(x => x.MSG_TO).SingleOrDefault() == Convert.ToInt32(Session["ID"]))
+                        if (Model.UserMessages.Where(x => x.ID == msglist[3, i]).Select(x => x.IS_READ).SingleOrDefault() == false)
                         {
                             <span> Nieodczytana: </span>@Msg
                         }
                         else
                         {
                             @Msg
-                        }a
+                        }
                     }
+                    else
+                    { @Msg }
+
                 }
             </td>
             <td>

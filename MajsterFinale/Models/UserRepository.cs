@@ -21,11 +21,21 @@ namespace MajsterFinale.Models
         {
             return db.MESSAGE.Where(x => x.ADVERT_ID == AdvertId && ((x.MSG_TO == UserA && x.MSG_FROM == UserB) || (x.MSG_TO == UserB && x.MSG_FROM == UserA))).OrderByDescending(x => x.ID).ToList();
         }
-
         public List<USERS> GetUsers()
         {
             return db.USERS.ToList();
         }
+
+        public MESSAGE GetMessage(int ID)
+        {
+            return db.MESSAGE.AsNoTracking().SingleOrDefault(x => x.ID == ID);
+        }
+
+        public void SetMessageAsRead()
+        {
+
+        }
+
     }
 }
 

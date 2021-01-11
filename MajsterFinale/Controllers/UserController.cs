@@ -70,6 +70,18 @@ namespace MajsterFinale.Controllers
                             messageModel.LoggedUserAdverts = new AdvertRepository().GetUserAdverts((int)UserB).ToList();
                         }
                         messageModel.CoversationMessages = new UserRepository().GetConversation((int)AdvertId, (int)UserA, (int)UserB).ToList();
+                        foreach (var item in messageModel.CoversationMessages)
+                        {
+                            var msgID = (item.ID);
+                            if (item.MSG_TO == userID )
+                            {
+                                var ID = msgID;
+                                MESSAGE MsgToChange = new UserRepository().GetMessage(ID);
+                                MsgToChange.IS_READ = true;
+                                db.Entry(MsgToChange).State = System.Data.Entity.EntityState.Modified;
+                                db.SaveChanges();
+                            }
+                        };
                         return View(messageModel);
                     }
                     return RedirectToAction("messages", "User");
@@ -88,12 +100,13 @@ namespace MajsterFinale.Controllers
                 MSG_TO = UserTo,
                 TEXT = message,
                 DATE = System.DateTime.Now,
-                ADVERT_ID = AdvertId
+                ADVERT_ID = AdvertId,
+                IS_READ = false
             };
             int UserFrom = Convert.ToInt32(Session["ID"]);
             db.MESSAGE.Add(NewMessage);
             db.SaveChanges();
-            return RedirectToAction("Conversation", new {AdvertId = AdvertId, UserA = UserTo, UserB=UserFrom });
+            return RedirectToAction("Conversation", new { AdvertId, UserA = UserTo, UserB=UserFrom });
         }
 
         public ActionResult EditPassword()
