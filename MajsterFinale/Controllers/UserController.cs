@@ -112,7 +112,6 @@ namespace MajsterFinale.Controllers
         [HttpPost]
         public ActionResult EditPassword(UserEditPassword form)
         {
-            ViewBag.Message = null;
             if (Session["ID"] != null)
             {
                 int uID = Convert.ToInt32(Session["ID"]);

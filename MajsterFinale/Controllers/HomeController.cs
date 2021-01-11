@@ -83,7 +83,7 @@ namespace MajsterFinale.Controllers
                 Session["ID"] = userLoggedIn.USER_ID;
                 //Session["Login"] = userLoggedIn.LOGIN;
 
-                //po zalogowaniu przenosi nas index
+                //po zalogowaniu przenosi nas do mainpage
                 return RedirectToAction("Mainpage", "home", new { ID = USERS.USER_ID });
 
             }
@@ -167,7 +167,7 @@ namespace MajsterFinale.Controllers
                 ModelState.Clear();
                 ViewBag.SuccessMessage = "Rejestracja przebiegła pomyślnie." +
                 "Przesłaliśmy maila aktywacyjnego na maila:" + USERS.MAIL;
-                return View();
+                return RedirectToAction("Mainpage", "home", new { ID = USERS.USER_ID });
         }
        
 

@@ -1,57 +1,165 @@
 ﻿@model MajsterFinale.Models.DisplayRepository
+@{
+    Layout = null;
+}
 
-<div>
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.AdvertDetails.TITLE)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.AdvertDetails.TITLE)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.AdvertDetails.DESCRIPTION)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.AdvertDetails.DESCRIPTION)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.AdvertDetails.PRICE)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.AdvertDetails.PRICE)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.AdvertDetails.IMAGE)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.AdvertDetails.IMAGE)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.AdvertDetails.CATEGORIES.NAME)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.AdvertDetails.CATEGORIES.NAME)
-        </dd>
+<!doctype html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Piłalokalnie - serwis ogłoszeń lokalnych</title>
+    <meta name="description" content="Serwisz ogłoszeń lokalnych w Pile">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link href="~/Content/CSS/main.css" rel="stylesheet" />
+    <link href="~/Content/CSS/cookies.css" rel="stylesheet" />
+    <link href="~/Content/CSS/product_details.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg navbar-dark py-1">
+            <div class="container-fluid navbarmar">
+                <a class="navbar-brand " href="@Url.Action("Mainpage", "home", null)">
+                    <img src="~/Content/IMAGES/logo_nav.png" width="50" height="50" class="d-inline-block align-top" alt="Logo"><h1 class="icontex underline">Piła lokalnie</h1>
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="nav navbar ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Message", "home", null)"><i class="far fa-envelope"><span class="badge badge-warning">1</span></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="far fa-bookmark"></i></a>
+                        </li>
+                        <li class="nav-item dropdown active">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="font-weight: 600;">Moje konto</a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <h6 class="dropdown-header" style="font-weight: bold; font-size: 1.0rem; margin-bottom: 5px;">Twoje konto:</h6>
+                                <a class="dropdown-item" href="@Url.Action("MojeOgloszenia", "Adverts", null)">Ogłoszenia</a>
+                                <a class="dropdown-item" href="@Url.Action("Messages", "User", null)">Wiadomości</a>
+                                <a class="dropdown-item" href="@Url.Action("Conversation", "Adverts", null)">TEST</a>
+                                <a class="dropdown-item" href="@Url.Action("EditData", "User", null)">Ustawienia</a>
+                                <h6 class="dropdown-header " style="font-weight: bold; font-size: 1.0rem; margin-bottom: 5px;">Obserwowane:</h6>
+                                <a class="dropdown-item" href="#">Ogłoszenia</a>
+                                <div class="dropdown-divider"></div>
 
-    </dl>
-    <div>
-        @{
-            if (Session["ID"] != null)
-            {
-                <p>Wyślij wiadomość</p>
-                using (Html.BeginForm("Details", "Adverts"))
-                {
-                    <input type="text" name="message" />
-                    <br />
-                    <input type="submit" value="wyślij" />
-                }
-            }
-            else
-            {
-                <p>Zaloguj się by wysłać wiadomość</p>
-            }
-        }
+                                @using (Html.BeginForm("LogOff", "home", FormMethod.Post, new { role = "form" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <input type="submit" value="Wyloguj się" class="dropdown-item" />}
+                            </div>
+                        </li>
+                    </ul>
+                    <a class="btn btn-custom" href="@Url.Action("AddAdvertisement", "Adverts", null)" role="button">Dodaj ogłoszenie</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!-- MAIN CONTENT -->
+    <div class="main" >
+        <div class="container" id="product_page">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="col-12">
+                        <script>
+                            document.write('<a id="backbutton" href="' + document.referrer + '"> <i class="fas fa-chevron-left" style="font-size: 1.5rem;"></i><span id="backbuttontext"> Wróć</span></a>');
+                        </script>
+                    </div>
+                </div>
+                <div class="col-sm-8">
+                    <div class="col-12" id="imgpos">
+                        <img class="" src="http://via.placeholder.com/600x740" alt="Card image cap">
+                        @Html.DisplayFor(model => model.AdvertDetails.IMAGE)
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="col-12">
+                        <h1 class="">@Html.DisplayFor(model => model.AdvertDetails.TITLE)</h1>
+                        <p>Kategoria:  @Html.DisplayFor(model => model.AdvertDetails.CATEGORIES.NAME)   </p>
+                        <h1 class="text-right">@Html.DisplayFor(model => model.AdvertDetails.PRICE) zł</h1>
+                        <button class="btn btn-custom"><i class="far fa-bookmark"></i> Obserwuj</button>
+                    </div>
+                </div>
+
+                <div class="col-sm-4 col-xs-12 " id="product_user">
+                    <div class="col-12">
+                        <p><i class="far fa-user"></i> Username</p>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-xs-12" id="product_user">
+                    <div class="col-12">
+                        <p class="text-right"><i class="far fa-list-alt"></i><a> Zobaczy ogłoszenia użytkownika</a>
+                    </div>
+                </div>
+
+                <div class="col-sm-8">
+                    <hr>
+                    <div class="col-12">
+                        <h1>Opis</h1>
+                        <p></p>
+                        @Html.DisplayFor(model => model.AdvertDetails.DESCRIPTION)
+                    </div>
+                </div>
+                <div class="col-sm-8 " id="product_mess">
+                    <div class="col-12">
+                        <hr>
+                        <h1>Wiadomość</h1>
+                        @{
+                            if (Session["ID"] != null)
+                            {
+
+                                using (Html.BeginForm("Details", "Adverts"))
+                                {
+                                    <form>
+                                        <!--<input type="text" name="message" />-->
+                                        <!--<input type="submit" value="wyślij" />-->
+                                        <textarea class="form-control" rows="5" name="message" placeholder="Napisz wiadomość!"></textarea>
+                                        <button class="btn btn-custom" type="submit" value="Wyślij">Wyślij</button>
+                                    </form>
+                                }
+                            }
+                            else
+                            {
+                                <form>
+                                    <!--<input type="text" name="message" />-->
+                                    <!--<input type="submit" value="wyślij" />-->
+                                    <textarea class="form-control" rows="5" name="message" placeholder="Zaloguj się, aby wysłać wiadomość."></textarea>
+                                    <button class="btn btn-custom" disabled>Wyślij</button>
+                                </form>
+                                <hr>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 col-xs-12">
+               
+                    <p class="text-muted">Dodano: xx.xx.xxxx xx:xx </p>
+                
+        </div>
     </div>
 
+    <!-- Cookies
+    <div class="alert text-center cookiealert" role="alert">
+        <p>Ta strona korzysta z ciasteczek aby świadczyć usługi na najwyższym poziomie. Dalsze korzystanie z strony oznacza, ze zgadzasz się na ich użycie.</p> <a href="https://cookiesandyou.com/" target="_blank">Dowiedz się więcej</a>
+        <button type="button" class="btn btn-warning btn-sm acceptcookies">
+            Zgadzam się
+        </button>
+    </div>
+        -->
 
-</div>
+    <script src="https://cdn.jsdelivr.net/gh/Wruczek/Bootstrap-Cookie-Alert@gh-pages/cookiealert.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
+
+
+
+

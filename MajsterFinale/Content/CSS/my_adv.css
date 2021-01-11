@@ -26,7 +26,11 @@ html,body
     color: black;
 }
 
-.nav > li > a:hover{
+nav{
+    color:white
+}
+
+.nav > a:hover{
     background-color:#0B3c5d;
 }
 
@@ -51,4 +55,10 @@ html,body
 .card a{
     color: black;
     text-decoration: none;
+}
+
+.sizesett {
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 1rem;
 }

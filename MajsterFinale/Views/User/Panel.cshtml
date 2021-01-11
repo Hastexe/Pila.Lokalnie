@@ -31,6 +31,7 @@
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.PASSWORD, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.PASSWORD, "", new { @class = "text-danger" })
+                    <small class="form-text text-muted">Zmień hasło</small>
                 </div>
             </div>
 
