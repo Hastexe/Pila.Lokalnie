@@ -1,6 +1,5 @@
-﻿@{
-    Layout = null;
-}
+﻿@model MajsterFinale.Models.AddingAdsRepository
+@{ Layout = null; }
 
 <!doctype html>
 <html lang="pl">
@@ -48,7 +47,7 @@
 
                                 @using (Html.BeginForm("LogOff", "home", FormMethod.Post, new { role = "form" }))
                                 {
-                                    @Html.AntiForgeryToken()
+                    @Html.AntiForgeryToken()
                                     <input type="submit" value="Wyloguj się" class="dropdown-item" />}
                             </div>
                         </li>
@@ -61,28 +60,24 @@
     <!-- MAIN CONTENT -->
     <div class="main">
         <!-- Searchbar -->
-        <div class="container-fluid searchbar_space">
-            <div class="row searchbar">
-                <div class="search-box col-lg-12">
-                    <form action="">
-                        <div class="input-group mb-3 searchbar_margin">
-                            <div class="input-group-prepend">
-                                <button class="btn btn-custom dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Kategoria</button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">Ogród</a>
-                                    <a class="dropdown-item" href="#">Dom</a>
-                                    <a class="dropdown-item" href="#">Motoryzacja</a>
-                                </div>
-                            </div>
-                            <input type="text" class="form-control" placeholder="Czego szukasz?">
-                            <div class="input-group-append">
-                                <button class="btn btn-custom" type="button">Szukaj</button>
-                            </div>
+        @using (Html.BeginForm("SearchedAds", "Home", FormMethod.Get))
+        {
+<div class="container-fluid searchbar_space">
+    <div class="row searchbar">
+        <div class="search-box col-lg-12">
+            <form action="">
+                <div class="input-group mb-3 searchbar_margin">
+                    <div class="input-group-prepend">
+                        @Html.DropDownListFor(model => model.CategoryID, new SelectList(Model.Categories, "ID", "NAME"), htmlAttributes: new { @class = "form-control" })
+                        @Html.TextBox("search")
+                        <div class="input-group-append">
+                            <button class="btn btn-custom" type="submit">Szukaj</button>
                         </div>
-                    </form>
-                </div>
-            </div>
+                    </div>
+            </form>
         </div>
+    </div>
+</div>}
         <!-- Slider -->
         <div class="slider d-none d-sm-block">
             <div class="container">

@@ -93,7 +93,7 @@ namespace MajsterFinale.Controllers
                 model.Categories = addingAdsRepository.GetList();
                 return View(model);
             }
-            else return View("~/Views/Home/Index.cshtml");
+            return RedirectToAction("Index", "home");
 
         }
         [HttpPost]
@@ -115,7 +115,13 @@ namespace MajsterFinale.Controllers
                 };
                 db.ADVERTS.Add(newAdvert);
                 db.SaveChanges();
-                return View("~/Views/Adverts/MojeOgloszenia.cshtml");
+<<<<<<< Updated upstream
+
+                return RedirectToAction("Index", "home");
+
+=======
+                return RedirectToAction("Index", "home");
+>>>>>>> Stashed changes
             }
             obj.Categories = addingAdsRepository.GetList();
             obj.CategoryID = -1;
