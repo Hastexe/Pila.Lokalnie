@@ -40,7 +40,7 @@
           <Key>
             <PropertyRef Name="IMAGE_ID" />
           </Key>
-          <Property Name="IMAGE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IMAGE_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="IMAGE_TITLE" Type="nvarchar" MaxLength="500" />
           <Property Name="IMAGE_BYTE" Type="image" />
           <Property Name="IMAGE_PATH" Type="nvarchar" MaxLength="500" />

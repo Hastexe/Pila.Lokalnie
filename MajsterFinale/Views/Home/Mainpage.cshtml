@@ -1,35 +1,5 @@
-﻿
-@{
-    Layout = null;
-}
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Mainpage</title>
-</head>
-<body>
-    <h2>Mainpage</h2>
-    <h3>Zostałeś zalogowany</h3>
-    <h2>Witaj na stronie głównej</h2>
-    <div>
-        <!--@Html.ActionLink("Zaloguj się", "Logowanie")-->
-        <!--@Html.ActionLink("Zarejestruj się", "Rejestracja")-->
-        @using (Html.BeginForm("LogOff", "home", FormMethod.Post, new { role = "form" }))
-        {
-            @Html.AntiForgeryToken()
-            <input type="submit" value="Logout" class="btn btn-primary" />
-        }
-    </div>
-</body>
-</html>
-
-
-@{
-    Layout = null;
-}
+﻿@model MajsterFinale.Models.AddingAdsRepository
+@{ Layout = null; }
 
 <!doctype html>
 <html lang="pl">
@@ -40,15 +10,17 @@
     <meta name="description" content="Serwisz ogłoszeń lokalnych w Pile">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-    <link href="~/Content/CSS/main_page.css" rel="stylesheet" />
+    <link href="~/Content/CSS/main.css" rel="stylesheet" />
+    <link href="~/Content/CSS/cookies.css" rel="stylesheet" />
+    <link href="~/Content/CSS/background.css" rel="stylesheet" />
 </head>
-
 <body>
-    <div class="container-fluid" style="background-color:#0B3c5d;">
-        <nav class="navbar navbar-expand-lg navbar-dark py-1 shadow-lg">
+    <!-- Navbar -->
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg navbar-dark py-1">
             <div class="container-fluid navbarmar">
-                <a class="navbar-brand " href="#">
-                    <img src="~/Content/IMAGES/logo_nav.png" width="50" height="50" class="d-inline-block align-top" alt=""><h1 class="icontex underline">Piła lokalnie</h1>
+                <a class="navbar-brand " href="@Url.Action("Mainpage", "home", null)">
+                    <img src="~/Content/IMAGES/logo_nav.png" width="50" height="50" class="d-inline-block align-top" alt="Logo"><h1 class="icontex underline">Piła lokalnie</h1>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -56,59 +28,69 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="nav navbar ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="far fa-envelope grow"><span class="badge badge-warning">4</span></i></a>
+                            <a class="nav-link" href="@Url.Action("Message", "home", null)"><i class="far fa-envelope"><span class="badge badge-warning">1</span></i></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="far fa-bookmark grow "></i></a>
+                            <a class="nav-link" href="#"><i class="far fa-bookmark"></i></a>
                         </li>
                         <li class="nav-item dropdown active">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-weight: 600;">
-                                Moje konto
-                            </a>
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="font-weight: 600;">Moje konto</a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <h6 class="dropdown-header" style="font-weight: bold; font-size: 1.0rem; margin-bottom: 5px;">Twoje konto:</h6>
-                                <a class="dropdown-item" href="@Url.Action("MojeOgloszenia", "home", null)">Ogłoszenia</a>
-                                <a class="dropdown-item" href="@Url.Action("Message", "home", null)">Wiadomości</a>
-                                <a class="dropdown-item" href="@Url.Action("Logowanie", "home", null)">Ustawienia</a>
+                                <a class="dropdown-item" href="@Url.Action("MojeOgloszenia", "Adverts", null)">Ogłoszenia</a>
+                                <a class="dropdown-item" href="@Url.Action("Messages", "User", null)">Wiadomości</a>
+                                <a class="dropdown-item" href="@Url.Action("Conversation", "Adverts", null)">TEST</a>
+                                <a class="dropdown-item" href="@Url.Action("Panel", "Adverts", null)">Ustawienia</a>
                                 <h6 class="dropdown-header " style="font-weight: bold; font-size: 1.0rem; margin-bottom: 5px;">Obserwowane:</h6>
                                 <a class="dropdown-item" href="#">Ogłoszenia</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Wyloguj się</a>
+
+                                @using (Html.BeginForm("LogOff", "home", FormMethod.Post, new { role = "form" }))
+                                {
+                    @Html.AntiForgeryToken()
+                                    <input type="submit" value="Wyloguj się" class="dropdown-item" />}
                             </div>
                         </li>
                     </ul>
-                    <button type="button" class="btn btn-custom">Dodaj ogłoszenie</button>
+                    <a class="btn btn-custom" href="@Url.Action("AddAdvertisement", "Adverts", null)" role="button">Dodaj ogłoszenie</a>
                 </div>
             </div>
         </nav>
     </div>
-
+    <!-- MAIN CONTENT -->
     <div class="main">
-        <div class="container-fluid">
-            <div class="searchbar">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Czego szukasz?">
-                    <div class="input-group-append">
-                        <button class="btn btn-custom" type="button">
-                            <i class="fa fa-search"></i>
-                        </button>
+        <!-- Searchbar -->
+        @using (Html.BeginForm("SearchedAds", "Home", FormMethod.Get))
+        {
+<div class="container-fluid searchbar_space">
+    <div class="row searchbar">
+        <div class="search-box col-lg-12">
+            <form action="">
+                <div class="input-group mb-3 searchbar_margin">
+                    <div class="input-group-prepend">
+                        @Html.DropDownListFor(model => model.CategoryID, new SelectList(Model.Categories, "ID", "NAME"), htmlAttributes: new { @class = "form-control" })
+                        @Html.TextBox("search")
+                        <div class="input-group-append">
+                            <button class="btn btn-custom" type="submit">Szukaj</button>
+                        </div>
                     </div>
-                </div>
-            </div>
+            </form>
         </div>
-
-
-        <div class="slider">
+    </div>
+</div>}
+        <!-- Slider -->
+        <div class="slider d-none d-sm-block">
             <div class="container">
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                    <ol class="carousel-indicators">
+                    <ul class="carousel-indicators">
                         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                         <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
                         <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                    </ol>
+                    </ul>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                             <img class="d-block w-100" src="~/Content/IMAGES/slider1.jpg" alt="First slide">
+
                         </div>
                         <div class="carousel-item">
                             <img class="d-block w-100" src="~/Content/IMAGES/slider2.jpg" alt="Second slide">
@@ -128,20 +110,12 @@
                 </div>
             </div>
         </div>
-
-
-
-
-
-
-
+        <!-- Main categories -->
         <div class="categories">
-            <div class="container">
-                <div class="row cat-title ">
-                    <div class="col-sm-12"><h1>Kategorie główne<h1></div>
+            <div class="container cat_space">
+                <div class="row cat-title">
+                    <div class="col-sm-12"><h1>Kategorie główne</h1></div>
                 </div>
-
-
                 <div class="row cat-grid">
                     <div class="col-sm-2 grow"><a data-toggle="collapse" href="#collapseCat" role="button" aria-expanded="false" aria-controls="collapseCat"><i class="fas fa-seedling Icongrid"></i><p>Ogród</p></a></div>
                     <div class="col-sm-2 grow"><a href=""><i class="fas fa-home Icongrid"></i><p>Dom</p></a></div>
@@ -150,7 +124,6 @@
                     <div class="col-sm-2 grow"><a href=""><i class="fab fa-accessible-icon Icongrid"></i><p>WIP</p></a></div>
                     <div class="col-sm-2 grow"><a href=""><i class="fab fa-accessible-icon Icongrid"></i><p>WIP</p></a></div>
                 </div>
-
                 <div class="collapse underCat" id="collapseCat">
                     <ul class="list-unstyled underCat">
                         <li class="list-item col-sm-12"><i class="fas fa-chevron-right" style="align-items: left;"></i><a href="" style="font-weight: bold;"> Wszystkie ogłoszenia <span style="font-weight: 300;">z Ogród</span></a></li>
@@ -163,79 +136,73 @@
                 </div>
             </div>
         </div>
-
-
-        <div class="container">
-            <div class="row d-flex justify-content-center">
-                <div class="col-sm-4 row d-flex justify-content-center">
-                    <h1>Obrazek</h1>
-
-                </div>
-                <div class="col-sm-4 row d-flex justify-content-center">
-                    <h1>Obrazek</h1>
-
-                </div>
-                <div class="col-sm-4 row d-flex justify-content-center">
-                    <h1>Obrazek</h1>
-
-                </div>
-            </div>
-        </div>
-
-
+        <!-- Steps -->
         <div class="container steps">
-            <div class="row d-flex justify-content-center">
-                <div class="col-sm-4 ">
-                    <h1>Załóż konto</h1>
-                    <p>Posiadanie konto zapewnia dużo korzyści, w szczególności utworzenie ogłoszenia.</p>
+            <div class="row">
+                <div class="col-sm-4 d-flex justify-content-center">
+                    <figure>
+                        <img src="~/Content/IMAGES/placeholder.png" alt="a" style="height: 200px; height: 200px;">
+                        <figcaption>
+                            <h1>Załóż konto</h1>
+                            <p>Posiadanie konto zapewnia dużo korzyści, w szczególności utworzenie ogłoszenia.</p>
+                        </figcaption>
+                    </figure>
                 </div>
-                <div class="col-sm-4">
-                    <h1>Uzupełnij profil</h1>
-                    <p>Dodaj informacje do swojego konta, przeprowadzimy weryfikację i zatwierdzimy Twój profil.</p>
+                <div class="col-sm-4 d-flex justify-content-center">
+                    <figure>
+                        <img src="~/Content/IMAGES/placeholder.png" alt="a" style="height: 200px; height: 200px;">
+                        <figcaption>
+                            <h1>Uzupełnij profil</h1>
+                            <p>Dodaj informacje do swojego konta, przeprowadzimy weryfikację i zatwierdzimy Twój profil.</p>
+                        </figcaption>
+                    </figure>
                 </div>
-                <div class="col-sm-4">
-                    <h1>Utwórz ogłoszenie</h1>
-                    <p>Zarabiaj na zleceniach od użytkowników. Twoje ogłoszenie zostanie do przydzielonej kategorii.</p>
+                <div class="col-sm-4 d-flex justify-content-center">
+                    <figure>
+                        <img src="~/Content/IMAGES/placeholder.png" alt="a" style="height: 200px; height: 200px;">
+                        <figcaption>
+                            <h1>Utwórz ogłoszenie</h1>
+                            <p>Zarabiaj na zleceniach od użytkowników. Twoje ogłoszenie zostanie do przydzielonej kategorii.</p>
+                        </figcaption>
+                    </figure>
                 </div>
             </div>
         </div>
-
-
-
-
-
+        <!-- New added -->
         <div class="container newadded">
             <div class="row">
                 <div class="col-sm-12"><h1>Nowe ogłoszenia</h1></div>
             </div>
-
             <div class="row">
                 <div class="col-sm-3">
                     <a href="" class="hrefnodeco">
                         <div class="card ">
-                            <img class="card-img-top" src="~/Content/IMAGES/slider2.jpg" alt="Card image cap">
+                            <img class="card-img-top" src="~/Content/IMAGES/placeholder.png" alt="Card image cap">
                             <div class="card-body">
                                 <h5 class="card-title">Koszenie trawy - prywatnie</h5>
                                 <p class="card-text">Cena: 200zł</p>
                             </div>
-                            </div>
+                        </div>
                     </a>
                 </div>
-
             </div>
         </div>
     </div>
+    <!-- Footer -->
 
-
-    <hr>
     <div class="footer-clean">
         <footer>
+            <hr>
             <div class="container">
                 <div class="row justify-content-center">
+                    <div class="col-lg-3 item social">
+                        <b>Piła lokalnie to strona poświęcona ogłoszeniom lokalnym w obrębie Piły i okolic.</b>
+                        <p class="copyright">Piłalokalnie © 2020</p>
+                    </div>
                     <div class="col-sm-4 col-md-3 item">
                         <h3>Szybkie linki</h3>
                         <ul>
-                            <li><a href="@Url.Action("Panel", "home", null)">Ustawnienia</a></li>
+                            <li><a href="@Url.Action("Panel", "home", null)">Ustawienia</a></li>
                             <li><a href="@Url.Action("Logowanie", "home", null)">Zaloguj się</a></li>
                             <li><a href="@Url.Action("Rejestracja", "home", null)">Zarejestruj się&nbsp;</a></li>
                             <li><a href="@Url.Action("", "home", null)">Ogłoszenia</a></li>
@@ -256,19 +223,20 @@
                             <li><a href="#">inne</a></li>
                         </ul>
                     </div>
-                    <div class="col-lg-3 item social">
-                        <a href="#"></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-instagram"></i></a>
-                        <p class="copyright">Piłalokalnie © 2020</p>
-                    </div>
                 </div>
             </div>
         </footer>
     </div>
+    <!-- Cookies
+    <div class="alert text-center cookiealert" role="alert">
+        <p>Ta strona korzysta z ciasteczek aby świadczyć usługi na najwyższym poziomie. Dalsze korzystanie z strony oznacza, ze zgadzasz się na ich użycie.</p> <a href="https://cookiesandyou.com/" target="_blank">Dowiedz się więcej</a>
+        <button type="button" class="btn btn-warning btn-sm acceptcookies">
+            Zgadzam się
+        </button>
+    </div>
+        -->
 
-
-
-
-
+    <script src="https://cdn.jsdelivr.net/gh/Wruczek/Bootstrap-Cookie-Alert@gh-pages/cookiealert.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

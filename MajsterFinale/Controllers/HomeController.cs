@@ -17,6 +17,7 @@ using System.Data;
 using System.IO;
 using PagedList;
 using System.Web.UI;
+using System.Windows.Documents;
 //using UploadImageInDataBase.Models;
 
 namespace MajsterFinale.Controllers
@@ -47,18 +48,21 @@ namespace MajsterFinale.Controllers
         {
             if (Session["ID"] == null)
             {
-                return RedirectToAction("Logowanie", "home");
+                return RedirectToAction("Index", "home");
             }
             else
             {
-                return View();
+                AddingAdsRepository model = new AddingAdsRepository();
+                model.CategoryID = -1;
+                model.Categories = addingAdsRepository.GetList();
+                return View(model);
             }
         }
         public ActionResult Logowanie()
         {
             if (Session["ID"] != null)
             {
-                return RedirectToAction("Index", "home", new { ID = Session["ID"].ToString() });
+                return RedirectToAction("Mainpage", "home", new { ID = Session["ID"].ToString() });
             }
             else
             {
@@ -74,6 +78,7 @@ namespace MajsterFinale.Controllers
             USERS.PASSWORD = registerRepository.Encryption(USERS.PASSWORD);
             
             var userLoggedIn = db.USERS.SingleOrDefault(x => x.MAIL == USERS.MAIL && x.PASSWORD == USERS.PASSWORD);
+            
             if (userLoggedIn != null)
             {
                 ViewBag.message = "Zalogowano";
@@ -84,8 +89,7 @@ namespace MajsterFinale.Controllers
                 //Session["Login"] = userLoggedIn.LOGIN;
 
                 //po zalogowaniu przenosi nas index
-                return RedirectToAction("Index", "home", new { ID = USERS.USER_ID });
-
+                return RedirectToAction("Mainpage", "home", new { ID = USERS.USER_ID });
             }
             else
             {
@@ -95,8 +99,15 @@ namespace MajsterFinale.Controllers
         }
         public ActionResult Rejestracja(int id = 0)
         {
-            USERS USERS = new USERS();
-            return View(USERS);
+            if (Session["ID"] != null)
+            {
+                return RedirectToAction("Mainpage", "home");
+            }
+            else
+            {
+                USERS USERS = new USERS();
+                return View(USERS);
+            }
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -108,68 +119,30 @@ namespace MajsterFinale.Controllers
             }
             else
 
-            using (BazaLocal db = new BazaLocal())
+                using (BazaLocal db = new BazaLocal())
                 {
-                    var isMailExist = registerRepository.IsEmailExist(USERS.MAIL);
-                     if (isMailExist)
-                     {
-                         ViewBag.SuccessMessage = "Email jest już w użyciu";
-                         return View();
-                     }
-                    /*
-                    var isLoginExist = registerRepository.IsLoginExist(USERS.LOGIN);
-                    if (isLoginExist)
+                    var mail = db.USERS.SingleOrDefault(x => x.MAIL == USERS.MAIL);
+                    if (mail != null)
                     {
-                        ViewBag.SuccessMessage = "Login jest już w użyciu";
-                        return View();
-                    } 
-                    */
-                    var arePasswordsSame = registerRepository.ArePasswordsSame(USERS);
-                    if (arePasswordsSame)
-                    {
-                        ViewBag.SuccessMessage = "Podane hasła muszą być takie same";
+                        ModelState.AddModelError("MAIL", "Adres email jest juz zajęty");
                         return View();
                     }
-                    /*
-                    var areMailsSame = registerRepository.AreMailsSame(USERS);
-                    if (areMailsSame)
-                    {
-                        ViewBag.SuccessMessage = "Podane maile muszą być takie same";
-                        return View();
-                    }
-                    */
-                    var arePasswordsNull = registerRepository.IsPasswordNotNull(USERS);
-                    if (arePasswordsNull)
-                    {
-                        ViewBag.SuccessMessage = "Oba pola przeznaczone do wprowadzenia hasła muszą być uzupełnione";
-                        return View();
-                    }
-                    var areMailsNull = registerRepository.IsMailNotNull(USERS);
-                    if (areMailsNull)
-                    {
-                        ViewBag.SuccessMessage = "Pole przeznaczone do wprowadzenia maila muszą być uzupełnione";
-                        return View();
-                    }
-                    var areTermsAccepted = registerRepository.AreTermsAccepted(USERS);
-                    if (areTermsAccepted)
-                    {
-                        ViewBag.SuccessMessage = "Należy zaakceptować regulamin i politykę prywatności";
-                        return View();
-                    }
+                    else { 
                     USERS.PASSWORD = registerRepository.Encryption(USERS.PASSWORD);
                     USERS.REPASSWORD = registerRepository.Encryption(USERS.REPASSWORD);
+                    USERS.FNAME = USERS.FNAME;
                     USERS.VERIFIED = false;
-                    //USERS.ACTIVATIONCODE = Guid.NewGuid();
+                    USERS.IS_ADMIN = false;
                     db.USERS.Add(USERS);
                     db.SaveChanges();
                     SendVerificationLinkEmail(USERS.MAIL, USERS.USER_ID);
+                    ViewBag.SuccessMessage = "Rejestracja przebiegła pomyślnie." +
+            "Przesłaliśmy maila aktywacyjnego na maila:" + USERS.MAIL;
+                    }
                 }
-                ModelState.Clear();
-                ViewBag.SuccessMessage = "Rejestracja przebiegła pomyślnie." +
-                "Przesłaliśmy maila aktywacyjnego na maila:" + USERS.MAIL;
-                return View();
+            ModelState.Clear();
+            return View();
         }
-       
 
         [HttpPost]
         public void SendVerificationLinkEmail(string MAIL, int UID)
@@ -244,26 +217,30 @@ namespace MajsterFinale.Controllers
             return RedirectToAction("Index", "Home");
         }
  
-        public JsonResult ImageUpload(ImageViewModel model)
+        public ActionResult ImageUpload(ImageViewModel model, IEnumerable<HttpPostedFileBase> files)
         {
             BazaLocal db = new BazaLocal();
             int imgId = 0;
-            var file = model.ImageFile;
-            byte[] imagebyte = null;
-            if (file != null)
+
+            foreach (var file in files)
             {
-                file.SaveAs(Server.MapPath("/UploadImage/" + file.FileName));
-                BinaryReader reader = new BinaryReader(file.InputStream);
-                imagebyte = reader.ReadBytes(file.ContentLength);
-                IMAGES img = new IMAGES();
-                img.IMAGE_TITLE = file.FileName;
-                img.IMAGE_BYTE = imagebyte;
-                img.IMAGE_PATH = "/UploadImage/" + file.FileName;
-                db.IMAGES.Add(img);
-                db.SaveChanges();
-                imgId = img.IMAGE_ID;
+                //var file = model.ImageFile;
+                byte[] imagebyte = null;    
+                if (file != null)
+                {
+                    file.SaveAs(Server.MapPath("/UploadImage/" + file.FileName));
+                    BinaryReader reader = new BinaryReader(file.InputStream);
+                    imagebyte = reader.ReadBytes(file.ContentLength);
+                    IMAGES img = new IMAGES();
+                    img.IMAGE_TITLE = file.FileName;
+                    img.IMAGE_BYTE = imagebyte;
+                    img.IMAGE_PATH = "/UploadImage/" + file.FileName;
+                    db.IMAGES.Add(img);
+                    db.SaveChanges();
+                    imgId = img.IMAGE_ID;
+                }
             }
-            return Json(imgId, JsonRequestBehavior.AllowGet);
+            return RedirectToAction("DodawanieZdjec", "Home");
         }
 
         public ActionResult DisplayingImage(int imgid)
