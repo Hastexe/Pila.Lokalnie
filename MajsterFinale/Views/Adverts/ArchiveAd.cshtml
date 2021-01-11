@@ -41,7 +41,7 @@
                                 <h6 class="dropdown-header" style="font-weight: bold; font-size: 1.0rem; margin-bottom: 5px;">Twoje konto:</h6>
                                 <a class="dropdown-item" href="@Url.Action("MojeOgloszenia", "Adverts", null)">Ogłoszenia</a>
                                 <a class="dropdown-item" href="@Url.Action("Messages", "User", null)">Wiadomości</a>
-                                <a class="dropdown-item" href="@Url.Action("EditaData", "User", null)">Ustawienia</a>
+                                <a class="dropdown-item" href="@Url.Action("Panel", "User", null)">Ustawienia</a>
                                 <h6 class="dropdown-header " style="font-weight: bold; font-size: 1.0rem; margin-bottom: 5px;">Obserwowane:</h6>
                                 <a class="dropdown-item" href="#">Ogłoszenia</a>
                                 <div class="dropdown-divider"></div>
@@ -63,13 +63,25 @@
         <div class="container-fluid">
             <div class="row sizeadv">
                 <div class="col-sm-12"><h1>Twoje ogłoszenia</h1></div>
-                <nav class="nav">
-                    <a class="nav-link navcolor " href="@Url.Action("MojeOgloszenia", "Adverts", null)">Ogłoszenia</a>
-                    <a class="nav-link navcolor" href="@Url.Action("#", "Adverts", null)">Obserwowane</a>
-                    <a class="nav-link navcolor" href="@Url.Action("Messages", "User", null)">Wiadomości</a>
-                    <a class="nav-link navcolor active" href="@Url.Action("ArchiveAd", "Adverts", null)">Archiwum</a>
-                    <a class="nav-link navcolor " href="@Url.Action("EditData", "User", null)">Ustawienia</a>
-                </nav>
+                <div class="col-sm-12">
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <a class="nav-link  navcolor" href="@Url.Action("MojeOgloszenia", "Adverts", null)">Ogłoszenia</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link  navcolor" href="@Url.Action("#", "Adverts", null)">Obserwowane</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link navcolor" href="@Url.Action("Messages", "User", null)">Wiadomości</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link navcolor active" href="@Url.Action("ArchiveAd", "Adverts", null)">Kosz</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link navcolor" href="@Url.Action("Panel", "User", null)">Ustawienia</a>
+                        </li>
+                    </ul>
+                </div>
                 <hr>
                 <!-- CONTENT -->
                 <div class="col-sm-12" style="margin-top: 30px;">

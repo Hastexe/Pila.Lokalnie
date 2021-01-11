@@ -41,7 +41,7 @@
                                 <h6 class="dropdown-header" style="font-weight: bold; font-size: 1.0rem; margin-bottom: 5px;">Twoje konto:</h6>
                                 <a class="dropdown-item" href="@Url.Action("MojeOgloszenia", "Adverts", null)">Ogłoszenia</a>
                                 <a class="dropdown-item" href="@Url.Action("Messages", "User", null)">Wiadomości</a>
-                                <a class="dropdown-item" href="@Url.Action("EditData", "User", null)">Ustawienia</a>
+                                <a class="dropdown-item" href="@Url.Action("Panel", "User", null)">Ustawienia</a>
                                 <h6 class="dropdown-header " style="font-weight: bold; font-size: 1.0rem; margin-bottom: 5px;">Obserwowane:</h6>
                                 <a class="dropdown-item" href="#">Ogłoszenia</a>
                                 <div class="dropdown-divider"></div>
@@ -63,31 +63,44 @@
         <div class="container-fluid">
             <div class="row sizeadv">
                 <div class="col-sm-12"><h1>Twoje ogłoszenia</h1></div>
-                <nav class="nav">
-                    <a class="nav-link navcolor active" href="@Url.Action("MojeOgloszenia", "Adverts", null)">Ogłoszenia</a>
-                    <a class="nav-link navcolor" href="@Url.Action("#", "Adverts", null)">Obserwowane</a>
-                    <a class="nav-link navcolor" href="@Url.Action("Messages", "User", null)">Wiadomości</a>
-                    <a class="nav-link navcolor" href="@Url.Action("ArchiveAd", "Adverts", null)">Archiwum</a>
-                    <a class="nav-link navcolor " href="@Url.Action("EditData", "User", null)">Ustawienia</a>
-                </nav>
+                <div class="col-sm-12">
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <a class="nav-link active navcolor" href="@Url.Action("MojeOgloszenia", "Adverts", null)">Ogłoszenia</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link  navcolor" href="@Url.Action("#", "Adverts", null)">Obserwowane</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link navcolor" href="@Url.Action("Messages", "User", null)">Wiadomości</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link navcolor" href="@Url.Action("ArchiveAd", "Adverts", null)">Kosz</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link navcolor" href="@Url.Action("Panel", "User", null)">Ustawienia</a>
+                        </li>
+                    </ul>
+                </div>
                 <hr>
+
                 <div class="col-sm-12" style="margin-top: 30px;">
                     @foreach (var item in Model)
                     {
                         <div class="row">
-                            <div class="col-md-8">
+                            <div class="col-md-12">
                                 <div class="card bg-light border-0">
                                     <div class="card-horizontal">
                                         <div class="img-square-wrapper">
                                             <a href="@Url.Action("Details", "Adverts", new { id = item.ID }) "><img class="" src="http://via.placeholder.com/200x140" alt="Card image cap"></a>
                                         </div>
                                         <div class="card-body link">
-                                            <h4 class="card-title"> <a href="@Url.Action("Details", "Adverts", new { id = item.ID })">@Html.DisplayFor(modelItem => item.TITLE) </a></h4>
+                                            <h4 class="card-title"> <a href="@Url.Action("Details", "Adverts", new { id = item.ID })"></a>@Html.DisplayFor(modelItem => item.TITLE) </h4>
                                             <!-- <p class="card-text">Kategoria: @Html.DisplayFor(modelItem => item.CATEGORIES.NAME)</p>-->
                                             <button type="submit" value="@item.ID" name="Edit" onclick="return @item.ID;">Edytuj</button>|
                                             <button type="submit" value="@item.ID" name="Delete" onclick="return @item.ID;">Usuń</button>
                                             <p class="card-text text-right">@Html.DisplayFor(modelItem => item.PRICE) zł</p>
-                                        </div>
+</div>
                                     </div>
                                 </div>
                             </div>

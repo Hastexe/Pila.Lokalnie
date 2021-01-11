@@ -203,7 +203,6 @@
     <Content Include="Content\CSS\main.css" />
     <Content Include="Content\CSS\main_page.css" />
     <Content Include="Content\CSS\my_adv.css" />
-    <Content Include="Content\CSS\product_details.css" />
     <Content Include="Content\IMAGES\3steps.png" />
     <Content Include="Content\IMAGES\background2.svg" />
     <Content Include="Content\IMAGES\logo_nav.png" />

@@ -1,151 +1,51 @@
 ﻿@model MajsterFinale.Models.USERS
-@{
-    Layout = null;
-}
 
-<!doctype html>
-<html lang="pl">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Piłalokalnie - serwis ogłoszeń lokalnych</title>
-    <meta name="description" content="Serwisz ogłoszeń lokalnych w Pile">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-    <link href="~/Content/CSS/background.css" rel="stylesheet" />
-    <link href="~/Content/CSS/main.css" rel="stylesheet" />
-    <link href="~/Content/CSS/my_adv.css" rel="stylesheet" />
-</head>
-<body>
-    <!-- Navbar -->
-    <div class="container-fluid">
-        <nav class="navbar navbar-expand-lg navbar-dark py-1">
-            <div class="container-fluid navbarmar">
-                <a class="navbar-brand " href="@Url.Action("Mainpage", "Home", null)">
-                    <img src="~/Content/IMAGES/logo_nav.png" width="50" height="50" class="d-inline-block align-top" alt="Logo"><h1 class="icontex underline">Piła lokalnie</h1>
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="nav navbar ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("Messages", "Home", null)"><i class="far fa-envelope"><span class="badge badge-warning">4</span></i></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="far fa-bookmark"></i></a>
-                        </li>
-                        <li class="nav-item dropdown active">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-weight: 600;">Moje konto</a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <h6 class="dropdown-header" style="font-weight: bold; font-size: 1.0rem; margin-bottom: 5px;">Twoje konto:</h6>
-                                <a class="dropdown-item" href="@Url.Action("MojeOgloszenia", "Adverts", null)">Ogłoszenia</a>
-                                <a class="dropdown-item" href="@Url.Action("Messages", "User", null)">Wiadomości</a>
-                                <a class="dropdown-item" href="@Url.Action("EditData", "User", null)">Ustawienia</a>
-                                <h6 class="dropdown-header " style="font-weight: bold; font-size: 1.0rem; margin-bottom: 5px;">Obserwowane:</h6>
-                                <a class="dropdown-item" href="#">Ogłoszenia</a>
-                                <div class="dropdown-divider"></div>
 
-                                @using (Html.BeginForm("LogOff", "home", FormMethod.Post, new { role = "form" }))
-                                {
-                                    @Html.AntiForgeryToken()
-                                    <input type="submit" value="Wyloguj się" class="dropdown-item" />}
-                            </div>
-                        </li>
-                    </ul>
-                    <a class="btn btn-custom" href="@Url.Action("AddAdvertisement", "Adverts", null)" role="button">Dodaj ogłoszenie</a>
-                </div>
-            </div>
-        </nav>
-    </div>
-    <!-- MAIN CONTENT -->
-    
-        <div class="container-fluid">
-            <div class="row sizeadv">
-                <div class="col-sm-12"><h1>Ustawienia</h1></div>
-                <div class="col-sm-12">
-                    <nav class="nav">
-                        <a class="nav-link navcolor" href="@Url.Action("MojeOgloszenia", "Adverts", null)">Ogłoszenia</a>
-                        <a class="nav-link navcolor" href="@Url.Action("#", "Adverts", null)">Obserwowane</a>
-                        <a class="nav-link navcolor" href="@Url.Action("Messages", "User", null)">Wiadomości</a>
-                        <a class="nav-link navcolor" href="@Url.Action("ArchiveAd", "Adverts", null)">Archiwum</a>
-                        <a class="nav-link navcolor active" href="@Url.Action("EditData", "User", null)">Ustawienia</a>
-                    </nav>
-                    <hr>
-                </div>
-                <div class="col-sm-12">
-                    <nav class="nav">
-                        <a class="nav-link active navcolor" href="@Url.Action("EditData", "User", null)">Zmiana danych</a>
-                        <a class="nav-link  navcolor" href="@Url.Action("EditPassword", "User", null)">Zmiana hasła</a>
-                        <a class="nav-link navcolor" href="@Url.Action("Messages", "User", null)">Placeholder</a>
-                    </nav>
 
-                </div>
-            </div>
-
-                @{
-                    if (!string.IsNullOrEmpty(ViewBag.Message))
-                    {
-                        <script type="text/javascript">
+    @{ 
+        if (!string.IsNullOrEmpty(ViewBag.Message))
+            {
+            <script type="text/javascript">
                 alert("@ViewBag.Message");
-                        </script>
-
-                    }
-                    if (Session["ID"] != null)
-                    {
-                        <div class="container-fluid">
-                            <div class="row" style="margin-top: 2rem; margin-left:15%">
-                                @using (Html.BeginForm())
-                                {
-                                    @Html.AntiForgeryToken()
-                                    <div class="form-horizontal">
-                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                        <div class="form-group">
-                           
-                                            <div class="col-sm-12">
-                                                <p>Imię: </p>
-                                                @Html.EditorFor(model => model.FNAME, new { htmlAttributes = new { @class = "form-control" } })
-                                                @Html.ValidationMessageFor(model => model.FNAME, "", new { @class = "text-danger" })
-                                                <small class="form-text text-muted">Wpisz nowe imię.</small>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                          
-                                            <div class="col-sm-12">
-                                                <p>Nazwisko: </p>
-                                                @Html.EditorFor(model => model.LNAME, new { htmlAttributes = new { @class = "form-control" } })
-                                                @Html.ValidationMessageFor(model => model.LNAME, "", new { @class = "text-danger" })
-                                                <small class="form-text text-muted">Wpisz nowe nazwisko.</small>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                            
-                                            <div class="col-sm-12">
-                                                <p>Numer telefonu: </p>
-                                                @Html.EditorFor(model => model.PHONE_NUMBER, new { htmlAttributes = new { @class = "form-control" } })
-                                                @Html.ValidationMessageFor(model => model.PHONE_NUMBER, "", new { @class = "text-danger" })
-                                                <small class="form-text text-muted">Wpisz nowy numer telefonu.</small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-md-offset-2 col-md-10">
-                                            <input type="submit" value="Zapisz" class="btn btn-custom" />
-                                        </div>
-                                    </div>
-                                }
-                            </div>
+            </script> 
+            }
+        if (Session["ID"] != null)
+        {
+        <div>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.FNAME, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.FNAME, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.FNAME, "", new { @class = "text-danger" })
                         </div>
-                        }
-                    }
-            </div>
-   
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.LNAME, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.LNAME, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.LNAME, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.PHONE_NUMBER, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.PHONE_NUMBER, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.PHONE_NUMBER, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Save" class="btn btn-default" />
+                    </div>
+                </div>
+            }
 
-
-
-    <script src="https://cdn.jsdelivr.net/gh/Wruczek/Bootstrap-Cookie-Alert@gh-pages/cookiealert.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-</body>
-</html>
+        </div> 
+        } 
+    }
