@@ -11,15 +11,10 @@ namespace MajsterFinale.Models
 {
     using System;
     using System.Collections.Generic;
-<<<<<<< Updated upstream
-    
-=======
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
-    using System.Collections.Generic;
     using System.Web.Mvc;
 
->>>>>>> Stashed changes
     public partial class ADVERTS
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]

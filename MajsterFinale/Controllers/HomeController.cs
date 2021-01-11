@@ -93,7 +93,8 @@ namespace MajsterFinale.Controllers
             }
             else
             {
-                ViewBag.triedOnce = "Tak";
+                ViewBag.Message = "Podane dane logowania są błędne";
+                ModelState.Clear();
                 return View();
             }
         }
@@ -113,36 +114,67 @@ namespace MajsterFinale.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Rejestracja(USERS USERS)
         {
-            if (!ModelState.IsValid)
+            ViewBag.Message = null;
+            if (ModelState.IsValid)
             {
-                return View(USERS);
-            }
-            else
+              
 
                 using (BazaLocal db = new BazaLocal())
                 {
+                    var arePasswordsSame = registerRepository.ArePasswordsSame(USERS);
+                    var arePasswordsNull = registerRepository.IsPasswordNotNull(USERS);
+                    var areMailsNull = registerRepository.IsMailNotNull(USERS);
+                    var areTermsAccepted = registerRepository.AreTermsAccepted(USERS);
                     var mail = db.USERS.SingleOrDefault(x => x.MAIL == USERS.MAIL);
                     if (mail != null)
                     {
                         ModelState.AddModelError("MAIL", "Adres email jest juz zajęty");
                         return View();
                     }
-                    else { 
-                    USERS.PASSWORD = registerRepository.Encryption(USERS.PASSWORD);
-                    USERS.REPASSWORD = registerRepository.Encryption(USERS.REPASSWORD);
-                    USERS.FNAME = USERS.FNAME;
-                    USERS.VERIFIED = false;
-                    USERS.IS_ADMIN = false;
-                    db.USERS.Add(USERS);
-                    db.SaveChanges();
-                    SendVerificationLinkEmail(USERS.MAIL, USERS.USER_ID);
-                    ViewBag.SuccessMessage = "Rejestracja przebiegła pomyślnie." +
-            "Przesłaliśmy maila aktywacyjnego na maila:" + USERS.MAIL;
+                    else if (areMailsNull)
+                    {
+                        ModelState.AddModelError("MAIL", "Należy podać maila");
+                        return View();
+                    }
+                    else if (arePasswordsNull)
+                    {
+                        ModelState.AddModelError("PASSWORD", "Należy uzupełnić oba pole hasła");
+                        ModelState.AddModelError("REPASSWORD", "Należy uzupełnić oba pole hasła");
+                        return View();
+                    }
+                    else if (arePasswordsSame)
+                    {
+                        ModelState.AddModelError("PASSWORD", "Hasła muszą być takie same");
+                        ModelState.AddModelError("REPASSWORD", "Hasła muszą być takie same");
+                        return View();
+                    }
+                    else if (areTermsAccepted)
+                    {
+                        ModelState.AddModelError("TERMS", "Należy zaakceptować warunki");
+                        return View();
+                    }
+                    else
+                    {
+                        USERS.PASSWORD = registerRepository.Encryption(USERS.PASSWORD);
+                        USERS.REPASSWORD = registerRepository.Encryption(USERS.REPASSWORD);
+                        USERS.FNAME = USERS.FNAME;
+                        USERS.VERIFIED = false;
+                        USERS.IS_ADMIN = false;
+                        db.USERS.Add(USERS);
+                        db.SaveChanges();
+                        SendVerificationLinkEmail(USERS.MAIL, USERS.USER_ID);
                     }
                 }
             ModelState.Clear();
+            ViewBag.SuccessMessage = "Na maila został przesłany link aktywujący konto. Bez aktywacji konta nie będziesz w stanie dodawać ogłoszeń";
             return View();
+         }
+         else
+         {
+           return View();
+         }
         }
+  
 
         [HttpPost]
         public void SendVerificationLinkEmail(string MAIL, int UID)
@@ -167,8 +199,6 @@ namespace MajsterFinale.Controllers
 
                 client.Send(message);
                 client.Dispose();
-                MessageBox.Show("Wyslano maila");
-            
         }
         public ActionResult Confirm(int uID)
         {
