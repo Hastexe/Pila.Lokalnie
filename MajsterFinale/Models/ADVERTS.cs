@@ -11,10 +11,15 @@ namespace MajsterFinale.Models
 {
     using System;
     using System.Collections.Generic;
+<<<<<<< Updated upstream
+    
+=======
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
+    using System.Collections.Generic;
     using System.Web.Mvc;
 
+>>>>>>> Stashed changes
     public partial class ADVERTS
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,7 +28,7 @@ namespace MajsterFinale.Models
             this.FAV = new HashSet<FAV>();
             this.MESSAGE = new HashSet<MESSAGE>();
         }
-
+    
         public int ID { get; set; }
         public int USER_ID { get; set; }
         [DisplayName("Kategoria")]
@@ -45,7 +50,7 @@ namespace MajsterFinale.Models
         public Nullable<bool> IS_ARCHIVED { get; set; }
         public System.DateTime DATE { get; set; }
         public string PHONE_NUMBER { get; set; }
-
+    
         public virtual CATEGORIES CATEGORIES { get; set; }
         public virtual USERS USERS { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
