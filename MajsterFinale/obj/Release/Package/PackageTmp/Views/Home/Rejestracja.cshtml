@@ -1,0 +1,123 @@
+﻿@{ Layout = null; }
+@model MajsterFinale.Models.USERS
+@Html.ValidationSummary(true)
+
+    @using (Html.BeginForm("Rejestracja", "Home", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <!doctype html>
+        <html lang="pl">
+        <head runat="server">
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            <title>Piłalokalnie - serwis ogłoszeń lokalnych</title>
+            <meta name="description" content="Serwisz ogłoszeń lokalnych w Pile">
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+            <link href="~/Content/CSS/login_register.css" rel="stylesheet" />
+            <link href="~/Content/CSS/main.css" rel="stylesheet" />
+        </head>
+
+        <body>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="container-fluid" style="background-color:#0B3c5d;">
+                            <nav class="navbar navbar-expand-lg navbar-dark py-1">
+                                <div class="navbarmar">
+                                    <a class="navbar-brand " href="@Url.Action("Index", "Home", null)">
+                                        <img src="~/Content/IMAGES/logo_nav.png" width="50" height="50" class="d-inline-block align-top" alt=""><h1 class="icontex underline">Piła lokalnie</h1>
+                                    </a>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 loginreg d-flex justify-content-center">
+                        <div class="card mb-3 form-signin">
+                            <h1 class="h3 mb-3 font-weight-normal">Zarejestruj się</h1>
+                            <div class="form-group">
+                                <label class="label-success" style="color: green;">@ViewBag.SuccessMessage</label>
+                            </div>
+                            <p>Email:</p>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.MAIL, htmlAttributes: new { @class = "control-label sr-only" })
+                                <div class="">
+                                    @Html.EditorFor(model => model.MAIL, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessage("MAIL", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <p>Imię:</p>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.FNAME, htmlAttributes: new { @class = "control-label sr-only" })
+                                <div class="">
+                                    @Html.EditorFor(model => model.FNAME, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.FNAME, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <p>Hasło:</p>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.PASSWORD, htmlAttributes: new { @class = "control-label sr-only" })
+                                <div class="">
+                                    @Html.EditorFor(model => model.PASSWORD, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessage("PASSWORD", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <p>Powtórz hasło:</p>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.REPASSWORD, htmlAttributes: new { @class = "control-label sr-only" })
+                                <div class="">
+                                    @Html.EditorFor(model => model.REPASSWORD, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessage("REPASSWORD", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <span>
+                                    @Html.CheckBoxFor(model => model.TERMS) Akceptuję <a href="@Url.Action("Regulamin", "home", null)">regulamin</a>.
+                                </span>
+
+                                <p class="reg">Oświadczam, iż zapoznałem się z treścią @Html.ActionLink("Regulaminu", "regulamin", null, new { target = "_blank" }) i akceptuję jego wszystkie postanowienia. Akceptuję @Html.ActionLink("Politykę Ochrony Prywatności", "polityka", null, new { target = "_blank" }) - ogólne standardy ochrony.</p>
+                                <div class="">
+                                    @Html.ValidationMessage("TERMS", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <button type="submit" value="Załóż konto" class="btn btn-lg btn-custom btn-block">Załóż konto</button>
+                            </div>
+                            <a href="@Url.Action("Logowanie", "home", null)">Masz już konto? Zaloguj się</a>
+                        </div>
+                    </div>
+                    <script>
+                        // extend range validator method to treat checkboxes differently
+                        var defaultRangeValidator = $.validator.methods.range;
+                        $.validator.methods.range = function (value, element, param) {
+                            if (element.type === 'checkbox') {
+                                // if it's a checkbox return true if it is checked
+                                return element.checked;
+                            } else {
+                                // otherwise run the default validation function
+                                return defaultRangeValidator.call(this, value, element, param);
+                            }
+                        }
+                    </script>
+                </div>
+            </div>
+
+
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+        </body>
+    </html>
+   }
+    
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+
+    @section Scripts{
+        @Scripts.Render("~/bundles/jqueryval")
+        @Scripts.Render("~/bundles/custom-validator")
+    }
+

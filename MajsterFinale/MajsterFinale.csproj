@@ -26,7 +26,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <TypeScriptToolsVersion>3.9</TypeScriptToolsVersion>
+    <TypeScriptToolsVersion>3.8</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -45,6 +45,19 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <TypeScriptTarget>ES5</TypeScriptTarget>
+    <TypeScriptJSXEmit>React</TypeScriptJSXEmit>
+    <TypeScriptModuleKind />
+    <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
+    <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
+    <TypeScriptRemoveComments>False</TypeScriptRemoveComments>
+    <TypeScriptOutFile />
+    <TypeScriptOutDir />
+    <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
+    <TypeScriptNoEmitOnError>True</TypeScriptNoEmitOnError>
+    <TypeScriptSourceMap>True</TypeScriptSourceMap>
+    <TypeScriptMapRoot />
+    <TypeScriptSourceRoot />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -359,7 +372,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <None Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Mainpage.cshtml" />
     <Content Include="Views\Home\Regulamin%28możliwe usunięcie%29.cshtml" />
     <Content Include="Views\Home\Message.cshtml" />
@@ -381,7 +394,6 @@
     <Content Include="Views\Adverts\Details.cshtml" />
     <Content Include="Views\Adverts\Category.cshtml" />
     <Content Include="Views\Adverts\Show.cshtml" />
-    <Content Include="Views\User\View.cshtml" />
     <Content Include="Views\User\Panel.cshtml" />
     <Content Include="Views\Home\Confirm.cshtml" />
     <Content Include="Views\User\EditPassword.cshtml" />
@@ -398,6 +410,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\BOOTSTRAP\" />
+    <Folder Include="Properties\PublishProfiles\" />
     <Folder Include="UploadImage\" />
     <Folder Include="Views\ActivateAccount\" />
     <Folder Include="Views\RegisterRepository\" />

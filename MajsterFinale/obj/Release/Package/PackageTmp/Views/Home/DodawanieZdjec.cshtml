@@ -1,0 +1,17 @@
+﻿@model MajsterFinale.Models.IMAGES
+
+@using (Html.BeginForm("ImageUpload", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <input type="file" id="f" name="files" multiple onchange="checkFilesCount(this)" />
+    <button class="btn btn-default">Upload</button>
+
+
+    <script>
+        function checkFilesCount(id) {
+            if (id.files.length > 4) {
+                alert('Można przesłać maksymalnie 4 zdjęcia');
+                document.getElementById("f").value = "";
+            }
+        }
+    </script>
+}

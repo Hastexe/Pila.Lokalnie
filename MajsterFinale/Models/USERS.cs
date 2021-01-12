@@ -58,6 +58,8 @@ namespace MajsterFinale.Models
         [RegularExpression(@"^\(?([1-9]{1})\)?([0-9]{8})$", ErrorMessage = "Nieprawid³owy numer telefonu. Poprawny format: 123456789")]
         public string PHONE_NUMBER { get; set; }
         public bool TERMS { get; set; }
+
+        public bool rememberMe { get; set; }
         public System.DateTime REGISTER_DATE { get; set; }
         public string RESETPASSWORDCODE { get; set; }
     

@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BazaPolaczenieStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="ADVERTS">
+      <EntityTypeMapping TypeName="BazaPolaczenie.ADVERTS">
+        <MappingFragment StoreEntitySet="ADVERTS">
+          <ScalarProperty Name="IMAGE" ColumnName="IMAGE" />
+          <ScalarProperty Name="PHONE_NUMBER" ColumnName="PHONE_NUMBER" />
+          <ScalarProperty Name="DATE" ColumnName="DATE" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+          <ScalarProperty Name="CATEGORY" ColumnName="CATEGORY" />
+          <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+          <ScalarProperty Name="IS_ARCHIVED" ColumnName="IS_ARCHIVED" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CATEGORIES">
+      <EntityTypeMapping TypeName="BazaPolaczenie.CATEGORIES">
+        <MappingFragment StoreEntitySet="CATEGORIES">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TAG" ColumnName="TAG" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FAV">
+      <EntityTypeMapping TypeName="BazaPolaczenie.FAV">
+        <MappingFragment StoreEntitySet="FAV">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="USER" ColumnName="USER" />
+          <ScalarProperty Name="ADV" ColumnName="ADV" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MESSAGE">
+      <EntityTypeMapping TypeName="BazaPolaczenie.MESSAGE">
+        <MappingFragment StoreEntitySet="MESSAGE">
+          <ScalarProperty Name="ADVERT_ID" ColumnName="ADVERT_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="MSG_FROM" ColumnName="MSG_FROM" />
+          <ScalarProperty Name="MSG_TO" ColumnName="MSG_TO" />
+          <ScalarProperty Name="TEXT" ColumnName="TEXT" />
+          <ScalarProperty Name="DATE" ColumnName="DATE" />
+          <ScalarProperty Name="IS_READ" ColumnName="IS_READ" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USERS">
+      <EntityTypeMapping TypeName="BazaPolaczenie.USERS">
+        <MappingFragment StoreEntitySet="USERS">
+          <ScalarProperty Name="RESETPASSWORDCODE" ColumnName="RESETPASSWORDCODE" />
+          <ScalarProperty Name="REGISTER_DATE" ColumnName="REGISTER_DATE" />
+          <ScalarProperty Name="PHONE_NUMBER" ColumnName="PHONE_NUMBER" />
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+          <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+          <ScalarProperty Name="MAIL" ColumnName="MAIL" />
+          <ScalarProperty Name="FNAME" ColumnName="FNAME" />
+          <ScalarProperty Name="LNAME" ColumnName="LNAME" />
+          <ScalarProperty Name="VERIFIED" ColumnName="VERIFIED" />
+          <ScalarProperty Name="IS_ADMIN" ColumnName="IS_ADMIN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="IMAGES">
+      <EntityTypeMapping TypeName="BazaPolaczenie.IMAGES">
+        <MappingFragment StoreEntitySet="IMAGES">
+          <ScalarProperty Name="MESSAGE_ID" ColumnName="MESSAGE_ID" />
+          <ScalarProperty Name="ADVERT_ID" ColumnName="ADVERT_ID" />
+          <ScalarProperty Name="IMAGE_PATH" ColumnName="IMAGE_PATH" />
+          <ScalarProperty Name="IMAGE_BYTE" ColumnName="IMAGE_BYTE" />
+          <ScalarProperty Name="IMAGE_TITLE" ColumnName="IMAGE_TITLE" />
+          <ScalarProperty Name="IMAGE_ID" ColumnName="IMAGE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

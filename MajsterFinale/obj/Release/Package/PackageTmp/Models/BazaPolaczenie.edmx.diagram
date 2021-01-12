@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7ee0efddad3444dc85d2d951d14fc167" Name="Diagram1">
+        <EntityTypeShape EntityType="BazaPolaczenie.ADVERTS" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BazaPolaczenie.CATEGORIES" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BazaPolaczenie.FAV" Width="1.5" PointX="6.875" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BazaPolaczenie.MESSAGE" Width="1.5" PointX="6.5" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BazaPolaczenie.USERS" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <AssociationConnector Association="BazaPolaczenie.FK_ADVERTS_CATEGORIES" ManuallyRouted="false" />
+        <AssociationConnector Association="BazaPolaczenie.FK_ADVERTS_USERS" ManuallyRouted="false" />
+        <AssociationConnector Association="BazaPolaczenie.FK_FAV_ADVERTS" ManuallyRouted="false" />
+        <AssociationConnector Association="BazaPolaczenie.FK_FAV_USERS" ManuallyRouted="false" />
+        <AssociationConnector Association="BazaPolaczenie.FK_MESSAGE_USERS" ManuallyRouted="false" />
+        <AssociationConnector Association="BazaPolaczenie.FK_MESSAGE_USERS1" ManuallyRouted="false" />
+        <AssociationConnector Association="BazaPolaczenie.FK_FAV_MESSAGE" />
+        <EntityTypeShape EntityType="BazaPolaczenie.IMAGES" Width="1.5" PointX="5.5" PointY="0.625" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
