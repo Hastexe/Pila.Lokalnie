@@ -25,7 +25,8 @@ namespace MajsterFinale.Models
             this.MESSAGE1 = new HashSet<MESSAGE>();
         }
     
-        public int USER_ID { get; set; }    
+        public int USER_ID { get; set; }
+
         [DisplayName("Has³o")]
         [DataType(DataType.Password)]
         //[RegularExpression(@"^((?=.*[A - Z])(?=.*\d)(?=.*[a - z]) | (?=.*[A - Z])(?=.*\d)(?=.*[!@#$%&\/=?_.-])|(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%&\/=?_.-])|(?=.*\d)(?=.*[a-z])(?=.*[!@#$%&\/=?_.-])).{7,}$", 
@@ -36,13 +37,14 @@ namespace MajsterFinale.Models
         [DisplayName("Powtórz Has³o")]
         [DataType(DataType.Password)]
         //[RegularExpression(@"^((?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])|(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[^a-zA-Z0-9])|(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[^a-zA-Z0-9])|(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^a-zA-Z0-9])).{8,}$",
-            //ErrorMessage = "Has³o musi sk³adaæ siê z minimum 8 znaków i zawieraæ przynajmnej po 1 znaku specjalnym, du¿ej literze, ma³ej literze i cyfrze")]
+        //ErrorMessage = "Has³o musi sk³adaæ siê z minimum 8 znaków i zawieraæ przynajmnej po 1 znaku specjalnym, du¿ej literze, ma³ej literze i cyfrze")]
         public string REPASSWORD { get; set; }
+
         [DisplayName("E-mail")]
         [DataType(DataType.EmailAddress)]
         [RegularExpression(@"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}", ErrorMessage = "Proszê podaæ prawid³owy mail")]
         public string MAIL { get; set; }
-       
+
         [DisplayName("Imiê")]
         [Required(ErrorMessage = "Pole jest wymagane")]
         [RegularExpression(@"[a-zA-Z]+", ErrorMessage = "Proszê podaæ prawid³owe imie")]
@@ -57,8 +59,8 @@ namespace MajsterFinale.Models
         [MaxLength(9)]
         [RegularExpression(@"^\(?([1-9]{1})\)?([0-9]{8})$", ErrorMessage = "Nieprawid³owy numer telefonu. Poprawny format: 123456789")]
         public string PHONE_NUMBER { get; set; }
-        public bool TERMS { get; set; }
-
+        public System.DateTime REGISTER_DATE { get; set; }
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ADVERTS> ADVERTS { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

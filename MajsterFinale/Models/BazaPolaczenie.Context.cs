@@ -13,10 +13,10 @@ namespace MajsterFinale.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class BazaLocal : DbContext
+    public partial class Entities : DbContext
     {
-        public BazaLocal()
-            : base("name=BazaLocal")
+        public Entities()
+            : base("name=Entities")
         {
         }
     

@@ -17,7 +17,6 @@
           <Property Name="DATE" Type="datetime" Nullable="false" />
           <Property Name="PRICE" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="PHONE_NUMBER" Type="varchar" MaxLength="9" />
-          <Property Name="IMAGE" Type="nvarchar" MaxLength="255" />
           <Property Name="IS_ARCHIVED" Type="bit" />
         </EntityType>
         <EntityType Name="CATEGORIES">
@@ -44,6 +43,8 @@
           <Property Name="IMAGE_TITLE" Type="nvarchar" MaxLength="500" />
           <Property Name="IMAGE_BYTE" Type="image" />
           <Property Name="IMAGE_PATH" Type="nvarchar" MaxLength="500" />
+          <Property Name="ADVERT_ID" Type="int" />
+          <Property Name="MESSAGE_ID" Type="int" />
         </EntityType>
         <EntityType Name="MESSAGE">
           <Key>
@@ -69,6 +70,7 @@
           <Property Name="PHONE_NUMBER" Type="varchar" MaxLength="9" />
           <Property Name="VERIFIED" Type="bit" />
           <Property Name="IS_ADMIN" Type="bit" />
+          <Property Name="REGISTER_DATE" Type="datetime" Nullable="false" />
         </EntityType>
         <Association Name="FK_ADVERTS_CATEGORIES">
           <End Role="CATEGORIES" Type="Self.CATEGORIES" Multiplicity="1" />
@@ -263,6 +265,7 @@
           <NavigationProperty Name="MESSAGE" Relationship="Self.FK_MESSAGE_USERS" FromRole="USERS" ToRole="MESSAGE" />
           <NavigationProperty Name="MESSAGE1" Relationship="Self.FK_MESSAGE_USERS1" FromRole="USERS" ToRole="MESSAGE" />
           <Property Name="PHONE_NUMBER" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Name="REGISTER_DATE" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <Association Name="FK_ADVERTS_CATEGORIES">
           <End Role="CATEGORIES" Type="Self.CATEGORIES" Multiplicity="1" />
@@ -392,6 +395,8 @@
           <Property Name="IMAGE_TITLE" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="IMAGE_BYTE" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="IMAGE_PATH" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ADVERT_ID" Type="Int32" />
+          <Property Name="MESSAGE_ID" Type="Int32" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -410,7 +415,6 @@
                 <ScalarProperty Name="TITLE" ColumnName="TITLE" />
                 <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
                 <ScalarProperty Name="PRICE" ColumnName="PRICE" />
-                <ScalarProperty Name="IMAGE" ColumnName="IMAGE" />
                 <ScalarProperty Name="IS_ARCHIVED" ColumnName="IS_ARCHIVED" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -449,6 +453,7 @@
           <EntitySetMapping Name="USERS">
             <EntityTypeMapping TypeName="BazaPolaczenie.USERS">
               <MappingFragment StoreEntitySet="USERS">
+                <ScalarProperty Name="REGISTER_DATE" ColumnName="REGISTER_DATE" />
                 <ScalarProperty Name="PHONE_NUMBER" ColumnName="PHONE_NUMBER" />
                 <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
                 <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
@@ -463,6 +468,8 @@
           <EntitySetMapping Name="IMAGES">
             <EntityTypeMapping TypeName="BazaPolaczenie.IMAGES">
               <MappingFragment StoreEntitySet="IMAGES">
+                <ScalarProperty Name="MESSAGE_ID" ColumnName="MESSAGE_ID" />
+                <ScalarProperty Name="ADVERT_ID" ColumnName="ADVERT_ID" />
                 <ScalarProperty Name="IMAGE_PATH" ColumnName="IMAGE_PATH" />
                 <ScalarProperty Name="IMAGE_BYTE" ColumnName="IMAGE_BYTE" />
                 <ScalarProperty Name="IMAGE_TITLE" ColumnName="IMAGE_TITLE" />

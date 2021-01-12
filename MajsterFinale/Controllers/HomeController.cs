@@ -138,8 +138,8 @@ namespace MajsterFinale.Controllers
                     }
                     else if (arePasswordsNull)
                     {
-                        ModelState.AddModelError("PASSWORD", "Należy uzupełnić oba pole hasła");
-                        ModelState.AddModelError("REPASSWORD", "Należy uzupełnić oba pole hasła");
+                        ModelState.AddModelError("PASSWORD", "Należy uzupełnić oba pola hasła");
+                        ModelState.AddModelError("REPASSWORD", "Należy uzupełnić oba pola hasła");
                         return View();
                     }
                     else if (arePasswordsSame)
