@@ -24,6 +24,7 @@ namespace MajsterFinale.Models
             this.MESSAGE = new HashSet<MESSAGE>();
             this.MESSAGE1 = new HashSet<MESSAGE>();
         }
+
         public int USER_ID { get; set; }
         [DisplayName("Has³o")]
         [DataType(DataType.Password)]

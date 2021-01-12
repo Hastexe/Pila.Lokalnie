@@ -21,5 +21,8 @@ namespace MajsterFinale.Models
         public int MSG_FROM { get; set; }
         public int MSG_TO { get; set; }
         public int ADVERT_ID { get; set; }
+        public int MESSAGE_ID { get; set; }
+    
+        public virtual MESSAGE MESSAGE { get; set; }
     }
 }

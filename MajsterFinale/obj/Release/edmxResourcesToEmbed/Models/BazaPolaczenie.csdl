@@ -18,6 +18,7 @@
     <NavigationProperty Name="MESSAGE" Relationship="BazaPolaczenie.FK_FAV_MESSAGE" FromRole="ADVERTS" ToRole="MESSAGE" />
     <Property Name="PHONE_NUMBER" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
     <Property Name="IMAGE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="IMAGES_ADVERT" Relationship="BazaPolaczenie.FK_IMAGES_ADVERT_ADVERTS" FromRole="ADVERTS" ToRole="IMAGES_ADVERT" />
   </EntityType>
   <EntityType Name="CATEGORIES">
     <Key>
@@ -52,6 +53,7 @@
     <NavigationProperty Name="USERS1" Relationship="Self.FK_MESSAGE_USERS1" FromRole="MESSAGE" ToRole="USERS" />
     <Property Name="ADVERT_ID" Type="Int32" Nullable="false" />
     <NavigationProperty Name="ADVERTS" Relationship="BazaPolaczenie.FK_FAV_MESSAGE" FromRole="MESSAGE" ToRole="ADVERTS" />
+    <NavigationProperty Name="IMAGES_MESSAGE" Relationship="BazaPolaczenie.FK_IMAGES_MESSAGE_MESSAGE" FromRole="MESSAGE" ToRole="IMAGES_MESSAGE" />
   </EntityType>
   <EntityType Name="USERS">
     <Key>
@@ -181,6 +183,14 @@
     <EntitySet Name="IMAGES" EntityType="BazaPolaczenie.IMAGES" />
     <EntitySet Name="IMAGES_ADVERT" EntityType="BazaPolaczenie.IMAGES_ADVERT" />
     <EntitySet Name="IMAGES_MESSAGE" EntityType="BazaPolaczenie.IMAGES_MESSAGE" />
+    <AssociationSet Name="FK_IMAGES_ADVERT_ADVERTS" Association="BazaPolaczenie.FK_IMAGES_ADVERT_ADVERTS">
+      <End Role="ADVERTS" EntitySet="ADVERTS" />
+      <End Role="IMAGES_ADVERT" EntitySet="IMAGES_ADVERT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IMAGES_MESSAGE_MESSAGE" Association="BazaPolaczenie.FK_IMAGES_MESSAGE_MESSAGE">
+      <End Role="MESSAGE" EntitySet="MESSAGE" />
+      <End Role="IMAGES_MESSAGE" EntitySet="IMAGES_MESSAGE" />
+    </AssociationSet>
   </EntityContainer>
   <Association Name="FK_FAV_MESSAGE">
     <End Type="BazaPolaczenie.ADVERTS" Role="ADVERTS" Multiplicity="1" />
@@ -214,6 +224,7 @@
     <Property Name="IMAGE_BYTE" Type="Binary" MaxLength="Max" FixedLength="false" />
     <Property Name="IMAGE_PATH" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="ADVERT_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ADVERTS" Relationship="BazaPolaczenie.FK_IMAGES_ADVERT_ADVERTS" FromRole="IMAGES_ADVERT" ToRole="ADVERTS" />
   </EntityType>
   <EntityType Name="IMAGES_MESSAGE">
     <Key>
@@ -226,5 +237,31 @@
     <Property Name="MSG_FROM" Type="Int32" Nullable="false" />
     <Property Name="MSG_TO" Type="Int32" Nullable="false" />
     <Property Name="ADVERT_ID" Type="Int32" Nullable="false" />
+    <Property Name="MESSAGE_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="MESSAGE" Relationship="BazaPolaczenie.FK_IMAGES_MESSAGE_MESSAGE" FromRole="IMAGES_MESSAGE" ToRole="MESSAGE" />
   </EntityType>
+  <Association Name="FK_IMAGES_ADVERT_ADVERTS">
+    <End Type="BazaPolaczenie.ADVERTS" Role="ADVERTS" Multiplicity="1" />
+    <End Type="BazaPolaczenie.IMAGES_ADVERT" Role="IMAGES_ADVERT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ADVERTS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="IMAGES_ADVERT">
+        <PropertyRef Name="ADVERT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IMAGES_MESSAGE_MESSAGE">
+    <End Type="BazaPolaczenie.MESSAGE" Role="MESSAGE" Multiplicity="1" />
+    <End Type="BazaPolaczenie.IMAGES_MESSAGE" Role="IMAGES_MESSAGE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MESSAGE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="IMAGES_MESSAGE">
+        <PropertyRef Name="MESSAGE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

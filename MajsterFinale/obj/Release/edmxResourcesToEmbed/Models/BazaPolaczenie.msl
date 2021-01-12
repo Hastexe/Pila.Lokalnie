@@ -90,6 +90,7 @@
     <EntitySetMapping Name="IMAGES_MESSAGE">
       <EntityTypeMapping TypeName="BazaPolaczenie.IMAGES_MESSAGE">
         <MappingFragment StoreEntitySet="IMAGES_MESSAGE">
+          <ScalarProperty Name="MESSAGE_ID" ColumnName="MESSAGE_ID" />
           <ScalarProperty Name="ADVERT_ID" ColumnName="ADVERT_ID" />
           <ScalarProperty Name="MSG_TO" ColumnName="MSG_TO" />
           <ScalarProperty Name="MSG_FROM" ColumnName="MSG_FROM" />

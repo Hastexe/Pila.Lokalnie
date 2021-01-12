@@ -20,6 +20,8 @@
         <EntityTypeShape EntityType="BazaPolaczenie.IMAGES" Width="1.5" PointX="5.5" PointY="0.625" />
         <EntityTypeShape EntityType="BazaPolaczenie.IMAGES_ADVERT" Width="1.5" PointX="8.375" PointY="0.75" />
         <EntityTypeShape EntityType="BazaPolaczenie.IMAGES_MESSAGE" Width="1.5" PointX="9.375" PointY="3.75" />
+        <AssociationConnector Association="BazaPolaczenie.FK_IMAGES_ADVERT_ADVERTS" />
+        <AssociationConnector Association="BazaPolaczenie.FK_IMAGES_MESSAGE_MESSAGE" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

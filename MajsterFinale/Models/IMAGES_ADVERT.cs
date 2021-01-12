@@ -19,5 +19,7 @@ namespace MajsterFinale.Models
         public byte[] IMAGE_BYTE { get; set; }
         public string IMAGE_PATH { get; set; }
         public int ADVERT_ID { get; set; }
+    
+        public virtual ADVERTS ADVERTS { get; set; }
     }
 }

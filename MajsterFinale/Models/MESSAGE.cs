@@ -14,6 +14,12 @@ namespace MajsterFinale.Models
     
     public partial class MESSAGE
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public MESSAGE()
+        {
+            this.IMAGES_MESSAGE = new HashSet<IMAGES_MESSAGE>();
+        }
+    
         public int ID { get; set; }
         public int MSG_FROM { get; set; }
         public int MSG_TO { get; set; }
@@ -25,5 +31,7 @@ namespace MajsterFinale.Models
         public virtual USERS USERS { get; set; }
         public virtual USERS USERS1 { get; set; }
         public virtual ADVERTS ADVERTS { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<IMAGES_MESSAGE> IMAGES_MESSAGE { get; set; }
     }
 }

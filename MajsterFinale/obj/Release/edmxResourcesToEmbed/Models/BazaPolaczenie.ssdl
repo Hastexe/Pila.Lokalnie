@@ -35,7 +35,7 @@
     <Key>
       <PropertyRef Name="IMAGE_ID" />
     </Key>
-    <Property Name="IMAGE_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="IMAGE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="IMAGE_TITLE" Type="nvarchar" MaxLength="500" />
     <Property Name="IMAGE_BYTE" Type="image" />
     <Property Name="IMAGE_PATH" Type="nvarchar" MaxLength="500" />
@@ -46,7 +46,7 @@
     <Key>
       <PropertyRef Name="IMAGE_ID" />
     </Key>
-    <Property Name="IMAGE_ID" Type="int" Nullable="false" />
+    <Property Name="IMAGE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="IMAGE_TITLE" Type="nvarchar" MaxLength="500" />
     <Property Name="IMAGE_BYTE" Type="image" />
     <Property Name="IMAGE_PATH" Type="nvarchar" MaxLength="500" />
@@ -56,12 +56,13 @@
     <Key>
       <PropertyRef Name="IMAGE_ID" />
     </Key>
-    <Property Name="IMAGE_ID" Type="int" Nullable="false" />
+    <Property Name="IMAGE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="IMAGE_TITLE" Type="nvarchar" MaxLength="500" />
     <Property Name="IMAGE_BYTE" Type="image" />
     <Property Name="IMAGE_PATH" Type="nvarchar" MaxLength="500" />
     <Property Name="MSG_FROM" Type="int" Nullable="false" />
     <Property Name="MSG_TO" Type="int" Nullable="false" />
+    <Property Name="MESSAGE_ID" Type="int" Nullable="false" />
     <Property Name="ADVERT_ID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="MESSAGE">
@@ -151,6 +152,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_IMAGES_ADVERT_ADVERTS">
+    <End Role="ADVERTS" Type="Self.ADVERTS" Multiplicity="1" />
+    <End Role="IMAGES_ADVERT" Type="Self.IMAGES_ADVERT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ADVERTS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="IMAGES_ADVERT">
+        <PropertyRef Name="ADVERT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IMAGES_MESSAGE_MESSAGE">
+    <End Role="MESSAGE" Type="Self.MESSAGE" Multiplicity="1" />
+    <End Role="IMAGES_MESSAGE" Type="Self.IMAGES_MESSAGE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MESSAGE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="IMAGES_MESSAGE">
+        <PropertyRef Name="MESSAGE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_MESSAGE_USERS">
     <End Role="USERS" Type="Self.USERS" Multiplicity="1" />
     <End Role="MESSAGE" Type="Self.MESSAGE" Multiplicity="*" />
@@ -203,6 +228,14 @@
     <AssociationSet Name="FK_FAV_USERS" Association="Self.FK_FAV_USERS">
       <End Role="USERS" EntitySet="USERS" />
       <End Role="FAV" EntitySet="FAV" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IMAGES_ADVERT_ADVERTS" Association="Self.FK_IMAGES_ADVERT_ADVERTS">
+      <End Role="ADVERTS" EntitySet="ADVERTS" />
+      <End Role="IMAGES_ADVERT" EntitySet="IMAGES_ADVERT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IMAGES_MESSAGE_MESSAGE" Association="Self.FK_IMAGES_MESSAGE_MESSAGE">
+      <End Role="MESSAGE" EntitySet="MESSAGE" />
+      <End Role="IMAGES_MESSAGE" EntitySet="IMAGES_MESSAGE" />
     </AssociationSet>
     <AssociationSet Name="FK_MESSAGE_USERS" Association="Self.FK_MESSAGE_USERS">
       <End Role="USERS" EntitySet="USERS" />
