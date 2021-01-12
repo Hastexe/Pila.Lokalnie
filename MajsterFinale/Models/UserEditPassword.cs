@@ -4,7 +4,6 @@ namespace MajsterFinale.Models
 {
     public class UserEditPassword
     {
-
         [Required]
         [DataType("Password")]
         public string OldPassword { get; set; }

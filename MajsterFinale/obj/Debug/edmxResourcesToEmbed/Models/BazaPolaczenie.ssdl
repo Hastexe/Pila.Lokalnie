@@ -39,8 +39,6 @@
     <Property Name="IMAGE_TITLE" Type="nvarchar" MaxLength="500" />
     <Property Name="IMAGE_BYTE" Type="image" />
     <Property Name="IMAGE_PATH" Type="nvarchar" MaxLength="500" />
-    <Property Name="ADVERT_ID" Type="int" />
-    <Property Name="MESSAGE_ID" Type="int" />
   </EntityType>
   <EntityType Name="MESSAGE">
     <Key>
@@ -66,8 +64,6 @@
     <Property Name="PHONE_NUMBER" Type="varchar" MaxLength="9" />
     <Property Name="VERIFIED" Type="bit" />
     <Property Name="IS_ADMIN" Type="bit" />
-    <Property Name="REGISTER_DATE" Type="datetime" Nullable="false" />
-    <Property Name="RESETPASSWORDCODE" Type="varchar" MaxLength="500" />
   </EntityType>
   <Association Name="FK_ADVERTS_CATEGORIES">
     <End Role="CATEGORIES" Type="Self.CATEGORIES" Multiplicity="1" />
