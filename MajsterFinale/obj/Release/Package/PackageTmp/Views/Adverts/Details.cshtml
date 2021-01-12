@@ -1,0 +1,57 @@
+﻿@model MajsterFinale.Models.DisplayRepository
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AdvertDetails.TITLE)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AdvertDetails.TITLE)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AdvertDetails.DESCRIPTION)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AdvertDetails.DESCRIPTION)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AdvertDetails.PRICE)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AdvertDetails.PRICE)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AdvertDetails.IMAGE)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AdvertDetails.IMAGE)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AdvertDetails.CATEGORIES.NAME)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AdvertDetails.CATEGORIES.NAME)
+        </dd>
+
+    </dl>
+    <div>
+        @{
+            if (Session["ID"] != null)
+            {
+                <p>Wyślij wiadomość</p>
+                using (Html.BeginForm("Details", "Adverts"))
+                {
+                    <input type="text" name="message" />
+                    <br />
+                    <input type="submit" value="wyślij" />
+                }
+            }
+            else
+            {
+                <p>Zaloguj się by wysłać wiadomość</p>
+            }
+        }
+    </div>
+
+
+</div>

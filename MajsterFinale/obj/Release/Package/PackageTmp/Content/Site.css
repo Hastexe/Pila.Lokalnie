@@ -1,0 +1,180 @@
+﻿body {
+    padding-top: 60px;
+}
+
+@media (max-width: 979px) {
+    body {
+        padding-top: 0px;
+    }
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+
+
+nav .navbar-nav li a {
+    color: white !important;
+}
+
+section {
+    padding: 60px 0;
+}
+
+.section-bg {
+    background-color: #f7fbfe;
+}
+
+.section-title {
+    text-align: center;
+    padding-bottom: 30px;
+}
+
+    .section-title h2 {
+        font-size: 32px;
+        font-weight: 600;
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+        position: relative;
+    }
+
+        .section-title h2::before {
+            content: '';
+            position: absolute;
+            display: block;
+            width: 120px;
+            height: 1px;
+            background: #ddd;
+            bottom: 1px;
+            left: calc(50% - 60px);
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            display: block;
+            width: 40px;
+            height: 3px;
+            background: black;
+            bottom: 0;
+            left: calc(50% - 20px);
+        }
+
+    .section-title p {
+        margin-bottom: 0;
+    }
+
+
+.kroki .icon-box {
+    text-align: center;
+    padding: 20px 20px;
+    transition: all ease-in-out 0.3s;
+    background: #fff;
+}
+
+    .kroki .icon-box h4 a {
+        color: #384046;
+        transition: ease-in-out 0.3s;
+    }
+
+    .kroki .icon-box p {
+        line-height: 24px;
+        font-size: 14px;
+        margin-bottom: 0;
+    }
+
+.custommes{
+    padding-top: 300px;
+}
+
+.register button {
+    background-color: grey;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+}
+
+button:hover {
+    opacity: 1;
+}
+
+
+.register h1 {
+    text-align: center;
+    padding-bottom: 1em;
+}
+
+
+.register div {
+    padding-top: 8em;
+    width: 50vh;
+}
+
+
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+}
+
+    input[type=text]:focus, input[type=password]:focus {
+        background-color: #ddd;
+        outline: none;
+    }
+
+
+.acc {
+    padding-top: 10em;
+}
+
+#inf {
+    width: 600px;
+}
+
+.title h1 {
+    margin-left: 12px;
+}
+
+.nav-menuacc, .nav-menuacc * {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+    .nav-menuacc > ul > li {
+        position: relative;
+        white-space: nowrap;
+        float: left;
+    }
+
+    .nav-menuacc a {
+        display: block;
+        position: relative;
+        color: black;
+        padding: 12px 15px;
+        transition: 0.3s;
+        font-size: 16px;
+        font-weight: 500;
+        font-family: "Poppins", sans-serif;
+    }
+
+
+.topnav a.active {
+    border-bottom: 3px solid black;
+}
+
+a:link {
+    text-decoration: none;
+}
+ 
