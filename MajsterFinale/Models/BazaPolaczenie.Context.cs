@@ -31,5 +31,7 @@ namespace MajsterFinale.Models
         public virtual DbSet<MESSAGE> MESSAGE { get; set; }
         public virtual DbSet<USERS> USERS { get; set; }
         public virtual DbSet<IMAGES> IMAGES { get; set; }
+        public virtual DbSet<IMAGES_ADVERT> IMAGES_ADVERT { get; set; }
+        public virtual DbSet<IMAGES_MESSAGE> IMAGES_MESSAGE { get; set; }
     }
 }

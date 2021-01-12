@@ -47,6 +47,28 @@
           <Property Name="ADVERT_ID" Type="int" />
           <Property Name="MESSAGE_ID" Type="int" />
         </EntityType>
+        <EntityType Name="IMAGES_ADVERT">
+          <Key>
+            <PropertyRef Name="IMAGE_ID" />
+          </Key>
+          <Property Name="IMAGE_ID" Type="int" Nullable="false" />
+          <Property Name="IMAGE_TITLE" Type="nvarchar" MaxLength="500" />
+          <Property Name="IMAGE_BYTE" Type="image" />
+          <Property Name="IMAGE_PATH" Type="nvarchar" MaxLength="500" />
+          <Property Name="ADVERT_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="IMAGES_MESSAGE">
+          <Key>
+            <PropertyRef Name="IMAGE_ID" />
+          </Key>
+          <Property Name="IMAGE_ID" Type="int" Nullable="false" />
+          <Property Name="IMAGE_TITLE" Type="nvarchar" MaxLength="500" />
+          <Property Name="IMAGE_BYTE" Type="image" />
+          <Property Name="IMAGE_PATH" Type="nvarchar" MaxLength="500" />
+          <Property Name="MSG_FROM" Type="int" Nullable="false" />
+          <Property Name="MSG_TO" Type="int" Nullable="false" />
+          <Property Name="ADVERT_ID" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="MESSAGE">
           <Key>
             <PropertyRef Name="ID" />
@@ -163,6 +185,8 @@
           <EntitySet Name="CATEGORIES" EntityType="Self.CATEGORIES" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FAV" EntityType="Self.FAV" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="IMAGES" EntityType="Self.IMAGES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IMAGES_ADVERT" EntityType="Self.IMAGES_ADVERT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IMAGES_MESSAGE" EntityType="Self.IMAGES_MESSAGE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MESSAGE" EntityType="Self.MESSAGE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="USERS" EntityType="Self.USERS" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_ADVERTS_CATEGORIES" Association="Self.FK_ADVERTS_CATEGORIES">
@@ -377,6 +401,8 @@
             <End Role="MESSAGE" EntitySet="MESSAGE" />
           </AssociationSet>
           <EntitySet Name="IMAGES" EntityType="BazaPolaczenie.IMAGES" />
+          <EntitySet Name="IMAGES_ADVERT" EntityType="BazaPolaczenie.IMAGES_ADVERT" />
+          <EntitySet Name="IMAGES_MESSAGE" EntityType="BazaPolaczenie.IMAGES_MESSAGE" />
         </EntityContainer>
         <Association Name="FK_FAV_MESSAGE">
           <End Type="BazaPolaczenie.ADVERTS" Role="ADVERTS" Multiplicity="1" />
@@ -400,6 +426,28 @@
           <Property Name="IMAGE_PATH" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="ADVERT_ID" Type="Int32" />
           <Property Name="MESSAGE_ID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="IMAGES_ADVERT">
+          <Key>
+            <PropertyRef Name="IMAGE_ID" />
+          </Key>
+          <Property Name="IMAGE_ID" Type="Int32" Nullable="false" />
+          <Property Name="IMAGE_TITLE" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IMAGE_BYTE" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="IMAGE_PATH" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ADVERT_ID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="IMAGES_MESSAGE">
+          <Key>
+            <PropertyRef Name="IMAGE_ID" />
+          </Key>
+          <Property Name="IMAGE_ID" Type="Int32" Nullable="false" />
+          <Property Name="IMAGE_TITLE" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IMAGE_BYTE" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="IMAGE_PATH" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="MSG_FROM" Type="Int32" Nullable="false" />
+          <Property Name="MSG_TO" Type="Int32" Nullable="false" />
+          <Property Name="ADVERT_ID" Type="Int32" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -475,6 +523,30 @@
               <MappingFragment StoreEntitySet="IMAGES">
                 <ScalarProperty Name="MESSAGE_ID" ColumnName="MESSAGE_ID" />
                 <ScalarProperty Name="ADVERT_ID" ColumnName="ADVERT_ID" />
+                <ScalarProperty Name="IMAGE_PATH" ColumnName="IMAGE_PATH" />
+                <ScalarProperty Name="IMAGE_BYTE" ColumnName="IMAGE_BYTE" />
+                <ScalarProperty Name="IMAGE_TITLE" ColumnName="IMAGE_TITLE" />
+                <ScalarProperty Name="IMAGE_ID" ColumnName="IMAGE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IMAGES_ADVERT">
+            <EntityTypeMapping TypeName="BazaPolaczenie.IMAGES_ADVERT">
+              <MappingFragment StoreEntitySet="IMAGES_ADVERT">
+                <ScalarProperty Name="ADVERT_ID" ColumnName="ADVERT_ID" />
+                <ScalarProperty Name="IMAGE_PATH" ColumnName="IMAGE_PATH" />
+                <ScalarProperty Name="IMAGE_BYTE" ColumnName="IMAGE_BYTE" />
+                <ScalarProperty Name="IMAGE_TITLE" ColumnName="IMAGE_TITLE" />
+                <ScalarProperty Name="IMAGE_ID" ColumnName="IMAGE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IMAGES_MESSAGE">
+            <EntityTypeMapping TypeName="BazaPolaczenie.IMAGES_MESSAGE">
+              <MappingFragment StoreEntitySet="IMAGES_MESSAGE">
+                <ScalarProperty Name="ADVERT_ID" ColumnName="ADVERT_ID" />
+                <ScalarProperty Name="MSG_TO" ColumnName="MSG_TO" />
+                <ScalarProperty Name="MSG_FROM" ColumnName="MSG_FROM" />
                 <ScalarProperty Name="IMAGE_PATH" ColumnName="IMAGE_PATH" />
                 <ScalarProperty Name="IMAGE_BYTE" ColumnName="IMAGE_BYTE" />
                 <ScalarProperty Name="IMAGE_TITLE" ColumnName="IMAGE_TITLE" />

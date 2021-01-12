@@ -76,5 +76,29 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="IMAGES_ADVERT">
+      <EntityTypeMapping TypeName="BazaPolaczenie.IMAGES_ADVERT">
+        <MappingFragment StoreEntitySet="IMAGES_ADVERT">
+          <ScalarProperty Name="ADVERT_ID" ColumnName="ADVERT_ID" />
+          <ScalarProperty Name="IMAGE_PATH" ColumnName="IMAGE_PATH" />
+          <ScalarProperty Name="IMAGE_BYTE" ColumnName="IMAGE_BYTE" />
+          <ScalarProperty Name="IMAGE_TITLE" ColumnName="IMAGE_TITLE" />
+          <ScalarProperty Name="IMAGE_ID" ColumnName="IMAGE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="IMAGES_MESSAGE">
+      <EntityTypeMapping TypeName="BazaPolaczenie.IMAGES_MESSAGE">
+        <MappingFragment StoreEntitySet="IMAGES_MESSAGE">
+          <ScalarProperty Name="ADVERT_ID" ColumnName="ADVERT_ID" />
+          <ScalarProperty Name="MSG_TO" ColumnName="MSG_TO" />
+          <ScalarProperty Name="MSG_FROM" ColumnName="MSG_FROM" />
+          <ScalarProperty Name="IMAGE_PATH" ColumnName="IMAGE_PATH" />
+          <ScalarProperty Name="IMAGE_BYTE" ColumnName="IMAGE_BYTE" />
+          <ScalarProperty Name="IMAGE_TITLE" ColumnName="IMAGE_TITLE" />
+          <ScalarProperty Name="IMAGE_ID" ColumnName="IMAGE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

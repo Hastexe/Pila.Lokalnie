@@ -179,6 +179,8 @@
       <End Role="MESSAGE" EntitySet="MESSAGE" />
     </AssociationSet>
     <EntitySet Name="IMAGES" EntityType="BazaPolaczenie.IMAGES" />
+    <EntitySet Name="IMAGES_ADVERT" EntityType="BazaPolaczenie.IMAGES_ADVERT" />
+    <EntitySet Name="IMAGES_MESSAGE" EntityType="BazaPolaczenie.IMAGES_MESSAGE" />
   </EntityContainer>
   <Association Name="FK_FAV_MESSAGE">
     <End Type="BazaPolaczenie.ADVERTS" Role="ADVERTS" Multiplicity="1" />
@@ -202,5 +204,27 @@
     <Property Name="IMAGE_PATH" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="ADVERT_ID" Type="Int32" />
     <Property Name="MESSAGE_ID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="IMAGES_ADVERT">
+    <Key>
+      <PropertyRef Name="IMAGE_ID" />
+    </Key>
+    <Property Name="IMAGE_ID" Type="Int32" Nullable="false" />
+    <Property Name="IMAGE_TITLE" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="IMAGE_BYTE" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="IMAGE_PATH" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="ADVERT_ID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="IMAGES_MESSAGE">
+    <Key>
+      <PropertyRef Name="IMAGE_ID" />
+    </Key>
+    <Property Name="IMAGE_ID" Type="Int32" Nullable="false" />
+    <Property Name="IMAGE_TITLE" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="IMAGE_BYTE" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="IMAGE_PATH" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="MSG_FROM" Type="Int32" Nullable="false" />
+    <Property Name="MSG_TO" Type="Int32" Nullable="false" />
+    <Property Name="ADVERT_ID" Type="Int32" Nullable="false" />
   </EntityType>
 </Schema>

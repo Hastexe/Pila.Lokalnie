@@ -18,6 +18,8 @@
         <AssociationConnector Association="BazaPolaczenie.FK_MESSAGE_USERS1" ManuallyRouted="false" />
         <AssociationConnector Association="BazaPolaczenie.FK_FAV_MESSAGE" />
         <EntityTypeShape EntityType="BazaPolaczenie.IMAGES" Width="1.5" PointX="5.5" PointY="0.625" />
+        <EntityTypeShape EntityType="BazaPolaczenie.IMAGES_ADVERT" Width="1.5" PointX="8.375" PointY="0.75" />
+        <EntityTypeShape EntityType="BazaPolaczenie.IMAGES_MESSAGE" Width="1.5" PointX="9.375" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

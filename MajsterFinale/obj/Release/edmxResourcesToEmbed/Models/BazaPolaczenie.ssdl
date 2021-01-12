@@ -42,6 +42,28 @@
     <Property Name="ADVERT_ID" Type="int" />
     <Property Name="MESSAGE_ID" Type="int" />
   </EntityType>
+  <EntityType Name="IMAGES_ADVERT">
+    <Key>
+      <PropertyRef Name="IMAGE_ID" />
+    </Key>
+    <Property Name="IMAGE_ID" Type="int" Nullable="false" />
+    <Property Name="IMAGE_TITLE" Type="nvarchar" MaxLength="500" />
+    <Property Name="IMAGE_BYTE" Type="image" />
+    <Property Name="IMAGE_PATH" Type="nvarchar" MaxLength="500" />
+    <Property Name="ADVERT_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="IMAGES_MESSAGE">
+    <Key>
+      <PropertyRef Name="IMAGE_ID" />
+    </Key>
+    <Property Name="IMAGE_ID" Type="int" Nullable="false" />
+    <Property Name="IMAGE_TITLE" Type="nvarchar" MaxLength="500" />
+    <Property Name="IMAGE_BYTE" Type="image" />
+    <Property Name="IMAGE_PATH" Type="nvarchar" MaxLength="500" />
+    <Property Name="MSG_FROM" Type="int" Nullable="false" />
+    <Property Name="MSG_TO" Type="int" Nullable="false" />
+    <Property Name="ADVERT_ID" Type="int" Nullable="false" />
+  </EntityType>
   <EntityType Name="MESSAGE">
     <Key>
       <PropertyRef Name="ID" />
@@ -158,6 +180,8 @@
     <EntitySet Name="CATEGORIES" EntityType="Self.CATEGORIES" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="FAV" EntityType="Self.FAV" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="IMAGES" EntityType="Self.IMAGES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="IMAGES_ADVERT" EntityType="Self.IMAGES_ADVERT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="IMAGES_MESSAGE" EntityType="Self.IMAGES_MESSAGE" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="MESSAGE" EntityType="Self.MESSAGE" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="USERS" EntityType="Self.USERS" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_ADVERTS_CATEGORIES" Association="Self.FK_ADVERTS_CATEGORIES">

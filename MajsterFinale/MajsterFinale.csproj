@@ -183,6 +183,12 @@
     <Compile Include="Models\IMAGES.cs">
       <DependentUpon>BazaPolaczenie.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\IMAGES_ADVERT.cs">
+      <DependentUpon>BazaPolaczenie.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\IMAGES_MESSAGE.cs">
+      <DependentUpon>BazaPolaczenie.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ImageViewModel.cs" />
     <Compile Include="Models\MessageModel.cs" />
     <Compile Include="Models\PanelMessageModel.cs" />
