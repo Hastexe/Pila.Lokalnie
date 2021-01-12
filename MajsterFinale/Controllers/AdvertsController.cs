@@ -115,13 +115,9 @@ namespace MajsterFinale.Controllers
                 };
                 db.ADVERTS.Add(newAdvert);
                 db.SaveChanges();
-<<<<<<< Updated upstream
 
                 return RedirectToAction("Index", "home");
 
-=======
-                return RedirectToAction("Index", "home");
->>>>>>> Stashed changes
             }
             obj.Categories = addingAdsRepository.GetList();
             obj.CategoryID = -1;

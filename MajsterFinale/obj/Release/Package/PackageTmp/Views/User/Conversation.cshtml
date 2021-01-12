@@ -1,0 +1,46 @@
+﻿@model MajsterFinale.Models.MessageModel
+
+<div>
+    <table>
+        @{
+            int LoggedUserID = Convert.ToInt32(Session["ID"]);
+
+
+            for (int i = 0; i < Model.CoversationMessages.Count; i++)
+            {
+                <tr>
+
+                    @if (Model.CoversationMessages[i].MSG_FROM == Model.LoggedUser.USER_ID)
+                    {
+                    <td style="background-color: black; color:white; height: 50px;">
+                        @Model.LoggedUser.FNAME: @Html.DisplayFor(modelItem => Model.CoversationMessages[i].TEXT)
+                        @Html.DisplayFor(modelItem => Model.CoversationMessages[i].DATE)
+                    </td>
+                    }
+
+                    @if (Model.CoversationMessages[i].MSG_FROM == Model.SecondConversationUser.USER_ID)
+                    {
+                    <td style="background-color: Gray; color:white; height: 50px;">
+                        @Model.SecondConversationUser.FNAME: @Html.DisplayFor(modelItem => Model.CoversationMessages[i].TEXT)
+                        @Html.DisplayFor(modelItem => Model.CoversationMessages[i].DATE)
+                    </td>
+                    }
+                </tr>
+
+            }
+        }
+
+    </table>
+    @{
+        <p>Odpowiedz: </p>
+        using (Html.BeginForm("Conversation", "User"))
+        {
+            <input type="text" name="message" />
+            <br />
+            <input type="submit" value="wyślij" />
+            <input type="hidden" name="AdvertId" value="@Model.CoversationMessages[0].ADVERT_ID" />
+            <input type="hidden" name="UserTo" value="@Model.SecondConversationUser.USER_ID" />
+        }
+    }
+
+</div>

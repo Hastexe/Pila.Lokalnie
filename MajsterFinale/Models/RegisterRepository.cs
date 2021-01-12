@@ -64,7 +64,7 @@ namespace MajsterFinale.Models
             else return false;   
         }
 
-        [NonAction]
+        /*[NonAction]
         public bool AreMailsSame(USERS USERS)
         {
             var mail = USERS.MAIL;
@@ -75,7 +75,7 @@ namespace MajsterFinale.Models
                 return true;
             }
             else return false;
-        }
+        }*/
 
         [NonAction]
         public bool IsPasswordNotNull(USERS USERS)

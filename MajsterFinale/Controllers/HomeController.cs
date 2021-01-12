@@ -86,14 +86,29 @@ namespace MajsterFinale.Controllers
 
                 //int ID = db.USERS.Where(x => x.LOGIN == USERS.LOGIN).Select(x => x.USER_ID);
                 Session["ID"] = userLoggedIn.USER_ID;
+                Session["MAIL"] = userLoggedIn.MAIL;
                 //Session["Login"] = userLoggedIn.LOGIN;
-
+                if (USERS.rememberMe)
+                {
+                    // They do, so let's create an authentication cookie
+                    var cookie = FormsAuthentication.GetAuthCookie(USERS.MAIL, USERS.rememberMe);
+                    // Since they want to be remembered, set the expiration for 30 days
+                    cookie.Expires = DateTime.Now.AddDays(30);
+                    // Store the cookie in the Response
+                    Response.Cookies.Add(cookie);
+                }
+                else
+                {
+                    // Otherwise set the cookie as normal
+                    FormsAuthentication.SetAuthCookie(USERS.MAIL, USERS.rememberMe);
+                }
                 //po zalogowaniu przenosi nas index
                 return RedirectToAction("Mainpage", "home", new { ID = USERS.USER_ID });
             }
             else
             {
-                ViewBag.triedOnce = "Tak";
+                ViewBag.Message = "Podane dane logowania są błędne";
+                ModelState.Clear();
                 return View();
             }
         }
@@ -113,44 +128,77 @@ namespace MajsterFinale.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Rejestracja(USERS USERS)
         {
-            if (!ModelState.IsValid)
+            ViewBag.Message = null;
+            if (ModelState.IsValid)
             {
-                return View(USERS);
-            }
-            else
+              
 
                 using (BazaLocal db = new BazaLocal())
                 {
+                    var arePasswordsSame = registerRepository.ArePasswordsSame(USERS);
+                    var arePasswordsNull = registerRepository.IsPasswordNotNull(USERS);
+                    var areMailsNull = registerRepository.IsMailNotNull(USERS);
+                    var areTermsAccepted = registerRepository.AreTermsAccepted(USERS);
                     var mail = db.USERS.SingleOrDefault(x => x.MAIL == USERS.MAIL);
                     if (mail != null)
                     {
                         ModelState.AddModelError("MAIL", "Adres email jest juz zajęty");
                         return View();
                     }
-                    else { 
-                    USERS.PASSWORD = registerRepository.Encryption(USERS.PASSWORD);
-                    USERS.REPASSWORD = registerRepository.Encryption(USERS.REPASSWORD);
-                    USERS.FNAME = USERS.FNAME;
-                    USERS.VERIFIED = false;
-                    USERS.IS_ADMIN = false;
-                    db.USERS.Add(USERS);
-                    db.SaveChanges();
-                    SendVerificationLinkEmail(USERS.MAIL, USERS.USER_ID);
-                    ViewBag.SuccessMessage = "Rejestracja przebiegła pomyślnie." +
-            "Przesłaliśmy maila aktywacyjnego na maila:" + USERS.MAIL;
+                    else if (areMailsNull)
+                    {
+                        ModelState.AddModelError("MAIL", "Należy podać maila");
+                        return View();
+                    }
+                    else if (arePasswordsNull)
+                    {
+                        ModelState.AddModelError("PASSWORD", "Należy uzupełnić oba pola hasła");
+                        ModelState.AddModelError("REPASSWORD", "Należy uzupełnić oba pola hasła");
+                        return View();
+                    }
+                    else if (arePasswordsSame)
+                    {
+                        ModelState.AddModelError("PASSWORD", "Hasła muszą być takie same");
+                        ModelState.AddModelError("REPASSWORD", "Hasła muszą być takie same");
+                        return View();
+                    }
+                    else if (areTermsAccepted)
+                    {
+                        ModelState.AddModelError("TERMS", "Należy zaakceptować warunki");
+                        return View();
+                    }
+                    else
+                    {
+                        USERS.PASSWORD = registerRepository.Encryption(USERS.PASSWORD);
+                        USERS.REPASSWORD = registerRepository.Encryption(USERS.REPASSWORD);
+                        USERS.FNAME = USERS.FNAME;
+                        USERS.VERIFIED = false;
+                        USERS.IS_ADMIN = false;
+                        USERS.REGISTER_DATE = DateTime.Now;
+                        db.USERS.Add(USERS);
+                        db.SaveChanges();
+                        SendVerificationLinkEmail(USERS.MAIL, USERS.USER_ID);
                     }
                 }
             ModelState.Clear();
+            ViewBag.SuccessMessage = "Na maila został przesłany link aktywujący konto. Bez aktywacji konta nie będziesz w stanie dodawać ogłoszeń";
             return View();
+         }
+         else
+         {
+           return View();
+         }
         }
+  
 
         [HttpPost]
         public void SendVerificationLinkEmail(string MAIL, int UID)
         {
             //var link = "https://localhost:44318/Home/AktywacjaKonta";
             var regInfo = db.USERS.Where(x => x.USER_ID == UID).FirstOrDefault();
-            var link = "https://localhost:44318/" + "Home/Confirm?uID=" + UID;
-                string host = "smtp.gmail.com";
+            var verifyUrl = "/Home/Confirm?uID=" + UID;
+            var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, verifyUrl);
+            string host = "smtp.gmail.com";
                 SmtpClient client = new SmtpClient(host, 587);
                 client.Credentials = new NetworkCredential("pilalokalnie@gmail.com", "Jklmynuilop.acx.qfe");
                 client.EnableSsl = true;
@@ -160,50 +208,27 @@ namespace MajsterFinale.Controllers
                 MailMessage message = new MailMessage(from, to);
                 message.IsBodyHtml = true;
                 
-                message.Body = "Dziękujemy za rejestracje na Piła.Lokalnie"+ "<br/><br/>" 
-                +"W celu zakończenia rejestracji należy kliknąć przycisk na stronie z poniższego linku.<br/><br/>"
+                message.Body = "Dziękujemy za rejestracje na Piła.Lokalnie."+ "<br/>" 
+                +"W celu zakończenia rejestracji należy kliknąć przycisk na stronie z poniższego linku: <br/>"
                 + "<a href = "+link+">Przejdz na stronę</a>";
                 message.Subject = "Konto zostało utworzone!";
 
                 client.Send(message);
                 client.Dispose();
-                MessageBox.Show("Wyslano maila");
-            
         }
+
         public ActionResult Confirm(int uID)
         {
             ViewBag.UID = uID;
             return View();
         }
-        
         public ActionResult AccountConfirm(int uID)
         {
-            try
-            {
             BazaLocal db = new BazaLocal();
             USERS Data = db.USERS.Where(x => x.USER_ID == uID).FirstOrDefault();
             //USERS Data = db.USERS.SingleOrDefault(x => x.USER_ID == uID);
-            
             Data.VERIFIED = true;
-            
-                db.SaveChanges();
-            }
-            catch (DbEntityValidationException ex)
-            {
-                // Retrieve the error messages as a list of strings.
-                var errorMessages = ex.EntityValidationErrors
-                        .SelectMany(x => x.ValidationErrors)
-                        .Select(x => x.ErrorMessage);
-
-                // Join the list to a single string.
-                var fullErrorMessage = string.Join("; ", errorMessages);
-
-                // Combine the original exception message with the new one.
-                var exceptionMessage = string.Concat(ex.Message, " The validation errors are: ", fullErrorMessage);
-
-                // Throw a new DbEntityValidationException with the improved exception message.
-                throw new DbEntityValidationException(exceptionMessage, ex.EntityValidationErrors);
-            }
+            db.SaveChanges();
             var msg = "Twoje konto zostało zweryfikowane!";
             return Json(msg, JsonRequestBehavior.AllowGet);
         }
@@ -280,6 +305,111 @@ namespace MajsterFinale.Controllers
 
             return View();
         }
-        
+        public ActionResult ForgotPassword()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult ForgotPassword(string MAIL, USERS USERS)
+        {
+            string resetCode = Guid.NewGuid().ToString();
+            var verifyUrl = "/home/ResetPassword/" + resetCode;
+            var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, verifyUrl);
+            using (BazaLocal db = new BazaLocal())
+            {
+
+                var mail = db.USERS.SingleOrDefault(x => x.MAIL == USERS.MAIL);
+                if (mail != null)
+                {
+                    mail.RESETPASSWORDCODE = resetCode;
+
+                    db.Configuration.ValidateOnSaveEnabled = false;
+                    db.SaveChanges();
+
+                    SendResetPasswordEmail(mail.MAIL, resetCode);
+                }
+                else
+                {
+                    ViewBag.Message = "User doesn't exists.";
+                    return View();
+                }
+            }
+
+            return View();
+        }
+        [HttpPost]
+        public void SendResetPasswordEmail(string MAIL, string resetCode)
+        {
+            var verifyUrl = "/home/ResetPassword/" + resetCode;
+            var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, verifyUrl);
+            string host = "smtp.gmail.com";
+            SmtpClient client = new SmtpClient(host, 587);
+            client.Credentials = new NetworkCredential("pilalokalnie@gmail.com", "Jklmynuilop.acx.qfe");
+            client.EnableSsl = true;
+            MailAddress from = new MailAddress("pilalokalnie@gmail.com");
+
+            MailAddress to = new MailAddress(MAIL);
+            MailMessage message = new MailMessage(from, to);
+            message.IsBodyHtml = true;
+
+            message.Body = "Przyjeliśmy twoją prośbę o reset hasła"
+            + "Resetowanie hasła zakończysz na przesłanym linku:<br>"
+            + "<a href = " + link + ">Przejdz na stronę</a>";
+            message.Subject = "Resetowanie hasła";
+
+            client.Send(message);
+            client.Dispose();
+        }
+        public ActionResult ResetPassword(string id)
+        {
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                return HttpNotFound();
+            }
+            using (BazaLocal db = new BazaLocal())
+            {
+                var user = db.USERS.SingleOrDefault(x => x.RESETPASSWORDCODE == id);
+                if (user != null)
+                {
+                    ResetPasswordModel model = new ResetPasswordModel();
+                    model.ResetCode = id;
+                    return View(model);
+                }
+                else
+                {
+                    return HttpNotFound();
+                }
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ResetPassword(ResetPasswordModel model)
+        {
+            var message = "";
+            if (ModelState.IsValid)
+            {
+                using(BazaLocal db = new BazaLocal())
+                {
+                    var user = db.USERS.SingleOrDefault(x => x.RESETPASSWORDCODE == model.ResetCode);
+                    if (user != null)
+                    {
+                        //szyfrowanie nowego hasła
+                        user.PASSWORD = registerRepository.Encryption(model.NewPassword);
+                        //resetujemy kod resetowania hasła
+                        user.RESETPASSWORDCODE = "";
+                        db.Configuration.ValidateOnSaveEnabled = false;
+                        db.SaveChanges();
+                        message = "New password updated successfully";
+                    }
+                }
+            }
+            else
+            {
+                message = "Something invalid";
+            }
+            ViewBag.Message = message;
+            return View(model);
+        }
     }
 }
