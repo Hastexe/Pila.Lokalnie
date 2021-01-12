@@ -70,6 +70,7 @@
     <NavigationProperty Name="MESSAGE1" Relationship="Self.FK_MESSAGE_USERS1" FromRole="USERS" ToRole="MESSAGE" />
     <Property Name="PHONE_NUMBER" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
     <Property Name="REGISTER_DATE" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="RESETPASSWORDCODE" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
   </EntityType>
   <Association Name="FK_ADVERTS_CATEGORIES">
     <End Role="CATEGORIES" Type="Self.CATEGORIES" Multiplicity="1" />

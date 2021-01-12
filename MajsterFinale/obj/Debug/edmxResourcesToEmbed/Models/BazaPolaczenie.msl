@@ -51,6 +51,7 @@
     <EntitySetMapping Name="USERS">
       <EntityTypeMapping TypeName="BazaPolaczenie.USERS">
         <MappingFragment StoreEntitySet="USERS">
+          <ScalarProperty Name="RESETPASSWORDCODE" ColumnName="RESETPASSWORDCODE" />
           <ScalarProperty Name="REGISTER_DATE" ColumnName="REGISTER_DATE" />
           <ScalarProperty Name="PHONE_NUMBER" ColumnName="PHONE_NUMBER" />
           <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />

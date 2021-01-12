@@ -72,6 +72,7 @@
           <Property Name="VERIFIED" Type="bit" />
           <Property Name="IS_ADMIN" Type="bit" />
           <Property Name="REGISTER_DATE" Type="datetime" Nullable="false" />
+          <Property Name="RESETPASSWORDCODE" Type="varchar" MaxLength="500" />
         </EntityType>
         <Association Name="FK_ADVERTS_CATEGORIES">
           <End Role="CATEGORIES" Type="Self.CATEGORIES" Multiplicity="1" />
@@ -267,6 +268,7 @@
           <NavigationProperty Name="MESSAGE1" Relationship="Self.FK_MESSAGE_USERS1" FromRole="USERS" ToRole="MESSAGE" />
           <Property Name="PHONE_NUMBER" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
           <Property Name="REGISTER_DATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RESETPASSWORDCODE" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_ADVERTS_CATEGORIES">
           <End Role="CATEGORIES" Type="Self.CATEGORIES" Multiplicity="1" />
@@ -455,6 +457,7 @@
           <EntitySetMapping Name="USERS">
             <EntityTypeMapping TypeName="BazaPolaczenie.USERS">
               <MappingFragment StoreEntitySet="USERS">
+                <ScalarProperty Name="RESETPASSWORDCODE" ColumnName="RESETPASSWORDCODE" />
                 <ScalarProperty Name="REGISTER_DATE" ColumnName="REGISTER_DATE" />
                 <ScalarProperty Name="PHONE_NUMBER" ColumnName="PHONE_NUMBER" />
                 <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />

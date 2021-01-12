@@ -12,7 +12,7 @@ namespace MajsterFinale.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
-    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations;    
 
     public partial class USERS
     {
@@ -24,7 +24,7 @@ namespace MajsterFinale.Models
             this.MESSAGE = new HashSet<MESSAGE>();
             this.MESSAGE1 = new HashSet<MESSAGE>();
         }
-    
+
         public int USER_ID { get; set; }
         [DisplayName("Has³o")]
         [DataType(DataType.Password)]
@@ -32,6 +32,7 @@ namespace MajsterFinale.Models
         //ErrorMessage = "Password must bt atleast 8-10 characters with characters,numbers,1 upper case letter and special characters.")]
         [StringLength(300, MinimumLength = 6, ErrorMessage = "Has³o musi sk³adaæ sie z minumum 6 znaków")]
         public string PASSWORD { get; set; }
+
         [DisplayName("Powtórz Has³o")]
         [DataType(DataType.Password)]
         //[RegularExpression(@"^((?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])|(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[^a-zA-Z0-9])|(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[^a-zA-Z0-9])|(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^a-zA-Z0-9])).{8,}$",
@@ -41,6 +42,7 @@ namespace MajsterFinale.Models
         [DataType(DataType.EmailAddress)]
         [RegularExpression(@"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}", ErrorMessage = "Proszê podaæ prawid³owy mail")]
         public string MAIL { get; set; }
+
         [DisplayName("Imiê")]
         [Required(ErrorMessage = "Pole jest wymagane")]
         [RegularExpression(@"[a-zA-Z]+", ErrorMessage = "Proszê podaæ prawid³owe imie")]
@@ -48,15 +50,17 @@ namespace MajsterFinale.Models
         public string LNAME { get; set; }
         public Nullable<bool> VERIFIED { get; set; }
         public Nullable<bool> IS_ADMIN { get; set; }
+
         [Display(Name = "Numer Telefonu")]
         [DataType(DataType.PhoneNumber)]
         [MinLength(9)]
         [MaxLength(9)]
         [RegularExpression(@"^\(?([1-9]{1})\)?([0-9]{8})$", ErrorMessage = "Nieprawid³owy numer telefonu. Poprawny format: 123456789")]
         public string PHONE_NUMBER { get; set; }
-        public System.DateTime REGISTER_DATE { get; set; }
         public bool TERMS { get; set; }
-
+        public System.DateTime REGISTER_DATE { get; set; }
+        public string RESETPASSWORDCODE { get; set; }
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ADVERTS> ADVERTS { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

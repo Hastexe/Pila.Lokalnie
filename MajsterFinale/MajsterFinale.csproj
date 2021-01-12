@@ -175,6 +175,7 @@
     <Compile Include="Models\PanelMessageModel.cs" />
     <Compile Include="Models\RegisterRepository.cs" />
     <Compile Include="Models\RegisterViewModel.cs" />
+    <Compile Include="Models\ResetPasswordModel.cs" />
     <Compile Include="Models\UserEditPassword.cs" />
     <Compile Include="Models\UserRepository.cs" />
     <Compile Include="Models\DisplayRepository.cs" />
@@ -391,6 +392,8 @@
     <Content Include="Views\Adverts\ArchiveAd.cshtml" />
     <Content Include="Views\Home\SearchedAds.cshtml" />
     <Content Include="Views\Shared\Searchbar.cshtml" />
+    <Content Include="Views\Home\ForgotPassword.cshtml" />
+    <Content Include="Views\Home\ResetPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

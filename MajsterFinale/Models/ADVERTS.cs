@@ -13,7 +13,7 @@ namespace MajsterFinale.Models
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
-    using System.Web.Mvc;   
+    using System.Web.Mvc;
 
     public partial class ADVERTS
     {
@@ -52,6 +52,7 @@ namespace MajsterFinale.Models
         public virtual ICollection<FAV> FAV { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MESSAGE> MESSAGE { get; set; }
+
         internal class MustBeTrueAttribute : ValidationAttribute
         {
             public override bool IsValid(object value)
