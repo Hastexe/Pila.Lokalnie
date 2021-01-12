@@ -160,6 +160,7 @@ namespace MajsterFinale.Controllers
                         USERS.FNAME = USERS.FNAME;
                         USERS.VERIFIED = false;
                         USERS.IS_ADMIN = false;
+                        USERS.REGISTER_DATE = DateTime.Now;
                         db.USERS.Add(USERS);
                         db.SaveChanges();
                         SendVerificationLinkEmail(USERS.MAIL, USERS.USER_ID);

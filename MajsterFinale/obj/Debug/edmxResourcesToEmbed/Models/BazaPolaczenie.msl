@@ -4,6 +4,7 @@
     <EntitySetMapping Name="ADVERTS">
       <EntityTypeMapping TypeName="BazaPolaczenie.ADVERTS">
         <MappingFragment StoreEntitySet="ADVERTS">
+          <ScalarProperty Name="IMAGE" ColumnName="IMAGE" />
           <ScalarProperty Name="PHONE_NUMBER" ColumnName="PHONE_NUMBER" />
           <ScalarProperty Name="DATE" ColumnName="DATE" />
           <ScalarProperty Name="ID" ColumnName="ID" />
@@ -12,7 +13,6 @@
           <ScalarProperty Name="TITLE" ColumnName="TITLE" />
           <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
           <ScalarProperty Name="PRICE" ColumnName="PRICE" />
-          <ScalarProperty Name="IMAGE" ColumnName="IMAGE" />
           <ScalarProperty Name="IS_ARCHIVED" ColumnName="IS_ARCHIVED" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -51,6 +51,7 @@
     <EntitySetMapping Name="USERS">
       <EntityTypeMapping TypeName="BazaPolaczenie.USERS">
         <MappingFragment StoreEntitySet="USERS">
+          <ScalarProperty Name="REGISTER_DATE" ColumnName="REGISTER_DATE" />
           <ScalarProperty Name="PHONE_NUMBER" ColumnName="PHONE_NUMBER" />
           <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
           <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
@@ -65,6 +66,8 @@
     <EntitySetMapping Name="IMAGES">
       <EntityTypeMapping TypeName="BazaPolaczenie.IMAGES">
         <MappingFragment StoreEntitySet="IMAGES">
+          <ScalarProperty Name="MESSAGE_ID" ColumnName="MESSAGE_ID" />
+          <ScalarProperty Name="ADVERT_ID" ColumnName="ADVERT_ID" />
           <ScalarProperty Name="IMAGE_PATH" ColumnName="IMAGE_PATH" />
           <ScalarProperty Name="IMAGE_BYTE" ColumnName="IMAGE_BYTE" />
           <ScalarProperty Name="IMAGE_TITLE" ColumnName="IMAGE_TITLE" />
