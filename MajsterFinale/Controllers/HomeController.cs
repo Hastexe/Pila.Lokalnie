@@ -81,28 +81,9 @@ namespace MajsterFinale.Controllers
             
             if (userLoggedIn != null)
             {
-                ViewBag.message = "Zalogowano";
-                ViewBag.triedOnce = "Tak";
-
-                //int ID = db.USERS.Where(x => x.LOGIN == USERS.LOGIN).Select(x => x.USER_ID);
                 Session["ID"] = userLoggedIn.USER_ID;
                 Session["MAIL"] = userLoggedIn.MAIL;
-                //Session["Login"] = userLoggedIn.LOGIN;
-                if (USERS.rememberMe)
-                {
-                    // They do, so let's create an authentication cookie
-                    var cookie = FormsAuthentication.GetAuthCookie(USERS.MAIL, USERS.rememberMe);
-                    // Since they want to be remembered, set the expiration for 30 days
-                    cookie.Expires = DateTime.Now.AddDays(30);
-                    // Store the cookie in the Response
-                    Response.Cookies.Add(cookie);
-                }
-                else
-                {
-                    // Otherwise set the cookie as normal
-                    FormsAuthentication.SetAuthCookie(USERS.MAIL, USERS.rememberMe);
-                }
-                //po zalogowaniu przenosi nas index
+                
                 return RedirectToAction("Mainpage", "home", new { ID = USERS.USER_ID });
             }
             else
@@ -112,6 +93,7 @@ namespace MajsterFinale.Controllers
                 return View();
             }
         }
+
         public ActionResult Rejestracja(int id = 0)
         {
             if (Session["ID"] != null)
@@ -152,13 +134,13 @@ namespace MajsterFinale.Controllers
                     }
                     else if (arePasswordsNull)
                     {
-                        ModelState.AddModelError("PASSWORD", "Należy uzupełnić oba pola hasła");
+                        ModelState.AddModelError("REGISTERPASSWORD", "Należy uzupełnić oba pola hasła");
                         ModelState.AddModelError("REPASSWORD", "Należy uzupełnić oba pola hasła");
                         return View();
                     }
                     else if (arePasswordsSame)
                     {
-                        ModelState.AddModelError("PASSWORD", "Hasła muszą być takie same");
+                        ModelState.AddModelError("REGISTERPASSWORD", "Hasła muszą być takie same");
                         ModelState.AddModelError("REPASSWORD", "Hasła muszą być takie same");
                         return View();
                     }
@@ -169,7 +151,7 @@ namespace MajsterFinale.Controllers
                     }
                     else
                     {
-                        USERS.PASSWORD = registerRepository.Encryption(USERS.PASSWORD);
+                        USERS.PASSWORD = registerRepository.Encryption(USERS.REGISTERPASSWORD);
                         USERS.REPASSWORD = registerRepository.Encryption(USERS.REPASSWORD);
                         USERS.FNAME = USERS.FNAME;
                         USERS.VERIFIED = false;
@@ -327,15 +309,15 @@ namespace MajsterFinale.Controllers
                     db.SaveChanges();
 
                     SendResetPasswordEmail(mail.MAIL, resetCode);
+                    ViewBag.SuccessMessage = "Na maila został przesłany link zmiany hasła.";
+                    return View();
                 }
                 else
                 {
-                    ViewBag.Message = "User doesn't exists.";
+                    ModelState.AddModelError("MAIL", "Nie ma takiego mail!");
                     return View();
                 }
             }
-
-            return View();
         }
         [HttpPost]
         public void SendResetPasswordEmail(string MAIL, string resetCode)
@@ -391,22 +373,43 @@ namespace MajsterFinale.Controllers
             {
                 using(BazaLocal db = new BazaLocal())
                 {
+
                     var user = db.USERS.SingleOrDefault(x => x.RESETPASSWORDCODE == model.ResetCode);
+                        //return db.USERS.AsNoTracking().SingleOrDefault(x => x.USER_ID == uID);
+                        var EncryptedNewPassword = registerRepository.Encryption(model.NewPassword);
                     if (user != null)
                     {
-                        //szyfrowanie nowego hasła
-                        user.PASSWORD = registerRepository.Encryption(model.NewPassword);
-                        //resetujemy kod resetowania hasła
-                        user.RESETPASSWORDCODE = "";
-                        db.Configuration.ValidateOnSaveEnabled = false;
-                        db.SaveChanges();
-                        message = "New password updated successfully";
+                        
+                        if (EncryptedNewPassword == user.PASSWORD)
+                        {
+                            ModelState.AddModelError("NewPassword", "Nowe hasło musi być różne od obecnego");
+                            return View();
+                        }
+                        else if (model.NewPassword != model.ConfirmPassword)
+                        {
+                            ModelState.AddModelError("NewPassword", "Hasła muszą być takie same");
+                            ModelState.AddModelError("ConfirmPassword", "Hasła muszą być takie same");
+                            return View();
+                        }
+                        else 
+                        {
+                            //szyfrowanie nowego hasła
+                            user.PASSWORD = EncryptedNewPassword;
+                            //resetujemy kod resetowania hasła
+                            user.RESETPASSWORDCODE = "";
+                            //db.Configuration.ValidateOnSaveEnabled = false;
+                            db.SaveChanges();
+                            ViewBag.SuccessMessage = "Udało się zmienić hasło.";
+                            return View();
+                        }
                     }
                 }
+                ModelState.Clear();
+                return View(model);
             }
             else
             {
-                message = "Something invalid";
+                message = "Nie można zmienić hasła. Upewnij się czy wprowadzone hasła są identyczne oraz czy prośba o zmiane hasła nie została już wcześniej zakończona";
             }
             ViewBag.Message = message;
             return View(model);

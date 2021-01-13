@@ -57,18 +57,18 @@
                                                             @Html.ValidationMessageFor(model => model.PASSWORD, "", new { @class = "text-danger" })
                                                         </div>
                                                     </div>
-                                                    <div class="form-group">
+                                                    <!--<div class="form-group">
                                                         <span>
                                                             @Html.CheckBoxFor(model => model.rememberMe) Zapamiętaj mnie
                                                         </span>
-                                                    </div>
+                                                    </div>-->
 
                                                     <div class="form-group">
                                                         <input type="submit" value="Zaloguj" class="btn btn-lg btn-custom btn-block" />
                                                     </div>
                                                     <a href="@Url.Action("Rejestracja", "home", null)">Nie masz konta? Zarejestruj się</a>
                                                     <a href="@Url.Action("ForgotPassword", "home", null)">Odzyskiwanie hasła</a>
-                                                    <p class="reg">Zalogowanie oznacza akceptację <a href="@Url.Action("Regulamin", "home", null)">Regulaminu</a> serwisu Piłalokalnie.pl w aktualnym brzmieniu. Jeśli nie akceptujesz warunków zmienionego <a href="@Url.Action("Regulamin", "home", null)">Regulaminu</a> serwisu Piłalokalnie.pl, wyślij oświadczenie o rozwiązaniu Umowy w trybie przewidzianym w <a href="@Url.Action("Regulamin", "home", null)">Regulaminu</a>.*</p>
+                                                    <p class="reg">Zalogowanie oznacza akceptację @Html.ActionLink("Regulaminu", "regulamin", null, new { target = "_blank" }) serwisu Piłalokalnie.pl w aktualnym brzmieniu. Jeśli nie akceptujesz warunków zmienionego @Html.ActionLink("Regulaminu", "regulamin", null, new { target = "_blank" }) serwisu Piłalokalnie.pl, wyślij oświadczenie o rozwiązaniu Umowy w trybie przewidzianym w @Html.ActionLink("Regulaminie", "regulamin", null, new { target = "_blank" })*</p>
                                                 </div>
                                             </div>
                                         </div>

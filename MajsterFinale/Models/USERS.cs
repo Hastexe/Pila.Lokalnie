@@ -24,19 +24,21 @@ namespace MajsterFinale.Models
             this.MESSAGE = new HashSet<MESSAGE>();
             this.MESSAGE1 = new HashSet<MESSAGE>();
         }
-
+        
         public int USER_ID { get; set; }
         [DisplayName("Has³o")]
         [DataType(DataType.Password)]
-        //[RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&.-]).{8,}$", 
-        //ErrorMessage = "Password must bt atleast 8-10 characters with characters,numbers,1 upper case letter and special characters.")]
-        [StringLength(300, MinimumLength = 6, ErrorMessage = "Has³o musi sk³adaæ sie z minumum 8 znaków")]
+        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&.-]).{8,}$", 
+        ErrorMessage = "Has³o nie mo¿e byæ krótsze ni¿  znaków. Musi zawieraæ dodatkowo przynajmniej 1 cyfre, znak specjalny oraz du¿¹ literê.")]
+        [StringLength(300, MinimumLength = 8, ErrorMessage = "Has³o musi sk³adaæ sie z minumum 8 znaków")]
+        public string REGISTERPASSWORD { get; set; }
+        [DisplayName("Has³o")]
+        [DataType(DataType.Password)]
+        [StringLength(300, MinimumLength = 6, ErrorMessage = "Has³o musi sk³adaæ sie z minumum 6 znaków")]
         public string PASSWORD { get; set; }
         [DisplayName("Powtórz Has³o")]
         [DataType(DataType.Password)]
-        //[RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&.-]).{8,}$",
-        //ErrorMessage = "Password must bt atleast 8-10 characters with characters,numbers,1 upper case letter and special characters.")]
-        [StringLength(300, MinimumLength = 6, ErrorMessage = "Has³o musi sk³adaæ sie z minumum 8 znaków")]
+        [StringLength(300, MinimumLength = 6, ErrorMessage = "Has³o musi sk³adaæ sie z minumum 6 znaków")]
         public string REPASSWORD { get; set; }
         [DisplayName("E-mail")]
         [DataType(DataType.EmailAddress)]

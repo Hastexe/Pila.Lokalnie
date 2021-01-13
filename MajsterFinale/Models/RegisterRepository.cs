@@ -54,7 +54,7 @@ namespace MajsterFinale.Models
         [NonAction]
         public bool ArePasswordsSame(USERS USERS)
         {
-            var password = USERS.PASSWORD;
+            var password = USERS.REGISTERPASSWORD;
             var repassword = USERS.REPASSWORD;
 
             if (password != repassword)
@@ -80,7 +80,7 @@ namespace MajsterFinale.Models
         [NonAction]
         public bool IsPasswordNotNull(USERS USERS)
         {
-            var password = USERS.PASSWORD;
+            var password = USERS.REGISTERPASSWORD;
             var repassword = USERS.REPASSWORD;
 
             if (password == null || repassword == null)
