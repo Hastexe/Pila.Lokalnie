@@ -1,0 +1,60 @@
+﻿#product_page {
+    margin-top: 3%;
+}
+
+
+#product_page h1{
+    font-size: 24px;
+    
+    margin-top: 10px;
+}
+
+#product_user{
+    height: 3rem;
+    margin-top: 1rem;
+}
+
+#product_user p {
+    margin-top: 0.8rem;
+}
+
+#product_mess{
+    margin-top: 2rem;
+}
+#product_mess button {
+    margin-top: 0.5rem;
+}
+
+textarea {
+    resize: none;
+}
+
+.border-custom {
+    border-color: whitesmoke;
+    padding: 1rem;
+    background-color: white;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    max-height:500px;
+}
+
+
+#imgpos {
+    text-align: center;
+}
+.nav-custom p{
+    color: black !important;
+}
+
+#backbutton{
+    color:black;
+    text-decoration: none;
+}
+
+#backbuttontext{
+    font-size: 18px;
+    
+}

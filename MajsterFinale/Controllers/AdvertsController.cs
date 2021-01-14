@@ -115,9 +115,7 @@ namespace MajsterFinale.Controllers
                 };
                 db.ADVERTS.Add(newAdvert);
                 db.SaveChanges();
-
                 return RedirectToAction("Index", "home");
-
             }
             obj.Categories = addingAdsRepository.GetList();
             obj.CategoryID = -1;
@@ -133,7 +131,7 @@ namespace MajsterFinale.Controllers
                 displayRepository.LoggedUser = advertRepository.GetUserData(uID);
                 return View(new AdvertRepository().GetUserAdverts(uID));
             }
-            else return HttpNotFound();
+            else return RedirectToAction("AddAdvertisement", "Adverts");
         }
 
         [HttpPost]
@@ -182,7 +180,7 @@ namespace MajsterFinale.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(obj).State = System.Data.Entity.EntityState.Modified;
-                //model.Categories = addingAdsRepository.GetList();
+                // model.Categories = addingAdsRepository.GetList();
                 //model.CategoryID = -1;
                 db.SaveChanges();
                 ViewBag.Message = "Zaktualizowano ogłoszenie";

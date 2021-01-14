@@ -88,7 +88,7 @@ namespace MajsterFinale.Controllers
                 }
                 return RedirectToAction("Logowanie", "Home");
             }
-            else return RedirectToAction("Mainpage", "Home");
+            else return RedirectToAction("Index", "Home");
         }
 
         [HttpPost]

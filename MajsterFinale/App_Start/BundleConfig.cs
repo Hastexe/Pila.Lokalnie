@@ -23,8 +23,18 @@ namespace MajsterFinale
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/CSS/Bootstrap/bootstrap.min.css",
+                      "~/Content/CSS/Bootstrap/bootstrap-grid.min.css",
+                      "~/Content/CSS/Bootstrap/bootstrap-reboot.min.css",
+                      "~/Content/CSS/PagedList.css",
+                      "~/Content/CSS/main_adv.css",
+                      "~/Content/CSS/main_advdetails.css",
+                      "~/Content/CSS/main_bg.css",
+                      "~/Content/CSS/main_css.css",
+                      "~/Content/CSS/main_nav.css",
+                      "~/Content/CSS/main_reglog.css",
+                      "~/Content/CSS/main_adv.css"
+                      ));
         }
     }
 }

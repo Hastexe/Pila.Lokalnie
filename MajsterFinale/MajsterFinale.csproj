@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -60,10 +61,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=3.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
@@ -212,30 +213,88 @@
     <Compile Include="System\Data\EntityState.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\Antlr3.Runtime.dll" />
+    <Content Include="bin\Antlr3.Runtime.pdb" />
+    <Content Include="bin\EntityFramework.dll" />
+    <Content Include="bin\EntityFramework.SqlServer.dll" />
+    <Content Include="bin\EntityFramework.SqlServer.xml" />
+    <Content Include="bin\EntityFramework.xml" />
     <Content Include="bin\MajsterFinale.dll" />
     <Content Include="bin\MajsterFinale.pdb" />
-    <Content Include="Content\bootstrap-grid.css" />
-    <Content Include="Content\bootstrap-grid.min.css" />
-    <Content Include="Content\bootstrap-reboot.css" />
-    <Content Include="Content\bootstrap-reboot.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\CSS\background.css" />
-    <Content Include="Content\CSS\login_register.css" />
-    <Content Include="Content\CSS\main.css" />
-    <Content Include="Content\CSS\main_page.css" />
-    <Content Include="Content\CSS\my_adv.css" />
-    <Content Include="Content\IMAGES\3steps.png" />
+    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
+    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml" />
+    <Content Include="bin\Microsoft.Web.Infrastructure.dll" />
+    <Content Include="bin\Newtonsoft.Json.dll" />
+    <Content Include="bin\Newtonsoft.Json.xml" />
+    <Content Include="bin\PagedList.dll" />
+    <Content Include="bin\PagedList.Mvc.dll" />
+    <Content Include="bin\PagedList.Mvc.xml" />
+    <Content Include="bin\PagedList.xml" />
+    <Content Include="bin\pl\System.Web.Helpers.resources.dll" />
+    <Content Include="bin\pl\System.Web.Mvc.resources.dll" />
+    <Content Include="bin\pl\System.Web.Optimization.resources.dll" />
+    <Content Include="bin\pl\System.Web.Razor.resources.dll" />
+    <Content Include="bin\pl\System.Web.WebPages.Deployment.resources.dll" />
+    <Content Include="bin\pl\System.Web.WebPages.Razor.resources.dll" />
+    <Content Include="bin\pl\System.Web.WebPages.resources.dll" />
+    <Content Include="bin\roslyn\csc.exe" />
+    <Content Include="bin\roslyn\csi.exe" />
+    <Content Include="bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll" />
+    <Content Include="bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll" />
+    <Content Include="bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll" />
+    <Content Include="bin\roslyn\System.Buffers.dll" />
+    <Content Include="bin\roslyn\System.Collections.Immutable.dll" />
+    <Content Include="bin\roslyn\System.Memory.dll" />
+    <Content Include="bin\roslyn\System.Numerics.Vectors.dll" />
+    <Content Include="bin\roslyn\System.Reflection.Metadata.dll" />
+    <Content Include="bin\roslyn\System.Runtime.CompilerServices.Unsafe.dll" />
+    <Content Include="bin\roslyn\System.Text.Encoding.CodePages.dll" />
+    <Content Include="bin\roslyn\System.Threading.Tasks.Extensions.dll" />
+    <Content Include="bin\roslyn\vbc.exe" />
+    <Content Include="bin\roslyn\VBCSCompiler.exe" />
+    <Content Include="bin\Scrypt.dll" />
+    <Content Include="bin\System.Web.Helpers.dll" />
+    <Content Include="bin\System.Web.Helpers.xml" />
+    <Content Include="bin\System.Web.Mvc.dll" />
+    <Content Include="bin\System.Web.Mvc.xml" />
+    <Content Include="bin\System.Web.Optimization.dll" />
+    <Content Include="bin\System.Web.Optimization.xml" />
+    <Content Include="bin\System.Web.Razor.dll" />
+    <Content Include="bin\System.Web.Razor.xml" />
+    <Content Include="bin\System.Web.WebPages.Deployment.dll" />
+    <Content Include="bin\System.Web.WebPages.Deployment.xml" />
+    <Content Include="bin\System.Web.WebPages.dll" />
+    <Content Include="bin\System.Web.WebPages.Razor.dll" />
+    <Content Include="bin\System.Web.WebPages.Razor.xml" />
+    <Content Include="bin\System.Web.WebPages.xml" />
+    <Content Include="bin\WebGrease.dll" />
+    <Content Include="Content\CSS\Bootstrap\bootstrap-grid.css" />
+    <Content Include="Content\CSS\Bootstrap\bootstrap-grid.min.css" />
+    <Content Include="Content\CSS\Bootstrap\bootstrap-reboot.css" />
+    <Content Include="Content\CSS\Bootstrap\bootstrap-reboot.min.css" />
+    <Content Include="Content\CSS\Bootstrap\bootstrap.css" />
+    <Content Include="Content\CSS\Bootstrap\bootstrap.min.css" />
+    <Content Include="Content\CSS\main_adv.css" />
+    <Content Include="Content\CSS\main_advdetails.css" />
+    <Content Include="Content\CSS\main_bg.css" />
+    <Content Include="Content\CSS\main_css.css" />
+    <Content Include="Content\CSS\main_nav.css" />
+    <Content Include="Content\CSS\main_reglog.css" />
+    <Content Include="Content\CSS\PagedList.css" />
     <Content Include="Content\IMAGES\background2.svg" />
     <Content Include="Content\IMAGES\logo_nav.png" />
     <Content Include="Content\IMAGES\placeholder.png" />
+    <Content Include="Content\IMAGES\placeholder2.jpg" />
     <Content Include="Content\IMAGES\slider1.jpg" />
     <Content Include="Content\IMAGES\slider2.jpg" />
     <Content Include="Content\IMAGES\slider3.jpg" />
-    <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="Models\BazaPolaczenie.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>BazaPolaczenie.edmx</DependentUpon>
@@ -271,15 +330,26 @@
     <Content Include="Scripts\bootstrap.js.map" />
     <Content Include="Scripts\bootstrap.bundle.min.js.map" />
     <Content Include="Scripts\bootstrap.bundle.js.map" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-reboot.min.css.map" />
-    <Content Include="Content\bootstrap-reboot.css.map" />
-    <Content Include="Content\bootstrap-grid.min.css.map" />
-    <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="Content\FILES\regulamin.pdf" />
     <Content Include="Content\FILES\polityka.pdf" />
     <Content Include="libman.json" />
+    <Content Include="Content\CSS\Bootstrap\bootstrap-grid.css.map" />
+    <Content Include="Content\CSS\Bootstrap\bootstrap-grid.min.css.map" />
+    <Content Include="Content\CSS\Bootstrap\bootstrap-reboot.css.map" />
+    <Content Include="Content\CSS\Bootstrap\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\CSS\Bootstrap\bootstrap.css.map" />
+    <Content Include="Content\CSS\Bootstrap\bootstrap.min.css.map" />
+    <Content Include="bin\MajsterFinale.dll.config" />
+    <Content Include="bin\roslyn\csc.exe.config" />
+    <Content Include="bin\roslyn\csc.rsp" />
+    <Content Include="bin\roslyn\csi.exe.config" />
+    <Content Include="bin\roslyn\csi.rsp" />
+    <Content Include="bin\roslyn\Microsoft.CSharp.Core.targets" />
+    <Content Include="bin\roslyn\Microsoft.Managed.Core.targets" />
+    <Content Include="bin\roslyn\Microsoft.VisualBasic.Core.targets" />
+    <Content Include="bin\roslyn\vbc.exe.config" />
+    <Content Include="bin\roslyn\vbc.rsp" />
+    <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Scripts\JavaScript.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
@@ -380,13 +450,10 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Adverts\EditAdvertisement.cshtml" />
     <None Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\Mainpage.cshtml" />
-    <Content Include="Views\Home\Regulamin%28możliwe usunięcie%29.cshtml" />
     <Content Include="Views\Home\Message.cshtml" />
     <Content Include="Views\Home\Rejestracja.cshtml" />
     <Content Include="Views\Home\Logowanie.cshtml" />
     <Content Include="Views\Adverts\AddAdvertisement.cshtml" />
-    <Content Include="Views\Home\Polityka%28możliwe usunięcie%29.cshtml" />
     <Content Include="Views\Adverts\MojeOgloszenia.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
@@ -416,12 +483,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\BOOTSTRAP\" />
     <Folder Include="Properties\PublishProfiles\" />
     <Folder Include="UploadImage\" />
     <Folder Include="Views\ActivateAccount\" />
     <Folder Include="Views\RegisterRepository\" />
     <Folder Include="Views\RegisterViewModel\" />
+    <Folder Include="Views\SearchBarRepository\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -467,8 +534,11 @@
       <ErrorText>Ten projekt zawiera odwołania do pakietów NuGet, których nie ma na tym komputerze. Użyj przywracania pakietów NuGet, aby je pobrać. Aby uzyskać więcej informacji, zobacz http://go.microsoft.com/fwlink/?LinkID=322105. Brakujący plik: {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
   </Target>
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" />
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

@@ -1,57 +1,96 @@
-﻿@model MajsterFinale.Models.DisplayRepository
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
-<div>
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.AdvertDetails.TITLE)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.AdvertDetails.TITLE)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.AdvertDetails.DESCRIPTION)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.AdvertDetails.DESCRIPTION)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.AdvertDetails.PRICE)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.AdvertDetails.PRICE)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.AdvertDetails.IMAGE)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.AdvertDetails.IMAGE)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.AdvertDetails.CATEGORIES.NAME)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.AdvertDetails.CATEGORIES.NAME)
-        </dd>
+@model MajsterFinale.Models.DisplayRepository
 
-    </dl>
-    <div>
-        @{
-            if (Session["ID"] != null)
-            {
-                <p>Wyślij wiadomość</p>
-                using (Html.BeginForm("Details", "Adverts"))
-                {
-                    <input type="text" name="message" />
-                    <br />
-                    <input type="submit" value="wyślij" />
-                }
-            }
-            else
-            {
-                <p>Zaloguj się by wysłać wiadomość</p>
-            }
-        }
+<div class="main">
+    <div class="container" id="product_page">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="col-12">
+                    <script>
+                        document.write('<a id="backbutton" href="' + document.referrer + '"> <i class="fas fa-chevron-left" style="font-size: 1.5rem;"></i><span id="backbuttontext"></span></a>');
+                    </script>
+                </div><br>
+            </div>
+            
+            <div class="col-sm-8">
+                <div class="col-12" id="imgpos">
+                    <img class="" src="http://via.placeholder.com/600x740" alt="Card image cap">
+                    @Html.DisplayFor(model => model.AdvertDetails.IMAGE)
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="col-12">
+                    <h1 class="">@Html.DisplayFor(model => model.AdvertDetails.TITLE)</h1>
+                    <p>Kategoria:  @Html.DisplayFor(model => model.AdvertDetails.CATEGORIES.NAME)   </p>
+                    <h1 class="">@Html.DisplayFor(model => model.AdvertDetails.PRICE) zł</h1>
+                    <br>
+                    <button class="btn btn-custom "><i class="far fa-bookmark"></i> Obserwuj</button>
+                </div>
+            </div>
+            <hr>
+            <div class="col-sm-4 col-xs-12 " id="product_user">
+                <div class="col-12">
+                    <p><i class="far fa-user"></i> Username</p>
+                    <p class="d-block d-lg-none"><i class="far fa-list-alt"></i><a> Zobaczy ogłoszenia użytkownika</a>
+                </div>
+            </div>
+            <div class="col-sm-4 col-xs-12" id="product_user">
+                <div class="col-12">
+                    <p class="text-right d-none d-lg-block"><i class="far fa-list-alt"></i><a> Zobaczy ogłoszenia użytkownika</a>
+                </div>
+            </div>
+
+            <div class="col-sm-8">
+                <hr>
+                <div class="col-12">
+                    <h1>Opis</h1>
+                    <p></p>
+                    @Html.DisplayFor(model => model.AdvertDetails.DESCRIPTION)
+                </div>
+            </div>
+            <div class="col-sm-8 " id="product_mess">
+                <div class="col-12">
+                    <hr>
+                    <h1>Wiadomość</h1>
+                    @{
+                        if (Session["ID"] != null)
+                        {
+
+                            using (Html.BeginForm("Details", "Adverts"))
+                            {
+                                <form>
+                                    <!--<input type="text" name="message" />-->
+                                    <!--<input type="submit" value="wyślij" />-->
+                                    <textarea class="form-control" rows="5" name="message" placeholder="Napisz wiadomość!"></textarea>
+                                    <button class="btn btn-custom" type="submit" value="Wyślij">Wyślij</button>
+                                </form>
+                            }
+                        }
+                        else
+                        {
+                            <form>
+                                <!--<input type="text" name="message" />-->
+                                <!--<input type="submit" value="wyślij" />-->
+                                <textarea class="form-control" rows="5" name="message" placeholder="Zaloguj się, aby wysłać wiadomość."></textarea>
+                                <button class="btn btn-custom" disabled>Wyślij</button>
+                            </form>
+                            <hr>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4 col-xs-12">
+
+            <p class="text-muted">Dodano: xx.xx.xxxx xx:xx </p>
+
+        </div>
     </div>
-
-
 </div>
+
+
+

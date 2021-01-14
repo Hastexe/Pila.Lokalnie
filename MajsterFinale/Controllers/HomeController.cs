@@ -62,7 +62,7 @@ namespace MajsterFinale.Controllers
         {
             if (Session["ID"] != null)
             {
-                return RedirectToAction("Mainpage", "home", new { ID = Session["ID"].ToString() });
+                return RedirectToAction("Index", "home", new { ID = Session["ID"].ToString() });
             }
             else
             {
@@ -84,7 +84,7 @@ namespace MajsterFinale.Controllers
                 Session["ID"] = userLoggedIn.USER_ID;
                 Session["MAIL"] = userLoggedIn.MAIL;
                 
-                return RedirectToAction("Mainpage", "home", new { ID = USERS.USER_ID });
+                return RedirectToAction("Index", "home", new { ID = USERS.USER_ID });
             }
             else
             {
@@ -98,7 +98,7 @@ namespace MajsterFinale.Controllers
         {
             if (Session["ID"] != null)
             {
-                return RedirectToAction("Mainpage", "home");
+                return RedirectToAction("Index", "home");
             }
             else
             {
@@ -400,7 +400,7 @@ namespace MajsterFinale.Controllers
                             //db.Configuration.ValidateOnSaveEnabled = false;
                             db.SaveChanges();
                             ViewBag.SuccessMessage = "Udało się zmienić hasło.";
-                            return View();
+                            return RedirectToAction("Index", "home");
                         }
                     }
                 }

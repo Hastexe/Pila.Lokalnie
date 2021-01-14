@@ -1,0 +1,178 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+    overflow-x: visible;
+}
+
+.container-fluid {
+    margin-left:0;
+    margin-right:0;
+}
+
+.btn-custom {
+    background-color: #f3b136;
+    color: white;
+    font-weight: 600;
+}
+
+
+
+i {
+    margin-right: 1rem;
+    font-size: 1.1em;
+}
+
+
+.nmk {
+    height: 40px;
+    background-color: #f3b136;
+}
+
+
+.nmk p {
+     color: white;
+     font-weight: 600;
+     margin-top: 8px;
+}
+
+
+.container-fluid {
+    padding: 0 !important;
+}
+
+.carousel-inner {
+    width: 100%;
+    max-height: 500px !important;
+}
+
+.icontex {
+    color: white;
+    margin-top: 14px;
+}
+
+
+.cat-title {
+    height: 100px;
+    text-align: center;
+}
+
+.cat-title h1 {
+        font-weight: 500;
+        font-size: 32px;
+        margin-top: 30px;
+        font-weight: 700;
+}
+
+.cat-grid {
+    height: auto;
+    align-items: center;
+    border: 2px black;
+    text-align: center;
+    vertical-align: middle;
+   
+}
+.cat-grid .Icongrid {
+    color: #0B3c5d;
+    font-size: 2.5rem;
+}
+
+.cat-grid p {
+    color: grey;
+    font-size: 0.75rem;
+    margin-top: 5px;
+    font-weight: 600;
+}
+
+
+.cat-collapse {
+    text-align: center;
+    
+}
+
+.underCat a {
+    color: black;
+}
+
+
+.underCat li {
+    margin-top: 10px;
+}
+
+.underCat {
+   
+}
+
+.cat_space {
+    margin-top: 20px;
+}
+
+.cat-grid a {
+    text-decoration: none;
+}
+
+
+.newadded {
+    text-align: center;
+}
+
+.newadded h1 {
+        font-weight: 500;
+        font-size: 32px;
+        margin-top: 70px;
+        font-weight: 700;
+        margin-bottom: 30px;
+    }
+
+.steps {
+    width: 100%;
+    text-align: center;
+    margin-top: 5rem;
+}
+
+.steps h1 {
+        font-size: 1.5rem;
+        font-weight: 700;
+}
+
+.steps p {
+        font-size: 1rem;
+        font-weight: 400;
+}
+
+.grow { 
+  transition: all .2s ease-in-out; 
+ 
+  }
+  
+.grow:hover { 
+  transform: scale(1.1); 
+  }
+
+.imgtop {
+    margin-top: 3rem;
+   
+}
+ textarea {
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border-style: solid;
+    border-color: grey;
+    border-width: 0 0 2px;
+    background-color: white;
+}
+
+.carousel-item img {
+    object-fit: cover;
+    
+}
+
+.btn-custommobile{
+    font-weight:400;
+}
+

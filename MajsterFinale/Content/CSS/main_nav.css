@@ -1,0 +1,46 @@
+
+.bg-custom {
+    background-color: #0B3c5d;
+    color:white;
+}
+
+.main-navsize{
+    margin-left: 10%;
+    margin-right: 10%; 
+}
+
+.btn-custommobile{
+    margin-top:0.5rem;
+}
+
+.dropdown .dropdown-menu a:hover {
+    background-color: #0B3c5d;
+    color: white;
+}
+
+.dropdown .dropdown-menu {
+   padding:0.6em;
+}
+.dropdown .dropdown-item {
+    margin-top: 0.3em;
+}
+
+
+.logoutbtn {
+    background-color: #f3b136;
+    color:white
+}
+
+    .logoutbtn:hover {
+        background-color: #f3b136;
+
+    }
+
+
+.navbar-toggler {
+    border: 0px;
+    
+}
+    .navbar-toggler:focus {
+        box-shadow: none;
+    }

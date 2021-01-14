@@ -1,48 +1,175 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Piłalokalnie - serwis ogłoszeniowy</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    
-    <nav class="navbar navbar-expand-sm  navbar-dark default-color bg-info shadow py-3">
-        <div class="container">
-            <a class="navbar-brand" href="@Url.Action("Index", "Home")">Piła lokalnie</a>
-            <button class="navbar-toggler text-white " type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <!--Nie masz konta?-->
+
+    @{
+        if (Session["ID"] != null)
+        {
+        }
+        else
+        {
+            <div class="nmk">
+                <div class="container-fluid nmk">
+                    <div class="row">
+                        <div class="col-12 text-center"><a href="@Url.Action("Rejestracja", "Home", null)"><p>Nie masz konta? Załóż za darmo!</p></a></div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+
+    <!--Navbar-->
+    <nav class="navbar navbar-dark bg-custom navbar-expand-lg ">
+        <div class="container-fluid main-navsize">
+
+            <a class="navbar-brand" href="@Url.Action("Index", "home", null)">
+                <img src="~/Content/IMAGES/logo_nav.png" width="50" height="50" class="d-inline-block align-top" alt="Logo">
+            </a>
+            <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse text-white " id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto text-white ">
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="btn btn-custom d-block d-lg-none " href="@Url.Action("AddAdvertisement", "Adverts", null)" role="button">Dodaj ogłoszenie</a>
+                    </li>
                     
-                    <li class="nav-item text-white ">
-                        <a class="nav-link waves-effect waves-light" href="#">
-                            Obserwowane
-                        </a>
+
+                    @{
+                        if (Session["ID"] != null)
+                        {
+                            
+                            <li class="nav-item active d-none d-lg-block">
+                                <a class="nav-link" href="#"><i class="far fa-envelope"> </i><span class="d-lg-none">Wiadomości</span></a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="btn btn-custom btn-custommobile d-block d-lg-none " href="#" role="button"><i class="far fa-envelope"> </i><span class="d-lg-none">Wiadomości</span></a>
+                            </li>
+
+                        }
+                        else
+                        {
+
+                        }
+                    }
+                    <li class="nav-item active">
+                        <a class="nav-link d-none d-lg-block" href="#"><i class="far fa-bookmark"> </i><span class="d-lg-none">Obserwowane</span></a>
                     </li>
+
                     <li class="nav-item">
-                        <a class="nav-link waves-effect waves-light" href="@Url.Action("Message", "Home")">Wiadomości</a>
+                        <a class="btn btn-custom btn-custommobile d-block d-lg-none" href="#" role="button"><i class="far fa-bookmark"> </i><span class="d-lg-none">Obserwowane</span></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link waves-effect waves-light" href="@Url.Action("Logowanie", "Home")">Moje konto</a>
+                    <li class="nav-item dropdown active ahover d-none d-lg-block">
+
+
+                        @{
+                            if (Session["ID"] != null)
+                            {
+                                <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span style="font-weight:600;"> Moje konto</span>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <h6 class="dropdown-header" style="font-weight: bold; font-size: 1.1rem; margin-bottom: 5px;">Twoje konto:</h6>
+                                    <a class="dropdown-item" href="@Url.Action("MojeOgloszenia", "Adverts", null)">Ogłoszenia</a>
+                                    <a class="dropdown-item" href="@Url.Action("Messages", "User", null)">Wiadomości</a>
+                                    <a class="dropdown-item" href="@Url.Action("EditData", "User", null)">Ustawienia</a>
+                                    <h6 class="dropdown-header " style="font-weight: bold; font-size: 1.0rem; margin-bottom: 5px;">Obserwowane:</h6>
+                                    <a class="dropdown-item" href="#">Ogłoszenia</a>
+                                    <div class="dropdown-divider"></div>
+
+                                    @using (Html.BeginForm("LogOff", "home", FormMethod.Post, new { role = "form" }))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                     <input type="submit" value="Wyloguj się" class=" btn dropdown-item logoutbtn text-center" />}
+                                    <div class="dropdown-divider"></div>
+                                    <h6 class="dropdown-header" style="font-weight: bold; font-size: 1.1rem; margin-bottom: 5px;">DEV MENU</h6>
+                                    <a class="dropdown-item" href="@Url.Action("Show", "Adverts", null)">Wszystkie ogłoszenia</a>
+                                </div>
+                            }
+                            else
+                            {
+                                <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span style="font-weight:600;"> Logowanie/Rejestracja</span>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="@Url.Action("Logowanie", "Home", null)">Zaloguj się</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="@Url.Action("Rejestracja", "Home", null)">Zarejestruj się</a>
+                                </div>
+                            }
+                        }
+                    <li class="nav-item dropdown">
+                        @{
+                            if (Session["ID"] != null)
+                            {
+                                <a class="btn btn-custom btn-custommobile d-block d-lg-none dropdown-toggle" href="#" role="button" id="dropdownMenuLinkMobile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="far fa-user"> </i>
+                                    <span class="d-lg-none">Moje konto</span>
+                                </a>
+
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <h6 class="dropdown-header" style="font-weight: bold; font-size: 1.1rem; margin-bottom: 5px;">Twoje konto:</h6>
+                                    <a class="dropdown-item" href="@Url.Action("MojeOgloszenia", "Adverts", null)">Ogłoszenia</a>
+                                    <a class="dropdown-item" href="@Url.Action("Messages", "User", null)">Wiadomości</a>
+                                    <a class="dropdown-item" href="@Url.Action("EditData", "User", null)">Ustawienia</a>
+                                    <h6 class="dropdown-header " style="font-weight: bold; font-size: 1.0rem; margin-bottom: 5px;">Obserwowane:</h6>
+                                    <a class="dropdown-item" href="#">Ogłoszenia</a>
+                                    <div class="dropdown-divider"></div>
+
+                                    @using (Html.BeginForm("LogOff", "home", FormMethod.Post, new { role = "form" }))
+                                    {
+                                        @Html.AntiForgeryToken()
+
+                                        <input type="submit" value="Wyloguj się" class=" btn dropdown-item logoutbtn text-center" />}
+                                    <div class="dropdown-divider"></div>
+                                    <h6 class="dropdown-header" style="font-weight: bold; font-size: 1.1rem; margin-bottom: 5px;">DEV MENU</h6>
+                                    <a class="dropdown-item" href="@Url.Action("Show", "Adverts", null)">Wszystkie ogłoszenia</a>
+                                </div>
+                            }
+                            else
+                            {
+                                <a class="btn btn-custom btn-custommobile d-block d-lg-none dropdown-toggle" href="#" role="button" id="dropdownMenuLinkMobile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="far fa-user"> </i>
+                                    <span class="d-lg-none">Logowanie/Rejestracja</span>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="@Url.Action("Logowanie", "Home", null)">Zaloguj się</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="@Url.Action("Rejestracja", "Home", null)">Zarejestruj się</a>
+                                </div>
+                            }
+                        }
+
+                       <li class="nav-item">
+                        <a class="btn btn-custom d-none d-lg-block" href="@Url.Action("AddAdvertisement", "Adverts", null)" role="button">Dodaj ogłoszenie</a>
                     </li>
                 </ul>
             </div>
+          
         </div>
     </nav>
-        
-    <div class="container body-content">
-        @RenderBody()
-        
-    </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+
+
+    <div class="body-content">
+        @RenderBody()
+    </div>
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+    <script src="~/Scripts/jquery-3.5.1.min.js"></script>
+    <script src="~/Scripts/popper.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    @RenderSection("Scripts", required: false)
 </body>
 </html>
+

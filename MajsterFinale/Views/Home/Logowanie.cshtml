@@ -1,99 +1,68 @@
-﻿@{ Layout = null; }
-
-@model MajsterFinale.Models.USERS
-@Html.ValidationSummary(true)
-@using (Html.BeginForm("Logowanie", "Home", FormMethod.Post))
-{
-@Html.AntiForgeryToken()
-                <!doctype html>
-                                <html lang="pl">
-                                <head runat="server">
-                                    <meta charset="utf-8">
-                                    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-                                    <title>Piłalokalnie - serwis ogłoszeń lokalnych</title>
-                                    <meta name="description" content="Serwisz ogłoszeń lokalnych w Pile">
-                                    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-                                    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-                                    <link href="~/Content/CSS/login_register.css" rel="stylesheet" />
-                                    <link href="~/Content/CSS/main.css" rel="stylesheet" />
-
-                                </head>
-
-                                <body>
-                                    <div class="container-fluid">
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <div class="container-fluid" style="background-color:#0B3c5d;">
-                                                    <nav class="navbar navbar-expand-lg navbar-dark py-1">
-                                                        <div class="navbarmar">
-                                                            <a class="navbar-brand " href="@Url.Action("Index", "Home", null)">
-                                                                <img src="~/Content/IMAGES/logo_nav.png" width="50" height="50" class="d-inline-block align-top" alt=""><h1 class="icontex underline">Piła lokalnie</h1>
-                                                            </a>
-                                                        </div>
-                                                    </nav>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-sm-12 loginreg d-flex justify-content-center">
-                                                <div class="card mb-3 form-signin">
-                                                    <h1 class="h3 mb-3 font-weight-normal">Zaloguj się</h1>
-                                                    <div class="form-group">
-                                                        <label class="label-success" style="color: red;">@ViewBag.Message</label>
-                                                    </div>
-                                                    <p>Email:</p>
-                                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                                    <div class="form-group">
-                                                        @Html.LabelFor(model => model.MAIL, htmlAttributes: new { @class = "control-label sr-only" })
-                                                        <div class="">
-                                                            @Html.EditorFor(model => model.MAIL, new { htmlAttributes = new { @class = "form-control" } })
-                                                            @Html.ValidationMessageFor(model => model.MAIL, "", new { @class = "text-danger" })
-                                                        </div>
-                                                    </div>
-                                                    <p>Hasło:</p>
-                                                    <div class="form-group">
-                                                        @Html.LabelFor(model => model.PASSWORD, htmlAttributes: new { @class = "control-label sr-only" })
-                                                        <div class="">
-                                                            @Html.EditorFor(model => model.PASSWORD, new { htmlAttributes = new { @class = "form-control" } })
-                                                            @Html.ValidationMessageFor(model => model.PASSWORD, "", new { @class = "text-danger" })
-                                                        </div>
-                                                    </div>
-                                                    <!--<div class="form-group">
-                                                        <span>
-                                                            @Html.CheckBoxFor(model => model.rememberMe) Zapamiętaj mnie
-                                                        </span>
-                                                    </div>-->
-
-                                                    <div class="form-group">
-                                                        <input type="submit" value="Zaloguj" class="btn btn-lg btn-custom btn-block" />
-                                                    </div>
-                                                    <a href="@Url.Action("Rejestracja", "home", null)">Nie masz konta? Zarejestruj się</a>
-                                                    <a href="@Url.Action("ForgotPassword", "home", null)">Odzyskiwanie hasła</a>
-                                                    <p class="reg">Zalogowanie oznacza akceptację @Html.ActionLink("Regulaminu", "regulamin", null, new { target = "_blank" }) serwisu Piłalokalnie.pl w aktualnym brzmieniu. Jeśli nie akceptujesz warunków zmienionego @Html.ActionLink("Regulaminu", "regulamin", null, new { target = "_blank" }) serwisu Piłalokalnie.pl, wyślij oświadczenie o rozwiązaniu Umowy w trybie przewidzianym w @Html.ActionLink("Regulaminie", "regulamin", null, new { target = "_blank" })*</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-                                    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-                                    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-                                    <script>
-                                        // extend range validator method to treat checkboxes differently
-                                        var defaultRangeValidator = $.validator.methods.range;
-                                        $.validator.methods.range = function (value, element, param) {
-                                            if (element.type === 'checkbox') {
-                                                // if it's a checkbox return true if it is checked
-                                                return element.checked;
-                                            } else {
-                                                // otherwise run the default validation function
-                                                return defaultRangeValidator.call(this, value, element, param);
-                                            }
-                                        }
-                                    </script>
-                                </body>
-                            </html>
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@model MajsterFinale.Models.USERS
+@using (Html.BeginForm("Logowanie", "Home", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="container loginreg">
+        <div class="row">
+            <div class="col-sm-12 d-flex justify-content-center">
+                <div class="card mb-3 form-signin">
+                    <h1 class="h2 mb-5 mt-2">Zaloguj się</h1>
+                    <div class="form-group">
+                        <label class="label-success" style="color: red;">@ViewBag.Message</label>
+                    </div>
+                    <span class="logp"><p>E-mail:</p></span>
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        <div class="">
+                            @Html.EditorFor(model => model.MAIL, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.MAIL, "", new { @class = "text-danger" })
 
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/jqueryval")
+                        </div>
+                    </div>
+                    <span class="logp"><p>Hasło:</p></span>
+                    <div class="form-group">
+                        <div class="">
+                            @Html.EditorFor(model => model.PASSWORD, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.PASSWORD, "", new { @class = "text-danger" })
 
+                            <span class="logp"><p><a href="@Url.Action("ForgotPassword", "home", null)">Zapomniałem hasła</a></p></span>
+                        </div>
+                    </div>
+                    @*<div class="form-group">
+                        <span>
+                        @Html.CheckBoxFor(model => model.rememberMe) Zapamiętaj mnie
+                        </span>
+                        </div>*@
+
+                    <div class="form-group">
+                        <input type="submit" value="Zaloguj" class="btn btn-lg btn-custom btn-block" />
+                    </div>
+                    <div class="form-group text-center">
+                        <span class="logp"><p><a href="@Url.Action("Rejestracja", "home", null)">Nie masz konta? Zarejestruj się</a></p></span>
+                        <p class="smalltext">Zalogowanie oznacza akceptację <a href="@Url.Action("Regulamin", "home", null)">Regulaminu</a> serwisu Piłalokalnie.pl w aktualnym brzmieniu. Jeśli nie akceptujesz warunków zmienionego <a href="@Url.Action("Regulamin", "home", null)">Regulaminu</a> serwisu Piłalokalnie.pl, wyślij oświadczenie o rozwiązaniu Umowy w trybie przewidzianym w <a href="@Url.Action("Regulamin", "home", null)">Regulaminu</a>.*</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // extend range validator method to treat checkboxes differently
+        var defaultRangeValidator = $.validator.methods.range;
+        $.validator.methods.range = function (value, element, param) {
+            if (element.type === 'checkbox') {
+                // if it's a checkbox return true if it is checked
+                return element.checked;
+            }
+            else {
+                // otherwise run the default validation function
+                return defaultRangeValidator.call(this, value, element, param);
+            }
+        }
+    </script>
+}

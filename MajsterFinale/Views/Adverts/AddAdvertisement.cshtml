@@ -1,137 +1,102 @@
-﻿@model MajsterFinale.Models.AddingAdsRepository
-@{
-    Layout = null;
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!doctype html>
-<html lang="pl">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Piłalokalnie - serwis ogłoszeń lokalnych</title>
-    <meta name="description" content="Serwisz ogłoszeń lokalnych w Pile">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-    <link href="~/Content/CSS/main.css" rel="stylesheet" />
-    <link href="~/Content/CSS/cookies.css" rel="stylesheet" />
-    <link href="~/Content/CSS/bg.css" rel="stylesheet" />
-</head>
-<body>
-    <!-- Navbar -->
-    <div class="container-fluid">
-        <nav class="navbar navbar-expand-lg navbar-dark py-1">
-            <div class="container-fluid navbarmar">
-                <a class="navbar-brand " href="@Url.Action("Mainpage", "home", null)">
-                    <img src="~/Content/IMAGES/logo_nav.png" width="50" height="50" class="d-inline-block align-top" alt="Logo"><h1 class="icontex underline">Piła lokalnie</h1>
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="nav navbar ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("Message", "home", null)"><i class="far fa-envelope"><span class="badge badge-warning">4</span></i></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="far fa-bookmark"></i></a>
-                        </li>
-                        <li class="nav-item dropdown active">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-weight: 600;">Moje konto</a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <h6 class="dropdown-header" style="font-weight: bold; font-size: 1.0rem; margin-bottom: 5px;">Twoje konto:</h6>
-                                <a class="dropdown-item" href="@Url.Action("MojeOgloszenia", "home", null)">Ogłoszenia</a>
-                                <a class="dropdown-item" href="@Url.Action("Message", "home", null)">Wiadomości</a>
-                                <a class="dropdown-item" href="@Url.Action("Panel", "home", null)">Ustawienia</a>
-                                <h6 class="dropdown-header " style="font-weight: bold; font-size: 1.0rem; margin-bottom: 5px;">Obserwowane:</h6>
-                                <a class="dropdown-item" href="#">Ogłoszenia</a>
-                                <div class="dropdown-divider"></div>
-
-                                @using (Html.BeginForm("LogOff", "home", FormMethod.Post, new { role = "form" }))
-                                {
-                                    @Html.AntiForgeryToken()
-                                    <input type="submit" value="Wyloguj się" class="dropdown-item" />}
-                            </div>
-                        </li>
-                    </ul>
+@model MajsterFinale.Models.AddingAdsRepository
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="container">
+        <div class="row" style="margin-top:1rem;">
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <h1>Wystaw ogłoszenie!</h1>
                 </div>
             </div>
-        </nav>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="col-md-12 " style="margin-top:1rem;">
+                <div class="col-md-4">
+                    <h3>Tytuł ogłoszenia</h3>
+                    <div class="form-group name">
+                        @Html.EditorFor(model => model.Advert.TITLE, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Advert.TITLE, "", new { @class = "text-danger" })
+                        <small class="form-text text-muted">
+                            <sup style="color:red">&#42;</sup>Dodaj tytuł ogłoszenia
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="col-md-4">
+                    <div class="form-group name">
+                        @Html.DropDownListFor(model => model.CategoryID, new SelectList(Model.Categories, "ID", "Name"), htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Advert.CATEGORY, "", new { @class = "text-danger" })
+                        <small class="form-text text-muted">
+                            <sup style="color:red">&#42;</sup>Wybierz kategorię
+                        </small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12" style="margin-top:2rem;">
+                <div class="col-md-4">
+                    <h3>Cena</h3>
+                    <div class="form-group name">
+                        @Html.EditorFor(model => model.Advert.PRICE, new { rows = "1", htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Advert.PRICE, "", new { @class = "text-danger" })
+                        <small class="form-text text-muted">
+                            <sup style="color:red">&#42;</sup>Podaj Cenę
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="col-md-4">
+                    <h3>Dodaj zdjęcia (PLACEHOLDER)</h3>
+                    <form>
+                        <div class="form-group">
+                            <small class="form-text text-muted">
+                                Dodaj zdjęcie do ogłoszenia
+                            </small>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <br>
+            <div class=" col-md-12">
+                <div class=" col-md-4">
+                    <h3>Opis</h3>
+                    <div class="form-group name">
+                        @Html.TextAreaFor(model => model.Advert.DESCRIPTION, new { cols = "75", rows = "10", htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Advert.DESCRIPTION, "", new { @class = "text-danger" })
+                        <small class="form-text text-muted">
+                            <sup style="color:red">&#42;</sup>Dodaj opis
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class=" col-md-12" style="margin-top:1rem;">
+                <div class=" col-md-6">
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="exampleCheck1">Akceptuje regulamin</label><br>
+                            <small class="form-text text-muted">
+                                Nullam tincidunt est a est eleifend venenatis. Mauris sit amet maximus diam. Vestibulum iaculis pharetra nibh, eget ullamcorper magna laoreet vel. Curabitur eu quam sem. Praesent et viverra felis. Sed faucibus ultrices enim malesuada venenatis. Duis pretium nisi nec erat lobortis blandit. In pretium id mauris eu tempor. Phasellus vehicula, nibh quis tincidunt ultricies, dui magna aliquet ante, nec tincidunt ligula tellus congue justo.
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class=" col-md-12" style="margin-top:1rem;">
+                <div class=" col-md-6">
+                    <div class="form-group">
+                        <input type="submit" value="Dodaj ogłoszenie" class="btn btn-custom" />
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-        <div class="container advsize">
-            <div class="form-horizontal">
-                <div class="row">
-                    <div class="col-md-12 text-center">
-                        <h4>Dodaj ogłoszenie</h4>
-                    </div>
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-
-                    <div class="col-md-12">
-                        <h3>Wpisz tytuł</h3>
-                        <div class="form-group name">
-                            @Html.EditorFor(model => model.Advert.TITLE, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Advert.TITLE, "", new { @class = "text-danger" })
-                            <small class="form-text text-muted">
-                                <sup style="color:red">&#42;</sup>Dodaj tytuł ogłoszenia
-                            </small>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="col-md-12">
-                        <h3>Dodaj zdjęcia (PLACEHOLDER)</h3>
-                        <form>
-                            <div class="form-group">
-                               
-                                <small class="form-text text-muted">
-                                    Dodaj zdjęcie do ogłoszenia
-                                </small>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="col-md-12">
-                        <h3>Wybierz kategorię</h3>
-                        <div class="form-group name">
-                            @Html.DropDownListFor(model => model.CategoryID, new SelectList(Model.Categories, "ID", "Name"), htmlAttributes: new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.Advert.CATEGORY, "", new { @class = "text-danger" })
-                            <small class="form-text text-muted">
-                                <sup style="color:red">&#42;</sup>Wybierz kategorię
-                            </small>
-                        </div>
-                    </div>
-
-                    <br>
-                    <div class="col-md-12">
-                        <h3>Opis ogłoszenia</h3>
-                        <div class="form-group test rows-3" style="height: 200px;">
-                            @Html.EditorFor(model => model.Advert.DESCRIPTION, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Advert.DESCRIPTION, "", new { @class = "text-danger" })
-                            <small class="form-text text-muted">
-                                <sup style="color:red">&#42;</sup>Dodaj opis
-                            </small>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <h3>Cena</h3>
-                        <div class="form-group name">
-                            @Html.EditorFor(model => model.Advert.PRICE, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Advert.PRICE, "", new { @class = "text-danger" })
-                            <small class="form-text text-muted">
-                                <sup style="color:red">&#42;</sup>Podaj Cenę
-                            </small>
-                        </div>
-                        <div class="form-group">
-                            <input type="submit" value="Dodaj ogłoszenie" class="btn btn-custom" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    }
-
-</body>
-</html>
+}
