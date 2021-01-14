@@ -37,32 +37,19 @@ namespace MajsterFinale.Controllers
             return View(model);
         }
 
-        public ActionResult SearchedAds(int? page, string search, AddingAdsRepository obj)
+        public ActionResult Wyszukiwanie(int? page, string search, AddingAdsRepository obj)
         {
             var category = obj.CategoryID;
             int pageSize = 10;
             int pageNumber = (page ?? 1);
             return View(new AdvertRepository().GetAdsBySearch(search, category).ToPagedList(pageNumber, pageSize));
         }
-        public ActionResult Mainpage()
-        {
-            if (Session["ID"] == null)
-            {
-                return RedirectToAction("Index", "home");
-            }
-            else
-            {
-                AddingAdsRepository model = new AddingAdsRepository();
-                model.CategoryID = -1;
-                model.Categories = addingAdsRepository.GetList();
-                return View(model);
-            }
-        }
+
         public ActionResult Logowanie()
         {
             if (Session["ID"] != null)
             {
-                return RedirectToAction("Index", "home", new { ID = Session["ID"].ToString() });
+                return RedirectToAction("Index", "Home", new { ID = Session["ID"].ToString() });
             }
             else
             {
@@ -74,17 +61,15 @@ namespace MajsterFinale.Controllers
         [HttpPost]
         public ActionResult Logowanie(USERS USERS)
         {
-            BazaLocal db = new BazaLocal();
             USERS.PASSWORD = registerRepository.Encryption(USERS.PASSWORD);
-            
             var userLoggedIn = db.USERS.SingleOrDefault(x => x.MAIL == USERS.MAIL && x.PASSWORD == USERS.PASSWORD);
-            
             if (userLoggedIn != null)
             {
                 Session["ID"] = userLoggedIn.USER_ID;
                 Session["MAIL"] = userLoggedIn.MAIL;
-                
-                return RedirectToAction("Index", "home", new { ID = USERS.USER_ID });
+                Session["FNAME"] = userLoggedIn.FNAME;
+
+                return RedirectToAction("Index", "Home", new { ID = USERS.USER_ID });
             }
             else
             {
@@ -98,7 +83,7 @@ namespace MajsterFinale.Controllers
         {
             if (Session["ID"] != null)
             {
-                return RedirectToAction("Index", "home");
+                return RedirectToAction("Index", "Home");
             }
             else
             {
@@ -110,13 +95,8 @@ namespace MajsterFinale.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Rejestracja(USERS USERS)
         {
-            ViewBag.Message = null;
             if (ModelState.IsValid)
             {
-              
-
-                using (BazaLocal db = new BazaLocal())
-                {
                     var arePasswordsSame = registerRepository.ArePasswordsSame(USERS);
                     var arePasswordsNull = registerRepository.IsPasswordNotNull(USERS);
                     var areMailsNull = registerRepository.IsMailNotNull(USERS);
@@ -162,7 +142,6 @@ namespace MajsterFinale.Controllers
                         db.SaveChanges();
                         SendVerificationLinkEmail(USERS.MAIL, USERS.USER_ID);
                     }
-                }
             ModelState.Clear();
             ViewBag.SuccessMessage = "Na maila został przesłany link aktywujący konto. Bez aktywacji nie będziesz w stanie w pełni korzystać z konta!";
             return View();
@@ -172,14 +151,12 @@ namespace MajsterFinale.Controllers
            return View();
          }
         }
-  
 
         [HttpPost]
         public void SendVerificationLinkEmail(string MAIL, int UID)
         {
-            //var link = "https://localhost:44318/Home/AktywacjaKonta";
             var regInfo = db.USERS.Where(x => x.USER_ID == UID).FirstOrDefault();
-            var verifyUrl = "/Home/Confirm?uID=" + UID;
+            var verifyUrl = "/Home/Weryfikacja?uID=" + UID;
             var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, verifyUrl);
             string host = "smtp.gmail.com";
                 SmtpClient client = new SmtpClient(host, 587);
@@ -200,21 +177,18 @@ namespace MajsterFinale.Controllers
                 client.Dispose();
         }
 
-        public ActionResult Confirm(int uID)
+        public ActionResult Weryfikacja(int uID)
         {
             ViewBag.UID = uID;
             return View();
         }
         public ActionResult AccountConfirm(int uID)
         {
-            BazaLocal db = new BazaLocal();
             USERS Data = db.USERS.Where(x => x.USER_ID == uID).FirstOrDefault();
-            //USERS Data = db.USERS.SingleOrDefault(x => x.USER_ID == uID);
             Data.VERIFIED = true;
             db.SaveChanges();
-            var msg = "Twoje konto zostało zweryfikowane!";
+            var msg = "Weryfikacja przebiegła pomyślnie";
             return Json(msg, JsonRequestBehavior.AllowGet);
-            //return RedirectToAction("Logowanie", "Home");
         }
 
         [HttpPost]
@@ -289,12 +263,12 @@ namespace MajsterFinale.Controllers
 
             return View();
         }
-        public ActionResult ForgotPassword()
+        public ActionResult Odzyskaj()
         {
             return View();
         }
         [HttpPost]
-        public ActionResult ForgotPassword(string MAIL, USERS USERS)
+        public ActionResult Odzyskaj(string MAIL, USERS USERS)
         {
             string resetCode = Guid.NewGuid().ToString();
             using (BazaLocal db = new BazaLocal())
@@ -332,7 +306,7 @@ namespace MajsterFinale.Controllers
         [HttpPost]
         public void SendResetPasswordEmail(string MAIL, string resetCode)
         {
-            var verifyUrl = "/home/ResetPassword/" + resetCode;
+            var verifyUrl = "/home/NoweHaslo/" + resetCode;
             var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, verifyUrl);
             string host = "smtp.gmail.com";
             SmtpClient client = new SmtpClient(host, 587);
@@ -352,7 +326,7 @@ namespace MajsterFinale.Controllers
             client.Send(message);
             client.Dispose();
         }
-        public ActionResult ResetPassword(string id)
+        public ActionResult NoweHaslo(string id)
         {
             if (string.IsNullOrWhiteSpace(id))
             {
@@ -376,7 +350,7 @@ namespace MajsterFinale.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ResetPassword(ResetPasswordModel model)
+        public ActionResult NoweHaslo(ResetPasswordModel model)
         {
             var message = "";
             if (ModelState.IsValid)
