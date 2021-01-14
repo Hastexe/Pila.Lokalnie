@@ -1,4 +1,7 @@
-﻿@model PagedList.IPagedList<MajsterFinale.Models.ADVERTS>
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model PagedList.IPagedList<MajsterFinale.Models.ADVERTS>
 @using PagedList.Mvc;
 
 <table class="table">
@@ -6,24 +9,24 @@
     @foreach (var item in Model)
     {
         <tr class="clickable-row" data-href="@Url.Action("Details", "Adverts", new { id = item.ID })">
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TITLE)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DESCRIPTION)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PRICE)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.IMAGE)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CATEGORIES.NAME)
-                    </td>
-                    <td>
-                        <a href="@Url.Action("Details", "Adverts", new { id = item.ID }) ">Szczegóły</a>
-                    </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TITLE)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DESCRIPTION)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PRICE)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IMAGE)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CATEGORIES.NAME)
+            </td>
+            <td>
+                <a href="@Url.Action("Details", "Adverts", new { id = item.ID }) ">Szczegóły</a>
+            </td>
         </tr>
     }
 

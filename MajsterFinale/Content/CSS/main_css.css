@@ -176,3 +176,38 @@ i {
     font-weight:400;
 }
 
+
+.navpanelcolor {
+    color: black;
+  
+}
+.navpanelcolor:hover {
+    color: white;
+    background-color: #0B3c5d;
+}
+
+.card-body a{
+    color:black;
+}
+
+.active {
+    color: white;
+}
+
+
+@media (max-width: 816px) {
+    .navpanel {
+        margin-left: 3%;
+        margin-right: 3%;
+        margin-top: 2rem;
+    }
+}
+
+@media (min-width: 817px) {
+    .navpanel {
+        margin-left: 10%;
+        margin-right: 10%;
+        margin-top: 5rem;
+    }
+}
+

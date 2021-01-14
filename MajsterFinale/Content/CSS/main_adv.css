@@ -11,11 +11,7 @@ html,body
     flex: 1 1 auto;
   }
   
-.sizeadv{
-    margin-left: 15%;
-    margin-right: 15%;
-    margin-top: 5rem;
-}
+
 
 .sizeadv h1{
     font-size: 40px;
@@ -57,8 +53,21 @@ nav{
     text-decoration: none;
 }
 
-.sizesett {
-    margin-left: 15%;
-    margin-right: 15%;
-    margin-top: 1rem;
+
+
+
+@media (max-width: 767px) {
+    .cardsize {
+      
+    }
+
 }
+
+@media (min-width: 768px) {
+    .cardsize {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+
+}
+
