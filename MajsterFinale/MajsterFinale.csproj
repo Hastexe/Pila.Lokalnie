@@ -157,6 +157,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ActivationUserModel.cs" />
     <Compile Include="Models\AdvertRepository.cs" />
     <Compile Include="Models\ADVERTS.cs">
       <DependentUpon>BazaPolaczenie.tt</DependentUpon>

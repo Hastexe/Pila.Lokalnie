@@ -44,7 +44,6 @@ namespace MajsterFinale.Controllers
             int pageNumber = (page ?? 1);
             return View(new AdvertRepository().GetAdsBySearch(search, category).ToPagedList(pageNumber, pageSize));
         }
-
         public ActionResult Logowanie()
         {
             if (Session["ID"] != null)
@@ -168,10 +167,11 @@ namespace MajsterFinale.Controllers
                 MailMessage message = new MailMessage(from, to);
                 message.IsBodyHtml = true;
                 
-                message.Body = "Dziękujemy za rejestracje na Piła.Lokalnie."+ "<br/>" 
-                +"W celu zakończenia rejestracji należy kliknąć przycisk na stronie z poniższego linku: <br/>"
-                + "<a href = "+link+">Przejdz na stronę</a>";
-                message.Subject = "Konto zostało utworzone!";
+                message.Body = "<h1>Dziękujemy za rejestracje na Piła.Lokalnie</h1>" + "<br/>" 
+                + "<h2>W celu zakończenia rejestracji należy kliknąć przycisk na stronie z poniższego linku:</h2><br/>"
+                +"< form action = "+link+" >"
+                + "<a href = " + link + ">Przejdz na stronę</a>";
+            message.Subject = "Konto zostało utworzone!";
 
                 client.Send(message);
                 client.Dispose();
@@ -180,15 +180,24 @@ namespace MajsterFinale.Controllers
         public ActionResult Weryfikacja(int uID)
         {
             ViewBag.UID = uID;
-            return View();
+            var user = db.USERS.SingleOrDefault(x => x.USER_ID == uID);
+            if (user != null)
+            {
+                ActivationUserModel model = new ActivationUserModel();
+                model.uID = uID;
+                return View(model);
+            }
+            else
+            {
+                return HttpNotFound();
+            }
         }
-        public ActionResult AccountConfirm(int uID)
+        public ActionResult AccountConfirm(ActivationUserModel model)
         {
-            USERS Data = db.USERS.Where(x => x.USER_ID == uID).FirstOrDefault();
+            USERS Data = db.USERS.FirstOrDefault(x => x.USER_ID == model.uID);
             Data.VERIFIED = true;
             db.SaveChanges();
-            var msg = "Weryfikacja przebiegła pomyślnie";
-            return Json(msg, JsonRequestBehavior.AllowGet);
+            return RedirectToAction("Logowanie", "Home");
         }
 
         [HttpPost]
