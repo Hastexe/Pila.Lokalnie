@@ -88,7 +88,7 @@
           </Key>
           <Property Name="USER_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MAIL" Type="varchar" MaxLength="255" Nullable="false" />
-          <Property Name="PASSWORD" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="PASSWORD" Type="varchar" MaxLength="500" />
           <Property Name="FNAME" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="LNAME" Type="varchar" MaxLength="255" />
           <Property Name="PHONE_NUMBER" Type="varchar" MaxLength="9" />
@@ -96,6 +96,7 @@
           <Property Name="IS_ADMIN" Type="bit" />
           <Property Name="REGISTER_DATE" Type="datetime" Nullable="false" />
           <Property Name="RESETPASSWORDCODE" Type="varchar" MaxLength="500" />
+          <Property Name="LASTRESETPASSDATE" Type="datetime" />
         </EntityType>
         <Association Name="FK_ADVERTS_CATEGORIES">
           <End Role="CATEGORIES" Type="Self.CATEGORIES" Multiplicity="1" />
@@ -315,7 +316,7 @@
             <PropertyRef Name="USER_ID" />
           </Key>
           <Property Name="USER_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PASSWORD" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PASSWORD" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="MAIL" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="FNAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="LNAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
@@ -328,6 +329,7 @@
           <Property Name="PHONE_NUMBER" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
           <Property Name="REGISTER_DATE" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="RESETPASSWORDCODE" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="LASTRESETPASSDATE" Type="DateTime" Precision="3" />
         </EntityType>
         <Association Name="FK_ADVERTS_CATEGORIES">
           <End Role="CATEGORIES" Type="Self.CATEGORIES" Multiplicity="1" />
@@ -575,6 +577,7 @@
           <EntitySetMapping Name="USERS">
             <EntityTypeMapping TypeName="BazaPolaczenie.USERS">
               <MappingFragment StoreEntitySet="USERS">
+                <ScalarProperty Name="LASTRESETPASSDATE" ColumnName="LASTRESETPASSDATE" />
                 <ScalarProperty Name="RESETPASSWORDCODE" ColumnName="RESETPASSWORDCODE" />
                 <ScalarProperty Name="REGISTER_DATE" ColumnName="REGISTER_DATE" />
                 <ScalarProperty Name="PHONE_NUMBER" ColumnName="PHONE_NUMBER" />

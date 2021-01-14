@@ -9,6 +9,9 @@
     <div class="col-sm-12 loginreg d-flex justify-content-center">
         <div class="card mb-3 form-signin">
             <h1 class="h2 mb-5 mt-2">Zarejestruj się</h1>
+            <div class="form-group">
+                <label class="label-success" style="color: green;">@ViewBag.SuccessMessage</label>
+            </div>
             <span class="logp"><p>E-mail:</p></span>
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
@@ -59,7 +62,7 @@
             <div class="text-center">
                 <a class="" href="@Url.Action("Logowanie", "home", null)">Masz już konto? Zaloguj się</a>
             </div>
-         
+
         </div>
     </div>
     <script>

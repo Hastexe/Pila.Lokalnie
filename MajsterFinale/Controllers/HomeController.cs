@@ -157,13 +157,14 @@ namespace MajsterFinale.Controllers
                         USERS.VERIFIED = false;
                         USERS.IS_ADMIN = false;
                         USERS.REGISTER_DATE = DateTime.Now;
+                        USERS.LASTRESETPASSDATE = DateTime.Now.AddDays(-1);
                         db.USERS.Add(USERS);
                         db.SaveChanges();
                         SendVerificationLinkEmail(USERS.MAIL, USERS.USER_ID);
                     }
                 }
             ModelState.Clear();
-            ViewBag.SuccessMessage = "Na maila został przesłany link aktywujący konto. Bez aktywacji konta nie będziesz w stanie dodawać ogłoszeń";
+            ViewBag.SuccessMessage = "Na maila został przesłany link aktywujący konto. Bez aktywacji nie będziesz w stanie w pełni korzystać z konta!";
             return View();
          }
          else
@@ -213,6 +214,7 @@ namespace MajsterFinale.Controllers
             db.SaveChanges();
             var msg = "Twoje konto zostało zweryfikowane!";
             return Json(msg, JsonRequestBehavior.AllowGet);
+            //return RedirectToAction("Logowanie", "Home");
         }
 
         [HttpPost]
@@ -295,22 +297,30 @@ namespace MajsterFinale.Controllers
         public ActionResult ForgotPassword(string MAIL, USERS USERS)
         {
             string resetCode = Guid.NewGuid().ToString();
-            var verifyUrl = "/home/ResetPassword/" + resetCode;
-            var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, verifyUrl);
             using (BazaLocal db = new BazaLocal())
             {
 
                 var mail = db.USERS.SingleOrDefault(x => x.MAIL == USERS.MAIL);
+                var currentdate = DateTime.Now;
+                TimeSpan diff = currentdate.Subtract((DateTime)mail.LASTRESETPASSDATE);
+                double hours = diff.TotalHours;
                 if (mail != null)
                 {
-                    mail.RESETPASSWORDCODE = resetCode;
+                    if (hours < 24)
+                    {
+                        ModelState.AddModelError("MAIL", "Hasło można resetować raz na 24h!");
+                        return View();
+                    }
+                    else
+                    {
+                        mail.RESETPASSWORDCODE = resetCode;
+                        db.Configuration.ValidateOnSaveEnabled = false;
+                        db.SaveChanges();
 
-                    db.Configuration.ValidateOnSaveEnabled = false;
-                    db.SaveChanges();
-
-                    SendResetPasswordEmail(mail.MAIL, resetCode);
-                    ViewBag.SuccessMessage = "Na maila został przesłany link zmiany hasła.";
-                    return View();
+                        SendResetPasswordEmail(mail.MAIL, resetCode);
+                        ViewBag.SuccessMessage = "Na maila został przesłany link zmiany hasła.";
+                        return View();
+                    }
                 }
                 else
                 {
@@ -397,6 +407,7 @@ namespace MajsterFinale.Controllers
                             user.PASSWORD = EncryptedNewPassword;
                             //resetujemy kod resetowania hasła
                             user.RESETPASSWORDCODE = "";
+                            user.LASTRESETPASSDATE = DateTime.Now;
                             //db.Configuration.ValidateOnSaveEnabled = false;
                             db.SaveChanges();
                             ViewBag.SuccessMessage = "Udało się zmienić hasło.";

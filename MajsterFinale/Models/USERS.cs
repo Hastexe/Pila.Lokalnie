@@ -24,11 +24,11 @@ namespace MajsterFinale.Models
             this.MESSAGE = new HashSet<MESSAGE>();
             this.MESSAGE1 = new HashSet<MESSAGE>();
         }
-        
+
         public int USER_ID { get; set; }
         [DisplayName("Has³o")]
         [DataType(DataType.Password)]
-        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&.-]).{8,}$", 
+        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&.-]).{8,}$",
         ErrorMessage = "Has³o nie mo¿e byæ krótsze ni¿  znaków. Musi zawieraæ dodatkowo przynajmniej 1 cyfre, znak specjalny oraz du¿¹ literê.")]
         [StringLength(300, MinimumLength = 8, ErrorMessage = "Has³o musi sk³adaæ sie z minumum 8 znaków")]
         public string REGISTERPASSWORD { get; set; }
@@ -61,6 +61,7 @@ namespace MajsterFinale.Models
         public System.DateTime REGISTER_DATE { get; set; }
         public bool TERMS { get; set; }
         public bool rememberMe { get; set; }
+        public Nullable<System.DateTime> LASTRESETPASSDATE { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ADVERTS> ADVERTS { get; set; }
