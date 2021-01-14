@@ -411,7 +411,7 @@ namespace MajsterFinale.Controllers
                             //db.Configuration.ValidateOnSaveEnabled = false;
                             db.SaveChanges();
                             ViewBag.SuccessMessage = "Udało się zmienić hasło.";
-                            return RedirectToAction("Index", "home");
+                            return RedirectToAction("Logowanie", "home");
                         }
                     }
                 }

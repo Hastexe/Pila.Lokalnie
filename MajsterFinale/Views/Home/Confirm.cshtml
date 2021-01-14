@@ -2,29 +2,21 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    <div class="container loginreg">
-        <div class="row">
-            <div class="col-sm-12 d-flex justify-content-center">
-                <div class="card mb-3 form-signin">
-                    <h1 class="h2 mt-2">Aktywacja konta</h1>
-                    <div class="form-group text-center">
-                        <input type="submit" class="btn btn-lg btn-custom" value="<3" onclick="Verified()" />
-                    </div>
-                    <div class="form-group">
-                        <div class="" id="after" style="display:none">
-                            <strong><span class="glyphicon glyphicon-ok"></span> Twoje konto zostało aktywowane</strong>
-                            <a type="btn btn-custom" href="@Url.Action("Logowanie", "home", null)">Zaloguj się</a>
-                        </div>
-                    </div>
+<br />
+    <div class="row">
+        <div class="col-sm-12 d-flex justify-content-center">
+                <div class="alert alert-warning" id="previous">
+                    <h1 class="h2 mt-2">Aktywacja konta</h1><br />
+                    <input type="submit" class="btn btn-lg btn-custom btn-block" value="Aktywuj" onclick="Verified()" />
                 </div>
-            </div>
+                <div class="alert alert-success" id="after" style="display:none">
+                    <h1 class="h2 mt-2">Gratulacje, teraz możesz się zalogować!</h1><br />
+                    <a class="btn btn-lg btn-custom btn-block" href="@Url.Action("Logowanie", "Home", null)" role="button">Zaloguj się</a>
+                </div>
         </div>
     </div>
-}
-<script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script>
     function Verified() {
          $.ajax({
             type: "post",
@@ -37,4 +29,4 @@
             }
         })
     }
-</script>
+        </script>
