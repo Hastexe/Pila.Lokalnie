@@ -29,8 +29,8 @@
             <div class="col-md-12">
                 <div class="col-md-4">
                     <div class="form-group name">
-                        @Html.DropDownListFor(model => model.CategoryID, new SelectList(Model.Categories, "ID", "Name"), htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.Advert.CATEGORY, "", new { @class = "text-danger" })
+                        @Html.ValidationMessage("CATEGORY", new { @class = "text-danger" })
+                        @Html.DropDownListFor(model => model.CategoryID, new SelectList(Model.Categories, "ID", "NAME"), htmlAttributes: new { @class = "" })
                         <small class="form-text text-muted">
                             <sup style="color:red">&#42;</sup>Wybierz kategorię
                         </small>
