@@ -166,11 +166,27 @@ namespace MajsterFinale.Controllers
                 MailAddress to = new MailAddress(MAIL);
                 MailMessage message = new MailMessage(from, to);
                 message.IsBodyHtml = true;
-                
-                message.Body = "<h1>Dziękujemy za rejestracje na Piła.Lokalnie</h1>" + "<br/>" 
-                + "<h2>W celu zakończenia rejestracji należy kliknąć przycisk na stronie z poniższego linku:</h2><br/>"
-                +"< form action = "+link+" >"
-                + "<a href = " + link + ">Przejdz na stronę</a>";
+
+            message.Body =
+                @"
+<html lang=""en"">
+    <head>    
+        <meta content=""text/html; charset=utf-8"" http-equiv=""Content-Type"">
+        <style>
+            h1 {text-align: center;}
+            div {text-align: center;}
+            a {text-align: center; font-size:22px;}
+        </style>
+    </head>
+    <body>
+        <h1>Dziękujemy za rejestracje na Piła.Lokalnie.</h1>
+        <h1>W celu zakończenia rejestracji proszę kliknąć w poniższy link:</h1></br>
+        <a href = ""{URL}"">Aktywuj</a>
+          </body>
+</html>
+";
+            string body = message.Body;
+            message.Body = body.Replace("{URL}", link);
             message.Subject = "Konto zostało utworzone!";
 
                 client.Send(message);
@@ -327,9 +343,26 @@ namespace MajsterFinale.Controllers
             MailMessage message = new MailMessage(from, to);
             message.IsBodyHtml = true;
 
-            message.Body = "Przyjeliśmy twoją prośbę o reset hasła"
-            + "Resetowanie hasła zakończysz na przesłanym linku:<br>"
-            + "<a href = " + link + ">Przejdz na stronę</a>";
+            message.Body =
+            @"
+<html lang=""en"">
+    <head>    
+        <meta content=""text/html; charset=utf-8"" http-equiv=""Content-Type"">
+        <style>
+            h1 {text-align: center;}
+            div {text-align: center;}
+            a {text-align: center; font-size:22px;}
+        </style>
+    </head>
+    <body>
+        <h1>Otrzymaliśmy prośbę o zmianę hasła dla twojego konta.</h1>
+        <h1>Hasło zmienisz pod poniższym linkiem:</h1></br>
+        <a href = ""{URL}"">Reset hasła</a>
+          </body>
+</html>
+";
+            string body = message.Body;
+            message.Body = body.Replace("{URL}", link);
             message.Subject = "Resetowanie hasła";
 
             client.Send(message);

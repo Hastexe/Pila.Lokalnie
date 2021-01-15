@@ -62,6 +62,10 @@ namespace MajsterFinale.Models
         {
             return db.ADVERTS.SingleOrDefault(d => d.ID == id);
         }
+        public List<ADVERTS> GetCateringList()
+        {
+            return db.ADVERTS.Where(a => a.CATEGORY == 7).OrderByDescending(x => x.ID).ToList();
+        }
     }
 
 }
