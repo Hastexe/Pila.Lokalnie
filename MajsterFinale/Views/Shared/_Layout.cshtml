@@ -35,40 +35,48 @@
                 <img src="~/Content/IMAGES/logo_nav.png" width="50" height="50" class="d-inline-block align-top" alt="Logo">
             </a>
             <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+            <div class="collapse navbar-collapse p-0" id="navbarTogglerDemo01">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="btn btn-custom d-block d-lg-none " href="@Url.Action("AddAdvertisement", "Adverts", null)" role="button">Dodaj ogłoszenie</a>
-                    </li>
+
                     @{
                         if (Session["ID"] != null)
                         {
-                            <li class="nav-item">
+                            <li class="nav-item mt-2 mr-4 mb-1 h3 d-block d-lg-none">
                                 <b><a>Witaj, @Session["FNAME"]</a></b>
+                            </li>
+                            <li class="nav-item mt-2 mr-2 mb-1 d-none d-lg-block">
+                                <b><a>Witaj, @Session["FNAME"]</a></b>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link d-block d-lg-none active" href="@Url.Action("AddAdvertisement", "Adverts", null)" role="button"><i class="far fa-clone"></i><span class="d-lg-none">Dodaj ogłoszenie</span></a>
                             </li>
                             <li class="nav-item active d-none d-lg-block">
                                 <a class="nav-link" href="@Url.Action("Messages", "User", null)"><i class="far fa-envelope"> </i><span class="d-lg-none">Wiadomości</span></a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="btn btn-custom btn-custommobile d-block d-lg-none " href="@Url.Action("Messages", "User", null)" role="button"><i class="far fa-envelope"> </i><span class="d-lg-none">Wiadomości</span></a>
+                                <a class="nav-link d-block d-lg-none active" href="@Url.Action("Messages", "User", null)" role="button"><i class="far fa-envelope"> </i><span class="d-lg-none">Wiadomości</span></a>
                             </li>
+
 
                         }
                         else
                         {
+                            <li class="nav-item">
+                                <a class="btn btn-custom d-block d-lg-none " href="@Url.Action("AddAdvertisement", "Adverts", null)" role="button">Dodaj ogłoszenie</a>
+                            </li>
 
                         }
                     }
+
                     <li class="nav-item active">
-                        <a class="nav-link d-none d-lg-block" href="#"><i class="far fa-bookmark"> </i><span class="d-lg-none">Obserwowane</span></a>
+                        <a class="nav-link d-none d-lg-block active" href="#"><i class="far fa-bookmark"> </i><span class="d-lg-none"> Obserwowane</span></a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="btn btn-custom btn-custommobile d-block d-lg-none" href="#" role="button"><i class="far fa-bookmark"> </i><span class="d-lg-none">Obserwowane</span></a>
+                        <a class="nav-link d-block d-lg-none active" href="#" role="button"><i class="far fa-bookmark"> </i><span class="d-lg-none"> Obserwowane</span></a>
                     </li>
                     <li class="nav-item dropdown active ahover d-none d-lg-block">
 
@@ -76,8 +84,8 @@
                         @{
                             if (Session["ID"] != null)
                             {
-                                <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span style="font-weight:600;"> Moje konto</span>
+                                <a class="nav-link dropdown-toggle mr-2" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span style="font-weight:600;" >Moje konto</span>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <h6 class="dropdown-header" style="font-weight: bold; font-size: 1.1rem; margin-bottom: 5px;">Twoje konto:</h6>
@@ -99,8 +107,8 @@
                             }
                             else
                             {
-                                <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span style="font-weight:600;"> Logowanie/Rejestracja</span>
+                                <a class="nav-link dropdown-toggle mr-2" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span style="font-weight:600;"> Moje konto</span>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="@Url.Action("Logowanie", "Home", null)">Zaloguj się</a>
@@ -113,8 +121,8 @@
                         @{
                             if (Session["ID"] != null)
                             {
-                                <a class="btn btn-custom btn-custommobile d-block d-lg-none dropdown-toggle" href="#" role="button" id="dropdownMenuLinkMobile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="far fa-user"> </i>
+                                <a class="nav-link active d-block d-lg-none dropdown-toggle" href="#" role="button" id="dropdownMenuLinkMobile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="far fa-user"></i>
                                     <span class="d-lg-none">Moje konto</span>
                                 </a>
 
@@ -139,9 +147,9 @@
                             }
                             else
                             {
-                                <a class="btn btn-custom btn-custommobile d-block d-lg-none dropdown-toggle" href="#" role="button" id="dropdownMenuLinkMobile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a class="nav-link d-block d-lg-none dropdown-toggle active" href="#" role="button" id="dropdownMenuLinkMobile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="far fa-user"> </i>
-                                    <span class="d-lg-none">Logowanie/Rejestracja</span>
+                                    <span class="d-lg-none">Moje konto</span>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="@Url.Action("Logowanie", "Home", null)">Zaloguj się</a>

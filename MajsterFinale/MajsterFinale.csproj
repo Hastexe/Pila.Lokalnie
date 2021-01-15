@@ -282,6 +282,7 @@
     <Content Include="Content\CSS\Bootstrap\bootstrap.css" />
     <Content Include="Content\CSS\Bootstrap\bootstrap.min.css" />
     <Content Include="Content\CSS\main_adv.css" />
+    <Content Include="Content\CSS\main_advcard.css" />
     <Content Include="Content\CSS\main_advdetails.css" />
     <Content Include="Content\CSS\main_bg.css" />
     <Content Include="Content\CSS\main_css.css" />
