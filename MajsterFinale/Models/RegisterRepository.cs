@@ -76,10 +76,21 @@ namespace MajsterFinale.Models
             }
             else return false;
         }*/
+        [NonAction]
+        public bool PasswordNotNull(USERS USERS)
+        {
+            var password = USERS.PASSWORD;
 
+            if (password == null)
+            {
+                return true;
+            }
+            return false;
+        }
         [NonAction]
         public bool IsPasswordNotNull(USERS USERS)
         {
+            var passwordS = USERS.PASSWORD;
             var password = USERS.REGISTERPASSWORD;
             var repassword = USERS.REPASSWORD;
 

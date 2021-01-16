@@ -60,14 +60,14 @@ namespace MajsterFinale.Controllers
         [HttpPost]
         public ActionResult Logowanie(USERS USERS)
         {
-            var arePasswordsNull = registerRepository.IsPasswordNotNull(USERS);
+            var isPasswordsNull = registerRepository.PasswordNotNull(USERS);
             var IsMailNotNull = registerRepository.IsMailNotNull(USERS);
             if (IsMailNotNull)
             {
                 ModelState.AddModelError("MAIL", "Należy podać maila");
                 return View();
             }
-            else if (arePasswordsNull)
+            else if (isPasswordsNull)
             {
                 ModelState.AddModelError("PASSWORD", "Należy podać hasło");
                 return View();
@@ -249,23 +249,31 @@ namespace MajsterFinale.Controllers
             foreach (var file in files)
             {
                 //var file = model.ImageFile;
-                byte[] imagebyte = null;    
+                byte[] imagebyte = null;
+                var filename = Guid.NewGuid() + file.FileName;
+                var supportedTypes = new[] { "jpg", "jpeg", "png" };
+                var fileExt = System.IO.Path.GetExtension(file.FileName).Substring(1);
                 if (file != null)
                 {
-                    file.SaveAs(Server.MapPath("/UploadImage/" + file.FileName));
+                    file.SaveAs(Server.MapPath("/UploadImage/" + filename));
                     BinaryReader reader = new BinaryReader(file.InputStream);
                     imagebyte = reader.ReadBytes(file.ContentLength);
                     IMAGES img = new IMAGES();
+
                     if (file.ContentLength > 2097152)  // 2MB?
                     {
-                        
-                        return RedirectToAction("Index","Home");
+
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else if (!supportedTypes.Contains(fileExt))
+                    {
+                        return RedirectToAction("Index", "Home");
                     }
                     else
                     {
-                        img.IMAGE_TITLE = file.FileName;
+                        img.IMAGE_TITLE = filename;
                         img.IMAGE_BYTE = imagebyte;
-                        img.IMAGE_PATH = "/UploadImage/" + file.FileName;
+                        img.IMAGE_PATH = "/UploadImage/" + filename;
                         db.IMAGES.Add(img);
                         db.SaveChanges();
                         imgId = img.IMAGE_ID;
