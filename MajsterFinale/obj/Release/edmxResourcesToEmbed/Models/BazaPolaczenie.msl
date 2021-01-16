@@ -4,7 +4,6 @@
     <EntitySetMapping Name="ADVERTS">
       <EntityTypeMapping TypeName="BazaPolaczenie.ADVERTS">
         <MappingFragment StoreEntitySet="ADVERTS">
-          <ScalarProperty Name="IMAGE" ColumnName="IMAGE" />
           <ScalarProperty Name="PHONE_NUMBER" ColumnName="PHONE_NUMBER" />
           <ScalarProperty Name="DATE" ColumnName="DATE" />
           <ScalarProperty Name="ID" ColumnName="ID" />
@@ -82,7 +81,6 @@
         <MappingFragment StoreEntitySet="IMAGES_ADVERT">
           <ScalarProperty Name="ADVERT_ID" ColumnName="ADVERT_ID" />
           <ScalarProperty Name="IMAGE_PATH" ColumnName="IMAGE_PATH" />
-          <ScalarProperty Name="IMAGE_BYTE" ColumnName="IMAGE_BYTE" />
           <ScalarProperty Name="IMAGE_TITLE" ColumnName="IMAGE_TITLE" />
           <ScalarProperty Name="IMAGE_ID" ColumnName="IMAGE_ID" />
         </MappingFragment>
@@ -96,7 +94,6 @@
           <ScalarProperty Name="MSG_TO" ColumnName="MSG_TO" />
           <ScalarProperty Name="MSG_FROM" ColumnName="MSG_FROM" />
           <ScalarProperty Name="IMAGE_PATH" ColumnName="IMAGE_PATH" />
-          <ScalarProperty Name="IMAGE_BYTE" ColumnName="IMAGE_BYTE" />
           <ScalarProperty Name="IMAGE_TITLE" ColumnName="IMAGE_TITLE" />
           <ScalarProperty Name="IMAGE_ID" ColumnName="IMAGE_ID" />
         </MappingFragment>

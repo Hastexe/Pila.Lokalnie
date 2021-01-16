@@ -17,7 +17,6 @@
     <Property Name="DATE" Type="DateTime" Nullable="false" Precision="3" />
     <NavigationProperty Name="MESSAGE" Relationship="BazaPolaczenie.FK_FAV_MESSAGE" FromRole="ADVERTS" ToRole="MESSAGE" />
     <Property Name="PHONE_NUMBER" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
-    <Property Name="IMAGE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="IMAGES_ADVERT" Relationship="BazaPolaczenie.FK_IMAGES_ADVERT_ADVERTS" FromRole="ADVERTS" ToRole="IMAGES_ADVERT" />
   </EntityType>
   <EntityType Name="CATEGORIES">
@@ -222,7 +221,6 @@
     </Key>
     <Property Name="IMAGE_ID" Type="Int32" Nullable="false" />
     <Property Name="IMAGE_TITLE" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-    <Property Name="IMAGE_BYTE" Type="Binary" MaxLength="Max" FixedLength="false" />
     <Property Name="IMAGE_PATH" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="ADVERT_ID" Type="Int32" Nullable="false" />
     <NavigationProperty Name="ADVERTS" Relationship="BazaPolaczenie.FK_IMAGES_ADVERT_ADVERTS" FromRole="IMAGES_ADVERT" ToRole="ADVERTS" />
@@ -233,7 +231,6 @@
     </Key>
     <Property Name="IMAGE_ID" Type="Int32" Nullable="false" />
     <Property Name="IMAGE_TITLE" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-    <Property Name="IMAGE_BYTE" Type="Binary" MaxLength="Max" FixedLength="false" />
     <Property Name="IMAGE_PATH" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="MSG_FROM" Type="Int32" Nullable="false" />
     <Property Name="MSG_TO" Type="Int32" Nullable="false" />

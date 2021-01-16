@@ -60,22 +60,38 @@ namespace MajsterFinale.Controllers
         [HttpPost]
         public ActionResult Logowanie(USERS USERS)
         {
-            USERS.PASSWORD = registerRepository.Encryption(USERS.PASSWORD);
-            var userLoggedIn = db.USERS.SingleOrDefault(x => x.MAIL == USERS.MAIL && x.PASSWORD == USERS.PASSWORD);
-            if (userLoggedIn != null)
+            var arePasswordsNull = registerRepository.IsPasswordNotNull(USERS);
+            var IsMailNotNull = registerRepository.IsMailNotNull(USERS);
+            if (IsMailNotNull)
             {
-                Session["ID"] = userLoggedIn.USER_ID;
-                Session["MAIL"] = userLoggedIn.MAIL;
-                Session["FNAME"] = userLoggedIn.FNAME;
-
-                return RedirectToAction("Index", "Home", new { ID = USERS.USER_ID });
+                ModelState.AddModelError("MAIL", "Należy podać maila");
+                return View();
+            }
+            else if (arePasswordsNull)
+            {
+                ModelState.AddModelError("PASSWORD", "Należy podać hasło");
+                return View();
             }
             else
             {
-                ViewBag.Message = "Podane dane logowania są błędne";
-                ModelState.Clear();
-                return View();
+                USERS.PASSWORD = registerRepository.Encryption(USERS.PASSWORD);
+                var userLoggedIn = db.USERS.SingleOrDefault(x => x.MAIL == USERS.MAIL && x.PASSWORD == USERS.PASSWORD);
+                if (userLoggedIn != null)
+                {
+                    Session["ID"] = userLoggedIn.USER_ID;
+                    Session["MAIL"] = userLoggedIn.MAIL;
+                    Session["FNAME"] = userLoggedIn.FNAME;
+
+                    return RedirectToAction("Index", "Home", new { ID = USERS.USER_ID });
+                }
+                else
+                {
+                    ViewBag.Message = "Podane dane logowania są błędne";
+                    ModelState.Clear();
+                    return View();
+                }
             }
+           
         }
 
         public ActionResult Rejestracja(int id = 0)

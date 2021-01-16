@@ -12,7 +12,6 @@
     <Property Name="DATE" Type="datetime" Nullable="false" />
     <Property Name="PRICE" Type="varchar" MaxLength="255" Nullable="false" />
     <Property Name="PHONE_NUMBER" Type="varchar" MaxLength="9" />
-    <Property Name="IMAGE" Type="nvarchar" MaxLength="255" />
     <Property Name="IS_ARCHIVED" Type="bit" />
   </EntityType>
   <EntityType Name="CATEGORIES">
@@ -48,7 +47,6 @@
     </Key>
     <Property Name="IMAGE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="IMAGE_TITLE" Type="nvarchar" MaxLength="500" />
-    <Property Name="IMAGE_BYTE" Type="image" />
     <Property Name="IMAGE_PATH" Type="nvarchar" MaxLength="500" />
     <Property Name="ADVERT_ID" Type="int" Nullable="false" />
   </EntityType>
@@ -58,7 +56,6 @@
     </Key>
     <Property Name="IMAGE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="IMAGE_TITLE" Type="nvarchar" MaxLength="500" />
-    <Property Name="IMAGE_BYTE" Type="image" />
     <Property Name="IMAGE_PATH" Type="nvarchar" MaxLength="500" />
     <Property Name="MSG_FROM" Type="int" Nullable="false" />
     <Property Name="MSG_TO" Type="int" Nullable="false" />
