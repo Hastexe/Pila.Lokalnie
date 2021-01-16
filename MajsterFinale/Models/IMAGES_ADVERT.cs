@@ -16,7 +16,6 @@ namespace MajsterFinale.Models
     {
         public int IMAGE_ID { get; set; }
         public string IMAGE_TITLE { get; set; }
-        public byte[] IMAGE_BYTE { get; set; }
         public string IMAGE_PATH { get; set; }
         public int ADVERT_ID { get; set; }
     

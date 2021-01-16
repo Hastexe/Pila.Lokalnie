@@ -240,12 +240,20 @@ namespace MajsterFinale.Controllers
                     BinaryReader reader = new BinaryReader(file.InputStream);
                     imagebyte = reader.ReadBytes(file.ContentLength);
                     IMAGES img = new IMAGES();
-                    img.IMAGE_TITLE = file.FileName;
-                    img.IMAGE_BYTE = imagebyte;
-                    img.IMAGE_PATH = "/UploadImage/" + file.FileName;
-                    db.IMAGES.Add(img);
-                    db.SaveChanges();
-                    imgId = img.IMAGE_ID;
+                    if (file.ContentLength > 2097152)  // 2MB?
+                    {
+                        
+                        return RedirectToAction("Index","Home");
+                    }
+                    else
+                    {
+                        img.IMAGE_TITLE = file.FileName;
+                        img.IMAGE_BYTE = imagebyte;
+                        img.IMAGE_PATH = "/UploadImage/" + file.FileName;
+                        db.IMAGES.Add(img);
+                        db.SaveChanges();
+                        imgId = img.IMAGE_ID;
+                    }
                 }
             }
             return RedirectToAction("DodawanieZdjec", "Home");

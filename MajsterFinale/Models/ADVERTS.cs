@@ -42,7 +42,6 @@ namespace MajsterFinale.Models
         [RegularExpression("^[0-9]*$", ErrorMessage = "Cena musi sk³adaæ siê z cyfr.")]
         public string PRICE { get; set; }
         [DisplayName("Zdjêcia")]
-        public string IMAGE { get; set; }
         public Nullable<bool> IS_ARCHIVED { get; set; }
         public System.DateTime DATE { get; set; }
         public string PHONE_NUMBER { get; set; }

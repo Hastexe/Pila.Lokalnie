@@ -17,7 +17,6 @@
           <Property Name="DATE" Type="datetime" Nullable="false" />
           <Property Name="PRICE" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="PHONE_NUMBER" Type="varchar" MaxLength="9" />
-          <Property Name="IMAGE" Type="nvarchar" MaxLength="255" />
           <Property Name="IS_ARCHIVED" Type="bit" />
         </EntityType>
         <EntityType Name="CATEGORIES">
@@ -53,7 +52,6 @@
           </Key>
           <Property Name="IMAGE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IMAGE_TITLE" Type="nvarchar" MaxLength="500" />
-          <Property Name="IMAGE_BYTE" Type="image" />
           <Property Name="IMAGE_PATH" Type="nvarchar" MaxLength="500" />
           <Property Name="ADVERT_ID" Type="int" Nullable="false" />
         </EntityType>
@@ -63,7 +61,6 @@
           </Key>
           <Property Name="IMAGE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IMAGE_TITLE" Type="nvarchar" MaxLength="500" />
-          <Property Name="IMAGE_BYTE" Type="image" />
           <Property Name="IMAGE_PATH" Type="nvarchar" MaxLength="500" />
           <Property Name="MSG_FROM" Type="int" Nullable="false" />
           <Property Name="MSG_TO" Type="int" Nullable="false" />
@@ -273,7 +270,6 @@
           <Property Name="DATE" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="MESSAGE" Relationship="BazaPolaczenie.FK_FAV_MESSAGE" FromRole="ADVERTS" ToRole="MESSAGE" />
           <Property Name="PHONE_NUMBER" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
-          <Property Name="IMAGE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="IMAGES_ADVERT" Relationship="BazaPolaczenie.FK_IMAGES_ADVERT_ADVERTS" FromRole="ADVERTS" ToRole="IMAGES_ADVERT" />
         </EntityType>
         <EntityType Name="CATEGORIES">
@@ -478,7 +474,6 @@
           </Key>
           <Property Name="IMAGE_ID" Type="Int32" Nullable="false" />
           <Property Name="IMAGE_TITLE" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="IMAGE_BYTE" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="IMAGE_PATH" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="ADVERT_ID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ADVERTS" Relationship="BazaPolaczenie.FK_IMAGES_ADVERT_ADVERTS" FromRole="IMAGES_ADVERT" ToRole="ADVERTS" />
@@ -489,7 +484,6 @@
           </Key>
           <Property Name="IMAGE_ID" Type="Int32" Nullable="false" />
           <Property Name="IMAGE_TITLE" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="IMAGE_BYTE" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="IMAGE_PATH" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="MSG_FROM" Type="Int32" Nullable="false" />
           <Property Name="MSG_TO" Type="Int32" Nullable="false" />
@@ -530,7 +524,6 @@
           <EntitySetMapping Name="ADVERTS">
             <EntityTypeMapping TypeName="BazaPolaczenie.ADVERTS">
               <MappingFragment StoreEntitySet="ADVERTS">
-                <ScalarProperty Name="IMAGE" ColumnName="IMAGE" />
                 <ScalarProperty Name="PHONE_NUMBER" ColumnName="PHONE_NUMBER" />
                 <ScalarProperty Name="DATE" ColumnName="DATE" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -608,7 +601,6 @@
               <MappingFragment StoreEntitySet="IMAGES_ADVERT">
                 <ScalarProperty Name="ADVERT_ID" ColumnName="ADVERT_ID" />
                 <ScalarProperty Name="IMAGE_PATH" ColumnName="IMAGE_PATH" />
-                <ScalarProperty Name="IMAGE_BYTE" ColumnName="IMAGE_BYTE" />
                 <ScalarProperty Name="IMAGE_TITLE" ColumnName="IMAGE_TITLE" />
                 <ScalarProperty Name="IMAGE_ID" ColumnName="IMAGE_ID" />
               </MappingFragment>
@@ -622,7 +614,6 @@
                 <ScalarProperty Name="MSG_TO" ColumnName="MSG_TO" />
                 <ScalarProperty Name="MSG_FROM" ColumnName="MSG_FROM" />
                 <ScalarProperty Name="IMAGE_PATH" ColumnName="IMAGE_PATH" />
-                <ScalarProperty Name="IMAGE_BYTE" ColumnName="IMAGE_BYTE" />
                 <ScalarProperty Name="IMAGE_TITLE" ColumnName="IMAGE_TITLE" />
                 <ScalarProperty Name="IMAGE_ID" ColumnName="IMAGE_ID" />
               </MappingFragment>
