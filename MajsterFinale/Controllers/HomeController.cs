@@ -255,29 +255,34 @@ namespace MajsterFinale.Controllers
                 var fileExt = System.IO.Path.GetExtension(file.FileName).Substring(1);
                 if (file != null)
                 {
-                    file.SaveAs(Server.MapPath("/UploadImage/" + filename));
-                    BinaryReader reader = new BinaryReader(file.InputStream);
-                    imagebyte = reader.ReadBytes(file.ContentLength);
-                    IMAGES img = new IMAGES();
-
-                    if (file.ContentLength > 2097152)  // 2MB?
-                    {
-
-                        return RedirectToAction("Index", "Home");
-                    }
-                    else if (!supportedTypes.Contains(fileExt))
+                    if (!supportedTypes.Contains(fileExt))
                     {
                         return RedirectToAction("Index", "Home");
                     }
                     else
                     {
-                        img.IMAGE_TITLE = filename;
-                        img.IMAGE_BYTE = imagebyte;
-                        img.IMAGE_PATH = "/UploadImage/" + filename;
-                        db.IMAGES.Add(img);
-                        db.SaveChanges();
-                        imgId = img.IMAGE_ID;
+                        file.SaveAs(Server.MapPath("/UploadImage/" + filename));
+                        BinaryReader reader = new BinaryReader(file.InputStream);
+                        imagebyte = reader.ReadBytes(file.ContentLength);
+                        IMAGES img = new IMAGES();
+
+                        if (file.ContentLength > 2097152)  // 2MB?
+                        {
+
+                            return RedirectToAction("Index", "Home");
+                        }
+
+                        else
+                        {
+                            img.IMAGE_TITLE = filename;
+                            img.IMAGE_BYTE = imagebyte;
+                            img.IMAGE_PATH = "/UploadImage/" + filename;
+                            db.IMAGES.Add(img);
+                            db.SaveChanges();
+                            imgId = img.IMAGE_ID;
+                        }
                     }
+                    
                 }
             }
             return RedirectToAction("DodawanieZdjec", "Home");

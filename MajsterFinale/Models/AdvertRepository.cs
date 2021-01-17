@@ -70,9 +70,103 @@ namespace MajsterFinale.Models
         {
             return db.ADVERTS.SingleOrDefault(d => d.ID == id);
         }
+
+        public List<ADVERTS> GetAranzaciaWnetrzList()
+        {
+            return db.ADVERTS.Where(a => a.CATEGORY == 2).OrderByDescending(x => x.ID).ToList();
+        }
+        public List<ADVERTS> GetAranzaciaOgrodowList()
+        {
+            return db.ADVERTS.Where(a => a.CATEGORY == 3).OrderByDescending(x => x.ID).ToList();
+        }
         public List<ADVERTS> GetCateringList()
         {
+            return db.ADVERTS.Where(a => a.CATEGORY == 4).OrderByDescending(x => x.ID).ToList();
+        }
+        public List<ADVERTS> GetRemontyList()
+        {
+            return db.ADVERTS.Where(a => a.CATEGORY == 5).OrderByDescending(x => x.ID).ToList();
+        }
+        public List<ADVERTS> GetSprzatanieList()
+        {
+            return db.ADVERTS.Where(a => a.CATEGORY == 6).OrderByDescending(x => x.ID).ToList();
+        }
+        public List<ADVERTS> GetUslugiOgrodniczeList()
+        {
             return db.ADVERTS.Where(a => a.CATEGORY == 7).OrderByDescending(x => x.ID).ToList();
+        }
+        public List<ADVERTS> GetPraceBudowlaneList()
+        {
+            return db.ADVERTS.Where(a => a.CATEGORY == 8).OrderByDescending(x => x.ID).ToList();
+        }
+        public List<ADVERTS> GetPraceWykonczenioweList()
+        {
+            return db.ADVERTS.Where(a => a.CATEGORY == 9).OrderByDescending(x => x.ID).ToList();
+        }
+        public List<ADVERTS> GetDekarstwoList()
+        {
+            return db.ADVERTS.Where(a => a.CATEGORY == 10).OrderByDescending(x => x.ID).ToList();
+        }
+        public List<ADVERTS> GetElektrykaList()
+        {
+            return db.ADVERTS.Where(a => a.CATEGORY == 11).OrderByDescending(x => x.ID).ToList();
+        }
+        public List<ADVERTS> GetGazownictwoList()
+        {
+            return db.ADVERTS.Where(a => a.CATEGORY == 12).OrderByDescending(x => x.ID).ToList();
+        }
+        public List<ADVERTS> GetHydraulikaList()
+        {
+            return db.ADVERTS.Where(a => a.CATEGORY == 13).OrderByDescending(x => x.ID).ToList();
+        }
+        public List<ADVERTS> GetMalarstwoList()
+        {
+            return db.ADVERTS.Where(a => a.CATEGORY == 14).OrderByDescending(x => x.ID).ToList();
+        }
+        public List<ADVERTS> GetStolarstwoList()
+        {
+            return db.ADVERTS.Where(a => a.CATEGORY == 15).OrderByDescending(x => x.ID).ToList();
+        }
+        public List<ADVERTS> GetTynkarstwoList()
+        {
+            return db.ADVERTS.Where(a => a.CATEGORY == 16).OrderByDescending(x => x.ID).ToList();
+        }
+        public List<ADVERTS> GetKorepetycjeList()
+        {
+            return db.ADVERTS.Where(a => a.CATEGORY == 17).OrderByDescending(x => x.ID).ToList();
+        }
+        public List<ADVERTS> GetUslugiInformatyczneList()
+        {
+            return db.ADVERTS.Where(a => a.CATEGORY == 18).OrderByDescending(x => x.ID).ToList();
+        }
+        public List<ADVERTS> GetUslugiKosmetyczneList()
+        {
+            return db.ADVERTS.Where(a => a.CATEGORY == 19).OrderByDescending(x => x.ID).ToList();
+        }
+        public List<ADVERTS> GetUslugiMotoryzacyjneList()
+        {
+            return db.ADVERTS.Where(a => a.CATEGORY == 20).OrderByDescending(x => x.ID).ToList();
+        }
+        public List<ADVERTS> GetUslugiNaprawaList()
+        {
+            return db.ADVERTS.Where(a => a.CATEGORY == 21).OrderByDescending(x => x.ID).ToList();
+        }
+        public List<ADVERTS> GetUslugiTransportoweList()
+        {
+            return db.ADVERTS.Where(a => a.CATEGORY == 22).OrderByDescending(x => x.ID).ToList();
+        }
+
+        public List<ADVERTS> GetDomiOgrodList()
+        {
+            return db.ADVERTS.Where(a => a.CATEGORY >= 2 && a.CATEGORY <= 7).OrderByDescending(x => x.ID).ToList();
+        }
+        public List<ADVERTS> GetUslugiBudowlaneList()
+        {
+            return db.ADVERTS.Where(a => a.CATEGORY >= 8 && a.CATEGORY <= 17).OrderByDescending(x => x.ID).ToList();
+        }
+        public List<ADVERTS> GetUslugiList()
+        {
+            return db.ADVERTS.Where(a => a.CATEGORY >= 18 && a.CATEGORY <= 22).OrderByDescending(x => x.ID).ToList();
         }
     }
 

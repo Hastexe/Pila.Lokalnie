@@ -19,19 +19,17 @@
 
             <!---Searchbar PC--->
             <!--<div class="col-md-12 mb-2 advertnavp " id="displayPC">
-        <div class="col-12 bt-2 mt-2">
-            Searchbar
-        </div>
-    </div>-->
+                <div class="col-12 bt-2 mt-2">
+                    Searchbar
+                </div>
+            </div>-->
             <!---Wybór kategorii Mobile--->
             <div class="col-md-3 advertfilter" id="displayMobile">
                 <div class="col-md-12 advertfilterin">
                     <p><i class="fas fa-chevron-left" style="font-size: 1rem;"> Wróc do <a href="@Url.Action("DomiOgrod", "Categories", null)">Kategoria główna</a></i></p>
-                    <h4>Usługi</h4>
-                    <hr>
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link active" href="@Url.Action("Catering", "Categories", null)">Catering</a>
+                            <a class="nav-link active" href="@Url.Action("AranzacjaWnetrz", "Categories", null)">Aranżacja Wnętrz</a>
                         </li>
                     </ul>
                 </div>
@@ -52,16 +50,15 @@
 
             <!---Filtry PC--->
             <!--<div class="col-12 mb-2 advertsearch" id="displayPC">
-        Filtry
-    </div>-->
+                Filtry
+            </div>-->
             <!---Kategorie Mobile--->
             <div class="col-md-3 advertfilter" id="displayPC">
                 <div class="col-md-12 advertfilterin">
                     <p><i class="fas fa-chevron-left" style="font-size: 1rem;"> Wróc do <a href="@Url.Action("DomiOgrod", "Categories", null)">Kategoria główna</a></i></p>
-
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link active" href="@Url.Action("Catering", "Categories", null)">Catering</a>
+                            <a class="nav-link active" href="@Url.Action("AranzacjaWnetrz", "Categories", null)">Aranżacja Wnętrz </a>
                         </li>
                     </ul>
                 </div>
@@ -86,7 +83,7 @@
                                         <h4 class="card-title">@Html.DisplayFor(modelItem => item.PRICE) zł</h4>
                                     </div>
                                     <div style="position: absolute;bottom: 0;">
-                                        <h6 class="card-subtitle mb-2 text-muted">Dodano: xx:xx:xx</h6>
+                                        <h6 class="card-subtitle mb-2 text-muted">Dodano: @Html.DisplayFor(modelItem => item.DATE)</h6>
                                     </div>
                                 </div>
                             </div>
@@ -105,5 +102,5 @@
 
         </div>
     </div>
-    </div>
+</div>
 
