@@ -26,29 +26,47 @@ namespace MajsterFinale.Controllers
         }
         // GET: /Adverts/Details/id
 
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id)
         {
-
+            if (id != null)
+            {
+                displayRepository.AdvertDetails = advertRepository.GetDetails((int)id);
+                // var login = Convert.ToInt32(Session["Login"]);
+                if (Session["ID"] != null)
+                {
+                    int uID = Convert.ToInt32(Session["ID"]);
+                    displayRepository.LoggedUser = advertRepository.GetUserData(uID);
+                }
+                if (displayRepository.AdvertDetails == null)
+                    return HttpNotFound();
+                else
+                    return View("Details", displayRepository);
+            }
+            return RedirectToAction("Show", "Adverts");
+        }
+        [HttpPost]
+        public ActionResult Details(int id, string message, IEnumerable<HttpPostedFileBase> files)
+        {
+            ViewBag.Message = null;
             displayRepository.AdvertDetails = advertRepository.GetDetails(id);
-            // var login = Convert.ToInt32(Session["Login"]);
             if (Session["ID"] != null)
             {
                 int uID = Convert.ToInt32(Session["ID"]);
                 displayRepository.LoggedUser = advertRepository.GetUserData(uID);
             }
-            if (displayRepository.AdvertDetails == null)
-                return HttpNotFound();
-            else
-                return View("Details", displayRepository);
-        }
-        [HttpPost]
-        public ActionResult Details(int id, string message)
-        {
-            displayRepository.AdvertDetails = advertRepository.GetDetails(id);
-            if (Session["ID"] != null)
+            if (files != null)
             {
-                int uID = Convert.ToInt32(Session["ID"]);
-                displayRepository.LoggedUser = advertRepository.GetUserData(uID);
+                foreach (var file in files)
+                {
+                    if (file != null)
+                    {
+                        if (file.ContentLength > 2097152)  // 2MB?
+                        {
+                            ViewBag.Message = "Maksymalny rozmiar zdjęć to 2MB";
+                            return View("Details", displayRepository);
+                        }
+                    }
+                }
             }
             MESSAGE NewMessage = new MESSAGE()
             {
@@ -56,10 +74,42 @@ namespace MajsterFinale.Controllers
                 MSG_TO = displayRepository.AdvertDetails.USER_ID,
                 TEXT = message,
                 DATE = System.DateTime.Now,
-                ADVERT_ID = displayRepository.AdvertDetails.ID
+                ADVERT_ID = displayRepository.AdvertDetails.ID,
+                IS_READ = false
             };
             db.MESSAGE.Add(NewMessage);
             db.SaveChanges();
+            foreach (var file in files)
+            {
+                if (file != null)
+                {
+                    var filename = Guid.NewGuid() + file.FileName;
+                    var supportedTypes = new[] { "jpg", "jpeg", "png" };
+                    var fileExt = System.IO.Path.GetExtension(filename).Substring(1);
+                    if (supportedTypes.Contains(fileExt))
+                    {
+                        file.SaveAs(Server.MapPath("/UploadImage/" + filename));
+                        BinaryReader reader = new BinaryReader(file.InputStream);
+                        IMAGES_MESSAGE img = new IMAGES_MESSAGE
+                        {
+                            IMAGE_TITLE = filename,
+                            IMAGE_PATH = "/UploadImage/" + filename,
+                            MESSAGE_ID = NewMessage.ID,
+                            MSG_FROM = NewMessage.MSG_FROM,
+                            MSG_TO = NewMessage.MSG_TO,
+                            ADVERT_ID = NewMessage.ADVERT_ID
+                        };
+                        db.IMAGES_MESSAGE.Add(img);
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        ViewBag.Message = "Użyto nieobsługiwanego formatu zdjęć. Dozwolone formaty: .jpg .jpeg .png";
+                        return View("Details", displayRepository);
+                    }
+                }
+            }
+            ViewBag.Message = "Wiadomość wysłana";
             return View("Details", displayRepository);
         }
 

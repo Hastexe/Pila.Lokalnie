@@ -1,5 +1,20 @@
 ﻿@model MajsterFinale.Models.MessageModel
 
+<script>
+    function checkFilesCount(id) {
+        if (id.files.length > 4) {
+            alert('Można przesłać maksymalnie 4 zdjęcia');
+            document.getElementById("f").value = "";
+        }
+    }
+</script>
+@if (!string.IsNullOrEmpty(ViewBag.Error))
+{
+    <script type="text/javascript">
+        alert("@ViewBag.Error");
+    </script>
+}
+
 <div>
     <table>
         @{
@@ -12,18 +27,42 @@
 
                     @if (Model.CoversationMessages[i].MSG_FROM == Model.LoggedUser.USER_ID)
                     {
-                    <td style="background-color: black; color:white; height: 50px;">
-                        @Model.LoggedUser.FNAME: @Html.DisplayFor(modelItem => Model.CoversationMessages[i].TEXT)
-                        @Html.DisplayFor(modelItem => Model.CoversationMessages[i].DATE)
-                    </td>
+                        <td style="background-color: black; color:white; height: 50px;">
+                            @Model.LoggedUser.FNAME: @Html.DisplayFor(modelItem => Model.CoversationMessages[i].TEXT)
+                            <br />
+                            @{
+                                foreach (var j in Model.Images)
+                                {
+                                    if (j.MESSAGE_ID == Model.CoversationMessages[i].ID)
+                                    {
+                                        <img src="@j.IMAGE_PATH" alt="my pic" />
+                                    }
+                                }
+                            }
+                            <br />
+                            @Html.DisplayFor(modelItem => Model.CoversationMessages[i].DATE)
+
+                        </td>
                     }
 
                     @if (Model.CoversationMessages[i].MSG_FROM == Model.SecondConversationUser.USER_ID)
                     {
-                    <td style="background-color: Gray; color:white; height: 50px;">
-                        @Model.SecondConversationUser.FNAME: @Html.DisplayFor(modelItem => Model.CoversationMessages[i].TEXT)
-                        @Html.DisplayFor(modelItem => Model.CoversationMessages[i].DATE)
-                    </td>
+                        <td style="background-color: Gray; color:white; height: 50px;">
+                            @Model.SecondConversationUser.FNAME: @Html.DisplayFor(modelItem => Model.CoversationMessages[i].TEXT)
+                            @Html.DisplayFor(modelItem => Model.CoversationMessages[i].TEXT)
+                            <br />
+                            @{
+                                foreach (var j in Model.Images)
+                                {
+                                    if (j.MESSAGE_ID == Model.CoversationMessages[i].ID)
+                                    {
+                                        <img src="@j.IMAGE_PATH" alt="my pic" />
+                                    }
+                                }
+                            }
+                            <br />
+                            @Html.DisplayFor(modelItem => Model.CoversationMessages[i].DATE)
+                        </td>
                     }
                 </tr>
 
@@ -33,13 +72,14 @@
     </table>
     @{
         <p>Odpowiedz: </p>
-        using (Html.BeginForm("Conversation", "User"))
+        using (Html.BeginForm("Conversation", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
-            <input type="text" name="message" />
+            <textarea class="form-control" rows="5" minlength="5" name="message" placeholder="Napisz wiadomość! (min. 5 znaków)"></textarea>
             <br />
-            <input type="submit" value="wyślij" />
+            <input type="file" id="f" name="files" multiple onchange="checkFilesCount(this)" />
             <input type="hidden" name="AdvertId" value="@Model.CoversationMessages[0].ADVERT_ID" />
             <input type="hidden" name="UserTo" value="@Model.SecondConversationUser.USER_ID" />
+            <button class="btn btn-default">Wyślij</button>
         }
     }
 
