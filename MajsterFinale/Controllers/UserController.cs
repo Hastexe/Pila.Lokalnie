@@ -50,6 +50,16 @@ namespace MajsterFinale.Controllers
         }
         public ActionResult Conversation(int? AdvertId, int? UserA, int? UserB)
         {
+            if (TempData["SizeError"] != null)
+            {
+                ViewBag.Error = "Maksymalny rozmiar zdjęć to 2MB";
+                TempData.Remove("SizeError");
+            }
+            if (TempData["FormatError"] != null)
+            {
+                ViewBag.Error = "Użyto nieobsługiwanego formatu zdjęć. Dozwolone formaty: .jpg .jpeg .png";
+                TempData.Remove("FormatError");
+            }
             if (AdvertId != null && UserA != null && UserB != null) 
                 {
                 if (Session["ID"] != null)
@@ -70,6 +80,7 @@ namespace MajsterFinale.Controllers
                             messageModel.LoggedUserAdverts = new AdvertRepository().GetUserAdverts((int)UserB).ToList();
                         }
                         messageModel.CoversationMessages = new UserRepository().GetConversation((int)AdvertId, (int)UserA, (int)UserB).ToList();
+                        messageModel.Images = new UserRepository().GetConversationImages((int)AdvertId, (int)UserA, (int)UserB).ToList();
                         foreach (var item in messageModel.CoversationMessages)
                         {
                             var msgID = (item.ID);
@@ -92,8 +103,24 @@ namespace MajsterFinale.Controllers
         }
 
         [HttpPost]
-        public ActionResult Conversation(string message, int UserTo, int AdvertId)
+        public ActionResult Conversation(string message, int UserTo, int AdvertId, IEnumerable<HttpPostedFileBase> files)
         {
+            ViewBag.Message = null;
+            int UserFrom = Convert.ToInt32(Session["ID"]);
+            if (files != null)
+            {
+                foreach (var file in files)
+                {
+                    if (file != null)
+                    {
+                        if (file.ContentLength > 2097152)  // 2MB?
+                        {
+                            TempData["SizeError"] = "Maksymalny rozmiar zdjęć to 2MB";
+                            return RedirectToAction("Conversation", new { AdvertId, UserA = UserTo, UserB = UserFrom});
+                        }
+                    }
+                }
+            }
             MESSAGE NewMessage = new MESSAGE()
             {
                 MSG_FROM = Convert.ToInt32(Session["ID"]),
@@ -103,9 +130,38 @@ namespace MajsterFinale.Controllers
                 ADVERT_ID = AdvertId,
                 IS_READ = false
             };
-            int UserFrom = Convert.ToInt32(Session["ID"]);
             db.MESSAGE.Add(NewMessage);
             db.SaveChanges();
+            foreach (var file in files)
+            {
+                if (file != null)
+                {
+                        var filename = Guid.NewGuid() + file.FileName;
+                        var supportedTypes = new[] { "jpg", "jpeg", "png" };
+                        var fileExt = System.IO.Path.GetExtension(filename).Substring(1);
+                        if (supportedTypes.Contains(fileExt))
+                        {
+                            file.SaveAs(Server.MapPath("/UploadImage/" + filename));
+                            BinaryReader reader = new BinaryReader(file.InputStream);
+                            IMAGES_MESSAGE img = new IMAGES_MESSAGE
+                            {
+                                IMAGE_TITLE = filename,
+                                IMAGE_PATH = "/UploadImage/" + filename,
+                                MESSAGE_ID = NewMessage.ID,
+                                MSG_FROM = NewMessage.MSG_FROM,
+                                MSG_TO = NewMessage.MSG_TO,
+                                ADVERT_ID = NewMessage.ADVERT_ID
+                            };
+                            db.IMAGES_MESSAGE.Add(img);
+                            db.SaveChanges();
+                        }
+                        else
+                        {
+                            TempData["FormatError"] = "Użyto nieobsługiwanego formatu zdjęć. Dozwolone formaty: .jpg .jpeg .png";
+                            return RedirectToAction("Conversation", new { AdvertId, UserA = UserTo, UserB = UserFrom });
+                        }
+                }
+            }
             return RedirectToAction("Conversation", new { AdvertId, UserA = UserTo, UserB=UserFrom });
         }
 

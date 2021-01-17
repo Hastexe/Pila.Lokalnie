@@ -30,10 +30,9 @@ namespace MajsterFinale.Models
         {
             return db.MESSAGE.AsNoTracking().SingleOrDefault(x => x.ID == ID);
         }
-
-        public void SetMessageAsRead()
+        public List<IMAGES_MESSAGE> GetConversationImages(int AdvertId, int UserA, int UserB)
         {
-
+            return db.IMAGES_MESSAGE.Where(x => x.ADVERT_ID == AdvertId && ((x.MSG_TO == UserA && x.MSG_FROM == UserB) || (x.MSG_TO == UserB && x.MSG_FROM == UserA))).ToList();
         }
 
     }

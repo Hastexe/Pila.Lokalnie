@@ -182,6 +182,7 @@
       <DependentUpon>BazaPolaczenie.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AddingAdsRepository.cs" />
+    <Compile Include="Models\ConversationModel.cs" />
     <Compile Include="Models\EditAdModel.cs" />
     <Compile Include="Models\IMAGES.cs">
       <DependentUpon>BazaPolaczenie.tt</DependentUpon>

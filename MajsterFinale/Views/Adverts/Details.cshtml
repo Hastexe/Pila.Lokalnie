@@ -4,6 +4,20 @@
 
 @model MajsterFinale.Models.DisplayRepository
 
+<script>
+    function checkFilesCount(id) {
+        if (id.files.length > 4) {
+            alert('Można przesłać maksymalnie 4 zdjęcia');
+            document.getElementById("f").value = "";
+        }
+    }
+</script>
+@if (!string.IsNullOrEmpty(ViewBag.Message))
+{
+    <script type="text/javascript">
+        alert("@ViewBag.Message");
+    </script>
+}
 <div class="main">
     <div class="container" id="product_page">
         <div class="row">
@@ -14,7 +28,7 @@
                     </script>
                 </div>
             </div>
-            
+
             <div class="col-sm-8">
                 <div class="col-12" id="imgpos">
                     <img class="" src="http://via.placeholder.com/600x740" alt="Card image cap">
@@ -52,41 +66,45 @@
                     @Html.DisplayFor(model => model.AdvertDetails.DESCRIPTION)
                 </div>
             </div>
-            <div class="col-sm-8 " id="product_mess">
-                <div class="col-12">
-                    <hr>
-                    <h1>Wiadomość</h1>
-                    @{
-                        if (Session["ID"] != null)
-                        {
+            
+                    <div class="col-sm-8 " id="product_mess">
+                        <div class="col-12">
+                            @{
+                                if (Convert.ToInt32(Session["ID"]) != Model.AdvertDetails.USER_ID)
+                                {
+                                    <hr>
+                                    <h1>Wiadomość</h1>
 
-                            using (Html.BeginForm("Details", "Adverts"))
-                            {
-                                <form>
-                                    <!--<input type="text" name="message" />-->
-                                    <!--<input type="submit" value="wyślij" />-->
-                                    <textarea class="form-control" rows="5" name="message" placeholder="Napisz wiadomość!"></textarea>
-                                    <button class="btn btn-custom" type="submit" value="Wyślij">Wyślij</button>
-                                </form>
+                                    if (Session["ID"] != null)
+                                    {
+                                        using (Html.BeginForm("Details", "Adverts", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                        {
+                                            <form>
+                                                <!--<input type="text" name="message" />-->
+                                                <!--<input type="submit" value="wyślij" />-->
+                                                <textarea class="form-control" rows="5" minlength="5" name="message" placeholder="Napisz wiadomość! (min. 5 znaków)"></textarea>
+                                                <input type="file" id="f" name="files" multiple onchange="checkFilesCount(this)" />
+                                                <button class="btn btn-custom" type="submit" value="Wyślij">Wyślij</button>
+                                            </form>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <form>
+                                            <!--<input type="text" name="message" />-->
+                                            <!--<input type="submit" value="wyślij" />-->
+                                            <textarea class="form-control" rows="5" name="message" placeholder="Zaloguj się, aby wysłać wiadomość."></textarea>
+                                        </form>
+                                        <hr>
+                                    }
+                                }
                             }
-                        }
-                        else
-                        {
-                            <form>
-                                <!--<input type="text" name="message" />-->
-                                <!--<input type="submit" value="wyślij" />-->
-                                <textarea class="form-control" rows="5" name="message" placeholder="Zaloguj się, aby wysłać wiadomość."></textarea>
-                                <button class="btn btn-custom" disabled>Wyślij</button>
-                            </form>
-                            <hr>
-                        }
-                    }
-                </div>
-            </div>
+                        </div>
+                    </div>
         </div>
         <div class="col-sm-4 col-xs-12">
 
-            <p class="text-muted">Dodano: xx.xx.xxxx xx:xx </p>
+            <p class="text-muted">Dodano: @Model.AdvertDetails.DATE </p>
 
         </div>
     </div>
