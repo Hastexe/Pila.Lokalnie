@@ -60,22 +60,38 @@ namespace MajsterFinale.Controllers
         [HttpPost]
         public ActionResult Logowanie(USERS USERS)
         {
-            USERS.PASSWORD = registerRepository.Encryption(USERS.PASSWORD);
-            var userLoggedIn = db.USERS.SingleOrDefault(x => x.MAIL == USERS.MAIL && x.PASSWORD == USERS.PASSWORD);
-            if (userLoggedIn != null)
+            var isPasswordsNull = registerRepository.PasswordNotNull(USERS);
+            var IsMailNotNull = registerRepository.IsMailNotNull(USERS);
+            if (IsMailNotNull)
             {
-                Session["ID"] = userLoggedIn.USER_ID;
-                Session["MAIL"] = userLoggedIn.MAIL;
-                Session["FNAME"] = userLoggedIn.FNAME;
-
-                return RedirectToAction("Index", "Home", new { ID = USERS.USER_ID });
+                ModelState.AddModelError("MAIL", "Należy podać maila");
+                return View();
+            }
+            else if (isPasswordsNull)
+            {
+                ModelState.AddModelError("PASSWORD", "Należy podać hasło");
+                return View();
             }
             else
             {
-                ViewBag.Message = "Podane dane logowania są błędne";
-                ModelState.Clear();
-                return View();
+                USERS.PASSWORD = registerRepository.Encryption(USERS.PASSWORD);
+                var userLoggedIn = db.USERS.SingleOrDefault(x => x.MAIL == USERS.MAIL && x.PASSWORD == USERS.PASSWORD);
+                if (userLoggedIn != null)
+                {
+                    Session["ID"] = userLoggedIn.USER_ID;
+                    Session["MAIL"] = userLoggedIn.MAIL;
+                    Session["FNAME"] = userLoggedIn.FNAME;
+
+                    return RedirectToAction("Index", "Home", new { ID = USERS.USER_ID });
+                }
+                else
+                {
+                    ViewBag.Message = "Podane dane logowania są błędne";
+                    ModelState.Clear();
+                    return View();
+                }
             }
+           
         }
 
         public ActionResult Rejestracja(int id = 0)
@@ -166,11 +182,27 @@ namespace MajsterFinale.Controllers
                 MailAddress to = new MailAddress(MAIL);
                 MailMessage message = new MailMessage(from, to);
                 message.IsBodyHtml = true;
-                
-                message.Body = "<h1>Dziękujemy za rejestracje na Piła.Lokalnie</h1>" + "<br/>" 
-                + "<h2>W celu zakończenia rejestracji należy kliknąć przycisk na stronie z poniższego linku:</h2><br/>"
-                +"< form action = "+link+" >"
-                + "<a href = " + link + ">Przejdz na stronę</a>";
+
+            message.Body =
+                @"
+<html lang=""en"">
+    <head>    
+        <meta content=""text/html; charset=utf-8"" http-equiv=""Content-Type"">
+        <style>
+            h1 {text-align: center;}
+            div {text-align: center;}
+            a {text-align: center; font-size:22px;}
+        </style>
+    </head>
+    <body>
+        <h1>Dziękujemy za rejestracje na Piła.Lokalnie.</h1>
+        <h1>W celu zakończenia rejestracji proszę kliknąć w poniższy link:</h1></br>
+        <a href = ""{URL}"">Aktywuj</a>
+          </body>
+</html>
+";
+            string body = message.Body;
+            message.Body = body.Replace("{URL}", link);
             message.Subject = "Konto zostało utworzone!";
 
                 client.Send(message);
@@ -217,19 +249,35 @@ namespace MajsterFinale.Controllers
             foreach (var file in files)
             {
                 //var file = model.ImageFile;
-                byte[] imagebyte = null;    
+                byte[] imagebyte = null;
+                var filename = Guid.NewGuid() + file.FileName;
+                var supportedTypes = new[] { "jpg", "jpeg", "png" };
+                var fileExt = System.IO.Path.GetExtension(file.FileName).Substring(1);
                 if (file != null)
                 {
-                    file.SaveAs(Server.MapPath("/UploadImage/" + file.FileName));
+                    file.SaveAs(Server.MapPath("/UploadImage/" + filename));
                     BinaryReader reader = new BinaryReader(file.InputStream);
                     imagebyte = reader.ReadBytes(file.ContentLength);
                     IMAGES img = new IMAGES();
-                    img.IMAGE_TITLE = file.FileName;
-                    img.IMAGE_BYTE = imagebyte;
-                    img.IMAGE_PATH = "/UploadImage/" + file.FileName;
-                    db.IMAGES.Add(img);
-                    db.SaveChanges();
-                    imgId = img.IMAGE_ID;
+
+                    if (file.ContentLength > 2097152)  // 2MB?
+                    {
+
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else if (!supportedTypes.Contains(fileExt))
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else
+                    {
+                        img.IMAGE_TITLE = filename;
+                        img.IMAGE_BYTE = imagebyte;
+                        img.IMAGE_PATH = "/UploadImage/" + filename;
+                        db.IMAGES.Add(img);
+                        db.SaveChanges();
+                        imgId = img.IMAGE_ID;
+                    }
                 }
             }
             return RedirectToAction("DodawanieZdjec", "Home");
@@ -327,9 +375,26 @@ namespace MajsterFinale.Controllers
             MailMessage message = new MailMessage(from, to);
             message.IsBodyHtml = true;
 
-            message.Body = "Przyjeliśmy twoją prośbę o reset hasła"
-            + "Resetowanie hasła zakończysz na przesłanym linku:<br>"
-            + "<a href = " + link + ">Przejdz na stronę</a>";
+            message.Body =
+            @"
+<html lang=""en"">
+    <head>    
+        <meta content=""text/html; charset=utf-8"" http-equiv=""Content-Type"">
+        <style>
+            h1 {text-align: center;}
+            div {text-align: center;}
+            a {text-align: center; font-size:22px;}
+        </style>
+    </head>
+    <body>
+        <h1>Otrzymaliśmy prośbę o zmianę hasła dla twojego konta.</h1>
+        <h1>Hasło zmienisz pod poniższym linkiem:</h1></br>
+        <a href = ""{URL}"">Reset hasła</a>
+          </body>
+</html>
+";
+            string body = message.Body;
+            message.Body = body.Replace("{URL}", link);
             message.Subject = "Resetowanie hasła";
 
             client.Send(message);

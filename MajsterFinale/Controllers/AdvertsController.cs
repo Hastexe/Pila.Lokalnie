@@ -148,24 +148,33 @@ namespace MajsterFinale.Controllers
         }
         [HttpPost]
         public ActionResult AddAdvertisement(AddingAdsRepository obj)
-
         {
             if (ModelState.IsValid)
             {
                 int uID = Convert.ToInt32(Session["ID"]);
-                ADVERTS newAdvert = new ADVERTS()
+                ADVERTS newAdvert = new ADVERTS();
+
+                newAdvert.CATEGORY = obj.CategoryID;
+                newAdvert.TITLE = obj.Advert.TITLE;
+                newAdvert.USER_ID = uID;
+                newAdvert.DESCRIPTION = obj.Advert.DESCRIPTION;
+                newAdvert.DATE = System.DateTime.Now;
+                newAdvert.IS_ARCHIVED = false;
+                newAdvert.PRICE = obj.Advert.PRICE;
+
+                if (newAdvert.CATEGORY != 1)
                 {
-                    CATEGORY = obj.CategoryID,
-                    TITLE = obj.Advert.TITLE,
-                    USER_ID = uID,
-                    DESCRIPTION = obj.Advert.DESCRIPTION,
-                    DATE = System.DateTime.Now,
-                    IS_ARCHIVED = false,
-                    PRICE = obj.Advert.PRICE
-                };
-                db.ADVERTS.Add(newAdvert);
-                db.SaveChanges();
-                return RedirectToAction("Index", "home");
+                    db.ADVERTS.Add(newAdvert);
+                    db.SaveChanges();
+                    return RedirectToAction("Index", "home");
+                } 
+                else
+                {
+                    obj.Categories = addingAdsRepository.GetList();
+                    obj.CategoryID = -1;
+                    ModelState.AddModelError("CATEGORY", "Musisz wybrać kategorię z listy.");
+                    return View(obj);
+                }
             }
             obj.Categories = addingAdsRepository.GetList();
             obj.CategoryID = -1;

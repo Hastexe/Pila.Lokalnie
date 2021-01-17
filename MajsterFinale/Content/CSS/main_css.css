@@ -20,13 +20,20 @@
     font-weight: 600;
 }
 
-
+.btn-outline-custom {
+    border-color: #f3b136;
+    color: white !important;
+    font-weight: 600;
+}
 
 i {
     margin-right: 1rem;
     font-size: 1.1em;
 }
-
+.categories i {
+    margin-right: 0rem;
+    font-size: 1.1em;
+}
 
 .nmk {
     height: 40px;
@@ -211,3 +218,22 @@ i {
     }
 }
 
+
+#catPC {
+    display: block;
+}
+
+#catMob {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+
+    #catPC {
+        display: none;
+    }
+
+    #catMob {
+        display: block;
+    }
+}

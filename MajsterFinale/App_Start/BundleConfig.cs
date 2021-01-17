@@ -28,6 +28,7 @@ namespace MajsterFinale
                       "~/Content/CSS/Bootstrap/bootstrap-reboot.min.css",
                       "~/Content/CSS/PagedList.css",
                       "~/Content/CSS/main_adv.css",
+                      "~/Content/CSS/main_advcard.css",
                       "~/Content/CSS/main_advdetails.css",
                       "~/Content/CSS/main_bg.css",
                       "~/Content/CSS/main_css.css",
