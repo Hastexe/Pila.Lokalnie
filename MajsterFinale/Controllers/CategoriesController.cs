@@ -19,55 +19,13 @@ namespace MajsterFinale.Controllers
         {
             int pageSize = 10;
             int pageNumber = (page ?? 1);
-            return View(new AdvertRepository().GetAranzaciaWnetrzList().ToPagedList(pageNumber, pageSize));
+            return View(new AdvertRepository().GetAranzacjaWnetrzList().ToPagedList(pageNumber, pageSize));
         }
-        public ActionResult AranzacjaOgrodow(int? page)
+        public ActionResult Hydraulika(int? page)
         {
             int pageSize = 10;
             int pageNumber = (page ?? 1);
-            return View(new AdvertRepository().GetAranzaciaOgrodowList().ToPagedList(pageNumber, pageSize));
-        }
-        public ActionResult Catering(int? page)
-        {
-            int pageSize = 10;
-            int pageNumber = (page ?? 1);
-            return View(new AdvertRepository().GetCateringList().ToPagedList(pageNumber, pageSize));
-        }
-        public ActionResult Remonty(int? page)
-        {
-            int pageSize = 10;
-            int pageNumber = (page ?? 1);
-            return View(new AdvertRepository().GetRemontyList().ToPagedList(pageNumber, pageSize));
-        }
-        public ActionResult Sprzatanie(int? page)
-        {
-            int pageSize = 10;
-            int pageNumber = (page ?? 1);
-            return View(new AdvertRepository().GetSprzatanieList().ToPagedList(pageNumber, pageSize));
-        }
-        public ActionResult UslugiOgrodnicze(int? page)
-        {
-            int pageSize = 10;
-            int pageNumber = (page ?? 1);
-            return View(new AdvertRepository().GetUslugiOgrodniczeList().ToPagedList(pageNumber, pageSize));
-        }
-        public ActionResult PraceBudowlane(int? page)
-        {
-            int pageSize = 10;
-            int pageNumber = (page ?? 1);
-            return View(new AdvertRepository().GetPraceBudowlaneList().ToPagedList(pageNumber, pageSize));
-        }
-        public ActionResult PraceWykonczeniowe(int? page)
-        {
-            int pageSize = 10;
-            int pageNumber = (page ?? 1);
-            return View(new AdvertRepository().GetPraceWykonczenioweList().ToPagedList(pageNumber, pageSize));
-        }
-        public ActionResult Dekarstwo(int? page)
-        {
-            int pageSize = 10;
-            int pageNumber = (page ?? 1);
-            return View(new AdvertRepository().GetDekarstwoList().ToPagedList(pageNumber, pageSize));
+            return View(new AdvertRepository().GetHydrualikaList().ToPagedList(pageNumber, pageSize));
         }
         public ActionResult Elektryka(int? page)
         {
@@ -81,17 +39,17 @@ namespace MajsterFinale.Controllers
             int pageNumber = (page ?? 1);
             return View(new AdvertRepository().GetGazownictwoList().ToPagedList(pageNumber, pageSize));
         }
-        public ActionResult Hydraulika(int? page)
-        {
-            int pageSize = 10;
-            int pageNumber = (page ?? 1);
-            return View(new AdvertRepository().GetHydraulikaList().ToPagedList(pageNumber, pageSize));
-        }
         public ActionResult Malarstwo(int? page)
         {
             int pageSize = 10;
             int pageNumber = (page ?? 1);
             return View(new AdvertRepository().GetMalarstwoList().ToPagedList(pageNumber, pageSize));
+        }
+        public ActionResult Kominiarstwo(int? page)
+        {
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(new AdvertRepository().GetKominiarstwoList().ToPagedList(pageNumber, pageSize));
         }
         public ActionResult Stolarstwo(int? page)
         {
@@ -99,11 +57,89 @@ namespace MajsterFinale.Controllers
             int pageNumber = (page ?? 1);
             return View(new AdvertRepository().GetStolarstwoList().ToPagedList(pageNumber, pageSize));
         }
-        public ActionResult Tynkarstwo(int? page)
+        public ActionResult StolarstwoOgrod(int? page)
         {
             int pageSize = 10;
             int pageNumber = (page ?? 1);
-            return View(new AdvertRepository().GetTynkarstwoList().ToPagedList(pageNumber, pageSize));
+            return View(new AdvertRepository().GetStolarstwoList().ToPagedList(pageNumber, pageSize));
+        }
+        public ActionResult DomInne(int? page)
+        {
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(new AdvertRepository().GetDomInneList().ToPagedList(pageNumber, pageSize));
+        }
+        public ActionResult AranzacjaOgrodow(int? page)
+        {
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(new AdvertRepository().GetAranzacjaOgrodowList().ToPagedList(pageNumber, pageSize));
+        }
+        public ActionResult Ogrodnictwo(int? page)
+        {
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(new AdvertRepository().GetOgrodnictwoList().ToPagedList(pageNumber, pageSize));
+        }
+        public ActionResult Brukarstwo(int? page)
+        {
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(new AdvertRepository().GetBrukarstwoList().ToPagedList(pageNumber, pageSize));
+        }
+        public ActionResult Ogrodzenia(int? page)
+        {
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(new AdvertRepository().GetOgrodzeniaList().ToPagedList(pageNumber, pageSize));
+        }
+        public ActionResult Kamieniarstwo(int? page)
+        {
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(new AdvertRepository().GetKamieniarstwoList().ToPagedList(pageNumber, pageSize));
+        }
+        public ActionResult OgrodInne(int? page)
+        {
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(new AdvertRepository().GetOgrodInneList().ToPagedList(pageNumber, pageSize));
+        }
+        public ActionResult Mechanik(int? page)
+        {
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(new AdvertRepository().GetMechanikList().ToPagedList(pageNumber, pageSize));
+        }
+        public ActionResult Blacharz(int? page)
+        {
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(new AdvertRepository().GetBlacharzList().ToPagedList(pageNumber, pageSize));
+        }
+        public ActionResult Lakiernik(int? page)
+        {
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(new AdvertRepository().GetLakiernikList().ToPagedList(pageNumber, pageSize));
+        }
+        public ActionResult Detaling(int? page)
+        {
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(new AdvertRepository().GetDetalingList().ToPagedList(pageNumber, pageSize));
+        }
+        public ActionResult Wulkanizacja(int? page)
+        {
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(new AdvertRepository().GetWulkanizacjaList().ToPagedList(pageNumber, pageSize));
+        }
+        public ActionResult MotoryzacjaInne(int? page)
+        {
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(new AdvertRepository().GetMotoryzacjaInneList().ToPagedList(pageNumber, pageSize));
         }
         public ActionResult Korepetycje(int? page)
         {
@@ -111,51 +147,62 @@ namespace MajsterFinale.Controllers
             int pageNumber = (page ?? 1);
             return View(new AdvertRepository().GetKorepetycjeList().ToPagedList(pageNumber, pageSize));
         }
-        public ActionResult UslugiInformatyczne(int? page)
+        public ActionResult Informatyka(int? page)
         {
             int pageSize = 10;
             int pageNumber = (page ?? 1);
-            return View(new AdvertRepository().GetUslugiInformatyczneList().ToPagedList(pageNumber, pageSize));
+            return View(new AdvertRepository().GetInformatykaList().ToPagedList(pageNumber, pageSize));
         }
-        public ActionResult UslugiKosmetyczne(int? page)
+        public ActionResult Uroda(int? page)
         {
             int pageSize = 10;
             int pageNumber = (page ?? 1);
-            return View(new AdvertRepository().GetUslugiKosmetyczneList().ToPagedList(pageNumber, pageSize));
+            return View(new AdvertRepository().GetUrodaList().ToPagedList(pageNumber, pageSize));
         }
-        public ActionResult UslugiMotoryzacyjne(int? page)
+        public ActionResult NaprawaSerwis(int? page)
         {
             int pageSize = 10;
             int pageNumber = (page ?? 1);
-            return View(new AdvertRepository().GetUslugiMotoryzacyjneList().ToPagedList(pageNumber, pageSize));
+            return View(new AdvertRepository().GetNaprawaSerwisList().ToPagedList(pageNumber, pageSize));
         }
-        public ActionResult UslugiNaprawaSerwis(int? page)
+        public ActionResult Transport(int? page)
         {
             int pageSize = 10;
             int pageNumber = (page ?? 1);
-            return View(new AdvertRepository().GetUslugiNaprawaList().ToPagedList(pageNumber, pageSize));
+            return View(new AdvertRepository().GetTransportList().ToPagedList(pageNumber, pageSize));
         }
-        public ActionResult UslugiTransport(int? page)
+        public ActionResult Monter(int? page)
         {
             int pageSize = 10;
             int pageNumber = (page ?? 1);
-            return View(new AdvertRepository().GetUslugiTransportoweList().ToPagedList(pageNumber, pageSize));
+            return View(new AdvertRepository().GetMonterList().ToPagedList(pageNumber, pageSize));
         }
-
-        public ActionResult DomiOgrod(int? page)
+        public ActionResult UslugiInne(int? page)
         {
             int pageSize = 10;
             int pageNumber = (page ?? 1);
-            return View(new AdvertRepository().GetDomiOgrodList().ToPagedList(pageNumber, pageSize));
-        }
-
-        public ActionResult BudowaRemont(int? page)
-        {
-            int pageSize = 10;
-            int pageNumber = (page ?? 1);
-            return View(new AdvertRepository().GetUslugiBudowlaneList().ToPagedList(pageNumber, pageSize));
+            return View(new AdvertRepository().GetUslugiInneList().ToPagedList(pageNumber, pageSize));
         }
 
+
+        public ActionResult Dom(int? page)
+        {
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(new AdvertRepository().GetDomList().ToPagedList(pageNumber, pageSize));
+        }
+        public ActionResult Ogrod(int? page)
+        {
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(new AdvertRepository().GetOgrodList().ToPagedList(pageNumber, pageSize));
+        }
+        public ActionResult Motoryzacja(int? page)
+        {
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(new AdvertRepository().GetMotoryzacjaList().ToPagedList(pageNumber, pageSize));
+        }
         public ActionResult Uslugi(int? page)
         {
             int pageSize = 10;
