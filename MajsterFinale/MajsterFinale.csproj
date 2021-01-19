@@ -182,6 +182,7 @@
       <DependentUpon>BazaPolaczenie.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AddingAdsRepository.cs" />
+    <Compile Include="Models\DisplayAdsRepository.cs" />
     <Compile Include="Models\EditAdModel.cs" />
     <Compile Include="Models\IMAGES.cs">
       <DependentUpon>BazaPolaczenie.tt</DependentUpon>
@@ -454,27 +455,36 @@
     <Content Include="Views\Adverts\EditAdvertisement.cshtml" />
     <Content Include="Views\Categories\AranzacjaWnetrz.cshtml" />
     <Content Include="Views\Categories\AranzacjaOgrodow.cshtml" />
-    <Content Include="Views\Categories\Remonty.cshtml" />
-    <Content Include="Views\Categories\Sprzatanie.cshtml" />
-    <Content Include="Views\Categories\UslugiOgrodnicze.cshtml" />
-    <Content Include="Views\Categories\PraceBudowlane.cshtml" />
-    <Content Include="Views\Categories\PraceWykonczeniowe.cshtml" />
-    <Content Include="Views\Categories\Dekarstwo.cshtml" />
+    <Content Include="Views\Categories\Ogrodnictwo.cshtml" />
     <Content Include="Views\Categories\Elektryka.cshtml" />
     <Content Include="Views\Categories\Gazownictwo.cshtml" />
     <Content Include="Views\Categories\Hydraulika.cshtml" />
     <Content Include="Views\Categories\Malarstwo.cshtml" />
     <Content Include="Views\Categories\Stolarstwo.cshtml" />
-    <Content Include="Views\Categories\Tynkarstwo.cshtml" />
     <Content Include="Views\Categories\Korepetycje.cshtml" />
-    <Content Include="Views\Categories\UslugiInformatyczne.cshtml" />
-    <Content Include="Views\Categories\UslugiKosmetyczne.cshtml" />
-    <Content Include="Views\Categories\UslugiMotoryzacyjne.cshtml" />
-    <Content Include="Views\Categories\UslugiNaprawaSerwis.cshtml" />
-    <Content Include="Views\Categories\UslugiTransport.cshtml" />
-    <Content Include="Views\Categories\DomiOgrod.cshtml" />
-    <Content Include="Views\Categories\BudowaRemont.cshtml" />
+    <Content Include="Views\Categories\Informatyka.cshtml" />
+    <Content Include="Views\Categories\Uroda.cshtml" />
+    <Content Include="Views\Categories\NaprawaSerwis.cshtml" />
+    <Content Include="Views\Categories\Transport.cshtml" />
     <Content Include="Views\Categories\Uslugi.cshtml" />
+    <Content Include="Views\Categories\Dom.cshtml" />
+    <Content Include="Views\Categories\Kominiarstwo.cshtml" />
+    <Content Include="Views\Categories\DomInne.cshtml" />
+    <Content Include="Views\Categories\Ogrod.cshtml" />
+    <Content Include="Views\Categories\Brukarstwo.cshtml" />
+    <Content Include="Views\Categories\Ogrodzenia.cshtml" />
+    <Content Include="Views\Categories\Kamieniarstwo.cshtml" />
+    <Content Include="Views\Categories\OgrodInne.cshtml" />
+    <Content Include="Views\Categories\StolarstwoOgrod.cshtml" />
+    <Content Include="Views\Categories\Motoryzacja.cshtml" />
+    <Content Include="Views\Categories\Mechanik.cshtml" />
+    <Content Include="Views\Categories\Blacharz.cshtml" />
+    <Content Include="Views\Categories\Lakiernik.cshtml" />
+    <Content Include="Views\Categories\Detaling.cshtml" />
+    <Content Include="Views\Categories\Wulkanizacja.cshtml" />
+    <Content Include="Views\Categories\MotoryzacjaInne.cshtml" />
+    <Content Include="Views\Categories\Monter.cshtml" />
+    <Content Include="Views\Categories\UslugiInne.cshtml" />
     <None Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Message.cshtml" />
     <Content Include="Views\Home\Rejestracja.cshtml" />
@@ -506,7 +516,6 @@
     <Content Include="Views\Shared\Searchbar.cshtml" />
     <Content Include="Views\Home\Odzyskaj.cshtml" />
     <Content Include="Views\Home\NoweHaslo.cshtml" />
-    <Content Include="Views\Categories\Catering.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

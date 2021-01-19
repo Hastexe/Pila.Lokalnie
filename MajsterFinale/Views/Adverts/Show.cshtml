@@ -1,38 +1,46 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@model PagedList.IPagedList<MajsterFinale.Models.ADVERTS>
+@model MajsterFinale.Models.DisplayAdsRepository
+@using PagedList;
 @using PagedList.Mvc;
 
 <table class="table">
 
-    @foreach (var item in Model)
+    @foreach (var item in Model.ADVERTS)
     {
-        <tr class="clickable-row" data-href="@Url.Action("Details", "Adverts", new { id = item.ID })">
-            <td>
-                @Html.DisplayFor(modelItem => item.TITLE)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DESCRIPTION)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PRICE)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IMAGE)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CATEGORIES.NAME)
-            </td>
-            <td>
-                <a href="@Url.Action("Details", "Adverts", new { id = item.ID }) ">Szczegóły</a>
-            </td>
-        </tr>
+            <tr>
+                <td>
+                    @foreach (var itemImage in Model.IMAGES)
+                    {
+                        if (item.ID == itemImage.ADVERT_ID)
+                        {
+                            <img src="@itemImage.IMAGE_PATH" style="width: 200px; height: 200px" alt="my pic" />
+                        }
+                        break;
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(x => item.TITLE)  
+                </td>
+                <td>
+                    @Html.DisplayFor(x => item.DESCRIPTION)
+                </td>
+                <td>
+                    @Html.DisplayFor(x => item.PRICE)
+                </td>
+                <td>
+                    @Html.DisplayFor(x => item.CATEGORIES.NAME)
+                </td>
+                <td>
+                    <a href="@Url.Action("Details", "Adverts", new { id = item.ID }) ">Szczegóły</a>
+                </td>
+            </tr>
     }
 
 </table>
 
-Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+Page @(Model.ADVERTS.PageCount < @Model.ADVERTS.PageNumber ? 0 : @Model.ADVERTS.PageNumber) of @Model.ADVERTS.PageCount
 
-@Html.PagedListPager(Model, page => Url.Action("Adverts",
+@Html.PagedListPager(Model.ADVERTS, page => Url.Action("Show",
     new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

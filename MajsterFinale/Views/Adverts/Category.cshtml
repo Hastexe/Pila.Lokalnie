@@ -17,10 +17,14 @@
                 @Html.DisplayFor(modelItem => item.DESCRIPTION)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PRICE)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IMAGE)
+                @if (item.PRICE == "0")
+                {
+                    <span>Cena do ustalenia</span>
+                }
+                else
+                {
+                    @Html.DisplayFor(modelItem => item.PRICE)
+                }
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.IS_ARCHIVED)

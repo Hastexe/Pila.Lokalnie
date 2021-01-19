@@ -31,8 +31,11 @@
 
             <div class="col-sm-8">
                 <div class="col-12" id="imgpos">
-                    <img class="" src="http://via.placeholder.com/600x740" alt="Card image cap">
-                    @Html.DisplayFor(model => model.AdvertDetails.IMAGE)
+                    @foreach (var item in Model.Images)
+                    {
+                        <img src="@item.IMAGE_PATH" style="width: 200px; height: 200px" alt="my pic" />
+                    }
+                    <!--Tutaj wyśietlanie zdjęcia-->
                 </div>
             </div>
 

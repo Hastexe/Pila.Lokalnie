@@ -1,10 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Web;
-using System.Data.SqlClient;
-using System.Data;
-using System.Configuration;
-using System.Web.Security;
+﻿using System.Collections.Generic;
 
 namespace MajsterFinale.Models
 {
@@ -12,5 +6,6 @@ namespace MajsterFinale.Models
     {
         public ADVERTS AdvertDetails { get; set; }
         public USERS LoggedUser { get; set; }
+        public List<IMAGES_ADVERT> Images { get; set; }
     }
 }

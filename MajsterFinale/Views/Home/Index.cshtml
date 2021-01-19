@@ -57,47 +57,61 @@
                 <div class="col-sm-12"><h1>Kategorie główne</h1></div>
             </div>
             <div class="row cat-grid justify-content-center">
-                <div class="col-sm-2 grow"><a data-toggle="collapse" href="#collapseCat1" role="button" aria-expanded="false" aria-controls="collapseCat1"><i class="fas fa-seedling Icongrid"></i><p>Dom i Ogród</p></a></div>
-                <div class="col-sm-2 grow"><a data-toggle="collapse" href="#collapseCat2" role="button" aria-expanded="false" aria-controls="collapseCat2"><i class="fas fa-seedling Icongrid"></i><p>Usługi Budowlane i Remontowe</p></a></div>
-                <div class="col-sm-2 grow"><a data-toggle="collapse" href="#collapseCat3" role="button" aria-expanded="false" aria-controls="collapseCat3"><i class="fas fa-seedling Icongrid"></i><p>Usługi</p></a></div>
+                <div class="col-sm-2 grow"><a data-toggle="collapse" href="#collapseCat1" role="button" aria-expanded="false" aria-controls="collapseCat1"><i class="fas fa-seedling Icongrid"></i><p>Dom</p></a></div>
+                <div class="col-sm-2 grow"><a data-toggle="collapse" href="#collapseCat2" role="button" aria-expanded="false" aria-controls="collapseCat2"><i class="fas fa-seedling Icongrid"></i><p>Ogród</p></a></div>
+                <div class="col-sm-2 grow"><a data-toggle="collapse" href="#collapseCat3" role="button" aria-expanded="false" aria-controls="collapseCat3"><i class="fas fa-seedling Icongrid"></i><p>Motoryzacja</p></a></div>
+                <div class="col-sm-2 grow"><a data-toggle="collapse" href="#collapseCat3" role="button" aria-expanded="false" aria-controls="collapseCat3"><i class="fas fa-seedling Icongrid"></i><p>Usługi </p></a></div>
             </div>
             <div class="collapse underCat" id="collapseCat1">
                 <ul class="list-unstyled underCat">
-                    <li class="list-item col-sm-12"><i class="fas fa-chevron-right" style="align-items: left;"></i><a href="" style="font-weight: bold;"> Wszystkie ogłoszenia <span style="font-weight: 300;">z Dom i Ogród</span></a></li>
+                    <li class="list-item col-sm-12"><i class="fas fa-chevron-right" style="align-items: left;"></i><a href="@Url.Action("Dom", "Categories", null)" style="font-weight: bold;"> Wszystkie ogłoszenia <span style="font-weight: 300;">z Dom</span></a></li>
                     <hr>
                     <li class="list-item col-sm-6"><i class="fas fa-chevron-right" style="font-size: small; color: grey;"></i><a href="@Url.Action("AranzacjaWnetrz", "Categories", null)"> Aranżacja Wnętrz </a></li>
-                    <li class="list-item col-sm-6"><i class="fas fa-chevron-right" style="font-size: small; color: grey;"></i><a href="@Url.Action("AranzacjaOgrodow", "Categories", null)"> Aranżacja Ogrodów </a></li>
-                    <li class="list-item col-sm-6"><i class="fas fa-chevron-right" style="font-size: small; color: grey;"></i><a href="@Url.Action("Catering", "Categories", null)"> Catering </a></li>
-                    <li class="list-item col-sm-6"><i class="fas fa-chevron-right" style="font-size: small; color: grey;"></i><a href="@Url.Action("Remonty", "Categories", null)"> Remonty </a></li>
-                    <li class="list-item col-sm-6"><i class="fas fa-chevron-right" style="font-size: small; color: grey;"></i><a href="@Url.Action("Sprzatanie", "Categories", null)"> Sprzątanie </a></li>
-                    <li class="list-item col-sm-6"><i class="fas fa-chevron-right" style="font-size: small; color: grey;"></i><a href="@Url.Action("UslugiOgrodnicze", "Categories", null)"> Usługi Ogrodnicze </a></li>
+                    <li class="list-item col-sm-6"><i class="fas fa-chevron-right" style="font-size: small; color: grey;"></i><a href="@Url.Action("Hydraulika", "Categories", null)"> Hydraulika </a></li>
+                    <li class="list-item col-sm-6"><i class="fas fa-chevron-right" style="font-size: small; color: grey;"></i><a href="@Url.Action("Elektryka", "Categories", null)"> Elektryka </a></li>
+                    <li class="list-item col-sm-6"><i class="fas fa-chevron-right" style="font-size: small; color: grey;"></i><a href="@Url.Action("Gazownictwo", "Categories", null)"> Gazownictwo </a></li>
+                    <li class="list-item col-sm-6"><i class="fas fa-chevron-right" style="font-size: small; color: grey;"></i><a href="@Url.Action("Malarstwo", "Categories", null)"> Malarstwo </a></li>
+                    <li class="list-item col-sm-6"><i class="fas fa-chevron-right" style="font-size: small; color: grey;"></i><a href="@Url.Action("Kominiarstwo", "Categories", null)"> Kominiarstwo </a></li>
+                    <li class="list-item col-sm-6"><i class="fas fa-chevron-right" style="font-size: small; color: grey;"></i><a href="@Url.Action("Stolarstwo", "Categories", null)"> Stolarstwo </a></li>
+                    <li class="list-item col-sm-6"><i class="fas fa-chevron-right" style="font-size: small; color: grey;"></i><a href="@Url.Action("DomInne", "Categories", null)"> Dom Inne </a></li>
                 </ul>
             </div>
             <div class="collapse underCat" id="collapseCat2">
                 <ul class="list-unstyled underCat">
-                    <li class="list-item col-sm-12"><i class="fas fa-chevron-right" style="align-items: left;"></i><a href="" style="font-weight: bold;"> Wszystkie ogłoszenia <span style="font-weight: 300;">z Usług Budowlanych i Remontowych</span></a></li>
+                    <li class="list-item col-sm-12"><i class="fas fa-chevron-right" style="align-items: left;"></i><a href="@Url.Action("Ogrod", "Categories", null)" style="font-weight: bold;"> Wszystkie ogłoszenia <span style="font-weight: 300;">z Ogród</span></a></li>
                     <hr>
-                    <li class="list-item col-sm-6"><i class="fas fa-chevron-right" style="font-size: small; color: grey;"></i><a href="@Url.Action("PraceBudowlane", "Categories", null)"> Prace Budowlane </a></li>
-                    <li class="list-item col-sm-6"><i class="fas fa-chevron-right" style="font-size: small; color: grey;"></i><a href="@Url.Action("PraceWykonczeniowe", "Categories", null)"> Prace Wykończeniowe </a></li>
-                    <li class="list-item col-sm-6"><i class="fas fa-chevron-right" style="font-size: small; color: grey;"></i><a href="@Url.Action("Dekarstwo", "Categories", null)"> Dekarstwo </a></li>
-                    <li class="list-item col-sm-6"><i class="fas fa-chevron-right" style="font-size: small; color: grey;"></i><a href="@Url.Action("Elektryka", "Categories", null)"> Elektryka </a></li>
-                    <li class="list-item col-sm-6"><i class="fas fa-chevron-right" style="font-size: small; color: grey;"></i><a href="@Url.Action("Gazownictwo", "Categories", null)"> Gazownictwo </a></li>
-                    <li class="list-item col-sm-6"><i class="fas fa-chevron-right" style="font-size: small; color: grey;"></i><a href="@Url.Action("Hydraulika", "Categories", null)"> Hydrualika </a></li>
-                    <li class="list-item col-sm-6"><i class="fas fa-chevron-right" style="font-size: small; color: grey;"></i><a href="@Url.Action("Malarstwo", "Categories", null)"> Malarstwo </a></li>
-                    <li class="list-item col-sm-6"><i class="fas fa-chevron-right" style="font-size: small; color: grey;"></i><a href="@Url.Action("Stolarstwo", "Categories", null)"> Stolarstwo </a></li>
-                    <li class="list-item col-sm-6"><i class="fas fa-chevron-right" style="font-size: small; color: grey;"></i><a href="@Url.Action("Tynkarstwo", "Categories", null)"> Tynkarstwo </a></li>
+                    <li class="list-item col-sm-6"><i class="fas fa-chevron-right" style="font-size: small; color: grey;"></i><a href="@Url.Action("AranzacjaOgrodow", "Categories", null)"> Aranżacja Ogrodów </a></li>
+                    <li class="list-item col-sm-6"><i class="fas fa-chevron-right" style="font-size: small; color: grey;"></i><a href="@Url.Action("Ogrodnictwo", "Categories", null)"> Ogrodnictwo </a></li>
+                    <li class="list-item col-sm-6"><i class="fas fa-chevron-right" style="font-size: small; color: grey;"></i><a href="@Url.Action("Brukarstwo", "Categories", null)"> Brukarstwo </a></li>
+                    <li class="list-item col-sm-6"><i class="fas fa-chevron-right" style="font-size: small; color: grey;"></i><a href="@Url.Action("Ogrodzenia", "Categories", null)"> Ogrodzenia </a></li>
+                    <li class="list-item col-sm-6"><i class="fas fa-chevron-right" style="font-size: small; color: grey;"></i><a href="@Url.Action("Kamieniarstwo", "Categories", null)"> Kamieniarstwo </a></li>
+                    <li class="list-item col-sm-6"><i class="fas fa-chevron-right" style="font-size: small; color: grey;"></i><a href="@Url.Action("StolarstwoOgrod", "Categories", null)"> Stolarstwo </a></li>
+                    <li class="list-item col-sm-6"><i class="fas fa-chevron-right" style="font-size: small; color: grey;"></i><a href="@Url.Action("OgrodInne", "Categories", null)"> Ogród Inne </a></li>
                 </ul>
             </div>
             <div class="collapse underCat" id="collapseCat3">
                 <ul class="list-unstyled underCat">
-                    <li class="list-item col-sm-12"><i class="fas fa-chevron-right" style="align-items: left;"></i><a href="" style="font-weight: bold;"> Wszystkie ogłoszenia <span style="font-weight: 300;">z Usług</span></a></li>
+                    <li class="list-item col-sm-12"><i class="fas fa-chevron-right" style="align-items: left;"></i><a href="@Url.Action("Motoryzacja", "Categories", null)" style="font-weight: bold;"> Wszystkie ogłoszenia <span style="font-weight: 300;">z Motoryzacji</span></a></li>
+                    <hr>
+                    <li class="list-item col-sm-6"><i class="fas fa-chevron-right" style="font-size: small; color: grey;"></i><a href="@Url.Action("Mechanik", "Categories", null)"> Mechanik </a></li>
+                    <li class="list-item col-sm-6"><i class="fas fa-chevron-right" style="font-size: small; color: grey;"></i><a href="@Url.Action("Blacharz", "Categories", null)"> Blacharz </a></li>
+                    <li class="list-item col-sm-6"><i class="fas fa-chevron-right" style="font-size: small; color: grey;"></i><a href="@Url.Action("Lakiernik", "Categories", null)"> Lakiernik </a></li>
+                    <li class="list-item col-sm-6"><i class="fas fa-chevron-right" style="font-size: small; color: grey;"></i><a href="@Url.Action("Detaling", "Categories", null)"> Detaling </a></li>
+                    <li class="list-item col-sm-6"><i class="fas fa-chevron-right" style="font-size: small; color: grey;"></i><a href="@Url.Action("Wulkanizacja", "Categories", null)"> Wulkanizacja </a></li>
+                    <li class="list-item col-sm-6"><i class="fas fa-chevron-right" style="font-size: small; color: grey;"></i><a href="@Url.Action("MotoryzacjaInne", "Categories", null)"> Motoryzacja Inne </a></li>
+                </ul>
+            </div>
+            <div class="collapse underCat" id="collapseCat3">
+                <ul class="list-unstyled underCat">
+                    <li class="list-item col-sm-12"><i class="fas fa-chevron-right" style="align-items: left;"></i><a href="@Url.Action("Uslugi", "Categories", null)" style="font-weight: bold;"> Wszystkie ogłoszenia <span style="font-weight: 300;">z Usługi</span></a></li>
                     <hr>
                     <li class="list-item col-sm-6"><i class="fas fa-chevron-right" style="font-size: small; color: grey;"></i><a href="@Url.Action("Korepetycje", "Categories", null)"> Korepetycje </a></li>
-                    <li class="list-item col-sm-6"><i class="fas fa-chevron-right" style="font-size: small; color: grey;"></i><a href="@Url.Action("UsugiInformatyczne", "Categories", null)"> Usługi Informatyczne </a></li>
-                    <li class="list-item col-sm-6"><i class="fas fa-chevron-right" style="font-size: small; color: grey;"></i><a href="@Url.Action("UsugiKosmetyczne", "Categories", null)"> Usługi Kosmetyczne </a></li>
-                    <li class="list-item col-sm-6"><i class="fas fa-chevron-right" style="font-size: small; color: grey;"></i><a href="@Url.Action("UsugiMotoryzacyjne", "Categories", null)"> Usługi Motoryzacyjne </a></li>
-                    <li class="list-item col-sm-6"><i class="fas fa-chevron-right" style="font-size: small; color: grey;"></i><a href="@Url.Action("UslugiNaprawaSerwis", "Categories", null)"> Usługi Naprawa/Serwis </a></li>
-                    <li class="list-item col-sm-6"><i class="fas fa-chevron-right" style="font-size: small; color: grey;"></i><a href="@Url.Action("UslugiTransport", "Categories", null)"> Usługi Transportowe </a></li>
+                    <li class="list-item col-sm-6"><i class="fas fa-chevron-right" style="font-size: small; color: grey;"></i><a href="@Url.Action("Informatyka", "Categories", null)"> Informatyka </a></li>
+                    <li class="list-item col-sm-6"><i class="fas fa-chevron-right" style="font-size: small; color: grey;"></i><a href="@Url.Action("Uroda", "Categories", null)"> Uroda </a></li>
+                    <li class="list-item col-sm-6"><i class="fas fa-chevron-right" style="font-size: small; color: grey;"></i><a href="@Url.Action("NaprawaSerwis", "Categories", null)"> NaprawaSerwis </a></li>
+                    <li class="list-item col-sm-6"><i class="fas fa-chevron-right" style="font-size: small; color: grey;"></i><a href="@Url.Action("Transport", "Categories", null)"> Transport </a></li>
+                    <li class="list-item col-sm-6"><i class="fas fa-chevron-right" style="font-size: small; color: grey;"></i><a href="@Url.Action("Monter", "Categories", null)"> Monter </a></li>
+                    <li class="list-item col-sm-6"><i class="fas fa-chevron-right" style="font-size: small; color: grey;"></i><a href="@Url.Action("UslugiInne", "Categories", null)"> Usługi Inne </a></li>
                 </ul>
             </div>
         </div>
