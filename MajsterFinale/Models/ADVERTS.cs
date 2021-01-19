@@ -37,9 +37,9 @@ namespace MajsterFinale.Models
         [StringLength(250, MinimumLength = 5)]
         [Required(ErrorMessage = "Pole jest wymagane")]
         public string DESCRIPTION { get; set; }
-        [DisplayName("Cena")]
+        [DisplayName("Cena, Zostaw puste jeœli do uzgodnienia")]
         [DefaultValue("Do uzgodnienia")]
-        [RegularExpression("^[0-9]*$", ErrorMessage = "Cena musi sk³adaæ siê z cyfr.")]
+        [RegularExpression("^[0-9]*,{0,1}[0-9]*$", ErrorMessage = "Cena musi sk³adaæ siê z cyfr.")]
         public string PRICE { get; set; }
         [DisplayName("Zdjêcia")]
         public Nullable<bool> IS_ARCHIVED { get; set; }

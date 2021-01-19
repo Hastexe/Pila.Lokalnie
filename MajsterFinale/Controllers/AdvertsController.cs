@@ -149,7 +149,7 @@ namespace MajsterFinale.Controllers
         [HttpPost]
         public ActionResult AddAdvertisement(AddingAdsRepository obj, IEnumerable<HttpPostedFileBase> files)
         {
-            int imgId = 0;
+           
 
             if (ModelState.IsValid)
                 {
@@ -169,47 +169,7 @@ namespace MajsterFinale.Controllers
                 {
                     db.ADVERTS.Add(newAdvert);
                     db.SaveChanges();
-                    foreach (var file in files)
-                    {
-                        //var file = model.ImageFile;
-                        byte[] imagebyte = null;
-                        var filename = Guid.NewGuid() + file.FileName;
-                        var supportedTypes = new[] { "jpg", "jpeg", "png" };
-                        var fileExt = System.IO.Path.GetExtension(file.FileName).Substring(1);
-                        if (file != null)
-                        {
-                            if (!supportedTypes.Contains(fileExt))
-                            {
-                                return RedirectToAction("Index", "Home");
-                            }
-                            else
-                            {
-                                file.SaveAs(Server.MapPath("/UploadImage/" + filename));
-                                BinaryReader reader = new BinaryReader(file.InputStream);
-                                imagebyte = reader.ReadBytes(file.ContentLength);
-                                IMAGES img = new IMAGES();
-
-                                if (file.ContentLength > 2097152)  // 2MB?
-                                {
-
-                                    return RedirectToAction("Index", "Home");
-                                }
-
-                                else
-                                {
-                                    img.IMAGE_TITLE = filename;
-                                    img.IMAGE_BYTE = imagebyte;
-                                    img.IMAGE_PATH = "/UploadImage/" + filename;
-                                    img.ADVERT_ID = newAdvert.ID;
-                                    db.IMAGES.Add(img);
-                                    db.SaveChanges();
-                                    imgId = img.IMAGE_ID;
-                                }
-                            }
-
-                        }
-                    }
-                    return RedirectToAction("Index", "home");
+                    AddImages(newAdvert.ID, files);
                 } 
                 else
                 {
@@ -223,6 +183,49 @@ namespace MajsterFinale.Controllers
                 obj.CategoryID = -1;
             return View(obj);
 
+        }
+        public ActionResult AddImages(int ID, IEnumerable<HttpPostedFileBase> files)
+        {
+            int imgId = 0;
+            foreach (var file in files)
+            {
+                if(file != null)
+                {
+                //var file = model.ImageFile;
+                byte[] imagebyte = null;
+                var filename = Guid.NewGuid() + file.FileName;
+                var supportedTypes = new[] { "jpg", "jpeg", "png" };
+                var fileExt = System.IO.Path.GetExtension(file.FileName).Substring(1);
+                    if (!supportedTypes.Contains(fileExt))
+                    {
+                        return Content("<script language='javascript' type='text/javascript'>alert('Niebsługiwany typ pliku');location = location;</script>");
+                    }
+                    else
+                    {
+                        file.SaveAs(Server.MapPath("/UploadImage/" + filename));
+                        BinaryReader reader = new BinaryReader(file.InputStream);
+                        imagebyte = reader.ReadBytes(file.ContentLength);
+                        IMAGES_ADVERT img = new IMAGES_ADVERT();
+
+                        if (file.ContentLength > 5242880)  // 5MB
+                        {
+                            return Content("<script language='javascript' type='text/javascript'>alert('Plik jest zbyt duży');location = location;</script>");
+                        }
+
+                        else
+                        {
+                            img.IMAGE_TITLE = filename;
+                            img.IMAGE_PATH = "/UploadImage/" + filename;
+                            img.ADVERT_ID = ID;
+                            db.IMAGES_ADVERT.Add(img);
+                            db.SaveChanges();
+                            imgId = img.IMAGE_ID;
+                        }
+                    }
+
+                }
+            }
+            return RedirectToAction("Index", "home");
         }
 
         [HttpGet]
