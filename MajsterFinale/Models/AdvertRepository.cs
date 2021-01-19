@@ -16,9 +16,17 @@ namespace MajsterFinale.Models
         {
             return db.ADVERTS.SingleOrDefault(d => d.ID == id);
         }
+        public List<IMAGES_ADVERT> GetAdImages(int id)
+        {
+            return db.IMAGES_ADVERT.Where(x => x.ADVERT_ID == id).ToList();
+        }
         public List<ADVERTS> GetAdsByCategory(int id)
         {
             return db.ADVERTS.Where(x => x.CATEGORY == id).ToList();
+        }
+        public List<IMAGES_ADVERT> GetAdsImages()
+        {
+            return db.IMAGES_ADVERT.ToList();
         }
         public List<ADVERTS> GetAdsBySearch(string search, int category)
         {

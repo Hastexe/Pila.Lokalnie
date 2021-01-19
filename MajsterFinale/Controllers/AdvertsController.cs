@@ -18,6 +18,7 @@ namespace MajsterFinale.Controllers
         private AdvertRepository advertRepository = new AdvertRepository();
         private DisplayRepository displayRepository = new DisplayRepository();
         private AddingAdsRepository addingAdsRepository = new AddingAdsRepository();
+        private DisplayAdsRepository displayAdsRepository = new DisplayAdsRepository();
         //
         // HTTP-GET: /Adverts/
         public ActionResult Index()
@@ -31,6 +32,7 @@ namespace MajsterFinale.Controllers
             if (id != null)
             {
                 displayRepository.AdvertDetails = advertRepository.GetDetails((int)id);
+                displayRepository.Images = advertRepository.GetAdImages((int)id);
                 // var login = Convert.ToInt32(Session["Login"]);
                 if (Session["ID"] != null)
                 {
@@ -49,6 +51,7 @@ namespace MajsterFinale.Controllers
         {
             ViewBag.Message = null;
             displayRepository.AdvertDetails = advertRepository.GetDetails(id);
+            displayRepository.Images = advertRepository.GetAdImages((int)id);
             if (Session["ID"] != null)
             {
                 int uID = Convert.ToInt32(Session["ID"]);
@@ -125,7 +128,9 @@ namespace MajsterFinale.Controllers
         {
             int pageSize = 10;
             int pageNumber = (page ?? 1);
-            return View(new AdvertRepository().GetAdsList().ToPagedList(pageNumber, pageSize));
+            displayAdsRepository.ADVERTS = new AdvertRepository().GetAdsList().ToPagedList(pageNumber, pageSize);
+            displayAdsRepository.IMAGES = new AdvertRepository().GetAdsImages().ToPagedList(pageNumber, pageSize);
+            return View(displayAdsRepository);
 
         }
 
@@ -149,8 +154,6 @@ namespace MajsterFinale.Controllers
         [HttpPost]
         public ActionResult AddAdvertisement(AddingAdsRepository obj, IEnumerable<HttpPostedFileBase> files)
         {
-            int imgId = 0;
-
             if (ModelState.IsValid)
                 {
                 int uID = Convert.ToInt32(Session["ID"]);
@@ -171,13 +174,12 @@ namespace MajsterFinale.Controllers
                     db.SaveChanges();
                     foreach (var file in files)
                     {
+                        if (file != null)
+                        {
                         //var file = model.ImageFile;
-                        byte[] imagebyte = null;
                         var filename = Guid.NewGuid() + file.FileName;
                         var supportedTypes = new[] { "jpg", "jpeg", "png" };
                         var fileExt = System.IO.Path.GetExtension(file.FileName).Substring(1);
-                        if (file != null)
-                        {
                             if (!supportedTypes.Contains(fileExt))
                             {
                                 return RedirectToAction("Index", "Home");
@@ -186,8 +188,7 @@ namespace MajsterFinale.Controllers
                             {
                                 file.SaveAs(Server.MapPath("/UploadImage/" + filename));
                                 BinaryReader reader = new BinaryReader(file.InputStream);
-                                imagebyte = reader.ReadBytes(file.ContentLength);
-                                IMAGES img = new IMAGES();
+                                IMAGES_ADVERT img = new IMAGES_ADVERT();
 
                                 if (file.ContentLength > 2097152)  // 2MB?
                                 {
@@ -198,12 +199,10 @@ namespace MajsterFinale.Controllers
                                 else
                                 {
                                     img.IMAGE_TITLE = filename;
-                                    img.IMAGE_BYTE = imagebyte;
                                     img.IMAGE_PATH = "/UploadImage/" + filename;
                                     img.ADVERT_ID = newAdvert.ID;
-                                    db.IMAGES.Add(img);
-                                    db.SaveChanges();
-                                    imgId = img.IMAGE_ID;
+                                    db.IMAGES_ADVERT.Add(img);
+                                    db.SaveChanges();;
                                 }
                             }
 
