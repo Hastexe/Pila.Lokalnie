@@ -239,8 +239,7 @@ namespace MajsterFinale.Controllers
 
                 if (newAdvert.CATEGORY != 1)
                 {
-                    db.ADVERTS.Add(newAdvert);
-                    db.SaveChanges();
+                    
                     foreach (var file in files)
                     {
                         if (file != null)
@@ -271,10 +270,16 @@ namespace MajsterFinale.Controllers
                                     img.IMAGE_PATH = "/UploadImage/" + filename;
                                     img.ADVERT_ID = newAdvert.ID;
                                     db.IMAGES_ADVERT.Add(img);
-                                    db.SaveChanges();;
+                                    db.ADVERTS.Add(newAdvert);
+                                    db.SaveChanges();
                                 }
                             }
 
+                        }
+                        else
+                        {
+                            db.ADVERTS.Add(newAdvert);
+                            db.SaveChanges();
                         }
                     }
                     return RedirectToAction("Index", "home");
