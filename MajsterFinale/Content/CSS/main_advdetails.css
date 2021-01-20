@@ -3,27 +3,27 @@
 }
 
 
-#product_page h1{
-    font-size: 24px;
-    
-    margin-top: 10px;
-}
+    #product_page h1 {
+        font-size: 24px;
+        margin-top: 10px;
+    }
 
-#product_user{
+#product_user {
     height: 3rem;
     margin-top: 1rem;
 }
 
-#product_user p {
-    margin-top: 0.8rem;
-}
+    #product_user p {
+        margin-top: 0.8rem;
+    }
 
-#product_mess{
+#product_mess {
     margin-top: 2rem;
 }
-#product_mess button {
-    margin-top: 0.5rem;
-}
+
+    #product_mess button {
+        margin-top: 0.5rem;
+    }
 
 textarea {
     resize: none;
@@ -38,28 +38,28 @@ textarea {
 img {
     max-width: 100%;
     height: auto;
-    max-height:500px;
+    max-height: 500px;
 }
 
 
 #imgpos {
     text-align: center;
 }
-.nav-custom p{
+
+.nav-custom p {
     color: black !important;
 }
 
-#backbutton{
-    color:black;
+#backbutton {
+    color: black;
     text-decoration: none;
 }
 
-#backbuttontext{
+#backbuttontext {
     font-size: 18px;
-    
 }
 
-.backarrowdetails{
-    margin-top:0.7rem;
-    margin-bottom:1rem;
+.backarrowdetails {
+    margin-top: 0.7rem;
+    margin-bottom: 1rem;
 }
