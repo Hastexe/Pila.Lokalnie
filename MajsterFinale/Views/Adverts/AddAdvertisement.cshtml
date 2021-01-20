@@ -63,6 +63,7 @@
                     <form>
                         <div class="form-group">
                             <input type="file" id="f" name="files" multiple onchange="checkFilesCount(this)" />
+                            @Html.ValidationMessage("IMAGE", new { @class = "text-danger" })
                         </div>
                     </form>
                 </div>

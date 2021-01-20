@@ -1,16 +1,16 @@
 
 .bg-custom {
     background-color: #0B3c5d;
-    color:white;
+    color: white;
 }
 
-.main-navsize{
-    margin-left: 10%;
-    margin-right: 10%; 
+.main-navsize {
+    margin-left: 15%;
+    margin-right: 15%;
 }
 
-.btn-custommobile{
-    margin-top:0.5rem;
+.btn-custommobile {
+    margin-top: 0.5rem;
 }
 
 .dropdown .dropdown-menu a:hover {
@@ -19,8 +19,9 @@
 }
 
 .dropdown .dropdown-menu {
-   padding:0.6em;
+    padding: 0.6em;
 }
+
 .dropdown .dropdown-item {
     margin-top: 0.3em;
 }
@@ -28,19 +29,18 @@
 
 .logoutbtn {
     background-color: #f3b136;
-    color:white
+    color: white
 }
 
     .logoutbtn:hover {
         background-color: #f3b136;
-
     }
 
 
 .navbar-toggler {
     border: 0px;
-    
 }
+
     .navbar-toggler:focus {
         box-shadow: none;
     }
@@ -48,14 +48,14 @@
 @media (max-width: 767px) {
     .main-navsize {
         margin-left: 0%;
-        margin-right:0%;
+        margin-right: 0%;
     }
 }
 
 @media (min-width: 768px) {
     .main-navsize {
-        margin-left: 10%;
-        margin-right: 10%;
+        margin-left: 13%;
+        margin-right: 13.5%;
     }
 }
 
@@ -63,4 +63,3 @@
     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='white' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
     color: white;
 }
-
