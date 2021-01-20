@@ -129,7 +129,14 @@
                         <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
                     </div>
                     <div style="float:right">
-                        <h4 class="card-title">@Html.DisplayFor(modelItem => item.PRICE) zł</h4>
+                        @if (item.PRICE == "0")
+                        {
+                            <span>Cena do ustalenia</span>
+                        }
+                        else
+                        {
+                            @Html.DisplayFor(x => item.PRICE)
+                        }
                     </div>
                     <div style="position: absolute;bottom: 0;">
                         <h6 class="card-subtitle mb-2 text-muted">@Html.DisplayFor(modelItem => item.DATE)</h6>

@@ -46,7 +46,7 @@ namespace MajsterFinale.Models
         public string MAIL { get; set; }
         [DisplayName("Imiê")]
         [Required(ErrorMessage = "Pole jest wymagane")]
-        [RegularExpression(@"[a-zA-Z]+", ErrorMessage = "Proszê podaæ prawid³owe imie")]
+        [RegularExpression(@"[A-Za-z¿Ÿæñó³ê¹œ¯Æ¥ŒÊ£ÓÑ]+", ErrorMessage = "Proszê podaæ prawid³owe imie")]
         public string FNAME { get; set; }
         public string LNAME { get; set; }
         public Nullable<bool> VERIFIED { get; set; }

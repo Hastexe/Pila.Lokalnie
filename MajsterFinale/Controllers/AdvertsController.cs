@@ -218,7 +218,14 @@ namespace MajsterFinale.Controllers
                 newAdvert.DESCRIPTION = obj.Advert.DESCRIPTION;
                 newAdvert.DATE = System.DateTime.Now;
                 newAdvert.IS_ARCHIVED = false;
-                newAdvert.PRICE = obj.Advert.PRICE;
+                if (obj.Advert.PRICE == null)
+                {
+                    newAdvert.PRICE = "0";
+                }
+                else
+                { newAdvert.PRICE = obj.Advert.PRICE;
+                }
+
 
 
                 if (newAdvert.CATEGORY != 1)
