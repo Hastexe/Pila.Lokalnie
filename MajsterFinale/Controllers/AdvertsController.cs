@@ -173,7 +173,7 @@ namespace MajsterFinale.Controllers
             int pageNumber = (page ?? 1);
             //return View(adverts.ToPagedList(pageNumber, pageSize));
             displayAdsRepository.ADVERTS = adverts.ToPagedList(pageNumber, pageSize);
-            displayAdsRepository.IMAGES = new AdvertRepository().GetAdsImages().ToPagedList(pageNumber, pageSize);
+            displayAdsRepository.IMAGES = new AdvertRepository().GetAdsImages().ToList();
             return View(displayAdsRepository);
         }
 
