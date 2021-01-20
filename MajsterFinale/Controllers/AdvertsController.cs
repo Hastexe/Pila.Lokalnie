@@ -242,7 +242,7 @@ namespace MajsterFinale.Controllers
                         var fileExt = System.IO.Path.GetExtension(file.FileName).Substring(1);
                             if (!supportedTypes.Contains(fileExt))
                             {
-                                return RedirectToAction("Index", "Home");
+                                return Content("<script language='javascript' type='text/javascript'>alert('Niebsługiwany typ pliku');location = location;</script>");
                             }
                             else
                             {
@@ -250,10 +250,10 @@ namespace MajsterFinale.Controllers
                                 BinaryReader reader = new BinaryReader(file.InputStream);
                                 IMAGES_ADVERT img = new IMAGES_ADVERT();
 
-                                if (file.ContentLength > 2097152)  // 2MB?
+                                if (file.ContentLength > 5242880)  // 2MB?
                                 {
 
-                                    return RedirectToAction("Index", "Home");
+                                    return Content("<script language='javascript' type='text/javascript'>alert('Plik jest zbyt duży');location = location;</script>");
                                 }
 
                                 else
@@ -323,7 +323,7 @@ namespace MajsterFinale.Controllers
             db.SaveChanges();
             int uID = Convert.ToInt32(Session["ID"]);
             displayRepository.LoggedUser = advertRepository.GetUserData(uID);
-            return View(new AdvertRepository().GetUserAdverts(uID));
+            return Content("<script language='javascript' type='text/javascript'>location = location;alert('Ogłoszenie zostało przeniesione do archiwum');</script>");
         }
         [HttpGet]
         public ActionResult EditAdvertisement(EditAdModel obj)
@@ -388,10 +388,11 @@ namespace MajsterFinale.Controllers
         {
             int AdID = Int32.Parse(id);
             db.ADVERTS.Remove(db.ADVERTS.Single(s => s.ID == AdID));
+            db.IMAGES_ADVERT.RemoveRange(db.IMAGES_ADVERT.Where(x => x.ADVERT_ID == AdID));
             db.SaveChanges();
             int uID = Convert.ToInt32(Session["ID"]);
             displayRepository.LoggedUser = advertRepository.GetUserData(uID);
-            return View(new AdvertRepository().GetUserArchivedAdverts(uID));
+            return Content("<script language='javascript' type='text/javascript'>alert('Ogłoszenie zostało usunięte');location = location;</script>");
         }
         private ActionResult RestoreAdvertisement(string id)
         {
@@ -400,7 +401,7 @@ namespace MajsterFinale.Controllers
             db.SaveChanges();
             int uID = Convert.ToInt32(Session["ID"]);
             displayRepository.LoggedUser = advertRepository.GetUserData(uID);
-            return View(new AdvertRepository().GetUserArchivedAdverts(uID));
+            return Content("<script language='javascript' type='text/javascript'>alert('Ogłoszenie zostało przywrócone');location = location;</script>");
         }
 
         public ActionResult Dom(int? page, string sortOrder, string searchString, string currentFilter)
@@ -451,7 +452,7 @@ namespace MajsterFinale.Controllers
             int pageNumber = (page ?? 1);
             //return View(adverts.ToPagedList(pageNumber, pageSize));
             displayAdsRepository.ADVERTS = adverts.ToPagedList(pageNumber, pageSize);
-            displayAdsRepository.IMAGES = new AdvertRepository().GetAdsImages().ToPagedList(pageNumber, pageSize);
+            displayAdsRepository.IMAGES = new AdvertRepository().GetAdsImages().ToList();
             return View(displayAdsRepository);
         }
         public ActionResult Ogrod(int? page, string sortOrder, string searchString, string currentFilter)
@@ -502,7 +503,7 @@ namespace MajsterFinale.Controllers
             int pageNumber = (page ?? 1);
             //return View(adverts.ToPagedList(pageNumber, pageSize));
             displayAdsRepository.ADVERTS = adverts.ToPagedList(pageNumber, pageSize);
-            displayAdsRepository.IMAGES = new AdvertRepository().GetAdsImages().ToPagedList(pageNumber, pageSize);
+            displayAdsRepository.IMAGES = new AdvertRepository().GetAdsImages().ToList();
             return View(displayAdsRepository);
         }
         public ActionResult Motoryzacja(int? page, string sortOrder, string searchString, string currentFilter)
@@ -553,7 +554,7 @@ namespace MajsterFinale.Controllers
             int pageNumber = (page ?? 1);
             //return View(adverts.ToPagedList(pageNumber, pageSize));
             displayAdsRepository.ADVERTS = adverts.ToPagedList(pageNumber, pageSize);
-            displayAdsRepository.IMAGES = new AdvertRepository().GetAdsImages().ToPagedList(pageNumber, pageSize);
+            displayAdsRepository.IMAGES = new AdvertRepository().GetAdsImages().ToList();
             return View(displayAdsRepository);
         }
         public ActionResult Uslugi(int? page, string sortOrder, string searchString, string currentFilter)
@@ -604,7 +605,7 @@ namespace MajsterFinale.Controllers
             int pageNumber = (page ?? 1);
             //return View(adverts.ToPagedList(pageNumber, pageSize));
             displayAdsRepository.ADVERTS = adverts.ToPagedList(pageNumber, pageSize);
-            displayAdsRepository.IMAGES = new AdvertRepository().GetAdsImages().ToPagedList(pageNumber, pageSize);
+            displayAdsRepository.IMAGES = new AdvertRepository().GetAdsImages().ToList();
             return View(displayAdsRepository);
         }
     }
