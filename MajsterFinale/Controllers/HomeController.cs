@@ -84,7 +84,7 @@ namespace MajsterFinale.Controllers
             int pageSize = 10;
             int pageNumber = (page ?? 1);
             displayAdsRepository.ADVERTS = adverts.ToPagedList(pageNumber, pageSize);
-            displayAdsRepository.IMAGES = new AdvertRepository().GetAdsImages().ToPagedList(pageNumber, pageSize);
+            displayAdsRepository.IMAGES = new AdvertRepository().GetAdsImages().ToList();
             return View(displayAdsRepository);
         }
         public ActionResult Logowanie()

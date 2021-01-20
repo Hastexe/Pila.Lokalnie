@@ -71,9 +71,12 @@
                 <a>@Html.ActionLink("Sortuj po Cenie", "Uslugi", new { sortOrder = ViewBag.PriceSortParm, currentFilter = ViewBag.CurrentFilter }) \ </a>
 
                 <a>@Html.ActionLink("Sortuj po Dacie", "Uslugi", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })</a>
-
+                @{
+                    bool print = true;
+                }
                 @foreach (var item in Model.ADVERTS)
                 {
+                    print = true;
                     <div class="card bg-light border-0 mb-2">
                         <div class="card-horizontal p-2">
                             <div class="img-square-wrapper">
@@ -81,7 +84,11 @@
                                 {
                                     if (item.ID == itemImage.ADVERT_ID)
                                     {
-                                        <img src="@itemImage.IMAGE_PATH" style="width: 200px; height: 200px" alt="my pic" />
+                                        if (print == true)
+                                        {
+                                            <img src="@itemImage.IMAGE_PATH" style="width: 200px; height: 200px" alt="my pic" />
+                                            print = false;
+                                        }
                                     }
                                 }
                             </div>

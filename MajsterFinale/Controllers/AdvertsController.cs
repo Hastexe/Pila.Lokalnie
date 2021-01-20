@@ -186,7 +186,16 @@ namespace MajsterFinale.Controllers
             return View(displayAdsRepository);
 
         }
+        public ActionResult OgloszeniaUsera(int? page, int id)
+        {
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            var adverts = db.ADVERTS.Where(a => a.USER_ID == id).OrderBy(x => x.ID);
+            displayAdsRepository.ADVERTS = adverts.ToPagedList(pageNumber, pageSize);
+            displayAdsRepository.IMAGES = new AdvertRepository().GetAdsImages().ToList();
+            return View(displayAdsRepository);
 
+        }
         public ActionResult Message()
         {
             return View(new AdvertRepository().GetMessage());
@@ -451,7 +460,7 @@ namespace MajsterFinale.Controllers
             int pageNumber = (page ?? 1);
             //return View(adverts.ToPagedList(pageNumber, pageSize));
             displayAdsRepository.ADVERTS = adverts.ToPagedList(pageNumber, pageSize);
-            displayAdsRepository.IMAGES = new AdvertRepository().GetAdsImages().ToPagedList(pageNumber, pageSize);
+            displayAdsRepository.IMAGES = new AdvertRepository().GetAdsImages().ToList();
             return View(displayAdsRepository);
         }
         public ActionResult Ogrod(int? page, string sortOrder, string searchString, string currentFilter)
@@ -502,7 +511,7 @@ namespace MajsterFinale.Controllers
             int pageNumber = (page ?? 1);
             //return View(adverts.ToPagedList(pageNumber, pageSize));
             displayAdsRepository.ADVERTS = adverts.ToPagedList(pageNumber, pageSize);
-            displayAdsRepository.IMAGES = new AdvertRepository().GetAdsImages().ToPagedList(pageNumber, pageSize);
+            displayAdsRepository.IMAGES = new AdvertRepository().GetAdsImages().ToList();
             return View(displayAdsRepository);
         }
         public ActionResult Motoryzacja(int? page, string sortOrder, string searchString, string currentFilter)
@@ -553,7 +562,7 @@ namespace MajsterFinale.Controllers
             int pageNumber = (page ?? 1);
             //return View(adverts.ToPagedList(pageNumber, pageSize));
             displayAdsRepository.ADVERTS = adverts.ToPagedList(pageNumber, pageSize);
-            displayAdsRepository.IMAGES = new AdvertRepository().GetAdsImages().ToPagedList(pageNumber, pageSize);
+            displayAdsRepository.IMAGES = new AdvertRepository().GetAdsImages().ToList();
             return View(displayAdsRepository);
         }
         public ActionResult Uslugi(int? page, string sortOrder, string searchString, string currentFilter)
@@ -604,7 +613,7 @@ namespace MajsterFinale.Controllers
             int pageNumber = (page ?? 1);
             //return View(adverts.ToPagedList(pageNumber, pageSize));
             displayAdsRepository.ADVERTS = adverts.ToPagedList(pageNumber, pageSize);
-            displayAdsRepository.IMAGES = new AdvertRepository().GetAdsImages().ToPagedList(pageNumber, pageSize);
+            displayAdsRepository.IMAGES = new AdvertRepository().GetAdsImages().ToList();
             return View(displayAdsRepository);
         }
     }

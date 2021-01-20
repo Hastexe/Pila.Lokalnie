@@ -1,0 +1,60 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model MajsterFinale.Models.DisplayAdsRepository
+@using PagedList;
+@using PagedList.Mvc;
+
+<table class="table">
+    @{ 
+        bool print = true;
+    }
+
+    @foreach (var item in Model.ADVERTS)
+    {
+       print = true;
+            <tr>
+                <td>
+                    @foreach (var itemImage in Model.IMAGES)
+                    {
+                        if (item.ID == itemImage.ADVERT_ID)
+                        {
+                            if (print == true)
+                            {
+                                <img src="@itemImage.IMAGE_PATH" style="width: 200px; height: 200px" alt="my pic" />
+                                print = false;
+                            }
+                        }
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(x => item.TITLE)  
+                </td>
+                <td>
+                    @Html.DisplayFor(x => item.DESCRIPTION)
+                </td>
+                <td>
+                    @if (item.PRICE == "0")
+                    {
+                        <span>Cena do ustalenia</span>
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(x => item.PRICE)
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(x => item.CATEGORIES.NAME)
+                </td>
+                <td>
+                    <a href="@Url.Action("Details", "Adverts", new { id = item.ID }) ">Szczegóły</a>
+                </td>
+            </tr>
+    }
+
+</table>
+
+Page @(Model.ADVERTS.PageCount < @Model.ADVERTS.PageNumber ? 0 : @Model.ADVERTS.PageNumber) of @Model.ADVERTS.PageCount
+
+@Html.PagedListPager(Model.ADVERTS, page => Url.Action("OgloszeniaUsera",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
