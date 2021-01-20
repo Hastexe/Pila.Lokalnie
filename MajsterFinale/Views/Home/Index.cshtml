@@ -12,7 +12,6 @@
                         <div class="input-group justify-content-center">
                             @Html.TextBox("search", null, new { @class = "searchbartext" })
                             <div class="input-group-append">
-                                @Html.DropDownListFor(model => model.CategoryID, new SelectList(Model.Categories, "ID", "NAME"), htmlAttributes: new { @class = "btn btn-custom searchbardrop" })
                                 <button class="btn btn-custom" type="submit"><i class="fas fa-search"></i></button>
                             </div>
                         </div>
@@ -30,15 +29,15 @@
                 </li>
                 <div class="collapse " id="collapseCat1">
                     <ul class="list-unstyled ">
-                        <li class="list-item col-sm-12"><a href="@Url.Action("Dom", "Categories", null)" style="font-weight:600; color:orange"> Wszystkie ogłoszenia</a></li>
-                        <li class="list-item col-sm-12"><a href="@Url.Action("AranzacjaWnetrz", "Categories", null)">Aranżacja Wnętrz</a></li>
-                        <li class="list-item col-sm-12"><a href="@Url.Action("Hydraulika", "Categories", null)">Hydraulika</a></li>
-                        <li class="list-item col-sm-12"><a href="@Url.Action("Elektryka", "Categories", null)">Elektryka</a></li>
-                        <li class="list-item col-sm-12"><a href="@Url.Action("Gazownictwo", "Categories", null)">Gazownictwo</a></li>
-                        <li class="list-item col-sm-12"><a href="@Url.Action("Malarstwo", "Categories", null)">Malarstwo</a></li>
-                        <li class="list-item col-sm-12"><a href="@Url.Action("Kominiarstwo", "Categories", null)">Kominiarstwo</a></li>
-                        <li class="list-item col-sm-12"><a href="@Url.Action("Stolarstwo", "Categories", null)">Stolarstwo</a></li>
-                        <li class="list-item col-sm-12"><a href="@Url.Action("DomInne", "Categories", null)">Dom Inne</a></li>
+                        <li class="list-item col-sm-12"><a href="@Url.Action("Dom", "Adverts", null)" style="font-weight:600; color:orange"> Wszystkie ogłoszenia</a></li>
+                        <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 2})">Aranżacja Wnętrz</a></li>
+                        <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 3})">Hydraulika</a></li>
+                        <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 4})">Elektryka</a></li>
+                        <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 5})">Gazownictwo</a></li>
+                        <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 6})">Malarstwo</a></li>
+                        <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 7})">Kominiarstwo</a></li>
+                        <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 8})">Stolarstwo</a></li>
+                        <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 9})">Dom Inne</a></li>
                     </ul>
                 </div>
                 <li class="nav-item">
@@ -46,14 +45,14 @@
                 </li>
                 <div class="collapse " id="collapseCat2">
                     <ul class="list-unstyled ">
-                        <li class="list-item col-sm-12"><a href="@Url.Action("Ogrod", "Categories", null)" style="font-weight:600; color:green"> Wszystkie ogłoszenia</a></li>
-                        <li class="list-item col-sm-6"><a href="@Url.Action("AranzacjaOgrodow", "Categories", null)"> Aranżacja Ogrodów </a></li>
-                        <li class="list-item col-sm-6"><a href="@Url.Action("Ogrodnictwo", "Categories", null)"> Ogrodnictwo </a></li>
-                        <li class="list-item col-sm-6"><a href="@Url.Action("Brukarstwo", "Categories", null)"> Brukarstwo </a></li>
-                        <li class="list-item col-sm-6"><a href="@Url.Action("Ogrodzenia", "Categories", null)"> Ogrodzenia </a></li>
-                        <li class="list-item col-sm-6"><a href="@Url.Action("Kamieniarstwo", "Categories", null)"> Kamieniarstwo </a></li>
-                        <li class="list-item col-sm-6"><a href="@Url.Action("StolarstwoOgrod", "Categories", null)"> Stolarstwo </a></li>
-                        <li class="list-item col-sm-6"><a href="@Url.Action("OgrodInne", "Categories", null)"> Ogród Inne </a></li>
+                        <li class="list-item col-sm-12"><a href="@Url.Action("Ogrod", "Adverts", null)" style="font-weight:600; color:green"> Wszystkie ogłoszenia</a></li>
+                        <li class="list-item col-sm-6"><a href="@Url.Action("Kategorie", "Adverts", new { id = 10})"> Aranżacja Ogrodów </a></li>
+                        <li class="list-item col-sm-6"><a href="@Url.Action("Kategorie", "Adverts", new { id = 11})"> Ogrodnictwo </a></li>
+                        <li class="list-item col-sm-6"><a href="@Url.Action("Kategorie", "Adverts", new { id = 12})"> Brukarstwo </a></li>
+                        <li class="list-item col-sm-6"><a href="@Url.Action("Kategorie", "Adverts", new { id = 13})"> Ogrodzenia </a></li>
+                        <li class="list-item col-sm-6"><a href="@Url.Action("Kategorie", "Adverts", new { id = 14})"> Kamieniarstwo </a></li>
+                        <!--<li class="list-item col-sm-6"><a href="@Url.Action("Kategorie", "Adverts", new { id = 8})"> Stolarstwo </a></li>-->
+                        <li class="list-item col-sm-6"><a href="@Url.Action("Kategorie", "Adverts", new { id = 15})"> Ogród Inne </a></li>
                     </ul>
                 </div>
                 <li class="nav-item ">
@@ -61,13 +60,13 @@
                 </li>
                 <div class="collapse underCat" id="collapseCat3">
                     <ul class="list-unstyled">
-                        <li class="list-item col-sm-12"><a href="@Url.Action("Motoryzacja", "Categories", null)" style="font-weight: bold; color:blue;"> Wszystkie ogłoszenia</a></li>
-                        <li class="list-item col-sm-6"><a href="@Url.Action("Mechanik", "Categories", null)"> Mechanik </a></li>
-                        <li class="list-item col-sm-6"><a href="@Url.Action("Blacharz", "Categories", null)"> Blacharz </a></li>
-                        <li class="list-item col-sm-6"><a href="@Url.Action("Lakiernik", "Categories", null)"> Lakiernik </a></li>
-                        <li class="list-item col-sm-6"><a href="@Url.Action("Detaling", "Categories", null)"> Detaling </a></li>
-                        <li class="list-item col-sm-6"><a href="@Url.Action("Wulkanizacja", "Categories", null)"> Wulkanizacja </a></li>
-                        <li class="list-item col-sm-6"><a href="@Url.Action("MotoryzacjaInne", "Categories", null)"> Motoryzacja Inne </a></li>
+                        <li class="list-item col-sm-12"><a href="@Url.Action("Motoryzacja", "Adverts", null)" style="font-weight: bold; color:blue;"> Wszystkie ogłoszenia</a></li>
+                        <li class="list-item col-sm-6"><a href="@Url.Action("Kategorie", "Adverts", new { id = 16})"> Mechanik </a></li>
+                        <li class="list-item col-sm-6"><a href="@Url.Action("Kategorie", "Adverts", new { id = 17})"> Blacharz </a></li>
+                        <li class="list-item col-sm-6"><a href="@Url.Action("Kategorie", "Adverts", new { id = 18})"> Lakiernik </a></li>
+                        <li class="list-item col-sm-6"><a href="@Url.Action("Kategorie", "Adverts", new { id = 19})"> Detaling </a></li>
+                        <li class="list-item col-sm-6"><a href="@Url.Action("Kategorie", "Adverts", new { id = 20})"> Wulkanizacja </a></li>
+                        <li class="list-item col-sm-6"><a href="@Url.Action("Kategorie", "Adverts", new { id = 21})"> Motoryzacja Inne </a></li>
                     </ul>
                 </div>
                 <li class="nav-item">
@@ -75,14 +74,14 @@
                 </li>
                 <div class="collapse underCat" id="collapseCat4">
                     <ul class="list-unstyled underCat">
-                        <li class="list-item col-sm-12"><a href="@Url.Action("Uslugi", "Categories", null)" style="font-weight: bold; color:purple;"> Wszystkie ogłoszenia</a></li>
-                        <li class="list-item col-sm-6"><a href="@Url.Action("Korepetycje", "Categories", null)"> Korepetycje </a></li>
-                        <li class="list-item col-sm-6"><a href="@Url.Action("Informatyka", "Categories", null)"> Informatyka </a></li>
-                        <li class="list-item col-sm-6"><a href="@Url.Action("Uroda", "Categories", null)"> Uroda </a></li>
-                        <li class="list-item col-sm-6"><a href="@Url.Action("NaprawaSerwis", "Categories", null)"> NaprawaSerwis </a></li>
-                        <li class="list-item col-sm-6"><a href="@Url.Action("Transport", "Categories", null)"> Transport </a></li>
-                        <li class="list-item col-sm-6"><a href="@Url.Action("Monter", "Categories", null)"> Monter </a></li>
-                        <li class="list-item col-sm-6"><a href="@Url.Action("UslugiInne", "Categories", null)"> Usługi Inne </a></li>
+                        <li class="list-item col-sm-12"><a href="@Url.Action("Uslugi", "Adverts", null)" style="font-weight: bold; color:purple;"> Wszystkie ogłoszenia</a></li>
+                        <li class="list-item col-sm-6"><a href="@Url.Action("Kategorie", "Adverts", new { id = 22})"> Korepetycje </a></li>
+                        <li class="list-item col-sm-6"><a href="@Url.Action("Kategorie", "Adverts", new { id = 23})"> Informatyka </a></li>
+                        <li class="list-item col-sm-6"><a href="@Url.Action("Kategorie", "Adverts", new { id = 24})"> Uroda </a></li>
+                        <li class="list-item col-sm-6"><a href="@Url.Action("Kategorie", "Adverts", new { id = 25})"> Naprawa i Serwis </a></li>
+                        <li class="list-item col-sm-6"><a href="@Url.Action("Kategorie", "Adverts", new { id = 26})"> Transport </a></li>
+                        <li class="list-item col-sm-6"><a href="@Url.Action("Kategorie", "Adverts", new { id = 27})"> Monter </a></li>
+                        <li class="list-item col-sm-6"><a href="@Url.Action("Kategorie", "Adverts", new { id = 28})"> Usługi Inne </a></li>
                     </ul>
                 </div>
                 <li class="nav-item">

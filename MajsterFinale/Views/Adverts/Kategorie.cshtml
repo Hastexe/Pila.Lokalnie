@@ -1,0 +1,223 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model MajsterFinale.Models.DisplayAdsRepository
+@using PagedList;
+@using PagedList.Mvc;
+<div class="container-fluid cat_main">
+    <div class="row">
+        <div class="col-md-12 rounded index_searchbar">
+            <div class="searchbarbox">
+                @using (Html.BeginForm("Kategorie", "Adverts", FormMethod.Get))
+                {
+                    <form action="">
+                        <div class="input-group justify-content-center">
+                            @Html.TextBox("searchString", null, new { @class = "searchbartext" })
+                            <div class="input-group-append">
+                                <button class="btn btn-custom" type="submit"><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                }
+            </div>
+        </div>
+        <div class="col-md-3 rounded cat_side">
+
+            @foreach (var advert in Model.ADVERTS)
+            {
+                if (advert.CATEGORY >= 2 && advert.CATEGORY <= 9)
+                {
+                    <div>
+                        <p><i class="fas fa-chevron-left" style="font-size: 1rem;"><a href="@Url.Action("Dom", "Adverts", null)"> Wróć do Kategorii głównej</a></i></p>
+                    </div>
+                    <h1>Inne z Dom: </h1>
+                    <hr>
+                    <ul class="nav flex-column" style="line-height: 85%; ">
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 2})">Aranżacja Wnętrz</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 3})">Hydraulika </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 4})">Elektryka </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 5})">Gazownictwo </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 6})">Malarstwo </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 7})">Kominiarstwo </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 8})">Stolarstwo </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 9})">Dom Inne </a>
+                        </li>
+                    </ul>
+                }
+                else if (advert.CATEGORY >= 10 && advert.CATEGORY <= 15)
+                {
+                    <div>
+                        <p><i class="fas fa-chevron-left" style="font-size: 1rem;"><a href="@Url.Action("Ogrod", "Adverts", null)"> Wróć do Kategorii głównej</a></i></p>
+                    </div>
+                    <h1>Inne z Ogród: </h1>
+                    <hr>
+                    <ul class="nav flex-column" style="line-height: 85%; ">
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 10})">Aranżacja Ogrodów</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 11})">Ogrodnictwo </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 12})">Brukarstwo </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 13})">Ogrodzenia </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 14})">Kamieniarstwo </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 15})">Ogród Inne </a>
+                        </li>
+                    </ul>
+                }
+                else if (advert.CATEGORY >= 16 && advert.CATEGORY <= 21)
+                {
+                    <div>
+                        <p><i class="fas fa-chevron-left" style="font-size: 1rem;"><a href="@Url.Action("Motoryzacja", "Adverts", null)"> Wróć do Kategorii głównej</a></i></p>
+                    </div>
+                    <h1>Inne z Motoryzacji: </h1>
+                    <hr>
+                    <ul class="nav flex-column" style="line-height: 85%; ">
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 16})">Mechanik </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 17})">Blacharz </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 18})">Lakiernik </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 19})">Detaling </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 20})">Wulkanizacja </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 21})">Motoryzacja Inne </a>
+                        </li>
+                    </ul>
+                }
+                else if (advert.CATEGORY >= 22 && advert.CATEGORY <= 28)
+                {
+                    <div>
+                        <p><i class="fas fa-chevron-left" style="font-size: 1rem;"><a href="@Url.Action("Uslugi", "Adverts", null)"> Wróć do Kategorii głównej</a></i></p>
+                    </div>
+                    <h1>Inne z Usług: </h1>
+                    <hr>
+                    <ul class="nav flex-column" style="line-height: 85%; ">
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 22})">Korepetycje </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 23})">Informatyka </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 24})">Uroda </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 25})">Naprawa i Serwis </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 26})">Transport </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 27})">Monter </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 28})">Usługi Inne </a>
+                        </li>
+                    </ul>
+                }
+                else
+                {
+                    <div>
+                        <p><i class="fas fa-chevron-left" style="font-size: 1rem;"><a href="@Url.Action("Index", "Home", null)">Wróć do Kategorii głównej</a></i></p>
+                    </div>
+
+                }
+                break;
+            }
+
+
+
+        </div>
+            
+        <div class="col-md-9 ">
+
+            <div class="col-12 rounded cat_adv">
+
+
+
+                <h2>Ogłoszenia</h2>
+                <a>@Html.ActionLink("Sortuj po Nazwie", "Kategorie", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter }) \ </a>
+
+                <a>@Html.ActionLink("Sortuj po Cenie", "Kategorie", new { sortOrder = ViewBag.PriceSortParm, currentFilter = ViewBag.CurrentFilter }) \ </a>
+
+                <a>@Html.ActionLink("Sortuj po Dacie", "Kategorie", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })</a>
+
+
+
+
+
+                @foreach (var item in Model.ADVERTS)
+                {
+                    <div class="card bg-light border-0 mb-2">
+                        <div class="card-horizontal p-2">
+                            <div class="img-square-wrapper">
+                                @foreach (var itemImage in Model.IMAGES)
+                                {
+                                    if (item.ID == itemImage.ADVERT_ID)
+                                    {
+                                        <img src="@itemImage.IMAGE_PATH" style="width: 200px; height: 200px" alt="my pic" />
+                                    }
+                                }
+                            </div>
+                            <div class="card-body">
+                                <div style="float:left">
+                                    <h4 class="card-title"><a href="@Url.Action("Details", "Adverts", new { id = item.ID })">@Html.DisplayFor(modelItem => item.TITLE)</a></h4>
+                                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                                </div>
+                                <div style="float:right">
+                                    <h4 class="card-title">@Html.DisplayFor(modelItem => item.PRICE) zł</h4>
+                                </div>
+                                <div style="position: absolute;bottom: 0;">
+                                    <h6 class="card-subtitle mb-2 text-muted">@Html.DisplayFor(modelItem => item.DATE)</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                <div class="col-md-12 text-center" style="background-color:transparent;">
+                    Page @(Model.ADVERTS.PageCount < Model.ADVERTS.PageNumber ? 0 : Model.ADVERTS.PageNumber) of @Model.ADVERTS.PageCount
+
+                    @Html.PagedListPager(Model.ADVERTS, page => Url.Action("Kategorie", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+                </div>
+            </div>
+        </div>
+        </div>
+</div>
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>

@@ -29,6 +29,7 @@ namespace MajsterFinale.Controllers
         private DisplayRepository displayRepository = new DisplayRepository();
         private RegisterRepository registerRepository = new RegisterRepository();
         private AddingAdsRepository addingAdsRepository = new AddingAdsRepository();
+        private DisplayAdsRepository displayAdsRepository = new DisplayAdsRepository();
         public ActionResult Index()
         {
             AddingAdsRepository model = new AddingAdsRepository();
@@ -37,12 +38,54 @@ namespace MajsterFinale.Controllers
             return View(model);
         }
 
-        public ActionResult Wyszukiwanie(int? page, string search, AddingAdsRepository obj)
+        public ActionResult Wyszukiwanie(int? page, string search, string sortOrder, string currentFilter)
         {
-            var category = obj.CategoryID;
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+            ViewBag.PriceSortParm = sortOrder == "Price" ? "Price_desc" : "Price";
+            if (search != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                search = currentFilter;
+            }
+            ViewBag.CurrentFilter = search;
+            var adverts = db.ADVERTS.Where(x => x.TITLE.Contains(search) || x.DESCRIPTION.Contains(search));
+            if (!String.IsNullOrEmpty(search))
+            {
+                adverts = adverts.Where(s => s.TITLE.Contains(search)
+                                       || s.DESCRIPTION.Contains(search));
+            }
+            switch (sortOrder)
+            {
+
+                case "name_desc":
+                    adverts = adverts.OrderByDescending(s => s.TITLE);
+                    break;
+                case "Date":
+                    adverts = adverts.OrderBy(s => s.DATE);
+                    break;
+                case "date_desc":
+                    adverts = adverts.OrderByDescending(s => s.DATE);
+                    break;
+                case "Price":
+                    adverts = adverts.OrderBy(s => s.PRICE);
+                    break;
+                case "Price_desc":
+                    adverts = adverts.OrderByDescending(s => s.PRICE);
+                    break;
+                default:
+                    adverts = adverts.OrderBy(s => s.TITLE);
+                    break;
+            }
             int pageSize = 10;
             int pageNumber = (page ?? 1);
-            return View(new AdvertRepository().GetAdsBySearch(search, category).ToPagedList(pageNumber, pageSize));
+            displayAdsRepository.ADVERTS = adverts.ToPagedList(pageNumber, pageSize);
+            displayAdsRepository.IMAGES = new AdvertRepository().GetAdsImages().ToPagedList(pageNumber, pageSize);
+            return View(displayAdsRepository);
         }
         public ActionResult Logowanie()
         {
