@@ -457,6 +457,7 @@
     <Content Include="Views\Adverts\Ogrod.cshtml" />
     <Content Include="Views\Adverts\Motoryzacja.cshtml" />
     <Content Include="Views\Adverts\Uslugi.cshtml" />
+    <Content Include="Views\Adverts\OgloszeniaUsera.cshtml" />
     <None Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Message.cshtml" />
     <Content Include="Views\Home\Rejestracja.cshtml" />

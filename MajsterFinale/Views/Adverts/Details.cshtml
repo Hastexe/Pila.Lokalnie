@@ -64,7 +64,7 @@
             </div>
             <div class="col-sm-4 col-xs-12" id="product_user">
                 <div class="col-12">
-                    <p class="text-right d-none d-lg-block"><i class="far fa-list-alt"></i><a> Zobaczy ogłoszenia użytkownika</a>
+                    <p class="text-right d-none d-lg-block"><i class="far fa-list-alt"></i><a href="@Url.Action("OgloszeniaUsera", "Adverts", new { id = @Html.DisplayFor(model => model.AdvertDetails.USER_ID)})">Zobacz ogłoszenia użytkownika</a>
                 </div>
             </div>
 

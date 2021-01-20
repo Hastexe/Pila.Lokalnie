@@ -186,7 +186,16 @@ namespace MajsterFinale.Controllers
             return View(displayAdsRepository);
 
         }
+        public ActionResult OgloszeniaUsera(int? page, int id)
+        {
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            var adverts = db.ADVERTS.Where(a => a.USER_ID == id).OrderBy(x => x.ID);
+            displayAdsRepository.ADVERTS = adverts.ToPagedList(pageNumber, pageSize);
+            displayAdsRepository.IMAGES = new AdvertRepository().GetAdsImages().ToList();
+            return View(displayAdsRepository);
 
+        }
         public ActionResult Message()
         {
             return View(new AdvertRepository().GetMessage());
