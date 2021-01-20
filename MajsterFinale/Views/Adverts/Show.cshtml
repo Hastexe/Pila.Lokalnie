@@ -6,18 +6,25 @@
 @using PagedList.Mvc;
 
 <table class="table">
+    @{ 
+        bool print = true;
+    }
 
     @foreach (var item in Model.ADVERTS)
     {
+       print = true;
             <tr>
                 <td>
                     @foreach (var itemImage in Model.IMAGES)
                     {
                         if (item.ID == itemImage.ADVERT_ID)
                         {
-                            <img src="@itemImage.IMAGE_PATH" style="width: 200px; height: 200px" alt="my pic" />
+                            if (print == true)
+                            {
+                                <img src="@itemImage.IMAGE_PATH" style="width: 200px; height: 200px" alt="my pic" />
+                                print = false;
+                            }
                         }
-                        break;
                     }
                 </td>
                 <td>
