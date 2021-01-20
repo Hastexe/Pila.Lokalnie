@@ -43,7 +43,14 @@
                 <div class="col-12">
                     <h1 class="">@Html.DisplayFor(model => model.AdvertDetails.TITLE)</h1>
                     <p>Kategoria:  @Html.DisplayFor(model => model.AdvertDetails.CATEGORIES.NAME)   </p>
-                    <h1 class="">@Html.DisplayFor(model => model.AdvertDetails.PRICE) zł</h1>
+                    @if (Model.AdvertDetails.PRICE == "0")
+                    {
+                        <h1 class="">Cena do ustalenia</h1>
+                    }
+                    else
+                    {
+                        <h1 class="">@Html.DisplayFor(model => model.AdvertDetails.PRICE) zł</h1>
+                    }
                     <br>
                     <button class="btn btn-custom "><i class="far fa-bookmark"></i> Obserwuj</button>
                 </div>

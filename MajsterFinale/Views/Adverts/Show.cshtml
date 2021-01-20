@@ -27,7 +27,14 @@
                     @Html.DisplayFor(x => item.DESCRIPTION)
                 </td>
                 <td>
-                    @Html.DisplayFor(x => item.PRICE)
+                    @if (item.PRICE == "0")
+                    {
+                        <span>Cena do ustalenia</span>
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(x => item.PRICE)
+                    }
                 </td>
                 <td>
                     @Html.DisplayFor(x => item.CATEGORIES.NAME)
