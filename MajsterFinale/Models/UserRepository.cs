@@ -21,6 +21,10 @@ namespace MajsterFinale.Models
         {
             return db.MESSAGE.Where(x => x.ADVERT_ID == AdvertId && ((x.MSG_TO == UserA && x.MSG_FROM == UserB) || (x.MSG_TO == UserB && x.MSG_FROM == UserA))).OrderByDescending(x => x.ID).ToList();
         }
+        public List<MESSAGE> GetUserNotReadMessages(int uID)
+        {
+            return db.MESSAGE.Where(x => x.MSG_TO == uID && x.IS_READ == false).ToList();
+        }
         public List<USERS> GetUsers()
         {
             return db.USERS.ToList();
