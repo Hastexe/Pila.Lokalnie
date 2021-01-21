@@ -28,10 +28,24 @@
                     }
                 </td>
                 <td>
-                    @Html.DisplayFor(x => item.TITLE)  
+                    @if (item.TITLE.Length < 50)
+                    {
+                        @Html.DisplayFor(x => item.TITLE)
+                    }
+                    else
+                    {
+                        @item.TITLE.Substring(0, 100)<span>...</span>
+                    }
                 </td>
                 <td>
-                    @Html.DisplayFor(x => item.DESCRIPTION)
+                    @if (item.DESCRIPTION.Length < 100)
+                    {
+                        @Html.DisplayFor(x => item.DESCRIPTION)
+                    }
+                    else
+                    {
+                        @item.DESCRIPTION.Substring(0, 100)<span>...</span>
+                    }
                 </td>
                 <td>
                     @if (item.PRICE == "0")
@@ -54,7 +68,7 @@
 
 </table>
 
-Page @(Model.ADVERTS.PageCount < @Model.ADVERTS.PageNumber ? 0 : @Model.ADVERTS.PageNumber) of @Model.ADVERTS.PageCount
+Strona @(Model.ADVERTS.PageCount < @Model.ADVERTS.PageNumber ? 0 : @Model.ADVERTS.PageNumber) z @Model.ADVERTS.PageCount
 
 @Html.PagedListPager(Model.ADVERTS, page => Url.Action("Show",
     new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

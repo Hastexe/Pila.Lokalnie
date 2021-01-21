@@ -1,4 +1,4 @@
-﻿@{
+﻿/@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @model MajsterFinale.Models.DisplayAdsRepository
@@ -199,8 +199,23 @@
                             </div>
                             <div class="card-body">
                                 <div style="float:left">
-                                    <h4 class="card-title"><a href="@Url.Action("Details", "Adverts", new { id = item.ID })">@Html.DisplayFor(modelItem => item.TITLE)</a></h4>
-                                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                                    <h4 class="card-title">
+                                        <a href="@Url.Action("Details", "Adverts", new { id = item.ID })">
+                                            @if (item.TITLE.Length < 50)
+                                            {
+                                                @Html.DisplayFor(x => item.TITLE)
+                                            }
+                                            else
+                                            {
+                                                @item.TITLE.Substring(0, 100)
+                                            }
+                                            ...
+                                        </a>
+                                    </h4>
+                                    <h6 class="card-subtitle mb-2 text-muted">
+
+
+                                    </h6>
                                 </div>
                                 <div style="float:right">
                                     @if (item.PRICE == "0")
@@ -220,9 +235,11 @@
                     </div>
                 }
                 <div class="col-md-12 text-center" style="background-color:transparent;">
-                    Page @(Model.ADVERTS.PageCount < Model.ADVERTS.PageNumber ? 0 : Model.ADVERTS.PageNumber) of @Model.ADVERTS.PageCount
+                    Strona @(Model.ADVERTS.PageCount < Model.ADVERTS.PageNumber ? 0 : Model.ADVERTS.PageNumber) z @Model.ADVERTS.PageCount
 
                     @Html.PagedListPager(Model.ADVERTS, page => Url.Action("Kategorie", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+
                 </div>
             </div>
         </div>
