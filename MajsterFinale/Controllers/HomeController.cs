@@ -30,6 +30,7 @@ namespace MajsterFinale.Controllers
         private RegisterRepository registerRepository = new RegisterRepository();
         private AddingAdsRepository addingAdsRepository = new AddingAdsRepository();
         private DisplayAdsRepository displayAdsRepository = new DisplayAdsRepository();
+        private UserData userData = new UserData();
         public ActionResult Index()
         {
             AddingAdsRepository model = new AddingAdsRepository();
@@ -520,6 +521,23 @@ namespace MajsterFinale.Controllers
             }
             ViewBag.Message = message;
             return View(model);
+        }
+        [ChildActionOnly]
+        public ActionResult MessageCounter()
+        {
+            int counter = 0;
+            if (Session["ID"] != null)
+            {
+                int uID = Convert.ToInt32(Session["ID"]);
+                counter = new UserRepository().GetUserNotReadMessages(uID).ToList().Count;
+                ViewBag.Counter = counter;
+                return PartialView("DisplayMsgPartialView");
+            }
+            else
+            {
+                ViewBag.Counter = counter;
+                return PartialView("DisplayMsgPartialView");
+            }
         }
     }
 }
