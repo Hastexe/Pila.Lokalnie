@@ -86,28 +86,11 @@
                                     }
                                     else
                                     {
-                                        if (Msg.Length < 70)
-                                        {
-                                            @Msg
-                                        }
-                                        else
-                                        {
-                                            @Msg.Substring(0, 70)<span>...</span>
-                                        }
                                         @Msg
                                     }
                                 }
                                 else
-                                {
-                                    if (Msg.Length < 70)
-                                    {
-                                        @Msg
-                                    }
-                                    else
-                                    {
-                                        @Msg.Substring(0, 70)<span>...</span>
-                                    }
-                                }
+                                { @Msg }
 
                             }
                         </td>

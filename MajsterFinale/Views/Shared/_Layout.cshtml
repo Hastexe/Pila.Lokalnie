@@ -52,7 +52,15 @@
                             <li class="nav-item">
                                 <a class="nav-link d-block d-lg-none active" href="@Url.Action("AddAdvertisement", "Adverts", null)" role="button"><i class="far fa-clone"></i><span class="d-lg-none">Dodaj ogłoszenie</span></a>
                             </li>
-                            @Html.Action("MessageCounter", "Home")
+                            <li class="nav-item active d-none d-lg-block">
+                                <a class="nav-link" href="@Url.Action("Messages", "User", null)"><i class="far fa-envelope"> </i><span class="d-lg-none">Wiadomości</span></a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link d-block d-lg-none active" href="@Url.Action("Messages", "User", null)" role="button"><i class="far fa-envelope"> </i><span class="d-lg-none">Wiadomości</span></a>
+                            </li>
+
+
                         }
                         else
                         {
@@ -77,7 +85,7 @@
                             if (Session["ID"] != null)
                             {
                                 <a class="nav-link dropdown-toggle mr-2" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span style="font-weight:600;">Moje konto</span>
+                                    <span style="font-weight:600;" >Moje konto</span>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <h6 class="dropdown-header" style="font-weight: bold; font-size: 1.1rem; margin-bottom: 5px;">Twoje konto:</h6>
@@ -95,7 +103,7 @@
                                     <div class="dropdown-divider"></div>
                                     <h6 class="dropdown-header" style="font-weight: bold; font-size: 1.1rem; margin-bottom: 5px;">DEV MENU</h6>
                                     <a class="dropdown-item" href="@Url.Action("Wyszukiwanie", "Home", new { search = " " })">Wszystkie ogłoszenia</a>
-                                </div>
+                                    </div>
                             }
                             else
                             {
@@ -156,7 +164,7 @@
                     </li>
                 </ul>
             </div>
-
+          
         </div>
     </nav>
 
