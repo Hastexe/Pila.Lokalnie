@@ -453,10 +453,6 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Adverts\EditAdvertisement.cshtml" />
     <Content Include="Views\Adverts\Kategorie.cshtml" />
-    <Content Include="Views\Adverts\Dom.cshtml" />
-    <Content Include="Views\Adverts\Ogrod.cshtml" />
-    <Content Include="Views\Adverts\Motoryzacja.cshtml" />
-    <Content Include="Views\Adverts\Uslugi.cshtml" />
     <Content Include="Views\Adverts\OgloszeniaUsera.cshtml" />
     <None Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Message.cshtml" />
@@ -475,7 +471,6 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Adverts\Details.cshtml" />
-    <Content Include="Views\Adverts\Category.cshtml" />
     <Content Include="Views\Adverts\Show.cshtml" />
     <Content Include="Views\User\Panel.cshtml" />
     <Content Include="Views\Home\Weryfikacja.cshtml" />

@@ -28,17 +28,17 @@ namespace MajsterFinale.Models
         public int USER_ID { get; set; }
         [DisplayName("Has³o")]
         [DataType(DataType.Password)]
-        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&.-]).{8,}$",
-        ErrorMessage = "Has³o nie mo¿e byæ krótsze ni¿  znaków. Musi zawieraæ dodatkowo przynajmniej 1 cyfre, znak specjalny oraz du¿¹ literê.")]
-        [StringLength(300, MinimumLength = 8, ErrorMessage = "Has³o musi sk³adaæ sie z minumum 8 znaków")]
+        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&.-]).{8,30}$",
+        ErrorMessage = "Has³o nie mo¿e byæ krótsze ni¿ 8 znaków. Musi zawieraæ dodatkowo przynajmniej 1 cyfre, znak specjalny oraz du¿¹ literê.")]
+        [StringLength(30, MinimumLength = 8, ErrorMessage = "Has³o musi sk³adaæ sie z minumum 8 znaków")]
         public string REGISTERPASSWORD { get; set; }
         [DisplayName("Has³o")]
         [DataType(DataType.Password)]
-        [StringLength(300, MinimumLength = 6, ErrorMessage = "Has³o musi sk³adaæ sie z minumum 6 znaków")]
+        [StringLength(30, MinimumLength = 8, ErrorMessage = "Has³o musi sk³adaæ sie z minumum 8 znaków")]
         public string PASSWORD { get; set; }
         [DisplayName("Powtórz Has³o")]
         [DataType(DataType.Password)]
-        [StringLength(300, MinimumLength = 6, ErrorMessage = "Has³o musi sk³adaæ sie z minumum 6 znaków")]
+        [StringLength(30, MinimumLength = 8, ErrorMessage = "Has³o musi sk³adaæ sie z minumum 8 znaków")]
         public string REPASSWORD { get; set; }
         [DisplayName("E-mail")]
         [DataType(DataType.EmailAddress)]
@@ -47,6 +47,7 @@ namespace MajsterFinale.Models
         [DisplayName("Imiê")]
         [Required(ErrorMessage = "Pole jest wymagane")]
         [RegularExpression(@"[A-Za-z¿Ÿæñó³ê¹œ¯Æ¥ŒÊ£ÓÑ]+", ErrorMessage = "Proszê podaæ prawid³owe imie")]
+        [StringLength(15, MinimumLength = 3, ErrorMessage = "Poprawne imiê ma miêdzy 3 a 15 znaków")]
         public string FNAME { get; set; }
         public string LNAME { get; set; }
         public Nullable<bool> VERIFIED { get; set; }

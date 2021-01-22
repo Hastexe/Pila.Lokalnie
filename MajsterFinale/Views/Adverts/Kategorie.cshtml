@@ -23,104 +23,224 @@
         </div>
         <div class="col-md-3 rounded cat_side">
 
-            @foreach (var advert in Model.ADVERTS)
-            {
-                if (advert.CATEGORY >= 2 && advert.CATEGORY <= 9)
+            @{
+                if (ViewBag.id == 999)
                 {
                     <div>
-                        <p><i class="fas fa-chevron-left" style="font-size: 1rem;"><a href="@Url.Action("Dom", "Adverts", null)"> Wróć do Kategorii głównej</a></i></p>
+                        <p><i class="fas fa-chevron-left" style="font-size: 1rem;"><a href="@Url.Action("Index", "Home", null)"> Wróć do Strony głównej</a></i></p>
                     </div>
                     <h1>Inne z Dom: </h1>
                     <hr>
                     <ul class="nav flex-column" style="line-height: 85%; ">
                         <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 2})">Aranżacja Wnętrz</a>
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 2 })">Aranżacja Wnętrz</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 3})">Hydraulika </a>
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 3 })">Hydraulika </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 4})">Elektryka </a>
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 4 })">Elektryka </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 5})">Gazownictwo </a>
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 5 })">Gazownictwo </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 6})">Malarstwo </a>
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 6 })">Malarstwo </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 7})">Kominiarstwo </a>
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 7 })">Kominiarstwo </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 8})">Stolarstwo </a>
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 8 })">Stolarstwo </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 9})">Dom Inne </a>
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 9 })">Dom Inne </a>
                         </li>
                     </ul>
                 }
-                else if (advert.CATEGORY >= 10 && advert.CATEGORY <= 15)
+                else if (ViewBag.id == 998)
                 {
                     <div>
-                        <p><i class="fas fa-chevron-left" style="font-size: 1rem;"><a href="@Url.Action("Ogrod", "Adverts", null)"> Wróć do Kategorii głównej</a></i></p>
+                        <p><i class="fas fa-chevron-left" style="font-size: 1rem;"><a href="@Url.Action("Index", "Home", null)"> Wróć do Strony głównej</a></i></p>
                     </div>
                     <h1>Inne z Ogród: </h1>
                     <hr>
                     <ul class="nav flex-column" style="line-height: 85%; ">
                         <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 10})">Aranżacja Ogrodów</a>
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 10 })">Aranżacja Ogrodów</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 11})">Ogrodnictwo </a>
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 11 })">Ogrodnictwo </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 12})">Brukarstwo </a>
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 12 })">Brukarstwo </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 13})">Ogrodzenia </a>
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 13 })">Ogrodzenia </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 14})">Kamieniarstwo </a>
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 14 })">Kamieniarstwo </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 15})">Ogród Inne </a>
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 15 })">Ogród Inne </a>
                         </li>
                     </ul>
                 }
-                else if (advert.CATEGORY >= 16 && advert.CATEGORY <= 21)
+                else if (ViewBag.id == 997)
                 {
                     <div>
-                        <p><i class="fas fa-chevron-left" style="font-size: 1rem;"><a href="@Url.Action("Motoryzacja", "Adverts", null)"> Wróć do Kategorii głównej</a></i></p>
+                        <p><i class="fas fa-chevron-left" style="font-size: 1rem;"><a href="@Url.Action("Index", "Home", null)"> Wróć do Strony głównej</a></i></p>
                     </div>
                     <h1>Inne z Motoryzacji: </h1>
                     <hr>
                     <ul class="nav flex-column" style="line-height: 85%; ">
                         <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 16})">Mechanik </a>
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 16 })">Mechanik </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 17})">Blacharz </a>
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 17 })">Blacharz </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 18})">Lakiernik </a>
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 18 })">Lakiernik </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 19})">Detaling </a>
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 19 })">Detaling </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 20})">Wulkanizacja </a>
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 20 })">Wulkanizacja </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 21})">Motoryzacja Inne </a>
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 21 })">Motoryzacja Inne </a>
                         </li>
                     </ul>
                 }
-                else if (advert.CATEGORY >= 22 && advert.CATEGORY <= 28)
+                else if (ViewBag.id == 996)
                 {
                     <div>
-                        <p><i class="fas fa-chevron-left" style="font-size: 1rem;"><a href="@Url.Action("Uslugi", "Adverts", null)"> Wróć do Kategorii głównej</a></i></p>
+                        <p><i class="fas fa-chevron-left" style="font-size: 1rem;"><a href="@Url.Action("Index", "Home", null)"> Wróć do Strony głównej</a></i></p>
                     </div>
                     <h1>Inne z Usług: </h1>
+                    <hr>
+                    <ul class="nav flex-column" style="line-height: 85%; ">
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 22 })">Korepetycje </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 23 })">Informatyka </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 24 })">Uroda </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 25 })">Naprawa i Serwis </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 26 })">Transport </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 27 })">Monter </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 28 })">Usługi Inne </a>
+                        </li>
+                    </ul>
+                }
+                else if (ViewBag.id >= 2 && ViewBag.id <= 9)
+                {
+                    <div>
+                        <p><i class="fas fa-chevron-left" style="font-size: 1rem;"><a href="@Url.Action("Kategorie", "Adverts", new { id = 999 })"> Wróć do Kategorii głównej</a></i></p>
+                    </div>
+                    <h1>Inne kategorie z Dom: </h1>
+                    <hr>
+                    <ul class="nav flex-column" style="line-height: 85%; ">
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 2 })">Aranżacja Wnętrz</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 3 })">Hydraulika </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 4 })">Elektryka </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 5 })">Gazownictwo </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 6 })">Malarstwo </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 7 })">Kominiarstwo </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 8 })">Stolarstwo </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 9 })">Dom Inne </a>
+                        </li>
+                    </ul>
+                }
+                else if (ViewBag.id >= 10 && ViewBag.id <= 15)
+                {
+                    <div>
+                        <p><i class="fas fa-chevron-left" style="font-size: 1rem;"><a href="@Url.Action("Kategorie", "Adverts", new { id = 998 })"> Wróć do Kategorii głównej</a></i></p>
+                    </div>
+                    <h1>Inne kategorie z Ogród: </h1>
+                    <hr>
+                    <ul class="nav flex-column" style="line-height: 85%; ">
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 10 })">Aranżacja Ogrodów</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 11 })">Ogrodnictwo </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 12 })">Brukarstwo </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 13 })">Ogrodzenia </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 14 })">Kamieniarstwo </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 15 })">Ogród Inne </a>
+                        </li>
+                    </ul>
+                }
+                else if (ViewBag.id >= 16 && ViewBag.id <= 21)
+                {
+                    <div>
+                        <p><i class="fas fa-chevron-left" style="font-size: 1rem;"><a href="@Url.Action("Kategorie", "Adverts", new { id = 997 })"> Wróć do Kategorii głównej</a></i></p>
+                    </div>
+                    <h1>Inne kategorie z Motoryzacji: </h1>
+                    <hr>
+                    <ul class="nav flex-column" style="line-height: 85%; ">
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 16 })">Mechanik </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 17 })">Blacharz </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 18 })">Lakiernik </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 19 })">Detaling </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 20 })">Wulkanizacja </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 21 })">Motoryzacja Inne </a>
+                        </li>
+                    </ul>
+                }
+                else if (ViewBag.id >= 22 && ViewBag.id <= 28)
+                {
+                    <div>
+                        <p><i class="fas fa-chevron-left" style="font-size: 1rem;"><a href="@Url.Action("Kategorie", "Adverts", new { id = 996})"> Wróć do Kategorii głównej</a></i></p>
+                    </div>
+                    <h1>Inne kategorie z Usług: </h1>
                     <hr>
                     <ul class="nav flex-column" style="line-height: 85%; ">
                         <li class="nav-item">
@@ -146,14 +266,6 @@
                         </li>
                     </ul>
                 }
-                else
-                {
-                    <div>
-                        <p><i class="fas fa-chevron-left" style="font-size: 1rem;"><a href="@Url.Action("Index", "Home", null)">Wróć do Kategorii głównej</a></i></p>
-                    </div>
-
-                }
-                break;
             }
 
 
@@ -164,21 +276,43 @@
 
             <div class="col-12 rounded cat_adv">
 
-
-
-                <h2>Ogłoszenia</h2>
+                @{
+                    bool print = true;
+                }
+                @foreach (var category in Model.ADVERTS)
+                {
+                    if (ViewBag.id == 999)
+                    {
+                        <h2>Wszystkie ogłoszenia z Dom</h2>
+                        break;
+                    }
+                    else if (ViewBag.id == 998)
+                    {
+                        <h2>Wszystkie ogłoszenia z Ogród</h2>
+                        break;
+                    }
+                    else if (ViewBag.id == 997)
+                    {
+                        <h2>Wszystkie ogłoszenia z Motoryzacja</h2>
+                        break;
+                    }
+                    else if (ViewBag.id == 996)
+                    {
+                        <h2>Wszystkie ogłoszenia z Usługi</h2>
+                        break;
+                    }
+                    else
+                    {
+                        <h2>Ogłoszenia z @Html.DisplayFor(x => category.CATEGORIES.NAME)</h2>
+                        break;
+                    }
+                }
                 <a>@Html.ActionLink("Sortuj po Nazwie", "Kategorie", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter }) \ </a>
 
                 <a>@Html.ActionLink("Sortuj po Cenie", "Kategorie", new { sortOrder = ViewBag.PriceSortParm, currentFilter = ViewBag.CurrentFilter }) \ </a>
 
                 <a>@Html.ActionLink("Sortuj po Dacie", "Kategorie", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })</a>
 
-
-
-
-                @{
-                    bool print = true;
-                }
                 @foreach (var item in Model.ADVERTS)
                 {
                     print = true;
@@ -213,8 +347,6 @@
                                         </a>
                                     </h4>
                                     <h6 class="card-subtitle mb-2 text-muted">
-
-
                                     </h6>
                                 </div>
                                 <div style="float:right">
@@ -224,11 +356,14 @@
                                     }
                                     else
                                     {
-                                        @Html.DisplayFor(x => item.PRICE)
+                                        <a>@Html.DisplayFor(x => item.PRICE) zł</a>
                                     }
                                 </div>
                                 <div style="position: absolute;bottom: 0;">
-                                    <h6 class="card-subtitle mb-2 text-muted">@Html.DisplayFor(modelItem => item.DATE)</h6>
+                                    @{
+                                        string Data = item.DATE.Date.ToShortDateString();
+                                    }
+                                    <h6 class="card-subtitle mb-2 text-muted">@Html.DisplayFor(m => Data)</h6>
                                 </div>
                             </div>
                         </div>

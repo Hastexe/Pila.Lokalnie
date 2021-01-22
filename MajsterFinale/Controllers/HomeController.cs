@@ -46,6 +46,7 @@ namespace MajsterFinale.Controllers
             ViewBag.PriceSortParm = sortOrder == "Price" ? "Price_desc" : "Price";
             if (search != null)
             {
+                search = " ";
                 page = 1;
             }
             else
