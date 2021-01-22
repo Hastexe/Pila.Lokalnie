@@ -1,0 +1,26 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model MajsterFinale.Models.USERS
+<div class="container-fluid">
+    <div class="row sizeadv">
+        <div class="col-sm-12"><h1>Ustawienia</h1></div>
+        <div class="col-sm-12">
+            <nav class="nav">
+                <a class="nav-link navcolor" href="@Url.Action("MojeOgloszenia", "Adverts", null)">Ogłoszenia</a>
+                <a class="nav-link navcolor" href="@Url.Action("#", "Adverts", null)">Obserwowane</a>
+                <a class="nav-link navcolor" href="@Url.Action("Messages", "User", null)">Wiadomości</a>
+                <a class="nav-link navcolor" href="@Url.Action("ArchiveAd", "Adverts", null)">Archiwum</a>
+                <a class="nav-link navcolor active" href="@Url.Action("EditData", "User", null)">Ustawienia</a>
+            </nav>
+            <hr>
+        </div>
+        <div class="col-sm-12">
+            <nav class="nav">
+                <a class="nav-link active navcolor" href="@Url.Action("EditData", "User", null)">Zmiana danych</a>
+                <a class="nav-link  navcolor" href="@Url.Action("EditPassword", "User", null)">Zmiana hasła</a>
+            </nav>
+        </div>
+    </div>
+</div>

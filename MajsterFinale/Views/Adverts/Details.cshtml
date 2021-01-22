@@ -1,7 +1,9 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 @model MajsterFinale.Models.DisplayRepository
+
 <script>
     function checkFilesCount(id) {
         if (id.files.length > 4) {
@@ -16,78 +18,108 @@
         alert("@ViewBag.Message");
     </script>
 }
-<div class="container-fluid details_main">
-    <div class="row">
-        <div class="col-md-12 rounded">
-            <script>
-                document.write('<a id="backbutton" href="' + document.referrer + '"> <i class="fas fa-chevron-left" style="font-size: 1.5rem;"></i><span id="backbuttontext"></span></a>');
-            </script>
-        </div>
-        <div class="col-md-8 details_img rounded text-center">
-            @foreach (var item in Model.Images)
-            {
-                <img class="img-fluid" src="@item.IMAGE_PATH" alt="my pic" />
-            }
-        </div>
-        <div class="col-md-4">
-            <div class="col-md-12 rounded details_info">
-                <h3 class="">@Html.DisplayFor(model => model.AdvertDetails.TITLE)</h3>
-                <p>Kategoria:  @Html.DisplayFor(model => model.AdvertDetails.CATEGORIES.NAME)</p>
-
-                @if (Model.AdvertDetails.PRICE == "0")
-                {
-                    <h1 class="">Cena do ustalenia</h1>
-                }
-                else
-                {
-                    <h1 class="">@Html.DisplayFor(model => model.AdvertDetails.PRICE) zł</h1>
-                }
-                <br>
-                <button class="btn btn-custom "><i class="far fa-bookmark"></i> Obserwuj</button>
-                <hr>
-                <p><i class="far fa-user"></i>@Html.DisplayFor(model => model.AdvertDetails.USERS.FNAME)</p>
-                <p class="d-block d-lg-none"><i class="far fa-list-alt"></i>
-                <p class="d-none d-lg-block"><i class="far fa-list-alt"></i><a href="@Url.Action("OgloszeniaUsera", "Adverts", new { id = @Html.DisplayFor(model => model.AdvertDetails.USER_ID)})" target="_blank">Zobacz ogłoszenia użytkownika</a>
+<div class="main">
+    <div class="container" id="product_page">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="col-12 backarrowdetails">
+                    <script>
+                        document.write('<a id="backbutton" href="' + document.referrer + '"> <i class="fas fa-chevron-left" style="font-size: 1.5rem;"></i><span id="backbuttontext"></span></a>');
+                    </script>
+                </div>
             </div>
-        </div>
-        <div class="col-md-8 rounded details_desc">
-            <h3>Opis</h3>
-            @Html.DisplayFor(model => model.AdvertDetails.DESCRIPTION)
-            <hr>
-            <p class="text-muted">Dodano: @Model.AdvertDetails.DATE.Date.ToShortDateString()</p>
-        </div>
-        <div class="col-md-8 rounded details_msg">
-            @{
-                if (Convert.ToInt32(Session["ID"]) != Model.AdvertDetails.USER_ID)
-                {
-                    <h3>Wiadomość</h3>
-                    if (Session["ID"] != null)
+
+            <div class="col-sm-8">
+                <div class="col-12" id="imgpos">
+                    @foreach (var item in Model.Images)
                     {
-                        using (Html.BeginForm("Details", "Adverts", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                        {
-                            <form>
-                                <!--<input type="text" name="message" />-->
-                                <!--<input type="submit" value="wyślij" />-->
-                                <textarea class="form-control" rows="5" minlength="5" name="message" placeholder="Napisz wiadomość! (min. 5 znaków)"></textarea>
-                                <input type="file" id="f" name="files" multiple onchange="checkFilesCount(this)"/>
-                                <br>
-                                <button class="btn btn-custom mt-2" type="submit" value="Wyślij">Wyślij</button>
-                            </form>
-                        }
+                        <img src="@item.IMAGE_PATH" style="width: 200px; height: 200px" alt="my pic" />
+                    }
+                    <!--Tutaj wyśietlanie zdjęcia-->
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="col-12">
+                    <h1 class="">@Html.DisplayFor(model => model.AdvertDetails.TITLE)</h1>
+                    <p>Kategoria:  @Html.DisplayFor(model => model.AdvertDetails.CATEGORIES.NAME)   </p>
+                    @if (Model.AdvertDetails.PRICE == "0")
+                    {
+                        <h1 class="">Cena do ustalenia</h1>
                     }
                     else
                     {
-                        <form>
-                            <!--<input type="text" name="message" />-->
-                            <!--<input type="submit" value="wyślij" />-->
-                            <textarea class="form-control" rows="5" name="message" placeholder="Zaloguj się, aby wysłać wiadomość."></textarea>
-                        </form>
-
+                        <h1 class="">@Html.DisplayFor(model => model.AdvertDetails.PRICE) zł</h1>
                     }
-                }
-            }
+                    <br>
+                    <button class="btn btn-custom "><i class="far fa-bookmark"></i> Obserwuj</button>
+                </div>
+            </div>
+            <hr>
+            <div class="col-sm-4 col-xs-12 " id="product_user">
+                <div class="col-12">
+                    <p><i class="far fa-user"></i> od @Html.DisplayFor(model => model.AdvertDetails.USERS.FNAME)</p>
+                    <p class="d-block d-lg-none"><i class="far fa-list-alt"></i><a> Zobaczy ogłoszenia użytkownika</a>
+                </div>
+            </div>
+            <div class="col-sm-4 col-xs-12" id="product_user">
+                <div class="col-12">
+                    <p class="text-right d-none d-lg-block"><i class="far fa-list-alt"></i><a href="@Url.Action("OgloszeniaUsera", "Adverts", new { id = @Html.DisplayFor(model => model.AdvertDetails.USER_ID)})" target="_blank">Zobacz ogłoszenia użytkownika</a>
+                </div>
+            </div>
+
+            <div class="col-sm-8">
+                <hr>
+                <div class="col-12">
+                    <h1>Opis</h1>
+                    <p></p>
+                    @Html.DisplayFor(model => model.AdvertDetails.DESCRIPTION)
+                </div>
+            </div>
+
+            <div class="col-sm-8 " id="product_mess">
+                <div class="col-12">
+                    @{
+                        if (Convert.ToInt32(Session["ID"]) != Model.AdvertDetails.USER_ID)
+                        {
+                            <hr>
+                            <h1>Wiadomość</h1>
+
+                            if (Session["ID"] != null)
+                            {
+                                using (Html.BeginForm("Details", "Adverts", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                {
+                                    <form>
+                                        <!--<input type="text" name="message" />-->
+                                        <!--<input type="submit" value="wyślij" />-->
+                                        <textarea class="form-control" rows="5" minlength="5" name="message" placeholder="Napisz wiadomość! (min. 5 znaków)"></textarea>
+                                        <input type="file" id="f" name="files" multiple onchange="checkFilesCount(this)" />
+                                        <button class="btn btn-custom" type="submit" value="Wyślij">Wyślij</button>
+                                    </form>
+                                }
+                            }
+                            else
+                            {
+                                <form>
+                                    <!--<input type="text" name="message" />-->
+                                    <!--<input type="submit" value="wyślij" />-->
+                                    <textarea class="form-control" rows="5" name="message" placeholder="Zaloguj się, aby wysłać wiadomość."></textarea>
+                                </form>
+                                <hr>
+                            }
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4 col-xs-12">
+
+
+            <p class="text-muted">Dodano: @Model.AdvertDetails.DATE.Date.ToShortDateString() </p>
+
         </div>
     </div>
 </div>
+
 
 

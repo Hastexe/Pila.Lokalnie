@@ -4,12 +4,13 @@
 
 @if (ViewBag.Counter > 0)
 {
-
+    <span>@ViewBag.Counter</span>
     <li class="nav-item active d-none d-lg-block">
-        <a class="nav-link" href="@Url.Action("Messages", "User", null)"><i class="far fa-envelope"><span class="badge badge-custom"><span> @ViewBag.Counter</span></span></i><span class="d-lg-none"> Wiadomości</span></a>
+        <a class="nav-link" href="@Url.Action("Messages", "User", null)"><i class="far fa-envelope"> </i><span class="d-lg-none">Wiadomości</span></a>
     </li>
+
     <li class="nav-item">
-        <a class="nav-link d-block d-lg-none active" href="@Url.Action("Messages", "User", null)" role="button"><i class="far fa-envelope"> </i><span class="d-lg-none">Wiadomości </span><span class="badge badge-custom"><span> @ViewBag.Counter</span></span></a>
+        <a class="nav-link d-block d-lg-none active" href="@Url.Action("Messages", "User", null)" role="button"><i class="far fa-envelope"> </i><span class="d-lg-none">Wiadomości</span></a>
     </li>
 }
 else

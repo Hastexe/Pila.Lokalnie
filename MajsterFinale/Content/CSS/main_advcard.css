@@ -8,15 +8,12 @@ html, body {
 .card-horizontal {
     display: flex;
     flex: 1 1 auto;
-    background-color: White !important;
 }
+
+
 
 .sizeadv h1 {
     font-size: 20px;
-}
-
-.card-body a {
-    color: black;
 }
 
 .tabs {

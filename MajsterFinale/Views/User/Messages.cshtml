@@ -3,110 +3,86 @@
 }
 @model MajsterFinale.Models.PanelMessageModel
 
-<div class="container-fluid panel_mo">
-    <div class="col-md-12 panel_top rounded p-3">
-        <b>Witaj, @Session["MAIL"]</b>
-        <h1>Wiadomości</h1>
-    </div>
-    <div class="col-md-12 panel_mid rounded p-3">
-        <nav class="nav flex-column flex-sm-row">
-            <a class="nav-link " href="@Url.Action("MojeOgloszenia", "Adverts", null)">Moje ogłoszenia</a>
-            <a class="nav-link disabled" href="@Url.Action("#", "Adverts", null)">Obserwowane (work in progress)</a>
-            <a class="nav-link active" href="@Url.Action("Messages", "User", null)">Wiadomości</a>
-            <a class="nav-link " href="@Url.Action("ArchiveAd", "Adverts", null)">Archiwum</a>
-            <a class="nav-link " href="@Url.Action("EditData", "User", null)">Ustawienia</a>
-        </nav>
-    </div>
-    <div class="col-md-12 rounded mt-1"><span class="text-muted">Użytkownik</span></div>
-
-
-    <div class="col-md-12 rounded mt-1 my-0" style="background-color:white; min-height:4rem">
-        <div class="row">
-            <div class="col-md-3">Użytkownik</div>
-            <div class="col-md-7">Treść</div>
-            <div class="col-md-2">Odpowiedz</div>
+<div class="container-fluid">
+    <div class="row navpanel">
+        <div class="col-sm-12"><b>Witaj, @Session["MAIL"]</b></div>
+        <div class="col-sm-12"><h1>Wiadomości</h1></div>
+        <div class="col-sm-12">
+            <nav class="nav flex-column flex-sm-row">
+                <a class="nav-link navpanelcolor" href="@Url.Action("MojeOgloszenia", "Adverts", null)">Moje ogłoszenia</a>
+                <a class="nav-link navpanelcolor disabled" href="@Url.Action("#", "Adverts", null)">Obserwowane</a>
+                <a class="nav-link navpanelcolor active" href="@Url.Action("Messages", "user", null)">Wiadomości</a>
+                <a class="nav-link navpanelcolor" href="@Url.Action("ArchiveAd", "Adverts", null)">Archiwum</a>
+                <a class="nav-link navpanelcolor" href="@Url.Action("EditData", "User", null)">Ustawienia</a>
+            </nav>
         </div>
     </div>
+    <hr>
 
-    <div class="col-md-12 panel_bottom rounded mt-1">
+    @{
+        int length = Model.UserMessages.Count;
+        int[,] msglist = new int[4, length];
+        bool save = true;
+        for (int j = 0; j < Model.UserMessages.Count; j++)
+        {
+            save = true;
 
-        @{
-            int length = Model.UserMessages.Count;
-            int[,] msglist = new int[4, length];
-            bool save = true;
-            for (int j = 0; j < Model.UserMessages.Count; j++)
+            for (int x = 0; x < j; x++)
             {
-                save = true;
-
-                for (int x = 0; x < j; x++)
+                if (msglist[0, x] == Model.UserMessages[j].ADVERT_ID && (msglist[1, x] == Model.UserMessages[j].MSG_TO && msglist[2, x] == Model.UserMessages[j].MSG_FROM) || (msglist[1, x] == Model.UserMessages[j].MSG_FROM && msglist[2, x] == Model.UserMessages[j].MSG_TO))
                 {
-                    if (msglist[0, x] == Model.UserMessages[j].ADVERT_ID && (msglist[1, x] == Model.UserMessages[j].MSG_TO && msglist[2, x] == Model.UserMessages[j].MSG_FROM) || (msglist[1, x] == Model.UserMessages[j].MSG_FROM && msglist[2, x] == Model.UserMessages[j].MSG_TO))
-                    {
-                        save = false;
-                    }
+                    save = false;
                 }
-                if (save == true)
-                {
-                    msglist[0, j] = Model.UserMessages[j].ADVERT_ID;
-                    msglist[1, j] = Model.UserMessages[j].MSG_TO;
-                    msglist[2, j] = Model.UserMessages[j].MSG_FROM;
-                    msglist[3, j] = Model.UserMessages[j].ID;
-                }
-
+            }
+            if (save == true)
+            {
+                msglist[0, j] = Model.UserMessages[j].ADVERT_ID;
+                msglist[1, j] = Model.UserMessages[j].MSG_TO;
+                msglist[2, j] = Model.UserMessages[j].MSG_FROM;
+                msglist[3, j] = Model.UserMessages[j].ID;
             }
 
-
-            string ConversationWith = "";
-            //string ConversationAdvertTitle = "";
-            string Msg = "";
-
-            <table>
+        }
 
 
-                @for (int i = 0; i < msglist.GetLength(1); i++)
+        string ConversationWith = "";
+        //string ConversationAdvertTitle = "";
+        string Msg = "";
+
+        <table>
+
+
+            @for (int i = 0; i < msglist.GetLength(1); i++)
+            {
+                if (msglist[0, i] > 0)
                 {
-                    if (msglist[0, i] > 0)
-                    {
-                        <tr>
-                            <td>
-                                ID: @msglist[0, i];
-                            </td>
-                            <td>
-                                @{
-                                    var User1 = Model.Users.Where(x => x.USER_ID == msglist[1, i]).Select(x => x.USER_ID).SingleOrDefault();
-                                    var User2 = Model.Users.Where(x => x.USER_ID == msglist[2, i]).Select(x => x.USER_ID).SingleOrDefault();
-                                    if (User1 == Convert.ToInt32(Session["ID"]))
-                                    {
-                                        ConversationWith = Model.Users.Where(x => x.USER_ID == msglist[2, i]).Select(x => x.FNAME).SingleOrDefault();
-                                    }
-                                    else
-                                    {
-                                        ConversationWith = Model.Users.Where(x => x.USER_ID == msglist[1, i]).Select(x => x.FNAME).SingleOrDefault();
-                                    }
+                    <tr>
+                        <td>
+                            ID: @msglist[0, i];
+                        </td>
+                        <td>
+                            @{
+                                var User1 = Model.Users.Where(x => x.USER_ID == msglist[1, i]).Select(x => x.USER_ID).SingleOrDefault();
+                                var User2 = Model.Users.Where(x => x.USER_ID == msglist[2, i]).Select(x => x.USER_ID).SingleOrDefault();
+                                if (User1 == Convert.ToInt32(Session["ID"]))
+                                {
+                                    ConversationWith = Model.Users.Where(x => x.USER_ID == msglist[2, i]).Select(x => x.FNAME).SingleOrDefault();
                                 }
-                                Konwersacja z: @ConversationWith
-                            </td>
-                            <td>
-                                @{
-                                    Msg = Model.UserMessages.Where(x => x.ID == msglist[3, i]).Select(x => x.TEXT).SingleOrDefault();
-                                    if (Model.UserMessages.Where(x => x.ID == msglist[3, i]).Select(x => x.MSG_TO).SingleOrDefault() == Convert.ToInt32(Session["ID"]))
+                                else
+                                {
+                                    ConversationWith = Model.Users.Where(x => x.USER_ID == msglist[1, i]).Select(x => x.FNAME).SingleOrDefault();
+                                }
+                            }
+                            Konwersacja z: @ConversationWith
+                        </td>
+                        <td>
+                            @{
+                                Msg = Model.UserMessages.Where(x => x.ID == msglist[3, i]).Select(x => x.TEXT).SingleOrDefault();
+                                if (Model.UserMessages.Where(x => x.ID == msglist[3, i]).Select(x => x.MSG_TO).SingleOrDefault() == Convert.ToInt32(Session["ID"]))
+                                {
+                                    if (Model.UserMessages.Where(x => x.ID == msglist[3, i]).Select(x => x.IS_READ).SingleOrDefault() == false)
                                     {
-                                        if (Model.UserMessages.Where(x => x.ID == msglist[3, i]).Select(x => x.IS_READ).SingleOrDefault() == false)
-                                        {
-                                            <span> Nieodczytana: </span>@Msg
-                                        }
-                                        else
-                                        {
-                                            if (Msg.Length < 70)
-                                            {
-                                                @Msg
-                                            }
-                                            else
-                                            {
-                                                @Msg.Substring(0, 70)<span>...</span>
-                                            }
-                                            @Msg
-                                        }
+                                        <span> Nieodczytana: </span>@Msg
                                     }
                                     else
                                     {
@@ -118,25 +94,36 @@
                                         {
                                             @Msg.Substring(0, 70)<span>...</span>
                                         }
+                                        @Msg
                                     }
-
                                 }
-                            </td>
-                            <td>
-                            </td>
-                            <td>
+                                else
+                                {
+                                    if (Msg.Length < 70)
+                                    {
+                                        @Msg
+                                    }
+                                    else
+                                    {
+                                        @Msg.Substring(0, 70)<span>...</span>
+                                    }
+                                }
 
-                                <a href="@Url.Action("Conversation", "User", new {AdvertId = msglist[0, i], UserA = msglist[1, i], UserB = msglist[2, i]})">Odpowiedz</a>
+                            }
+                        </td>
+                        <td>
+                        </td>
+                        <td>
 
-                            </td>
+                            <a href="@Url.Action("Conversation", "User", new {AdvertId = msglist[0, i], UserA = msglist[1, i], UserB = msglist[2, i]})">Odpowiedz</a>
 
-                        </tr>
-                    }
+                        </td>
+
+                    </tr>
                 }
+            }
 
 
-            </table>
-        }
+        </table>
+    }
     </div>
-    <hr>
-</div>
