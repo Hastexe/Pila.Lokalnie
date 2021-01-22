@@ -34,6 +34,7 @@ namespace MajsterFinale
                       "~/Content/CSS/main_css.css",
                       "~/Content/CSS/main_nav.css",
                       "~/Content/CSS/main_reglog.css",
+                       "~/Content/CSS/main_panel.css",
                       "~/Content/CSS/main_adv.css"
                       ));
         }
