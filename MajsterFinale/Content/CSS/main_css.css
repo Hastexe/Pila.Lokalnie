@@ -30,8 +30,7 @@ i {
 }
 
 .nmk {
-    padding: 0;
-    margin: 0;
+   
     height: 40px;
     background-color: #f3b136;
 }
@@ -126,10 +125,6 @@ textarea {
         background-color: #0B3c5d;
     }
 
-.card-body a {
-    color: black;
-}
-
 .active {
     color: white;
 }
@@ -173,7 +168,7 @@ textarea {
 
 .index_index {
     margin-top: 1rem;
-    width: 70%;
+    width: 66%;
 }
 
 .index_searchbar {
@@ -264,7 +259,6 @@ textarea {
 .cat_adv {
     padding-top: 1rem;
     padding-bottom: 0.5rem;
-    background-color: white;
 }
 
 .backarrow {

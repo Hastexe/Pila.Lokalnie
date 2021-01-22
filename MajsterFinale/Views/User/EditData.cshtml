@@ -1,86 +1,93 @@
-﻿@model MajsterFinale.Models.USERS
-@{
+﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="container-fluid">
-    <div class="row navpanel">
-        <div class="col-sm-12"><b>Witaj, @Session["MAIL"]</b></div>
-        <div class="col-sm-12"><h1>Ustawienia</h1></div>
-        <div class="col-sm-12">
-            <nav class="nav flex-column flex-sm-row">
-                <a class="nav-link navpanelcolor" href="@Url.Action("MojeOgloszenia", "Adverts", null)">Moje ogłoszenia</a>
-                <a class="nav-link navpanelcolor disabled" href="@Url.Action("#", "Adverts", null)">Obserwowane</a>
-                <a class="nav-link navpanelcolor" href="@Url.Action("Messages", "User", null)">Wiadomości</a>
-                <a class="nav-link navpanelcolor" href="@Url.Action("ArchiveAd", "Adverts", null)">Archiwum</a>
-                <a class="nav-link navpanelcolor active" href="@Url.Action("EditData", "User", null)">Ustawienia</a>
-            </nav>
-            <hr>
+@model MajsterFinale.Models.USERS
+<div class="container-fluid panel_mo">
+    <div class="row no-gutters">
+        <div class="col-md-12 panel_top rounded p-3">
+            <b>Witaj, @Session["MAIL"]</b>
+            <h1>Ustawienia</h1>
         </div>
-        <div class="col-sm-12">
+        <div class="col-md-12 panel_mid rounded p-3">
             <nav class="nav flex-column flex-sm-row">
-                <a class="nav-link active navpanelcolor" href="@Url.Action("EditData", "User", null)">Zmiana danych</a>
-                <a class="nav-link navpanelcolor" href="@Url.Action("EditPassword", "User", null)">Zmiana hasła</a>
+                <a class="nav-link " href="@Url.Action("MojeOgloszenia", "Adverts", null)">Moje ogłoszenia</a>
+                <a class="nav-link disabled" href="@Url.Action("#", "Adverts", null)">Obserwowane (work in progress)</a>
+                <a class="nav-link " href="@Url.Action("Messages", "User", null)">Wiadomości</a>
+                <a class="nav-link " href="@Url.Action("ArchiveAd", "Adverts", null)">Archiwum</a>
+                <a class="nav-link active" href="@Url.Action("EditData", "User", null)">Ustawienia</a>
             </nav>
+        </div>
+        <div class="col-md-12 panel_mid rounded p-3">
+            <nav class="nav flex-column flex-sm-row">
+                <a class="nav-link active" href="@Url.Action("EditData", "User", null)">Zmiana danych</a>
+                <a class="nav-link " href="@Url.Action("EditPassword", "User", null)">Zmiana hasła</a>
+            </nav>
+        </div>
+        <div class="col-md-12 panel_bottom rounded">
+            @{
+                if (!string.IsNullOrEmpty(ViewBag.Message))
+                {
+                    <script type="text/javascript">
+                alert("@ViewBag.Message");
+                    </script>
+
+                }
+                if (Session["ID"] != null)
+                {
+                    <div style="background-color:white;">
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="form-horizontal">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="form-group">
+                                    <div class="col-md-2">
+                                        <p>Imię: </p>
+                                        @Html.EditorFor(model => model.FNAME, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.FNAME, "", new { @class = "text-danger" })
+                                        <small class="form-text text-muted">Wpisz nowe imię.</small>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-2">
+                                        <p>Nazwisko: </p>
+                                        @Html.EditorFor(model => model.LNAME, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.LNAME, "", new { @class = "text-danger" })
+                                        <small class="form-text text-muted">Wpisz nowe nazwisko.</small>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+
+                                    <div class="col-md-2">
+                                        <p>Numer telefonu: </p>
+                                        @Html.EditorFor(model => model.PHONE_NUMBER, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.PHONE_NUMBER, "", new { @class = "text-danger" })
+                                        <small class="form-text text-muted">Wpisz nowy numer telefonu.</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-2">
+                                    <input type="submit" value="Zapisz" class="btn btn-custom" />
+                                </div>
+                            </div>
+                            <br>
+                        }
+                    </div>
+                }
+            }
         </div>
     </div>
-
-       
-    @{
-        if (!string.IsNullOrEmpty(ViewBag.Message))
-        {
-            <script type="text/javascript">
-                alert("@ViewBag.Message");
-            </script>
-
-        }
-        if (Session["ID"] != null)
-        {
-            <div class="container-fluid">
-                <div class="row" style="margin-top: 3rem; margin-left:11%">
-                    @using (Html.BeginForm())
-                    {
-                        @Html.AntiForgeryToken()
-                        <div class="form-horizontal">
-                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                            <div class="form-group">
-
-                                <div class="col-sm-12">
-                                    <p>Imię: </p>
-                                    @Html.EditorFor(model => model.FNAME, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.FNAME, "", new { @class = "text-danger" })
-                                    <small class="form-text text-muted">Wpisz nowe imię.</small>
-                                </div>
-                            </div>
-                            <div class="form-group">
-
-                                <div class="col-sm-12">
-                                    <p>Nazwisko: </p>
-                                    @Html.EditorFor(model => model.LNAME, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.LNAME, "", new { @class = "text-danger" })
-                                    <small class="form-text text-muted">Wpisz nowe nazwisko.</small>
-                                </div>
-                            </div>
-                            <div class="form-group">
-
-                                <div class="col-sm-12">
-                                    <p>Numer telefonu: </p>
-                                    @Html.EditorFor(model => model.PHONE_NUMBER, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.PHONE_NUMBER, "", new { @class = "text-danger" })
-                                    <small class="form-text text-muted">Wpisz nowy numer telefonu.</small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-offset-2 col-md-10">
-                                <input type="submit" value="Zapisz" class="btn btn-custom" />
-                            </div>
-                        </div>
-                    }
-                </div>
-            </div>
-        }
-    }
 </div>
+
+
+
+
+
+
+
+
+
 
 
 
