@@ -1,7 +1,9 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@model IEnumerable<MajsterFinale.Models.ADVERTS>
+@model MajsterFinale.Models.DisplayAdsRepository
+@using PagedList;
+@using PagedList.Mvc;
 
 <div class="container-fluid">
     <div class="row navpanel">
@@ -20,7 +22,10 @@
     <hr>
 
     <div class="col-sm-12" style="margin-top: 30px;">
-        @foreach (var item in Model)
+        @{
+            bool print = true;
+        }
+        @foreach (var item in Model.ADVERTS)
         {
             using (Html.BeginForm())
             {
@@ -29,7 +34,19 @@
                         <div class="card bg-light border-0">
                             <div class="card-horizontal">
                                 <div class="img-square-wrapper">
-                                    <a href="@Url.Action("Details", "Adverts", new { id = item.ID }) "><img class="" src="http://via.placeholder.com/200x140" alt="Card image cap"></a>
+                                    <a href="@Url.Action("Details", "Adverts", new { id = item.ID }) ">
+                                        @foreach (var itemImage in Model.IMAGES)
+                                        {
+                                            if (item.ID == itemImage.ADVERT_ID)
+                                            {
+                                                if (print == true)
+                                                {
+                                                    <img src="@itemImage.IMAGE_PATH" style="width: 200px; height: 200px" alt="my pic" />
+                                                    print = false;
+                                                }
+                                            }
+                                        }
+                                    </a>
                                 </div>
                                 <div class="card-body link">
                                     <h4 class="card-title"> <a href="@Url.Action("Details", "Adverts", new { id = item.ID })"></a>@Html.DisplayFor(modelItem => item.TITLE) </h4>
@@ -45,6 +62,11 @@
                 <hr>
             }
         }
+        <div class="col-md-12 text-center" style="background-color:transparent;">
+            Strona @(Model.ADVERTS.PageCount < Model.ADVERTS.PageNumber ? 0 : Model.ADVERTS.PageNumber) z @Model.ADVERTS.PageCount
+
+            @Html.PagedListPager(Model.ADVERTS, page => Url.Action("ArchiveAd", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+        </div>
     </div>
 </div>
     </div>

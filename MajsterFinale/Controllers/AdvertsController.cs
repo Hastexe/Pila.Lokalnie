@@ -367,7 +367,7 @@ namespace MajsterFinale.Controllers
             if (Session["ID"] != null)
             {
                 int uID = Convert.ToInt32(Session["ID"]);
-                var adverts = db.ADVERTS.Where(a => a.USER_ID == uID).OrderBy(x => x.ID);
+                var adverts = db.ADVERTS.Where(a => a.USER_ID == uID && a.IS_ARCHIVED == false).OrderBy(x => x.ID);
                 displayAdsRepository.ADVERTS = adverts.ToPagedList(pageNumber, pageSize);
                 displayAdsRepository.IMAGES = new AdvertRepository().GetAdsImages().ToList();
                 return View(displayAdsRepository);
@@ -440,15 +440,22 @@ namespace MajsterFinale.Controllers
         }
 
         [HttpGet]
-        public ActionResult ArchiveAd()
+        public ActionResult ArchiveAd(int? page)
         {
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
             if (Session["ID"] != null)
             {
                 int uID = Convert.ToInt32(Session["ID"]);
-                displayRepository.LoggedUser = advertRepository.GetUserData(uID);
-                return View(new AdvertRepository().GetUserArchivedAdverts(uID));
+                var adverts = db.ADVERTS.Where(a => a.USER_ID == uID && a.IS_ARCHIVED == true).OrderBy(x => x.ID);
+                displayAdsRepository.ADVERTS = adverts.ToPagedList(pageNumber, pageSize);
+                displayAdsRepository.IMAGES = new AdvertRepository().GetAdsImages().ToList();
+                return View(displayAdsRepository);
             }
-            else return HttpNotFound();
+            else
+            {
+                return RedirectToAction("AddAdvertisement", "Adverts");
+            }
         }
         [HttpPost]
         public ActionResult ArchiveAd(string Delete, string Restore)
