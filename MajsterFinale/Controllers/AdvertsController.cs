@@ -139,32 +139,31 @@ namespace MajsterFinale.Controllers
             }
 
             ViewBag.CurrentFilter = searchString;
-            var adverts = db.ADVERTS.Where(a => a.CATEGORY == id);
+            var adverts = db.ADVERTS.Where(a => a.CATEGORY == id && a.IS_ARCHIVED == false);
             if(id == 999)
             {
-                adverts = db.ADVERTS.Where(a => a.CATEGORY >= 2 && a.CATEGORY <= 9);
+                adverts = db.ADVERTS.Where(a => a.CATEGORY >= 2 && a.CATEGORY <= 9 && a.IS_ARCHIVED == false);
             }
             else if (id == 998)
             {
-                adverts = db.ADVERTS.Where(a => a.CATEGORY >= 10 && a.CATEGORY <= 15);
+                adverts = db.ADVERTS.Where(a => a.CATEGORY >= 10 && a.CATEGORY <= 15 && a.IS_ARCHIVED == false);
             }
             else if (id == 997)
             {
-                adverts = db.ADVERTS.Where(a => a.CATEGORY >= 16 && a.CATEGORY <= 21);
+                adverts = db.ADVERTS.Where(a => a.CATEGORY >= 16 && a.CATEGORY <= 21 && a.IS_ARCHIVED == false);
             }
             else if (id == 996)
             {
-                adverts = db.ADVERTS.Where(a => a.CATEGORY >= 22 && a.CATEGORY <= 28);
+                adverts = db.ADVERTS.Where(a => a.CATEGORY >= 22 && a.CATEGORY <= 28 && a.IS_ARCHIVED == false);
             }
             else
             {
-                adverts = db.ADVERTS.Where(a => a.CATEGORY == id);
+                adverts = db.ADVERTS.Where(a => a.CATEGORY == id && a.IS_ARCHIVED == false);
             }
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                adverts = adverts.Where(s => s.TITLE.Contains(searchString)
-                                       || s.DESCRIPTION.Contains(searchString));
+                adverts = adverts.Where(s => s.IS_ARCHIVED == false && ((s.TITLE.Contains(searchString)) || (s.DESCRIPTION.Contains(searchString))));
             }
             switch (sortOrder)
             {
@@ -221,11 +220,10 @@ namespace MajsterFinale.Controllers
                 searchString = currentFilter;
             }
             ViewBag.CurrentFilter = searchString;
-            var adverts = db.ADVERTS.Where(a => a.USER_ID == id);
+            var adverts = db.ADVERTS.Where(a => a.USER_ID == id && a.IS_ARCHIVED == false);
             if (!String.IsNullOrEmpty(searchString))
             {
-                adverts = adverts.Where(s => s.TITLE.Contains(searchString)
-                                       || s.DESCRIPTION.Contains(searchString));
+                adverts = adverts.Where(s => s.IS_ARCHIVED == false && ((s.TITLE.Contains(searchString)) || (s.DESCRIPTION.Contains(searchString))));
             }
             switch (sortOrder)
             {
@@ -289,6 +287,7 @@ namespace MajsterFinale.Controllers
                 newAdvert.DESCRIPTION = obj.Advert.DESCRIPTION;
                 newAdvert.DATE = System.DateTime.Now;
                 newAdvert.IS_ARCHIVED = false;
+                newAdvert.IS_HIDDEN = false;
                 if (obj.Advert.PRICE == null)
                 {
                     newAdvert.PRICE = "0";

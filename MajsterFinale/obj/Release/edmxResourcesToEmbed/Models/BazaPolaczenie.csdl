@@ -18,6 +18,7 @@
     <NavigationProperty Name="MESSAGE" Relationship="BazaPolaczenie.FK_FAV_MESSAGE" FromRole="ADVERTS" ToRole="MESSAGE" />
     <Property Name="PHONE_NUMBER" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="IMAGES_ADVERT" Relationship="BazaPolaczenie.FK_IMAGES_ADVERT_ADVERTS" FromRole="ADVERTS" ToRole="IMAGES_ADVERT" />
+    <Property Name="IS_HIDDEN" Type="Boolean" />
   </EntityType>
   <EntityType Name="CATEGORIES">
     <Key>
