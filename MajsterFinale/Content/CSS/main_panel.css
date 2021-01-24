@@ -1,0 +1,34 @@
+﻿.panel_mo {
+    width: 68%;
+    margin-top: 2rem;
+}
+
+.panel_top {
+    color: white;
+    background-color: #0B3c5d;
+}
+
+.panel_mid {
+    margin-top: 0.5rem;
+    background-color: white;
+}
+
+    .panel_mid .nav a {
+        color: black;
+        font-weight: 600;
+    }
+
+    .panel_mid .nav-link:hover {
+        color: white;
+        background-color: #0B3c5d;
+    }
+
+    .panel_mid .active {
+        color: white !important;
+        background-color: #0B3c5d;
+    }
+
+.panel_bottom {
+    margin-top: rem;
+    background-color:;
+}

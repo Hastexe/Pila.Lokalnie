@@ -45,6 +45,7 @@ namespace MajsterFinale.Models
         public Nullable<bool> IS_ARCHIVED { get; set; }
         public System.DateTime DATE { get; set; }
         public string PHONE_NUMBER { get; set; }
+        public Nullable<bool> IS_HIDDEN { get; set; }
 
 
         public virtual CATEGORIES CATEGORIES { get; set; }

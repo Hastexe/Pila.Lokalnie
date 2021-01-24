@@ -18,7 +18,7 @@
         else
         {
             <div class="nmk">
-                <div class="container-fluid nmk">
+                <div class="container nmk">
                     <div class="row">
                         <div class="col-12 text-center"><a href="@Url.Action("Rejestracja", "Home", null)"><p>Nie masz konta? Załóż za darmo!</p></a></div>
                     </div>
@@ -43,12 +43,12 @@
                     @{
                         if (Session["ID"] != null)
                         {
-                            <li class="nav-item mt-2 mr-4 mb-1 h3 d-block d-lg-none">
-                                <b><a>Witaj, @Session["FNAME"]</a></b>
-                            </li>
-                            <li class="nav-item mt-2 mr-2 mb-1 d-none d-lg-block">
-                                <b><a>Witaj, @Session["FNAME"]</a></b>
-                            </li>
+                            @*<li class="nav-item mt-2 mr-4 mb-1 h3 d-block d-lg-none">
+                                    <b><a>Witaj, @Session["FNAME"]</a></b>
+                                </li>
+                                <li class="nav-item mt-2 mr-2 mb-1 d-none d-lg-block">
+                                    <b><a>Witaj, @Session["FNAME"]</a></b>
+                                </li>*@
                             <li class="nav-item">
                                 <a class="nav-link d-block d-lg-none active" href="@Url.Action("AddAdvertisement", "Adverts", null)" role="button"><i class="far fa-clone"></i><span class="d-lg-none">Dodaj ogłoszenie</span></a>
                             </li>

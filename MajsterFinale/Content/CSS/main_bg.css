@@ -3,14 +3,14 @@ body {
 
 @media (max-width: 767px) {
     body {
-        background-color: lightgray;
+        background-color: whitesmoke;
     }
 }
 
 @media (min-width: 768px) {
     body {
-        background-image: url('../IMAGES/background2.svg');
-        background-size: contain;
+        /*background-image: url('../IMAGES/background2.svg');
+        background-size: contain;*/
         min-height: 100%;
         background-color: whitesmoke;
     }
