@@ -30,11 +30,11 @@ namespace MajsterFinale.Models
         [DisplayName("Kategoria")]
         public int CATEGORY { get; set; }
         [DisplayName("Tytu³")]
-        [StringLength(30, MinimumLength = 5)]
+        [StringLength(50, MinimumLength = 5)]
         [Required(ErrorMessage = "Pole jest wymagane")]
         public string TITLE { get; set; }
         [DisplayName("Opis")]
-        [StringLength(250, MinimumLength = 5)]
+        [StringLength(750, MinimumLength = 5)]
         [Required(ErrorMessage = "Pole jest wymagane")]
         public string DESCRIPTION { get; set; }
         [DisplayName("Cena, Zostaw puste jeœli do uzgodnienia")]

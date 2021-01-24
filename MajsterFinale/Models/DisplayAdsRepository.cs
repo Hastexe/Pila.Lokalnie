@@ -10,5 +10,6 @@ namespace MajsterFinale.Models
         public PagedList.IPagedList<ADVERTS> ADVERTS { get; set; }
         public List<IMAGES_ADVERT> IMAGES { get; set; }
         public PagedList.IPagedList<CATEGORIES> CATEGORIES { get; set; }
+        public List<FAV> FAV { get; set; }
     }
 }

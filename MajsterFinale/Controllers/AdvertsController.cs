@@ -140,7 +140,7 @@ namespace MajsterFinale.Controllers
 
             ViewBag.CurrentFilter = searchString;
             var adverts = db.ADVERTS.Where(a => a.CATEGORY == id);
-            if(id == 999)
+            if (id == 999)
             {
                 adverts = db.ADVERTS.Where(a => a.CATEGORY >= 2 && a.CATEGORY <= 9);
             }
@@ -221,7 +221,7 @@ namespace MajsterFinale.Controllers
                 searchString = currentFilter;
             }
             ViewBag.CurrentFilter = searchString;
-            var adverts = db.ADVERTS.Where(a => a.USER_ID == id);
+            var adverts = db.ADVERTS.Where(a => a.USER_ID == id && a.IS_ARCHIVED == false);
             if (!String.IsNullOrEmpty(searchString))
             {
                 adverts = adverts.Where(s => s.TITLE.Contains(searchString)
@@ -251,13 +251,13 @@ namespace MajsterFinale.Controllers
             }
             int pageSize = 10;
             int pageNumber = (page ?? 1);
-           
+
             displayAdsRepository.ADVERTS = adverts.ToPagedList(pageNumber, pageSize);
             displayAdsRepository.IMAGES = new AdvertRepository().GetAdsImages().ToList();
             return View(displayAdsRepository);
 
         }
-       
+
         public ActionResult Message()
         {
             return View(new AdvertRepository().GetMessage());
@@ -279,7 +279,7 @@ namespace MajsterFinale.Controllers
         public ActionResult AddAdvertisement(AddingAdsRepository obj, IEnumerable<HttpPostedFileBase> files)
         {
             if (ModelState.IsValid)
-                {
+            {
                 int uID = Convert.ToInt32(Session["ID"]);
                 ADVERTS newAdvert = new ADVERTS();
 
@@ -294,22 +294,23 @@ namespace MajsterFinale.Controllers
                     newAdvert.PRICE = "0";
                 }
                 else
-                { newAdvert.PRICE = obj.Advert.PRICE;
+                {
+                    newAdvert.PRICE = obj.Advert.PRICE;
                 }
 
 
 
                 if (newAdvert.CATEGORY != 1)
                 {
-                    
+
                     foreach (var file in files)
                     {
                         if (file != null)
                         {
-                        //var file = model.ImageFile;
-                        var filename = Guid.NewGuid() + file.FileName;
-                        var supportedTypes = new[] { "jpg", "jpeg", "png" };
-                        var fileExt = System.IO.Path.GetExtension(file.FileName).Substring(1);
+                            //var file = model.ImageFile;
+                            var filename = Guid.NewGuid() + file.FileName;
+                            var supportedTypes = new[] { "jpg", "jpeg", "png" };
+                            var fileExt = System.IO.Path.GetExtension(file.FileName).Substring(1);
                             if (!supportedTypes.Contains(fileExt))
                             {
                                 return Content("<script language='javascript' type='text/javascript'>alert('Niebsługiwany typ pliku');location = location;</script>");
@@ -344,8 +345,8 @@ namespace MajsterFinale.Controllers
                             db.SaveChanges();
                         }
                     }
-                    return RedirectToAction("Index", "home");
-                } 
+                    return RedirectToAction("MojeOgloszenia", "adverts");
+                }
                 else
                 {
                     obj.Categories = addingAdsRepository.GetList();
@@ -353,9 +354,9 @@ namespace MajsterFinale.Controllers
                     ModelState.AddModelError("CATEGORY", "Musisz wybrać kategorię z listy.");
                     return View(obj);
                 }
-                }
+            }
             obj.Categories = addingAdsRepository.GetList();
-                obj.CategoryID = -1;
+            obj.CategoryID = -1;
             return View(obj);
 
         }
@@ -470,7 +471,7 @@ namespace MajsterFinale.Controllers
             }
             else
             {
-                return RedirectToAction("MojeOgloszenia","Adverts");
+                return RedirectToAction("MojeOgloszenia", "Adverts");
             }
         }
         private ActionResult DeleteAdvertisement(string id)
@@ -491,6 +492,63 @@ namespace MajsterFinale.Controllers
             int uID = Convert.ToInt32(Session["ID"]);
             displayRepository.LoggedUser = advertRepository.GetUserData(uID);
             return Content("<script language='javascript' type='text/javascript'>alert('Ogłoszenie zostało przywrócone');location = location;</script>");
-        }  
+        }
+
+        public ActionResult Obserwuj(string id)
+        {
+            if (Session["ID"] != null)
+            {
+                int AdID = Int32.Parse(id);
+                int uID = Convert.ToInt32(Session["ID"]);
+                FAV fAV = new FAV();
+                int check = db.FAV.Count(x => x.USER == uID && x.ADV == AdID);
+                if (check == 0)
+                {
+                    fAV.USER = uID;
+                    fAV.ADV = AdID;
+                    db.FAV.Add(fAV);
+                    db.SaveChanges();
+                    return null;
+                }
+                else
+                {
+                    db.FAV.Remove(db.FAV.Single(x => x.ADV == AdID && x.USER == uID));
+                    db.SaveChanges();
+                    return null;
+                }
+            }
+            else
+                return RedirectToAction("Logowanie", "home");
+        }
+
+        public ActionResult Obserwowane(int? page)
+        {
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            if (Session["ID"] != null)
+            {
+                int uID = Convert.ToInt32(Session["ID"]);
+                //var result = (from t1 in db.ADVERTS
+                //              join t2 in db.FAV
+                //              on t1.ID equals t2.ADV
+                //              select new { t2.ADV, t1 }).ToList();
+                //var adverts = result.Where(x => x.t1.ID == x.ADV && x.t1.USER_ID == uID).OrderBy(z => z.ADV);
+
+                var fav = db.FAV.Where(z => z.USER == uID).Select(y=>y.ADV).ToList();
+                List<ADVERTS> adverts = new List<ADVERTS>();
+                foreach(int item in fav)
+                {
+                  adverts.AddRange(db.ADVERTS.Where(a => a.ID == item).OrderBy(x => x.ID).ToList());
+                }
+                //var adverts = db.ADVERTS.Where(a => a.ID == fav).OrderBy(x => x.ID);
+                displayAdsRepository.ADVERTS = adverts.ToPagedList(pageNumber, pageSize);
+                displayAdsRepository.IMAGES = new AdvertRepository().GetAdsImages().ToList();
+                return View(displayAdsRepository);
+            }
+            else
+            {
+                return RedirectToAction("Logowanie", "home");
+            }
+        }
     }
 }

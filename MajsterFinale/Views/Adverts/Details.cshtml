@@ -52,7 +52,7 @@
                         <h1 class="">@Html.DisplayFor(model => model.AdvertDetails.PRICE) zł</h1>
                     }
                     <br>
-                    <button class="btn btn-custom "><i class="far fa-bookmark"></i> Obserwuj</button>
+                    <button class="btn btn-custom "><i class="far fa-bookmark"></i><a href="@Html.Action("Obserwuj", "Adverts", new { id = Model.AdvertDetails.ID })">Obserwuj</a></button>
                 </div>
             </div>
             <hr>
