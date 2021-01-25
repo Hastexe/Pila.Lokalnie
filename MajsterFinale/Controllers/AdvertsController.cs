@@ -37,7 +37,8 @@ namespace MajsterFinale.Controllers
                 if (Session["ID"] != null)
                 {
                     int uID = Convert.ToInt32(Session["ID"]);
-                    displayRepository.LoggedUser = advertRepository.GetUserData(uID);
+                    displayRepository.LoggedUser = advertRepository.GetUserData(uID); 
+                    displayRepository.FAV = db.FAV.SingleOrDefault(x => x.ADV == id && x.USER == uID);
                 }
                 if (displayRepository.AdvertDetails == null)
                     return HttpNotFound();
