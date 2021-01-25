@@ -92,7 +92,6 @@ namespace MajsterFinale.Controllers
                     if (supportedTypes.Contains(fileExt))
                     {
                         file.SaveAs(Server.MapPath("/UploadImage/" + filename));
-                        BinaryReader reader = new BinaryReader(file.InputStream);
                         IMAGES_MESSAGE img = new IMAGES_MESSAGE
                         {
                             IMAGE_TITLE = filename,
@@ -116,13 +115,6 @@ namespace MajsterFinale.Controllers
             return View("Details", displayRepository);
         }
 
-
-        /* public ActionResult Category(int id, int? page)
-         {
-             int pageSize = 10;
-             int pageNumber = (page ?? 1);
-             return View(new AdvertRepository().GetAdsByCategory(id).ToPagedList(pageNumber, pageSize));
-         }*/
         public ActionResult Kategorie(int id, int? page, string sortOrder, string searchString, string currentFilter)
         {
             ViewBag.CurrentSort = sortOrder;
@@ -197,15 +189,6 @@ namespace MajsterFinale.Controllers
             return View(displayAdsRepository);
         }
 
-        /*public ActionResult Show(int? page)
-        {
-            int pageSize = 10;
-            int pageNumber = (page ?? 1);
-            displayAdsRepository.ADVERTS = new AdvertRepository().GetAdsList().ToPagedList(pageNumber, pageSize);
-            displayAdsRepository.IMAGES = new AdvertRepository().GetAdsImages().ToList();
-            return View(displayAdsRepository);
-
-        }*/
         public ActionResult OgloszeniaUsera(int? page, int id, string sortOrder, string searchString, string currentFilter)
         {
             ViewBag.CurrentSort = sortOrder;
@@ -258,11 +241,6 @@ namespace MajsterFinale.Controllers
 
         }
 
-        public ActionResult Message()
-        {
-            return View(new AdvertRepository().GetMessage());
-            //return View(new AdvertRepository().GetMessage().ToList());
-        }
         public ActionResult AddAdvertisement()
         {
             if (Session["ID"] != null)
