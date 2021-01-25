@@ -289,6 +289,7 @@
     <Content Include="Content\CSS\main_bg.css" />
     <Content Include="Content\CSS\main_css.css" />
     <Content Include="Content\CSS\main_nav.css" />
+    <Content Include="Content\CSS\main_panel.css" />
     <Content Include="Content\CSS\main_reglog.css" />
     <Content Include="Content\CSS\PagedList.css" />
     <Content Include="Content\IMAGES\background2.svg" />
@@ -457,6 +458,7 @@
     <Content Include="Views\Adverts\Kategorie.cshtml" />
     <Content Include="Views\Adverts\OgloszeniaUsera.cshtml" />
     <Content Include="Views\Adverts\Obserwowane.cshtml" />
+    <Content Include="Views\Home\DisplayMsgPartialView.cshtml" />
     <None Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Message.cshtml" />
     <Content Include="Views\Home\Rejestracja.cshtml" />

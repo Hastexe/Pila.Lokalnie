@@ -4,68 +4,92 @@
 @model MajsterFinale.Models.DisplayAdsRepository
 @using PagedList;
 @using PagedList.Mvc;
-
-<div class="container-fluid">
-    <div class="row navpanel">
-        <div class="col-sm-12"><b>Witaj, @Session["MAIL"]</b></div>
-        <div class="col-sm-12"><h1>Twoje ogłoszenia</h1></div>
-        <div class="col-sm-12">
+<div class="container-fluid panel_mo">
+    <div class="row no-gutters">
+        <div class="col-md-12 panel_top rounded p-3">
+            <b>Witaj, @Session["MAIL"]</b>
+            <h1>Obserwowane</h1>
+        </div>
+        <div class="col-md-12 panel_mid rounded p-3">
             <nav class="nav flex-column flex-sm-row">
-                <a class="nav-link navpanelcolor active" href="@Url.Action("MojeOgloszenia", "Adverts", null)">Moje ogłoszenia</a>
-                <a class="nav-link navpanelcolor" href="@Url.Action("Obserwowane", "Adverts", null)">Obserwowane</a>
-                <a class="nav-link navpanelcolor" href="@Url.Action("Messages", "User", null)">Wiadomości</a>
-                <a class="nav-link navpanelcolor" href="@Url.Action("ArchiveAd", "Adverts", null)">Archiwum</a>
-                <a class="nav-link navpanelcolor" href="@Url.Action("EditData", "User", null)">Ustawienia</a>
+                <a class="nav-link " href="@Url.Action("MojeOgloszenia", "Adverts", null)">Moje ogłoszenia</a>
+                <a class="nav-link active" href="@Url.Action("Obserwowane", "Adverts", null)">Obserwowane</a>
+                <a class="nav-link " href="@Url.Action("Messages", "User", null)">Wiadomości</a>
+                <a class="nav-link " href="@Url.Action("ArchiveAd", "Adverts", null)">Archiwum</a>
+                <a class="nav-link " href="@Url.Action("EditData", "User", null)">Ustawienia</a>
             </nav>
         </div>
-    </div>
-    <hr>
-    <div class="col-sm-12" style="margin-top: 30px;">
-        @{
-            bool print = true;
-        }
-        @foreach (var item in Model.ADVERTS)
-        {
-            print = true;
-            using (Html.BeginForm())
+        <div class="col-md-12 panel_bottom rounded">
+            @{
+                bool print = true;
+            }
+            @foreach (var item in Model.ADVERTS)
             {
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card bg-light border-0 cardsize">
-                            <div class="card-horizontal">
-                                <div class="img-square-wrapper">
-                                    <a href="@Url.Action("Details", "Adverts", new { id = item.ID }) ">
-                                        @foreach (var itemImage in Model.IMAGES)
+                print = true;
+                using (Html.BeginForm())
+                {
+                    <div class="card bg-light border-0 mb-3 mt-3 ">
+                        <div class="card-horizontal p-2 border border-light">
+                            <div class="imgpoz">
+                                <a href="@Url.Action("Details", "Adverts", new { id = item.ID })">
+                                    @foreach (var itemImage in Model.IMAGES)
+                                    {
+                                        if (item.ID == itemImage.ADVERT_ID)
                                         {
-                                            if (item.ID == itemImage.ADVERT_ID)
+                                            if (print == true)
                                             {
-                                                if (print == true)
-                                                {
-                                                    <img src="@itemImage.IMAGE_PATH" style="width: 200px; height: 200px" alt="my pic" />
-                                                    print = false;
-                                                }
+                                                <img class="imgsize" src="@itemImage.IMAGE_PATH" alt="my pic" />
+                                                print = false;
                                             }
                                         }
-                                    </a>
+                                    }
+                                </a>
+                            </div>
+                            <div class="card-body">
+                                <div class="imgtitle">
+                                    <h4 class="card-title">
+                                        <a href="@Url.Action("Details", "Adverts", new { id = item.ID })">
+                                            @if (item.TITLE.Length < 50)
+                                            {
+                                                @Html.DisplayFor(x => item.TITLE)
+                                            }
+                                            else
+                                            {
+                                                @item.TITLE.Substring(0, 100)
+                                            }
+
+                                        </a>
+                                    </h4>
+                                    <h5 class="card-subtitle mb-2 text-muted">
+                                        @if (item.PRICE == "0")
+                                        {
+                                            <span>Cena do ustalenia</span>
+                                        }
+                                        else
+                                        {
+                                            <span>@Html.DisplayFor(x => item.PRICE) zł</span>
+                                        }
+                                    </h5>
                                 </div>
-                                <div class="card-body link">
-                                    <h4 class="card-title"><a href="@Url.Action("Details", "Adverts", new { id = item.ID })">@Html.DisplayFor(modelItem => item.TITLE)</a></h4>
-                                    <!-- <p class="card-text">Kategoria: @Html.DisplayFor(modelItem => item.CATEGORIES.NAME)</p>-->
-                                    <button type="submit" value="@item.ID" name="Edit" onclick="return @item.ID;">Edytuj</button>|
-                                    <button type="submit" value="@item.ID" name="Delete" onclick="return @item.ID;">Usuń</button>
-                                    <p class="card-text text-right">@Html.DisplayFor(modelItem => item.PRICE) zł</p>
+                                <div class="imgbutton">
+                                    <button class="btn btn-custom" type="submit" value="@item.ID" name="Edit" onclick="return @item.ID;"><i class="far fa-bookmark"></i></button>
+                                </div>
+
+                                <div class="imgdate">
+                                    @{
+                                        string Data = item.DATE.Date.ToShortDateString();
+                                    }
+                                    <p class="card-subtitle mb-2 text-muted">Dodane: @Html.DisplayFor(m => Data)</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <br>
+                }
             }
-        }
-        <div class="col-md-12 text-center" style="background-color:transparent;">
-            Strona @(Model.ADVERTS.PageCount < Model.ADVERTS.PageNumber ? 0 : Model.ADVERTS.PageNumber) z @Model.ADVERTS.PageCount
-
-            @Html.PagedListPager(Model.ADVERTS, page => Url.Action("Obserowane", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+            <div class="col-md-12 text-center" style="background-color:transparent;">
+                Strona @(Model.ADVERTS.PageCount < Model.ADVERTS.PageNumber ? 0 : Model.ADVERTS.PageNumber) z @Model.ADVERTS.PageCount
+                @Html.PagedListPager(Model.ADVERTS, page => Url.Action("OgloszeniaUsera", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+            </div>
         </div>
     </div>
 </div>

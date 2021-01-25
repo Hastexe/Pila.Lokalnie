@@ -11,13 +11,19 @@
     <div class="col-md-12 panel_mid rounded p-3">
         <nav class="nav flex-column flex-sm-row">
             <a class="nav-link " href="@Url.Action("MojeOgloszenia", "Adverts", null)">Moje ogłoszenia</a>
-            <a class="nav-link disabled" href="@Url.Action("Obserwowane", "Adverts", null)">Obserwowane (work in progress)</a>
+            <a class="nav-link " href="@Url.Action("Obserwowane", "Adverts", null)">Obserwowane</a>
             <a class="nav-link active" href="@Url.Action("Messages", "User", null)">Wiadomości</a>
             <a class="nav-link " href="@Url.Action("ArchiveAd", "Adverts", null)">Archiwum</a>
             <a class="nav-link " href="@Url.Action("EditData", "User", null)">Ustawienia</a>
         </nav>
     </div>
-    <div class="col-md-12 rounded mt-1"><span class="text-muted">Użytkownik</span></div>
+    <div class="col-md-12 rounded mt-1">
+        <div class="row">
+            <div class="col-md-3"><span class="text-muted">Użytkownik</span></div>
+            <div class="col-md-7"><span class="text-muted">Treść wiadomości</span></div>
+            <div class="col-md-2"><span class="text-muted">Akcja</span></div>
+        </div>
+    </div>
 
 
     <div class="col-md-12 rounded mt-1 my-0" style="background-color:white; min-height:4rem">

@@ -13,7 +13,7 @@
         <div class="col-md-12 panel_mid rounded p-3">
             <nav class="nav flex-column flex-sm-row">
                 <a class="nav-link " href="@Url.Action("MojeOgloszenia", "Adverts", null)">Moje ogłoszenia</a>
-                <a class="nav-link disabled" href="@Url.Action("#", "Adverts", null)">Obserwowane (work in progress)</a>
+                <a class="nav-link " href="@Url.Action("Obserwowane", "Adverts", null)">Obserwowane</a>
                 <a class="nav-link " href="@Url.Action("Messages", "User", null)">Wiadomości</a>
                 <a class="nav-link active" href="@Url.Action("ArchiveAd", "Adverts", null)">Archiwum</a>
                 <a class="nav-link " href="@Url.Action("EditData", "User", null)">Ustawienia</a>
@@ -28,17 +28,17 @@
                 print = true;
                 using (Html.BeginForm())
                 {
-                    <div class="card bg-light border-0 mb-3 mt-3">
-                        <div class="card-horizontal p-2">
-                            <div class="img-square-wrapper">
-                                <a href="@Url.Action("Details", "Adverts", new { id = item.ID }) ">
+                    <div class="card bg-light border-0 mb-3 mt-3 ">
+                        <div class="card-horizontal p-2 border border-light">
+                            <div class="imgpoz">
+                                <a href="@Url.Action("Details", "Adverts", new { id = item.ID })">
                                     @foreach (var itemImage in Model.IMAGES)
                                     {
                                         if (item.ID == itemImage.ADVERT_ID)
                                         {
                                             if (print == true)
                                             {
-                                                <img class="img-fluid" src="@itemImage.IMAGE_PATH" style="width: 200px; height: 140px" alt="my pic" />
+                                                <img class="imgsize" src="@itemImage.IMAGE_PATH" alt="my pic" />
                                                 print = false;
                                             }
                                         }
@@ -46,7 +46,7 @@
                                 </a>
                             </div>
                             <div class="card-body">
-                                <div style="float:left">
+                                <div class="imgtitle">
                                     <h4 class="card-title">
                                         <a href="@Url.Action("Details", "Adverts", new { id = item.ID })">
                                             @if (item.TITLE.Length < 50)
@@ -60,26 +60,27 @@
 
                                         </a>
                                     </h4>
-                                    <h6 class="card-subtitle mb-2 text-muted">
-                                        <button class="btn btn-success" type="submit" value="@item.ID" name="Restore" onclick="return @item.ID;">Przywróć</button>
-                                        <button class="btn btn-outline-danger" type="submit" value="@item.ID" name="Delete" onclick="return @item.ID;">Usuń</button>
-                                    </h6>
+                                    <h5 class="card-subtitle mb-2 text-muted">
+                                        @if (item.PRICE == "0")
+                                        {
+                                            <span>Cena do ustalenia</span>
+                                        }
+                                        else
+                                        {
+                                            <span>@Html.DisplayFor(x => item.PRICE) zł</span>
+                                        }
+                                    </h5>
                                 </div>
-                                <div style="float:right">
-                                    @if (item.PRICE == "0")
-                                    {
-                                        <span>Cena do ustalenia</span>
-                                    }
-                                    else
-                                    {
-                                        <a>@Html.DisplayFor(x => item.PRICE) zł</a>
-                                    }
+                                <div class="imgbutton">
+                                    <button class="btn btn-success" type="submit" value="@item.ID" name="Restore" onclick="return @item.ID;"><i class="fas fa-undo-alt"></i> Przywróć</button>
+                                    <button class="btn btn-danger" type="submit" value="@item.ID" name="Delete" onclick="return @item.ID;"><i class="fas fa-times"></i></button>
                                 </div>
-                                <div style="position: absolute;bottom: 0;">
+
+                                <div class="imgdate">
                                     @{
                                         string Data = item.DATE.Date.ToShortDateString();
                                     }
-                                    <h6 class="card-subtitle mb-2 text-muted">Dodane: @Html.DisplayFor(m => Data)</h6>
+                                    <p class="card-subtitle mb-2 text-muted">Dodane: @Html.DisplayFor(m => Data)</p>
                                 </div>
                             </div>
                         </div>
