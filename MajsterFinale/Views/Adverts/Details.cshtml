@@ -46,18 +46,28 @@
                 @{
                     if (Session["ID"] != null)
                     {
-                        using (Html.BeginForm("Obserwuj", "Adverts", new { id = Model.AdvertDetails.ID }, FormMethod.Post))
+                        if (Model.FAV!=null)
                         {
-                            <button class="btn btn-custom "><i class="far fa-bookmark"></i>Obserwuj</button>
+                            using (Html.BeginForm("Obserwuj", "Adverts", new { id = Model.AdvertDetails.ID }, FormMethod.Post))
+                            {
+                                <button class="btn btn-custom "><i class="far fa-bookmark"></i>Obserwuj</button>
+                            }
+                        }
+                        else
+                        {
+                            using (Html.BeginForm("Obserwuj", "Adverts", new { id = Model.AdvertDetails.ID }, FormMethod.Post))
+                            {
+                                <button class="btn btn-custom "><i class="fas fa-bookmark"></i>Obserwuj</button>
+                            }
                         }
 
                     }
                     else
                     {
                         <div class="alert alert-warning" role="alert">
-                            <a href="@Url.Action("Logowanie", "Home")" target="_blank">Zaloguj się</a> aby obserwować
+                            <a href="@Url.Action("Logowanie", "Home")" target="_blank"><button class="btn btn-custom ">Zaloguj się aby obserwować</button></a> 
                         </div>
-                       
+
                     }
 
                 }

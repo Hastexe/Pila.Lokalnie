@@ -16,10 +16,5 @@ namespace MajsterFinale.Models
         {
             return db.CATEGORIES.ToList();
         }
-        public int IMAGE_ID { get; set; }
-        public string IMAGE_TITLE { get; set; }
-        public string IMAGE_PATH { get; set; }
-        IEnumerable<HttpPostedFileWrapper> ImageFile { get; set; }
-
     }
 }

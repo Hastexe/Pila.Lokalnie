@@ -285,64 +285,6 @@ namespace MajsterFinale.Controllers
             return RedirectToAction("Index", "Home");
         }
  
-        public ActionResult ImageUpload(ImageViewModel model, IEnumerable<HttpPostedFileBase> files)
-        {
-            BazaLocal db = new BazaLocal();
-            int imgId = 0;
-
-            foreach (var file in files)
-            {
-                //var file = model.ImageFile;
-                byte[] imagebyte = null;
-                var filename = Guid.NewGuid() + file.FileName;
-                var supportedTypes = new[] { "jpg", "jpeg", "png" };
-                var fileExt = System.IO.Path.GetExtension(file.FileName).Substring(1);
-                if (file != null)
-                {
-                    if (!supportedTypes.Contains(fileExt))
-                    {
-                        return RedirectToAction("Index", "Home");
-                    }
-                    else
-                    {
-                        file.SaveAs(Server.MapPath("/UploadImage/" + filename));
-                        BinaryReader reader = new BinaryReader(file.InputStream);
-                        imagebyte = reader.ReadBytes(file.ContentLength);
-                        IMAGES img = new IMAGES();
-
-                        if (file.ContentLength > 2097152)  // 2MB?
-                        {
-
-                            return RedirectToAction("Index", "Home");
-                        }
-
-                        else
-                        {
-                            img.IMAGE_TITLE = filename;
-                            img.IMAGE_BYTE = imagebyte;
-                            img.IMAGE_PATH = "/UploadImage/" + filename;
-                            db.IMAGES.Add(img);
-                            db.SaveChanges();
-                            imgId = img.IMAGE_ID;
-                        }
-                    }
-                    
-                }
-            }
-            return RedirectToAction("DodawanieZdjec", "Home");
-        }
-
-        public ActionResult DisplayingImage(int imgid)
-        {
-            BazaLocal db = new BazaLocal();
-
-            var img = db.IMAGES.SingleOrDefault(x => x.IMAGE_ID == imgid);
-            return File(img.IMAGE_BYTE, "image/jpg");
-        }
-        public ActionResult DodawanieZdjec()
-        {
-            return View();
-        }
         public ActionResult Regulamin()
         {
             return File("~/Content/files/regulamin.pdf", "application/pdf");

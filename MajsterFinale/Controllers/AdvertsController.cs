@@ -37,7 +37,8 @@ namespace MajsterFinale.Controllers
                 if (Session["ID"] != null)
                 {
                     int uID = Convert.ToInt32(Session["ID"]);
-                    displayRepository.LoggedUser = advertRepository.GetUserData(uID);
+                    displayRepository.LoggedUser = advertRepository.GetUserData(uID); 
+                    displayRepository.FAV = db.FAV.SingleOrDefault(x => x.ADV == id && x.USER == uID);
                 }
                 if (displayRepository.AdvertDetails == null)
                     return HttpNotFound();
@@ -92,7 +93,6 @@ namespace MajsterFinale.Controllers
                     if (supportedTypes.Contains(fileExt))
                     {
                         file.SaveAs(Server.MapPath("/UploadImage/" + filename));
-                        BinaryReader reader = new BinaryReader(file.InputStream);
                         IMAGES_MESSAGE img = new IMAGES_MESSAGE
                         {
                             IMAGE_TITLE = filename,
@@ -116,13 +116,6 @@ namespace MajsterFinale.Controllers
             return View("Details", displayRepository);
         }
 
-
-        /* public ActionResult Category(int id, int? page)
-         {
-             int pageSize = 10;
-             int pageNumber = (page ?? 1);
-             return View(new AdvertRepository().GetAdsByCategory(id).ToPagedList(pageNumber, pageSize));
-         }*/
         public ActionResult Kategorie(int id, int? page, string sortOrder, string searchString, string currentFilter)
         {
             ViewBag.CurrentSort = sortOrder;
@@ -197,15 +190,6 @@ namespace MajsterFinale.Controllers
             return View(displayAdsRepository);
         }
 
-        /*public ActionResult Show(int? page)
-        {
-            int pageSize = 10;
-            int pageNumber = (page ?? 1);
-            displayAdsRepository.ADVERTS = new AdvertRepository().GetAdsList().ToPagedList(pageNumber, pageSize);
-            displayAdsRepository.IMAGES = new AdvertRepository().GetAdsImages().ToList();
-            return View(displayAdsRepository);
-
-        }*/
         public ActionResult OgloszeniaUsera(int? page, int id, string sortOrder, string searchString, string currentFilter)
         {
             ViewBag.CurrentSort = sortOrder;
@@ -258,11 +242,6 @@ namespace MajsterFinale.Controllers
 
         }
 
-        public ActionResult Message()
-        {
-            return View(new AdvertRepository().GetMessage());
-            //return View(new AdvertRepository().GetMessage().ToList());
-        }
         public ActionResult AddAdvertisement()
         {
             if (Session["ID"] != null)
@@ -334,7 +313,6 @@ namespace MajsterFinale.Controllers
                                     img.ADVERT_ID = newAdvert.ID;
                                     db.IMAGES_ADVERT.Add(img);
                                     db.ADVERTS.Add(newAdvert);
-                                    db.SaveChanges();
                                 }
                             }
 
@@ -342,9 +320,9 @@ namespace MajsterFinale.Controllers
                         else
                         {
                             db.ADVERTS.Add(newAdvert);
-                            db.SaveChanges();
                         }
                     }
+                    db.SaveChanges();
                     return RedirectToAction("MojeOgloszenia", "adverts");
                 }
                 else
@@ -518,7 +496,7 @@ namespace MajsterFinale.Controllers
                 }
             }
             else
-            return RedirectToAction("Logowanie", "home");
+                return RedirectToAction("Logowanie", "home");
         }
 
         public ActionResult Obserwowane(int? page)
@@ -528,19 +506,12 @@ namespace MajsterFinale.Controllers
             if (Session["ID"] != null)
             {
                 int uID = Convert.ToInt32(Session["ID"]);
-                //var result = (from t1 in db.ADVERTS
-                //              join t2 in db.FAV
-                //              on t1.ID equals t2.ADV
-                //              select new { t2.ADV, t1 }).ToList();
-                //var adverts = result.Where(x => x.t1.ID == x.ADV && x.t1.USER_ID == uID).OrderBy(z => z.ADV);
-
-                var fav = db.FAV.Where(z => z.USER == uID).Select(y=>y.ADV).ToList();
+                var fav = db.FAV.Where(z => z.USER == uID).Select(y => y.ADV).ToList();
                 List<ADVERTS> adverts = new List<ADVERTS>();
-                foreach(int item in fav)
+                foreach (int item in fav)
                 {
-                  adverts.AddRange(db.ADVERTS.Where(a => a.ID == item).OrderBy(x => x.ID).ToList());
+                    adverts.AddRange(db.ADVERTS.Where(a => a.ID == item).OrderBy(x => x.ID).ToList());
                 }
-                //var adverts = db.ADVERTS.Where(a => a.ID == fav).OrderBy(x => x.ID);
                 displayAdsRepository.ADVERTS = adverts.ToPagedList(pageNumber, pageSize);
                 displayAdsRepository.IMAGES = new AdvertRepository().GetAdsImages().ToList();
                 return View(displayAdsRepository);
@@ -548,24 +519,6 @@ namespace MajsterFinale.Controllers
             else
             {
                 return RedirectToAction("Logowanie", "home");
-            }
-        }
-        [HttpPost]
-        public ActionResult Obserwowane(string Delete)
-        {
-            if (Delete != null)
-            {
-                int AdID = Int32.Parse(Delete);
-                int uID = Convert.ToInt32(Session["ID"]);
-                db.FAV.Remove(db.FAV.Single(x => x.ADV == AdID && x.USER == uID));
-                db.SaveChanges();
-                displayRepository.LoggedUser = advertRepository.GetUserData(uID);
-                return Content("<script language='javascript' type='text/javascript'>location = location;alert('Ogłoszenie zostało usunięte z obserwowanych');</script>");
-
-            }
-            else
-            {
-                return View();
             }
         }
     }
