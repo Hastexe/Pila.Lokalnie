@@ -30,15 +30,15 @@ namespace MajsterFinale.Models
         [DataType(DataType.Password)]
         [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&.-]).{8,30}$",
         ErrorMessage = "Has³o nie mo¿e byæ krótsze ni¿ 8 znaków. Musi zawieraæ dodatkowo przynajmniej 1 cyfre, znak specjalny oraz du¿¹ literê.")]
-        [StringLength(30, MinimumLength = 8, ErrorMessage = "Has³o musi sk³adaæ sie z minumum 8 znaków")]
+        [StringLength(300, MinimumLength = 8, ErrorMessage = "Has³o musi sk³adaæ sie z minumum 8 znaków")]
         public string REGISTERPASSWORD { get; set; }
         [DisplayName("Has³o")]
         [DataType(DataType.Password)]
-        [StringLength(30, MinimumLength = 8, ErrorMessage = "Has³o musi sk³adaæ sie z minumum 8 znaków")]
+        [StringLength(300, MinimumLength = 8, ErrorMessage = "Has³o musi sk³adaæ sie z minumum 8 znaków")]
         public string PASSWORD { get; set; }
         [DisplayName("Powtórz Has³o")]
         [DataType(DataType.Password)]
-        [StringLength(30, MinimumLength = 8, ErrorMessage = "Has³o musi sk³adaæ sie z minumum 8 znaków")]
+        [StringLength(300, MinimumLength = 8, ErrorMessage = "Has³o musi sk³adaæ sie z minumum 8 znaków")]
         public string REPASSWORD { get; set; }
         [DisplayName("E-mail")]
         [DataType(DataType.EmailAddress)]

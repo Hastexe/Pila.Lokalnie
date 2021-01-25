@@ -52,7 +52,22 @@
                         <h1 class="">@Html.DisplayFor(model => model.AdvertDetails.PRICE) zł</h1>
                     }
                     <br>
-                    <button class="btn btn-custom "><i class="far fa-bookmark"></i><a href="@Html.Action("Obserwuj", "Adverts", new { id = Model.AdvertDetails.ID })">Obserwuj</a></button>
+                    @{
+                        if (Session["ID"] != null)
+                        {
+                            using (Html.BeginForm("Obserwuj", "Adverts", new { id = Model.AdvertDetails.ID }, FormMethod.Post))
+                            {
+                                <button class="btn btn-custom "><i class="far fa-bookmark"></i>Obserwuj</button>
+                            }
+
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("Logowanie", "Home")" target="_blank">Zaloguj się aby obserwować</a>
+                        }
+
+                    }
+                   
                 </div>
             </div>
             <hr>
@@ -120,6 +135,3 @@
         </div>
     </div>
 </div>
-
-
-

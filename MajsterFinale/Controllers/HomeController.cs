@@ -196,6 +196,7 @@ namespace MajsterFinale.Controllers
                         USERS.IS_ADMIN = false;
                         USERS.REGISTER_DATE = DateTime.Now;
                         USERS.LASTRESETPASSDATE = DateTime.Now.AddDays(-1);
+
                         db.USERS.Add(USERS);
                         db.SaveChanges();
                         SendVerificationLinkEmail(USERS.MAIL, USERS.USER_ID);
@@ -211,7 +212,7 @@ namespace MajsterFinale.Controllers
         }
 
         [HttpPost]
-        public void SendVerificationLinkEmail(string MAIL, int UID)
+        private void SendVerificationLinkEmail(string MAIL, int UID)
         {
             var regInfo = db.USERS.Where(x => x.USER_ID == UID).FirstOrDefault();
             var verifyUrl = "/Home/Weryfikacja?uID=" + UID;

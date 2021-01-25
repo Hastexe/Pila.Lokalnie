@@ -44,7 +44,7 @@ namespace MajsterFinale.Controllers
                 else
                     return View("Details", displayRepository);
             }
-            return RedirectToAction("Show", "Adverts");
+            return RedirectToAction("Wyszukiwanie", "Home");
         }
         [HttpPost]
         public ActionResult Details(int id, string message, IEnumerable<HttpPostedFileBase> files)
@@ -494,11 +494,11 @@ namespace MajsterFinale.Controllers
             return Content("<script language='javascript' type='text/javascript'>alert('Ogłoszenie zostało przywrócone');location = location;</script>");
         }
 
-        public ActionResult Obserwuj(string id)
+        public ActionResult Obserwuj(int id)
         {
             if (Session["ID"] != null)
             {
-                int AdID = Int32.Parse(id);
+                int AdID = id;
                 int uID = Convert.ToInt32(Session["ID"]);
                 FAV fAV = new FAV();
                 int check = db.FAV.Count(x => x.USER == uID && x.ADV == AdID);
@@ -508,17 +508,17 @@ namespace MajsterFinale.Controllers
                     fAV.ADV = AdID;
                     db.FAV.Add(fAV);
                     db.SaveChanges();
-                    return null;
+                    return RedirectToAction("Details", "Adverts", new { id = id });
                 }
                 else
                 {
                     db.FAV.Remove(db.FAV.Single(x => x.ADV == AdID && x.USER == uID));
                     db.SaveChanges();
-                    return null;
+                    return RedirectToAction("Details", "Adverts", new { id = id });
                 }
             }
             else
-                return RedirectToAction("Logowanie", "home");
+            return RedirectToAction("Logowanie", "home");
         }
 
         public ActionResult Obserwowane(int? page)
