@@ -1,5 +1,7 @@
-﻿@model MajsterFinale.Models.MessageModel
-
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model MajsterFinale.Models.MessageModel
 <script>
     function checkFilesCount(id) {
         if (id.files.length > 4) {
@@ -8,79 +10,100 @@
         }
     }
 </script>
-@if (!string.IsNullOrEmpty(ViewBag.Error))
-{
-    <script type="text/javascript">
-        alert("@ViewBag.Error");
-    </script>
-}
-
-<div>
-    <table>
-        @{
-            int LoggedUserID = Convert.ToInt32(Session["ID"]);
-
-
-            for (int i = 0; i < Model.CoversationMessages.Count; i++)
-            {
-                <tr>
-
-                    @if (Model.CoversationMessages[i].MSG_FROM == Model.LoggedUser.USER_ID)
-                    {
-                        <td style="background-color: black; color:white; height: 50px;">
-                            @Model.LoggedUser.FNAME: @Html.DisplayFor(modelItem => Model.CoversationMessages[i].TEXT)
-                            <br />
-                            @{
-                                foreach (var j in Model.Images)
-                                {
-                                    if (j.MESSAGE_ID == Model.CoversationMessages[i].ID)
-                                    {
-                                        <img src="@j.IMAGE_PATH" alt="my pic" />
-                                    }
-                                }
-                            }
-                            <br />
-                            @Html.DisplayFor(modelItem => Model.CoversationMessages[i].DATE)
-
-                        </td>
-                    }
-
-                    @if (Model.CoversationMessages[i].MSG_FROM == Model.SecondConversationUser.USER_ID)
-                    {
-                        <td style="background-color: Gray; color:white; height: 50px;">
-                            @Model.SecondConversationUser.FNAME: @Html.DisplayFor(modelItem => Model.CoversationMessages[i].TEXT)
-                            @Html.DisplayFor(modelItem => Model.CoversationMessages[i].TEXT)
-                            <br />
-                            @{
-                                foreach (var j in Model.Images)
-                                {
-                                    if (j.MESSAGE_ID == Model.CoversationMessages[i].ID)
-                                    {
-                                        <img src="@j.IMAGE_PATH" alt="my pic" />
-                                    }
-                                }
-                            }
-                            <br />
-                            @Html.DisplayFor(modelItem => Model.CoversationMessages[i].DATE)
-                        </td>
-                    }
-                </tr>
-
-            }
-        }
-
-    </table>
-    @{
-        <p>Odpowiedz: </p>
-        using (Html.BeginForm("Conversation", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+<div class="container-fluid panel_mo">
+    <div class="col-md-12 panel_top rounded p-3">
+        <b>Witaj, @Session["MAIL"]</b>
+        <h1>Wiadomości</h1>
+    </div>
+    <div class="col-md-12 panel_mid rounded p-3">
+        <nav class="nav flex-column flex-sm-row">
+            <a class="nav-link " href="@Url.Action("MojeOgloszenia", "Adverts", null)">Moje ogłoszenia</a>
+            <a class="nav-link " href="@Url.Action("Obserwowane", "Adverts", null)">Obserwowane</a>
+            <a class="nav-link active" href="@Url.Action("Messages", "User", null)">Wiadomości</a>
+            <a class="nav-link " href="@Url.Action("ArchiveAd", "Adverts", null)">Archiwum</a>
+            <a class="nav-link " href="@Url.Action("EditData", "User", null)">Ustawienia</a>
+        </nav>
+    </div>
+    
+    <div class="panel_bottom rounded mt-1">
+        @if (!string.IsNullOrEmpty(ViewBag.Error))
         {
-            <textarea class="form-control" rows="5" minlength="5" name="message" placeholder="Napisz wiadomość! (min. 5 znaków)"></textarea>
-            <br />
-            <input type="file" id="f" name="files" multiple onchange="checkFilesCount(this)" />
-            <input type="hidden" name="AdvertId" value="@Model.CoversationMessages[0].ADVERT_ID" />
-            <input type="hidden" name="UserTo" value="@Model.SecondConversationUser.USER_ID" />
-            <button class="btn btn-default">Wyślij</button>
+            <script type="text/javascript">
+        alert("@ViewBag.Error");
+            </script>
         }
-    }
 
+        <div>
+            <table>
+                @{
+                    int LoggedUserID = Convert.ToInt32(Session["ID"]);
+
+
+                    for (int i = 0; i < Model.CoversationMessages.Count; i++)
+                    {
+                        <tr>
+
+                            @if (Model.CoversationMessages[i].MSG_FROM == Model.LoggedUser.USER_ID)
+                            {
+                                <td style="background-color: black; color:white; height: 50px;">
+                                    @Model.LoggedUser.FNAME: @Html.DisplayFor(modelItem => Model.CoversationMessages[i].TEXT)
+                                    <br />
+                                    @{
+                                        foreach (var j in Model.Images)
+                                        {
+                                            if (j.MESSAGE_ID == Model.CoversationMessages[i].ID)
+                                            {
+                                                <img src="@j.IMAGE_PATH" alt="my pic" />
+                                            }
+                                        }
+                                    }
+                                    <br />
+                                    @Html.DisplayFor(modelItem => Model.CoversationMessages[i].DATE)
+
+                                </td>
+                            }
+
+                            @if (Model.CoversationMessages[i].MSG_FROM == Model.SecondConversationUser.USER_ID)
+                            {
+                                <td style="background-color: Gray; color:white; height: 50px;">
+                                    @Model.SecondConversationUser.FNAME: @Html.DisplayFor(modelItem => Model.CoversationMessages[i].TEXT)
+                                    @Html.DisplayFor(modelItem => Model.CoversationMessages[i].TEXT)
+                                    <br />
+                                    @{
+                                        foreach (var j in Model.Images)
+                                        {
+                                            if (j.MESSAGE_ID == Model.CoversationMessages[i].ID)
+                                            {
+                                                <img src="@j.IMAGE_PATH" alt="my pic" />
+                                            }
+                                        }
+                                    }
+                                    <br />
+                                    @Html.DisplayFor(modelItem => Model.CoversationMessages[i].DATE)
+                                </td>
+                            }
+                        </tr>
+
+                    }
+                }
+
+            </table>
+            @{
+                <p>Odpowiedz: </p>
+                using (Html.BeginForm("Conversation", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <textarea class="form-control" rows="5" minlength="5" name="message" placeholder="Napisz wiadomość! (min. 5 znaków)"></textarea>
+                    <br />
+                    <input type="file" id="f" name="files" multiple onchange="checkFilesCount(this)" />
+                    <input type="hidden" name="AdvertId" value="@Model.CoversationMessages[0].ADVERT_ID" />
+                    <input type="hidden" name="UserTo" value="@Model.SecondConversationUser.USER_ID" />
+                    <button class="btn btn-default">Wyślij</button>
+                }
+            }
+
+        </div>
+
+
+    </div>
 </div>
+
