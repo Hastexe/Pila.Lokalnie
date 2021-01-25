@@ -76,6 +76,7 @@
                         <tr>
                             <td>
                                 ID: @msglist[0, i];
+                                Ogłoszenie: @Model.MessageAdvertDetails.Where(x => x.ID == msglist[0, i]).Select(x => x.TITLE).SingleOrDefault();
                             </td>
                             <td>
                                 @{

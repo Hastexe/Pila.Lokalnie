@@ -194,7 +194,6 @@
     <Compile Include="Models\IMAGES_MESSAGE.cs">
       <DependentUpon>BazaPolaczenie.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ImageViewModel.cs" />
     <Compile Include="Models\MessageModel.cs" />
     <Compile Include="Models\PanelMessageModel.cs" />
     <Compile Include="Models\RegisterRepository.cs" />
@@ -476,11 +475,8 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Adverts\Details.cshtml" />
-    <Content Include="Views\Adverts\Show.cshtml" />
-    <Content Include="Views\User\Panel.cshtml" />
     <Content Include="Views\Home\Weryfikacja.cshtml" />
     <Content Include="Views\User\EditPassword.cshtml" />
-    <Content Include="Views\Home\DodawanieZdjec.cshtml" />
     <Content Include="Views\User\Conversation.cshtml" />
     <Content Include="Views\User\Messages.cshtml" />
     <Content Include="Views\User\EditData.cshtml" />
@@ -494,10 +490,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Properties\PublishProfiles\" />
     <Folder Include="UploadImage\" />
-    <Folder Include="Views\ActivateAccount\" />
-    <Folder Include="Views\RegisterRepository\" />
-    <Folder Include="Views\RegisterViewModel\" />
-    <Folder Include="Views\SearchBarRepository\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
