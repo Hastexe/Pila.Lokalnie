@@ -521,5 +521,23 @@ namespace MajsterFinale.Controllers
                 return RedirectToAction("Logowanie", "home");
             }
         }
+        [HttpPost]
+        public ActionResult Obserwowane(string Delete)
+        {
+            if (Delete != null)
+            {
+                int AdID = Int32.Parse(Delete);
+                int uID = Convert.ToInt32(Session["ID"]);
+                db.FAV.Remove(db.FAV.Single(x => x.ADV == AdID && x.USER == uID));
+                db.SaveChanges();
+                displayRepository.LoggedUser = advertRepository.GetUserData(uID);
+                return Content("<script language='javascript' type='text/javascript'>location = location;alert('Ogłoszenie zostało usunięte z obserwowanych');</script>");
+
+            }
+            else
+            {
+                return View();
+            }
+        }
     }
 }
