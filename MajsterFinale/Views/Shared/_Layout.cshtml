@@ -46,7 +46,7 @@
                                 <b><a>Witaj, @Session["FNAME"]</a></b>
                             </li>*@
                             <li class="nav-item active">
-                                <a class="nav-link d-none d-lg-block active" href="#"><i class="far fa-bookmark"> </i><span class="d-lg-none"> Obserwowane</span></a>
+                                <a class="nav-link d-none d-lg-block active" href="@Url.Action("Obserwowane", "Adverts", null)"><i class="far fa-bookmark"> </i><span class="d-lg-none"> Obserwowane</span></a>
                             </li>
 
                             <li class="nav-item">
@@ -77,7 +77,7 @@
                                     <a class="dropdown-item" href="@Url.Action("Messages", "User", null)">Wiadomości</a>
                                     <a class="dropdown-item" href="@Url.Action("EditData", "User", null)">Ustawienia</a>
                                     <h6 class="dropdown-header " style="font-weight: bold; font-size: 1.0rem; margin-bottom: 5px;">Obserwowane:</h6>
-                                    <a class="dropdown-item" href="#">Ogłoszenia</a>
+                                    <a class="dropdown-item" href="@Url.Action("Obserwowane", "Adverts", null)">Ogłoszenia</a>
                                     <div class="dropdown-divider"></div>
 
                                     @using (Html.BeginForm("LogOff", "home", FormMethod.Post, new { role = "form" }))
