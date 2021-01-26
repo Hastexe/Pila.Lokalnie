@@ -353,7 +353,7 @@ namespace MajsterFinale.Controllers
             }
             else
             {
-                return RedirectToAction("AddAdvertisement", "Adverts");
+                return RedirectToAction("Logowanie", "Home");
             }
         }
 
@@ -433,7 +433,7 @@ namespace MajsterFinale.Controllers
             }
             else
             {
-                return RedirectToAction("AddAdvertisement", "Adverts");
+                return RedirectToAction("Logowanie", "Home");
             }
         }
         [HttpPost]
