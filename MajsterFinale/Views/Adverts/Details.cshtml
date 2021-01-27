@@ -64,47 +64,58 @@
                     <h2 class="text-muted">@Html.DisplayFor(model => model.AdvertDetails.PRICE) zł</h2>
                 }
                 <br>
-                <div id="button">
-                    <button id="button" class="btn btn-custom " onclick="showhide()">Pokaż telefon</button>
-                    </div>
-                    <div id="newpost" style="display:none">
-                        <button id="button" class="btn btn-custom " onclick="showhide()">@Html.DisplayFor(model => model.AdvertDetails.USERS.PHONE_NUMBER)</button>
-                    </div>
-                    <br>
-                    @{
-                        if (Session["ID"] != null)
-                        {
-                            if (Model.FAV != null)
-                            {
-                                using (Html.BeginForm("Obserwuj", "Adverts", new { id = Model.AdvertDetails.ID }, FormMethod.Post))
-                                {
-                                    <button class="btn btn-custom "><i class="fas fa-bookmark"></i>Obserwowane</button>
-                                }
-                            }
-                            else
-                            {
-                                using (Html.BeginForm("Obserwuj", "Adverts", new { id = Model.AdvertDetails.ID }, FormMethod.Post))
-                                {
-                                    <button class="btn btn-custom "><i class="far fa-bookmark"></i>Obserwuj</button>
-                                }
-                            }
 
+                @{
+                    if (Model.AdvertDetails.USERS.PHONE_NUMBER != null)
+                    {
+                        <div id="button">
+                            <button id="button" class="btn btn-custom " onclick="showhide()">Pokaż telefon</button>
+                        </div>
+                        <div id="newpost" style="display:none">
+                            <button id="button" class="btn btn-custom " onclick="showhide()">@Html.DisplayFor(model => model.AdvertDetails.USERS.PHONE_NUMBER)</button>
+                        </div>
+                        <br>
+                    }
+                    else
+                    {
+                    }
+
+                }
+
+                @{
+                    if (Session["ID"] != null)
+                    {
+                        if (Model.FAV != null)
+                        {
+                            using (Html.BeginForm("Obserwuj", "Adverts", new { id = Model.AdvertDetails.ID }, FormMethod.Post))
+                            {
+                                <button class="btn btn-custom "><i class="fas fa-bookmark"></i>Obserwowane</button>
+                            }
                         }
                         else
                         {
-
-                            <a class="btn btn-custom" href="@Url.Action("Logowanie", "Home")" target="_blank">Zaloguj się aby obserwować</a>
-
-
+                            using (Html.BeginForm("Obserwuj", "Adverts", new { id = Model.AdvertDetails.ID }, FormMethod.Post))
+                            {
+                                <button class="btn btn-custom "><i class="far fa-bookmark"></i>Obserwuj</button>
+                            }
                         }
 
                     }
-                    <hr>
-                    <p><i class="far fa-user"></i>@Html.DisplayFor(model => model.AdvertDetails.USERS.FNAME)</p>
+                    else
+                    {
 
-                    <p><i class="far fa-list-alt"></i><a href="@Url.Action("OgloszeniaUsera", "Adverts", new { id = @Html.DisplayFor(model => model.AdvertDetails.USER_ID)})">Zobacz ogłoszenia użytkownika</a>
+                        <a class="btn btn-custom" href="@Url.Action("Logowanie", "Home")" target="_blank">Zaloguj się aby obserwować</a>
 
-                </div>
+
+                    }
+
+                }
+                <hr>
+                <p><i class="far fa-user"></i>@Html.DisplayFor(model => model.AdvertDetails.USERS.FNAME)</p>
+
+                <p><i class="far fa-list-alt"></i><a href="@Url.Action("OgloszeniaUsera", "Adverts", new { id = @Html.DisplayFor(model => model.AdvertDetails.USER_ID)})">Zobacz ogłoszenia użytkownika</a>
+
+            </div>
             </div>
         <div class="col-md-8">
             <div class="col-md-12 rounded panel_mid p-3">
