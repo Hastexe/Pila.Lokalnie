@@ -161,6 +161,7 @@
     </Compile>
     <Compile Include="Models\ActivationUserModel.cs" />
     <Compile Include="Models\AdvertRepository.cs" />
+    <Compile Include="Models\AddingAdsRepository.cs" />
     <Compile Include="Models\ADVERTS.cs">
       <DependentUpon>BazaPolaczenie.tt</DependentUpon>
     </Compile>
@@ -182,9 +183,11 @@
     <Compile Include="Models\CATEGORIES.cs">
       <DependentUpon>BazaPolaczenie.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\AddingAdsRepository.cs" />
     <Compile Include="Models\DisplayAdsRepository.cs" />
     <Compile Include="Models\EditAdModel.cs" />
+    <Compile Include="Models\FAV.cs">
+      <DependentUpon>BazaPolaczenie.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IMAGES.cs">
       <DependentUpon>BazaPolaczenie.tt</DependentUpon>
     </Compile>
@@ -192,6 +195,9 @@
       <DependentUpon>BazaPolaczenie.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IMAGES_MESSAGE.cs">
+      <DependentUpon>BazaPolaczenie.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MESSAGE.cs">
       <DependentUpon>BazaPolaczenie.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MessageModel.cs" />
@@ -202,12 +208,6 @@
     <Compile Include="Models\UserEditPassword.cs" />
     <Compile Include="Models\UserRepository.cs" />
     <Compile Include="Models\DisplayRepository.cs" />
-    <Compile Include="Models\FAV.cs">
-      <DependentUpon>BazaPolaczenie.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\MESSAGE.cs">
-      <DependentUpon>BazaPolaczenie.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\USERS.cs">
       <DependentUpon>BazaPolaczenie.tt</DependentUpon>
     </Compile>
@@ -311,13 +311,6 @@
       <DependentUpon>BazaPolaczenie.edmx</DependentUpon>
       <LastGenOutput>BazaPolaczenie.cs</LastGenOutput>
     </Content>
-    <EntityDeploy Include="Models\BazaPolaczenie.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>BazaPolaczenie.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\BazaPolaczenie.edmx.diagram">
-      <DependentUpon>BazaPolaczenie.edmx</DependentUpon>
-    </Content>
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -356,6 +349,13 @@
     <Content Include="bin\roslyn\vbc.exe.config" />
     <Content Include="bin\roslyn\vbc.rsp" />
     <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
+    <EntityDeploy Include="Models\BazaPolaczenie.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>BazaPolaczenie.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\BazaPolaczenie.edmx.diagram">
+      <DependentUpon>BazaPolaczenie.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Scripts\JavaScript.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />

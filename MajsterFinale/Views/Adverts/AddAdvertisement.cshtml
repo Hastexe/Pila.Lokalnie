@@ -45,7 +45,7 @@
                 <div class="col-md-12">
                     <h3>Cena</h3>
                     @Html.EditorFor(model => model.Advert.PRICE, new { rows = "1", htmlAttributes = new { @class = "form-control efsmall" } })
-                    @Html.ValidationMessageFor(model => model.Advert.PRICE, "", new { @class = "text-danger" })
+                    @*@Html.ValidationMessageFor(model => model.Advert.PRICE, "", new { @class = "text-danger" })*@
                     <small class="form-text text-muted">
                         <sup style="color:red">&#42;</sup>Podaj Cenę
                     </small>

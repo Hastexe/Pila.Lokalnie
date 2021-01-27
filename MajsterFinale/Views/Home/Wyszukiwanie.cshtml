@@ -104,12 +104,17 @@
             <div class="col-12 rounded cat_adv">
 
                 <h2>Ogłoszenia</h2>
-                <a>@Html.ActionLink("Sortuj po Nazwie", "Wyszukiwanie", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter }) \ </a>
-
-                <a>@Html.ActionLink("Sortuj po Cenie", "Wyszukiwanie", new { sortOrder = ViewBag.PriceSortParm, currentFilter = ViewBag.CurrentFilter }) \ </a>
-
-                <a>@Html.ActionLink("Sortuj po Dacie", "Wyszukiwanie", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })</a>
-
+                <div class="dropdown">
+                    <button class="btn btn-custom2 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Sortowanie
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        @Html.ActionLink("Sortuj po Nazwie", "Wyszukiwanie", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter }, new { @class = "dropdown-item" })
+                        @Html.ActionLink("Sortuj po Cenie", "Wyszukiwanie", new { sortOrder = ViewBag.PriceSortParm, currentFilter = ViewBag.CurrentFilter }, new { @class = "dropdown-item" })
+                        @Html.ActionLink("Sortuj po Dacie", "Wyszukiwanie", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter }, new { @class = "dropdown-item" })
+                    </div>
+                </div>
+                <hr />  
                 @{
                     bool print = true;
                 }
@@ -118,18 +123,20 @@
                     print = true;
                     <div class="card bg-light border-0 mb-2">
                         <div class="card-horizontal p-2">
-                            <div class="img-square-wrapper">
-                                @foreach (var itemImage in Model.IMAGES)
-                                {
-                                    if (item.ID == itemImage.ADVERT_ID)
+                            <div class="imgpoz">
+                                <a href="@Url.Action("Details", "Adverts", new { id = item.ID })">
+                                    @foreach (var itemImage in Model.IMAGES)
                                     {
-                                        if (print == true)
+                                        if (item.ID == itemImage.ADVERT_ID)
                                         {
-                                            <img src="@itemImage.IMAGE_PATH" style="width: 200px; height: 200px" alt="my pic" />
-                                            print = false;
+                                            if (print == true)
+                                            {
+                                                <img class="imgsize" src="@itemImage.IMAGE_PATH" alt="my pic" />
+                                                print = false;
+                                            }
                                         }
                                     }
-                                }
+                                </a>
                             </div>
                             <div class="card-body">
                                 <div style="float:left">
@@ -137,7 +144,7 @@
                                     <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
                                 </div>
                                 <div style="float:right">
-                                    @if (item.PRICE == "0")
+                                    @if (item.PRICE == 0)
                                     {
                                         <span>Cena do ustalenia</span>
                                     }

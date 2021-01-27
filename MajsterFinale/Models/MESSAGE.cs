@@ -11,7 +11,7 @@ namespace MajsterFinale.Models
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class MESSAGE
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,7 +19,7 @@ namespace MajsterFinale.Models
         {
             this.IMAGES_MESSAGE = new HashSet<IMAGES_MESSAGE>();
         }
-    
+
         public int ID { get; set; }
         public int MSG_FROM { get; set; }
         public int MSG_TO { get; set; }
@@ -27,7 +27,7 @@ namespace MajsterFinale.Models
         public System.DateTime DATE { get; set; }
         public Nullable<bool> IS_READ { get; set; }
         public int ADVERT_ID { get; set; }
-    
+
         public virtual USERS USERS { get; set; }
         public virtual USERS USERS1 { get; set; }
         public virtual ADVERTS ADVERTS { get; set; }

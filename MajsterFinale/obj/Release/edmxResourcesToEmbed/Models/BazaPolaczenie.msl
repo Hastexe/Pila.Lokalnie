@@ -4,16 +4,16 @@
     <EntitySetMapping Name="ADVERTS">
       <EntityTypeMapping TypeName="BazaPolaczenie.ADVERTS">
         <MappingFragment StoreEntitySet="ADVERTS">
-          <ScalarProperty Name="IS_HIDDEN" ColumnName="IS_HIDDEN" />
-          <ScalarProperty Name="PHONE_NUMBER" ColumnName="PHONE_NUMBER" />
-          <ScalarProperty Name="DATE" ColumnName="DATE" />
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
           <ScalarProperty Name="CATEGORY" ColumnName="CATEGORY" />
           <ScalarProperty Name="TITLE" ColumnName="TITLE" />
           <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="DATE" ColumnName="DATE" />
           <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+          <ScalarProperty Name="PHONE_NUMBER" ColumnName="PHONE_NUMBER" />
           <ScalarProperty Name="IS_ARCHIVED" ColumnName="IS_ARCHIVED" />
+          <ScalarProperty Name="IS_HIDDEN" ColumnName="IS_HIDDEN" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -35,11 +35,46 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="IMAGES">
+      <EntityTypeMapping TypeName="BazaPolaczenie.IMAGES">
+        <MappingFragment StoreEntitySet="IMAGES">
+          <ScalarProperty Name="IMAGE_ID" ColumnName="IMAGE_ID" />
+          <ScalarProperty Name="IMAGE_TITLE" ColumnName="IMAGE_TITLE" />
+          <ScalarProperty Name="IMAGE_BYTE" ColumnName="IMAGE_BYTE" />
+          <ScalarProperty Name="IMAGE_PATH" ColumnName="IMAGE_PATH" />
+          <ScalarProperty Name="ADVERT_ID" ColumnName="ADVERT_ID" />
+          <ScalarProperty Name="MESSAGE_ID" ColumnName="MESSAGE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="IMAGES_ADVERT">
+      <EntityTypeMapping TypeName="BazaPolaczenie.IMAGES_ADVERT">
+        <MappingFragment StoreEntitySet="IMAGES_ADVERT">
+          <ScalarProperty Name="IMAGE_ID" ColumnName="IMAGE_ID" />
+          <ScalarProperty Name="IMAGE_TITLE" ColumnName="IMAGE_TITLE" />
+          <ScalarProperty Name="IMAGE_PATH" ColumnName="IMAGE_PATH" />
+          <ScalarProperty Name="ADVERT_ID" ColumnName="ADVERT_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="IMAGES_MESSAGE">
+      <EntityTypeMapping TypeName="BazaPolaczenie.IMAGES_MESSAGE">
+        <MappingFragment StoreEntitySet="IMAGES_MESSAGE">
+          <ScalarProperty Name="IMAGE_ID" ColumnName="IMAGE_ID" />
+          <ScalarProperty Name="IMAGE_TITLE" ColumnName="IMAGE_TITLE" />
+          <ScalarProperty Name="IMAGE_PATH" ColumnName="IMAGE_PATH" />
+          <ScalarProperty Name="MSG_FROM" ColumnName="MSG_FROM" />
+          <ScalarProperty Name="MSG_TO" ColumnName="MSG_TO" />
+          <ScalarProperty Name="MESSAGE_ID" ColumnName="MESSAGE_ID" />
+          <ScalarProperty Name="ADVERT_ID" ColumnName="ADVERT_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="MESSAGE">
       <EntityTypeMapping TypeName="BazaPolaczenie.MESSAGE">
         <MappingFragment StoreEntitySet="MESSAGE">
-          <ScalarProperty Name="ADVERT_ID" ColumnName="ADVERT_ID" />
           <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ADVERT_ID" ColumnName="ADVERT_ID" />
           <ScalarProperty Name="MSG_FROM" ColumnName="MSG_FROM" />
           <ScalarProperty Name="MSG_TO" ColumnName="MSG_TO" />
           <ScalarProperty Name="TEXT" ColumnName="TEXT" />
@@ -51,52 +86,17 @@
     <EntitySetMapping Name="USERS">
       <EntityTypeMapping TypeName="BazaPolaczenie.USERS">
         <MappingFragment StoreEntitySet="USERS">
-          <ScalarProperty Name="LASTRESETPASSDATE" ColumnName="LASTRESETPASSDATE" />
-          <ScalarProperty Name="RESETPASSWORDCODE" ColumnName="RESETPASSWORDCODE" />
-          <ScalarProperty Name="REGISTER_DATE" ColumnName="REGISTER_DATE" />
-          <ScalarProperty Name="PHONE_NUMBER" ColumnName="PHONE_NUMBER" />
           <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
-          <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
           <ScalarProperty Name="MAIL" ColumnName="MAIL" />
+          <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
           <ScalarProperty Name="FNAME" ColumnName="FNAME" />
           <ScalarProperty Name="LNAME" ColumnName="LNAME" />
+          <ScalarProperty Name="PHONE_NUMBER" ColumnName="PHONE_NUMBER" />
           <ScalarProperty Name="VERIFIED" ColumnName="VERIFIED" />
           <ScalarProperty Name="IS_ADMIN" ColumnName="IS_ADMIN" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="IMAGES">
-      <EntityTypeMapping TypeName="BazaPolaczenie.IMAGES">
-        <MappingFragment StoreEntitySet="IMAGES">
-          <ScalarProperty Name="MESSAGE_ID" ColumnName="MESSAGE_ID" />
-          <ScalarProperty Name="ADVERT_ID" ColumnName="ADVERT_ID" />
-          <ScalarProperty Name="IMAGE_PATH" ColumnName="IMAGE_PATH" />
-          <ScalarProperty Name="IMAGE_BYTE" ColumnName="IMAGE_BYTE" />
-          <ScalarProperty Name="IMAGE_TITLE" ColumnName="IMAGE_TITLE" />
-          <ScalarProperty Name="IMAGE_ID" ColumnName="IMAGE_ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="IMAGES_ADVERT">
-      <EntityTypeMapping TypeName="BazaPolaczenie.IMAGES_ADVERT">
-        <MappingFragment StoreEntitySet="IMAGES_ADVERT">
-          <ScalarProperty Name="ADVERT_ID" ColumnName="ADVERT_ID" />
-          <ScalarProperty Name="IMAGE_PATH" ColumnName="IMAGE_PATH" />
-          <ScalarProperty Name="IMAGE_TITLE" ColumnName="IMAGE_TITLE" />
-          <ScalarProperty Name="IMAGE_ID" ColumnName="IMAGE_ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="IMAGES_MESSAGE">
-      <EntityTypeMapping TypeName="BazaPolaczenie.IMAGES_MESSAGE">
-        <MappingFragment StoreEntitySet="IMAGES_MESSAGE">
-          <ScalarProperty Name="MESSAGE_ID" ColumnName="MESSAGE_ID" />
-          <ScalarProperty Name="ADVERT_ID" ColumnName="ADVERT_ID" />
-          <ScalarProperty Name="MSG_TO" ColumnName="MSG_TO" />
-          <ScalarProperty Name="MSG_FROM" ColumnName="MSG_FROM" />
-          <ScalarProperty Name="IMAGE_PATH" ColumnName="IMAGE_PATH" />
-          <ScalarProperty Name="IMAGE_TITLE" ColumnName="IMAGE_TITLE" />
-          <ScalarProperty Name="IMAGE_ID" ColumnName="IMAGE_ID" />
+          <ScalarProperty Name="REGISTER_DATE" ColumnName="REGISTER_DATE" />
+          <ScalarProperty Name="RESETPASSWORDCODE" ColumnName="RESETPASSWORDCODE" />
+          <ScalarProperty Name="LASTRESETPASSDATE" ColumnName="LASTRESETPASSDATE" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

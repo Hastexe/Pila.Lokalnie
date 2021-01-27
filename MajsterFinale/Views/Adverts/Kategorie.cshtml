@@ -313,9 +313,9 @@
                         Sortowanie
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        @Html.ActionLink("Sortuj po Nazwie", "OgloszeniaUsera", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter }, new { @class = "dropdown-item" })
-                        @Html.ActionLink("Sortuj po Cenie", "OgloszeniaUsera", new { sortOrder = ViewBag.PriceSortParm, currentFilter = ViewBag.CurrentFilter }, new { @class = "dropdown-item" })
-                        @Html.ActionLink("Sortuj po Dacie", "OgloszeniaUsera", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter }, new { @class = "dropdown-item" })
+                        @Html.ActionLink("Sortuj po Nazwie", "Kategorie", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter }, new { @class = "dropdown-item" })
+                        @Html.ActionLink("Sortuj po Cenie", "Kategorie", new { sortOrder = ViewBag.PriceSortParm, currentFilter = ViewBag.CurrentFilter }, new { @class = "dropdown-item" })
+                        @Html.ActionLink("Sortuj po Dacie", "Kategorie", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter }, new { @class = "dropdown-item" })
                     </div>
                 </div>
                 <hr>
@@ -357,7 +357,7 @@
                                             </a>
                                         </h4>
                                         <h5 class="card-subtitle mb-2 text-muted">
-                                            @if (item.PRICE == "0")
+                                            @if (item.PRICE == 0)
                                             {
                                                 <span>Cena do ustalenia</span>
                                             }

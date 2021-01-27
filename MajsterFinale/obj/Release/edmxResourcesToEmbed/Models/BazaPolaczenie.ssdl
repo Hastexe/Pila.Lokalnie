@@ -10,7 +10,7 @@
     <Property Name="TITLE" Type="varchar" MaxLength="255" Nullable="false" />
     <Property Name="DESCRIPTION" Type="text" Nullable="false" />
     <Property Name="DATE" Type="datetime" Nullable="false" />
-    <Property Name="PRICE" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="PRICE" Type="int" Nullable="false" />
     <Property Name="PHONE_NUMBER" Type="varchar" MaxLength="9" />
     <Property Name="IS_ARCHIVED" Type="bit" />
     <Property Name="IS_HIDDEN" Type="bit" />

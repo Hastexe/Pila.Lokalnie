@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="BazaPolaczenie.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="BazaPolaczenie.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ADVERTS">
           <Key>
             <PropertyRef Name="ID" />
@@ -15,7 +15,7 @@
           <Property Name="TITLE" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="DESCRIPTION" Type="text" Nullable="false" />
           <Property Name="DATE" Type="datetime" Nullable="false" />
-          <Property Name="PRICE" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="PRICE" Type="int" Nullable="false" />
           <Property Name="PHONE_NUMBER" Type="varchar" MaxLength="9" />
           <Property Name="IS_ARCHIVED" Type="bit" />
           <Property Name="IS_HIDDEN" Type="bit" />
@@ -250,7 +250,8 @@
             <End Role="MESSAGE" EntitySet="MESSAGE" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BazaPolaczenie" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -263,16 +264,16 @@
           <Property Name="CATEGORY" Type="Int32" Nullable="false" />
           <Property Name="TITLE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PRICE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PRICE" Type="Int32" Nullable="false" />
+          <Property Name="PHONE_NUMBER" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
           <Property Name="IS_ARCHIVED" Type="Boolean" />
+          <Property Name="IS_HIDDEN" Type="Boolean" />
           <NavigationProperty Name="CATEGORIES" Relationship="Self.FK_ADVERTS_CATEGORIES" FromRole="ADVERTS" ToRole="CATEGORIES" />
           <NavigationProperty Name="USERS" Relationship="Self.FK_ADVERTS_USERS" FromRole="ADVERTS" ToRole="USERS" />
           <NavigationProperty Name="FAV" Relationship="Self.FK_FAV_ADVERTS" FromRole="ADVERTS" ToRole="FAV" />
-          <Property Name="DATE" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="MESSAGE" Relationship="BazaPolaczenie.FK_FAV_MESSAGE" FromRole="ADVERTS" ToRole="MESSAGE" />
-          <Property Name="PHONE_NUMBER" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="IMAGES_ADVERT" Relationship="BazaPolaczenie.FK_IMAGES_ADVERT_ADVERTS" FromRole="ADVERTS" ToRole="IMAGES_ADVERT" />
-          <Property Name="IS_HIDDEN" Type="Boolean" />
+          <NavigationProperty Name="MESSAGE" Relationship="Self.FK_FAV_MESSAGE" FromRole="ADVERTS" ToRole="MESSAGE" />
+          <NavigationProperty Name="IMAGES_ADVERT" Relationship="Self.FK_IMAGES_ADVERT_ADVERTS" FromRole="ADVERTS" ToRole="IMAGES_ADVERT" />
         </EntityType>
         <EntityType Name="CATEGORIES">
           <Key>
@@ -293,41 +294,75 @@
           <NavigationProperty Name="ADVERTS" Relationship="Self.FK_FAV_ADVERTS" FromRole="FAV" ToRole="ADVERTS" />
           <NavigationProperty Name="USERS" Relationship="Self.FK_FAV_USERS" FromRole="FAV" ToRole="USERS" />
         </EntityType>
+        <EntityType Name="IMAGES">
+          <Key>
+            <PropertyRef Name="IMAGE_ID" />
+          </Key>
+          <Property Name="IMAGE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IMAGE_TITLE" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IMAGE_BYTE" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="IMAGE_PATH" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ADVERT_ID" Type="Int32" />
+          <Property Name="MESSAGE_ID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="IMAGES_ADVERT">
+          <Key>
+            <PropertyRef Name="IMAGE_ID" />
+          </Key>
+          <Property Name="IMAGE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IMAGE_TITLE" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IMAGE_PATH" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ADVERT_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ADVERTS" Relationship="Self.FK_IMAGES_ADVERT_ADVERTS" FromRole="IMAGES_ADVERT" ToRole="ADVERTS" />
+        </EntityType>
+        <EntityType Name="IMAGES_MESSAGE">
+          <Key>
+            <PropertyRef Name="IMAGE_ID" />
+          </Key>
+          <Property Name="IMAGE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IMAGE_TITLE" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IMAGE_PATH" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="MSG_FROM" Type="Int32" Nullable="false" />
+          <Property Name="MSG_TO" Type="Int32" Nullable="false" />
+          <Property Name="MESSAGE_ID" Type="Int32" Nullable="false" />
+          <Property Name="ADVERT_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MESSAGE" Relationship="Self.FK_IMAGES_MESSAGE_MESSAGE" FromRole="IMAGES_MESSAGE" ToRole="MESSAGE" />
+        </EntityType>
         <EntityType Name="MESSAGE">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ADVERT_ID" Type="Int32" Nullable="false" />
           <Property Name="MSG_FROM" Type="Int32" Nullable="false" />
           <Property Name="MSG_TO" Type="Int32" Nullable="false" />
           <Property Name="TEXT" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="DATE" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="IS_READ" Type="Boolean" />
+          <NavigationProperty Name="ADVERTS" Relationship="Self.FK_FAV_MESSAGE" FromRole="MESSAGE" ToRole="ADVERTS" />
+          <NavigationProperty Name="IMAGES_MESSAGE" Relationship="Self.FK_IMAGES_MESSAGE_MESSAGE" FromRole="MESSAGE" ToRole="IMAGES_MESSAGE" />
           <NavigationProperty Name="USERS" Relationship="Self.FK_MESSAGE_USERS" FromRole="MESSAGE" ToRole="USERS" />
           <NavigationProperty Name="USERS1" Relationship="Self.FK_MESSAGE_USERS1" FromRole="MESSAGE" ToRole="USERS" />
-          <Property Name="ADVERT_ID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="ADVERTS" Relationship="BazaPolaczenie.FK_FAV_MESSAGE" FromRole="MESSAGE" ToRole="ADVERTS" />
-          <NavigationProperty Name="IMAGES_MESSAGE" Relationship="BazaPolaczenie.FK_IMAGES_MESSAGE_MESSAGE" FromRole="MESSAGE" ToRole="IMAGES_MESSAGE" />
         </EntityType>
         <EntityType Name="USERS">
           <Key>
             <PropertyRef Name="USER_ID" />
           </Key>
           <Property Name="USER_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PASSWORD" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="MAIL" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PASSWORD" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="FNAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="LNAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="PHONE_NUMBER" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
           <Property Name="VERIFIED" Type="Boolean" />
           <Property Name="IS_ADMIN" Type="Boolean" />
+          <Property Name="REGISTER_DATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RESETPASSWORDCODE" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="LASTRESETPASSDATE" Type="DateTime" Precision="3" />
           <NavigationProperty Name="ADVERTS" Relationship="Self.FK_ADVERTS_USERS" FromRole="USERS" ToRole="ADVERTS" />
           <NavigationProperty Name="FAV" Relationship="Self.FK_FAV_USERS" FromRole="USERS" ToRole="FAV" />
           <NavigationProperty Name="MESSAGE" Relationship="Self.FK_MESSAGE_USERS" FromRole="USERS" ToRole="MESSAGE" />
           <NavigationProperty Name="MESSAGE1" Relationship="Self.FK_MESSAGE_USERS1" FromRole="USERS" ToRole="MESSAGE" />
-          <Property Name="PHONE_NUMBER" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
-          <Property Name="REGISTER_DATE" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="RESETPASSWORDCODE" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="LASTRESETPASSDATE" Type="DateTime" Precision="3" />
         </EntityType>
         <Association Name="FK_ADVERTS_CATEGORIES">
           <End Role="CATEGORIES" Type="Self.CATEGORIES" Multiplicity="1" />
@@ -365,6 +400,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_FAV_MESSAGE">
+          <End Role="ADVERTS" Type="Self.ADVERTS" Multiplicity="1" />
+          <End Role="MESSAGE" Type="Self.MESSAGE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ADVERTS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MESSAGE">
+              <PropertyRef Name="ADVERT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IMAGES_ADVERT_ADVERTS">
+          <End Role="ADVERTS" Type="Self.ADVERTS" Multiplicity="1" />
+          <End Role="IMAGES_ADVERT" Type="Self.IMAGES_ADVERT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ADVERTS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="IMAGES_ADVERT">
+              <PropertyRef Name="ADVERT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_FAV_USERS">
           <End Role="USERS" Type="Self.USERS" Multiplicity="1" />
           <End Role="FAV" Type="Self.FAV" Multiplicity="*" />
@@ -374,6 +433,18 @@
             </Principal>
             <Dependent Role="FAV">
               <PropertyRef Name="USER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IMAGES_MESSAGE_MESSAGE">
+          <End Role="MESSAGE" Type="Self.MESSAGE" Multiplicity="1" />
+          <End Role="IMAGES_MESSAGE" Type="Self.IMAGES_MESSAGE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MESSAGE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="IMAGES_MESSAGE">
+              <PropertyRef Name="MESSAGE_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -405,6 +476,9 @@
           <EntitySet Name="ADVERTS" EntityType="Self.ADVERTS" />
           <EntitySet Name="CATEGORIES" EntityType="Self.CATEGORIES" />
           <EntitySet Name="FAV" EntityType="Self.FAV" />
+          <EntitySet Name="IMAGES" EntityType="Self.IMAGES" />
+          <EntitySet Name="IMAGES_ADVERT" EntityType="Self.IMAGES_ADVERT" />
+          <EntitySet Name="IMAGES_MESSAGE" EntityType="Self.IMAGES_MESSAGE" />
           <EntitySet Name="MESSAGE" EntityType="Self.MESSAGE" />
           <EntitySet Name="USERS" EntityType="Self.USERS" />
           <AssociationSet Name="FK_ADVERTS_CATEGORIES" Association="Self.FK_ADVERTS_CATEGORIES">
@@ -419,9 +493,21 @@
             <End Role="ADVERTS" EntitySet="ADVERTS" />
             <End Role="FAV" EntitySet="FAV" />
           </AssociationSet>
+          <AssociationSet Name="FK_FAV_MESSAGE" Association="Self.FK_FAV_MESSAGE">
+            <End Role="ADVERTS" EntitySet="ADVERTS" />
+            <End Role="MESSAGE" EntitySet="MESSAGE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IMAGES_ADVERT_ADVERTS" Association="Self.FK_IMAGES_ADVERT_ADVERTS">
+            <End Role="ADVERTS" EntitySet="ADVERTS" />
+            <End Role="IMAGES_ADVERT" EntitySet="IMAGES_ADVERT" />
+          </AssociationSet>
           <AssociationSet Name="FK_FAV_USERS" Association="Self.FK_FAV_USERS">
             <End Role="USERS" EntitySet="USERS" />
             <End Role="FAV" EntitySet="FAV" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IMAGES_MESSAGE_MESSAGE" Association="Self.FK_IMAGES_MESSAGE_MESSAGE">
+            <End Role="MESSAGE" EntitySet="MESSAGE" />
+            <End Role="IMAGES_MESSAGE" EntitySet="IMAGES_MESSAGE" />
           </AssociationSet>
           <AssociationSet Name="FK_MESSAGE_USERS" Association="Self.FK_MESSAGE_USERS">
             <End Role="USERS" EntitySet="USERS" />
@@ -431,92 +517,7 @@
             <End Role="USERS" EntitySet="USERS" />
             <End Role="MESSAGE" EntitySet="MESSAGE" />
           </AssociationSet>
-          <AssociationSet Name="FK_FAV_MESSAGE" Association="BazaPolaczenie.FK_FAV_MESSAGE">
-            <End Role="ADVERTS" EntitySet="ADVERTS" />
-            <End Role="MESSAGE" EntitySet="MESSAGE" />
-          </AssociationSet>
-          <EntitySet Name="IMAGES" EntityType="BazaPolaczenie.IMAGES" />
-          <EntitySet Name="IMAGES_ADVERT" EntityType="BazaPolaczenie.IMAGES_ADVERT" />
-          <EntitySet Name="IMAGES_MESSAGE" EntityType="BazaPolaczenie.IMAGES_MESSAGE" />
-          <AssociationSet Name="FK_IMAGES_ADVERT_ADVERTS" Association="BazaPolaczenie.FK_IMAGES_ADVERT_ADVERTS">
-            <End Role="ADVERTS" EntitySet="ADVERTS" />
-            <End Role="IMAGES_ADVERT" EntitySet="IMAGES_ADVERT" />
-          </AssociationSet>
-          <AssociationSet Name="FK_IMAGES_MESSAGE_MESSAGE" Association="BazaPolaczenie.FK_IMAGES_MESSAGE_MESSAGE">
-            <End Role="MESSAGE" EntitySet="MESSAGE" />
-            <End Role="IMAGES_MESSAGE" EntitySet="IMAGES_MESSAGE" />
-          </AssociationSet>
         </EntityContainer>
-        <Association Name="FK_FAV_MESSAGE">
-          <End Type="BazaPolaczenie.ADVERTS" Role="ADVERTS" Multiplicity="1" />
-          <End Type="BazaPolaczenie.MESSAGE" Role="MESSAGE" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ADVERTS">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="MESSAGE">
-              <PropertyRef Name="ADVERT_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="IMAGES">
-          <Key>
-            <PropertyRef Name="IMAGE_ID" />
-          </Key>
-          <Property Name="IMAGE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IMAGE_TITLE" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="IMAGE_BYTE" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="IMAGE_PATH" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="ADVERT_ID" Type="Int32" />
-          <Property Name="MESSAGE_ID" Type="Int32" />
-        </EntityType>
-        <EntityType Name="IMAGES_ADVERT">
-          <Key>
-            <PropertyRef Name="IMAGE_ID" />
-          </Key>
-          <Property Name="IMAGE_ID" Type="Int32" Nullable="false" />
-          <Property Name="IMAGE_TITLE" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="IMAGE_PATH" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="ADVERT_ID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="ADVERTS" Relationship="BazaPolaczenie.FK_IMAGES_ADVERT_ADVERTS" FromRole="IMAGES_ADVERT" ToRole="ADVERTS" />
-        </EntityType>
-        <EntityType Name="IMAGES_MESSAGE">
-          <Key>
-            <PropertyRef Name="IMAGE_ID" />
-          </Key>
-          <Property Name="IMAGE_ID" Type="Int32" Nullable="false" />
-          <Property Name="IMAGE_TITLE" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="IMAGE_PATH" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="MSG_FROM" Type="Int32" Nullable="false" />
-          <Property Name="MSG_TO" Type="Int32" Nullable="false" />
-          <Property Name="ADVERT_ID" Type="Int32" Nullable="false" />
-          <Property Name="MESSAGE_ID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="MESSAGE" Relationship="BazaPolaczenie.FK_IMAGES_MESSAGE_MESSAGE" FromRole="IMAGES_MESSAGE" ToRole="MESSAGE" />
-        </EntityType>
-        <Association Name="FK_IMAGES_ADVERT_ADVERTS">
-          <End Type="BazaPolaczenie.ADVERTS" Role="ADVERTS" Multiplicity="1" />
-          <End Type="BazaPolaczenie.IMAGES_ADVERT" Role="IMAGES_ADVERT" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ADVERTS">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="IMAGES_ADVERT">
-              <PropertyRef Name="ADVERT_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_IMAGES_MESSAGE_MESSAGE">
-          <End Type="BazaPolaczenie.MESSAGE" Role="MESSAGE" Multiplicity="1" />
-          <End Type="BazaPolaczenie.IMAGES_MESSAGE" Role="IMAGES_MESSAGE" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MESSAGE">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="IMAGES_MESSAGE">
-              <PropertyRef Name="MESSAGE_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -526,16 +527,16 @@
           <EntitySetMapping Name="ADVERTS">
             <EntityTypeMapping TypeName="BazaPolaczenie.ADVERTS">
               <MappingFragment StoreEntitySet="ADVERTS">
-                <ScalarProperty Name="IS_HIDDEN" ColumnName="IS_HIDDEN" />
-                <ScalarProperty Name="PHONE_NUMBER" ColumnName="PHONE_NUMBER" />
-                <ScalarProperty Name="DATE" ColumnName="DATE" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
                 <ScalarProperty Name="CATEGORY" ColumnName="CATEGORY" />
                 <ScalarProperty Name="TITLE" ColumnName="TITLE" />
                 <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="DATE" ColumnName="DATE" />
                 <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+                <ScalarProperty Name="PHONE_NUMBER" ColumnName="PHONE_NUMBER" />
                 <ScalarProperty Name="IS_ARCHIVED" ColumnName="IS_ARCHIVED" />
+                <ScalarProperty Name="IS_HIDDEN" ColumnName="IS_HIDDEN" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -557,11 +558,46 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="IMAGES">
+            <EntityTypeMapping TypeName="BazaPolaczenie.IMAGES">
+              <MappingFragment StoreEntitySet="IMAGES">
+                <ScalarProperty Name="IMAGE_ID" ColumnName="IMAGE_ID" />
+                <ScalarProperty Name="IMAGE_TITLE" ColumnName="IMAGE_TITLE" />
+                <ScalarProperty Name="IMAGE_BYTE" ColumnName="IMAGE_BYTE" />
+                <ScalarProperty Name="IMAGE_PATH" ColumnName="IMAGE_PATH" />
+                <ScalarProperty Name="ADVERT_ID" ColumnName="ADVERT_ID" />
+                <ScalarProperty Name="MESSAGE_ID" ColumnName="MESSAGE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IMAGES_ADVERT">
+            <EntityTypeMapping TypeName="BazaPolaczenie.IMAGES_ADVERT">
+              <MappingFragment StoreEntitySet="IMAGES_ADVERT">
+                <ScalarProperty Name="IMAGE_ID" ColumnName="IMAGE_ID" />
+                <ScalarProperty Name="IMAGE_TITLE" ColumnName="IMAGE_TITLE" />
+                <ScalarProperty Name="IMAGE_PATH" ColumnName="IMAGE_PATH" />
+                <ScalarProperty Name="ADVERT_ID" ColumnName="ADVERT_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IMAGES_MESSAGE">
+            <EntityTypeMapping TypeName="BazaPolaczenie.IMAGES_MESSAGE">
+              <MappingFragment StoreEntitySet="IMAGES_MESSAGE">
+                <ScalarProperty Name="IMAGE_ID" ColumnName="IMAGE_ID" />
+                <ScalarProperty Name="IMAGE_TITLE" ColumnName="IMAGE_TITLE" />
+                <ScalarProperty Name="IMAGE_PATH" ColumnName="IMAGE_PATH" />
+                <ScalarProperty Name="MSG_FROM" ColumnName="MSG_FROM" />
+                <ScalarProperty Name="MSG_TO" ColumnName="MSG_TO" />
+                <ScalarProperty Name="MESSAGE_ID" ColumnName="MESSAGE_ID" />
+                <ScalarProperty Name="ADVERT_ID" ColumnName="ADVERT_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="MESSAGE">
             <EntityTypeMapping TypeName="BazaPolaczenie.MESSAGE">
               <MappingFragment StoreEntitySet="MESSAGE">
-                <ScalarProperty Name="ADVERT_ID" ColumnName="ADVERT_ID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ADVERT_ID" ColumnName="ADVERT_ID" />
                 <ScalarProperty Name="MSG_FROM" ColumnName="MSG_FROM" />
                 <ScalarProperty Name="MSG_TO" ColumnName="MSG_TO" />
                 <ScalarProperty Name="TEXT" ColumnName="TEXT" />
@@ -573,52 +609,17 @@
           <EntitySetMapping Name="USERS">
             <EntityTypeMapping TypeName="BazaPolaczenie.USERS">
               <MappingFragment StoreEntitySet="USERS">
-                <ScalarProperty Name="LASTRESETPASSDATE" ColumnName="LASTRESETPASSDATE" />
-                <ScalarProperty Name="RESETPASSWORDCODE" ColumnName="RESETPASSWORDCODE" />
-                <ScalarProperty Name="REGISTER_DATE" ColumnName="REGISTER_DATE" />
-                <ScalarProperty Name="PHONE_NUMBER" ColumnName="PHONE_NUMBER" />
                 <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
-                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
                 <ScalarProperty Name="MAIL" ColumnName="MAIL" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
                 <ScalarProperty Name="FNAME" ColumnName="FNAME" />
                 <ScalarProperty Name="LNAME" ColumnName="LNAME" />
+                <ScalarProperty Name="PHONE_NUMBER" ColumnName="PHONE_NUMBER" />
                 <ScalarProperty Name="VERIFIED" ColumnName="VERIFIED" />
                 <ScalarProperty Name="IS_ADMIN" ColumnName="IS_ADMIN" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="IMAGES">
-            <EntityTypeMapping TypeName="BazaPolaczenie.IMAGES">
-              <MappingFragment StoreEntitySet="IMAGES">
-                <ScalarProperty Name="MESSAGE_ID" ColumnName="MESSAGE_ID" />
-                <ScalarProperty Name="ADVERT_ID" ColumnName="ADVERT_ID" />
-                <ScalarProperty Name="IMAGE_PATH" ColumnName="IMAGE_PATH" />
-                <ScalarProperty Name="IMAGE_BYTE" ColumnName="IMAGE_BYTE" />
-                <ScalarProperty Name="IMAGE_TITLE" ColumnName="IMAGE_TITLE" />
-                <ScalarProperty Name="IMAGE_ID" ColumnName="IMAGE_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="IMAGES_ADVERT">
-            <EntityTypeMapping TypeName="BazaPolaczenie.IMAGES_ADVERT">
-              <MappingFragment StoreEntitySet="IMAGES_ADVERT">
-                <ScalarProperty Name="ADVERT_ID" ColumnName="ADVERT_ID" />
-                <ScalarProperty Name="IMAGE_PATH" ColumnName="IMAGE_PATH" />
-                <ScalarProperty Name="IMAGE_TITLE" ColumnName="IMAGE_TITLE" />
-                <ScalarProperty Name="IMAGE_ID" ColumnName="IMAGE_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="IMAGES_MESSAGE">
-            <EntityTypeMapping TypeName="BazaPolaczenie.IMAGES_MESSAGE">
-              <MappingFragment StoreEntitySet="IMAGES_MESSAGE">
-                <ScalarProperty Name="MESSAGE_ID" ColumnName="MESSAGE_ID" />
-                <ScalarProperty Name="ADVERT_ID" ColumnName="ADVERT_ID" />
-                <ScalarProperty Name="MSG_TO" ColumnName="MSG_TO" />
-                <ScalarProperty Name="MSG_FROM" ColumnName="MSG_FROM" />
-                <ScalarProperty Name="IMAGE_PATH" ColumnName="IMAGE_PATH" />
-                <ScalarProperty Name="IMAGE_TITLE" ColumnName="IMAGE_TITLE" />
-                <ScalarProperty Name="IMAGE_ID" ColumnName="IMAGE_ID" />
+                <ScalarProperty Name="REGISTER_DATE" ColumnName="REGISTER_DATE" />
+                <ScalarProperty Name="RESETPASSWORDCODE" ColumnName="RESETPASSWORDCODE" />
+                <ScalarProperty Name="LASTRESETPASSDATE" ColumnName="LASTRESETPASSDATE" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -55,7 +55,7 @@
                 <h3 class="">@Html.DisplayFor(model => model.AdvertDetails.TITLE)</h3>
                 <p>Kategoria:  @Html.DisplayFor(model => model.AdvertDetails.CATEGORIES.NAME)</p>
 
-                @if (Model.AdvertDetails.PRICE == "0")
+                @if (Model.AdvertDetails.PRICE == 0)
                 {
                     <h2 class="text-muted">Cena do ustalenia</h2>
                 }

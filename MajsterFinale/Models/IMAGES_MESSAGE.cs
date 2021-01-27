@@ -11,7 +11,7 @@ namespace MajsterFinale.Models
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class IMAGES_MESSAGE
     {
         public int IMAGE_ID { get; set; }
@@ -21,7 +21,7 @@ namespace MajsterFinale.Models
         public int MSG_TO { get; set; }
         public int ADVERT_ID { get; set; }
         public int MESSAGE_ID { get; set; }
-    
+
         public virtual MESSAGE MESSAGE { get; set; }
     }
 }

@@ -28,10 +28,10 @@ namespace MajsterFinale.Models
         public virtual DbSet<ADVERTS> ADVERTS { get; set; }
         public virtual DbSet<CATEGORIES> CATEGORIES { get; set; }
         public virtual DbSet<FAV> FAV { get; set; }
-        public virtual DbSet<MESSAGE> MESSAGE { get; set; }
-        public virtual DbSet<USERS> USERS { get; set; }
         public virtual DbSet<IMAGES> IMAGES { get; set; }
         public virtual DbSet<IMAGES_ADVERT> IMAGES_ADVERT { get; set; }
         public virtual DbSet<IMAGES_MESSAGE> IMAGES_MESSAGE { get; set; }
+        public virtual DbSet<MESSAGE> MESSAGE { get; set; }
+        public virtual DbSet<USERS> USERS { get; set; }
     }
 }

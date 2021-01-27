@@ -249,6 +249,7 @@ namespace MajsterFinale.Controllers
                 AddingAdsRepository model = new AddingAdsRepository();
                 model.CategoryID = -1;
                 model.Categories = addingAdsRepository.GetList();
+                
                 return View(model);
             }
             return RedirectToAction("Index", "home");
@@ -268,9 +269,10 @@ namespace MajsterFinale.Controllers
                 newAdvert.DESCRIPTION = obj.Advert.DESCRIPTION;
                 newAdvert.DATE = System.DateTime.Now;
                 newAdvert.IS_ARCHIVED = false;
+                Convert.ToString(obj.Advert.PRICE);
                 if (obj.Advert.PRICE == null)
                 {
-                    newAdvert.PRICE = "0";
+                    newAdvert.PRICE = 0;
                 }
                 else
                 {
