@@ -391,13 +391,20 @@ namespace MajsterFinale.Controllers
         [HttpGet]
         public ActionResult EditAdvertisement(EditAdModel obj)
         {
-            var AdID = obj.ID;
-            AddingAdsRepository model = new AddingAdsRepository();
-            model.CategoryID = -1;
-            model.Categories = addingAdsRepository.GetList();
-            ADVERTS AdData = new AdvertRepository().GetAdData(AdID);
+            if (Session["ID"] != null)
+            {
+                var AdID = obj.ID;
+                AddingAdsRepository model = new AddingAdsRepository();
+                model.CategoryID = -1;
+                model.Categories = addingAdsRepository.GetList();
+                ADVERTS AdData = new AdvertRepository().GetAdData(AdID);
 
-            return View(AdData);
+                return View(AdData);
+            }
+            else
+            {
+                return RedirectToAction("Logowanie", "Home");
+            }
         }
         [HttpPost]
         public ActionResult EditAdvertisement(ADVERTS obj)
