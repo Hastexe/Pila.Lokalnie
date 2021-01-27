@@ -11,7 +11,6 @@
         }
     }
 </script>
-
 @if (!string.IsNullOrEmpty(ViewBag.Message))
 {
     <script type="text/javascript">
@@ -21,14 +20,21 @@
 
 <div class="container-fluid panel_mo">
     <div class="row">
+        <div class="col-md-12 d-block d-sm-none">
+                <div class="col-md-12 panel_mid p-3">
+                    <script>
+                        document.write('<a style="font-weight:600; color:grey;" id="backbutton" href="' + document.referrer + '"> <i class="fas fa-chevron-left" ></i><span>Wróć do ogłoszeń</span></a>');
+                    </script>
+                </div>
+            </div>
         <div class="col-md-8">
             <div class="col-md-12 rounded panel_mid text-center p-3" style="">
-                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner" style="width: auto; height: 35rem; ">
+                <div id="carouselExampleControls" class="carousel slide" data-interval="false">
+                    <div class="carousel-inner">
                         @foreach (var item in Model.Images)
                         {
                             <div class="carousel-item @(item == Model.Images.First() ? "active" : "")">
-                                <img  style=" max-height: 100%; object-fit: scale-down; display: block; " src="@item.IMAGE_PATH" class="" alt="...">
+                                <img class="carousel-img img-fluid" onclick="openModal();currentSlide(1)" src="@item.IMAGE_PATH" alt="...">
                             </div>
                         }
                     </div>
@@ -45,7 +51,7 @@
             </div>
         </div>
         <div class="col-md-4">
-            <div class="col-md-12 rounded panel_mid p-3">
+            <div class="col-md-12 rounded panel_mid p-3 ">
                 <h3 class="">@Html.DisplayFor(model => model.AdvertDetails.TITLE)</h3>
                 <p>Kategoria:  @Html.DisplayFor(model => model.AdvertDetails.CATEGORIES.NAME)</p>
 
@@ -136,10 +142,4 @@
         </div>
     </div>
 </div>
-
-@*<div class="col-md-12 rounded">
-        <script>
-            document.write('<a id="backbutton" href="' + document.referrer + '"> <i class="fas fa-chevron-left" style="font-size: 1.5rem;"></i><span id="backbuttontext"></span></a>');
-        </script>
-    </div>*@
 

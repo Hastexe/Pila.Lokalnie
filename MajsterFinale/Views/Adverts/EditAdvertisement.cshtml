@@ -16,8 +16,16 @@
     @Html.HiddenFor(model => model.CATEGORY)
 
 <div class="container-fluid addadv_main">
-    <div class="row">
+    <div class="row no-gutters">
+
         <div class="col-md-12 addadv_title rounded p-3"><h1>Edytuj ogłoszenie!</h1></div>
+        <div class="col-md-12 d-block d-sm-none">
+            <div class="col-md-12 panel_mid p-3">
+                <script>
+                    document.write('<a style="font-weight:600; color:grey;" id="backbutton" href="' + document.referrer + '"> <i class="fas fa-chevron-left" ></i><span>Wróć do ogłoszeń</span></a>');
+                </script>
+            </div>
+        </div>
         <div class="col-md-12 addadv_sec1 rounded mt-3 p-3">
             <div class="col-md-12 mb-3">
                 <h3>Tytuł</h3>
@@ -38,10 +46,10 @@
             <div class="col-md-12">
                 <h3>Cena</h3>
                 @Html.EditorFor(model => model.PRICE, new { htmlAttributes = new { @class = "form-control efsmall" } })
-                        @Html.ValidationMessageFor(model => model.PRICE, "", new { @class = "text-danger" })
-                        <small class="form-text text-muted">
-                            <sup style="color:red">&#42;</sup>Edytuj Cenę
-                        </small>
+                @Html.ValidationMessageFor(model => model.PRICE, "", new { @class = "text-danger" })
+                <small class="form-text text-muted">
+                    <sup style="color:red">&#42;</sup>Edytuj Cenę
+                </small>
             </div>
         </div>
         @*<div class="col-md-12 addadv_sec2 rounded mt-3 p-3">
@@ -61,17 +69,17 @@
                 <h3>Opis</h3>
                 @Html.TextAreaFor(model => model.DESCRIPTION, new { @cols = "80", @rows = "10", htmlAttributes = new { @class = "form-control ta1" } })
                 @Html.ValidationMessageFor(model => model.DESCRIPTION, "", new { @class = "text-danger" })
-            <small class="form-text text-muted">
-                <sup style="color:red">&#42;</sup>Edytuj opis
-            </small>
+                <small class="form-text text-muted">
+                    <sup style="color:red">&#42;</sup>Edytuj opis
+                </small>
             </div>
             <div class="col-md-12 dpmb">
                 <h3>Opis</h3>
                 @Html.TextAreaFor(model => model.DESCRIPTION, new { @cols = 40, @rows = 5, htmlAttributes = new { @class = "form-control ta1" } })
                 @Html.ValidationMessageFor(model => model.DESCRIPTION, "", new { @class = "text-danger" })
-            <small class="form-text text-muted">
-                <sup style="color:red">&#42;</sup>Edytuj opis
-            </small>
+                <small class="form-text text-muted">
+                    <sup style="color:red">&#42;</sup>Edytuj opis
+                </small>
             </div>
         </div>
         <div class="col-md-12 addadv_sec4 rounded mt-3 p-3">

@@ -28,7 +28,7 @@
                 print = true;
                 using (Html.BeginForm())
                 {
-                    <div class="card bg-light border-0 mb-3 mt-3 ">
+                    <div class="card bg-light border-0 mb-3 mt-3">
                         <div class="card-horizontal p-2 border border-light">
                             <div class="imgpoz">
                                 <a href="@Url.Action("Details", "Adverts", new { id = item.ID })">
@@ -74,8 +74,6 @@
                                 <div class="imgbutton">
                                     <button class="btn" type="submit" value="@item.ID" name="Edit" onclick="return @item.ID;"><i class="fas fa-edit" style="color:#0B3c5d"></i></button>
                                     <button class="btn" type="submit" value="@item.ID" name="Delete" onclick="return @item.ID;"><i class="fas fa-times" style="color:red;"></i></button>
-                                    
-                                    
                                 </div>
                                 
                                 <div class="imgdate">
@@ -96,3 +94,4 @@
         </div>
     </div>
 </div>
+
