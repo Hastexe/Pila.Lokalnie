@@ -252,7 +252,7 @@ namespace MajsterFinale.Controllers
                 
                 return View(model);
             }
-            return RedirectToAction("Index", "home");
+            return RedirectToAction("Logowanie", "home");
 
         }
         [HttpPost]
