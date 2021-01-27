@@ -21,12 +21,12 @@
 <div class="container-fluid panel_mo">
     <div class="row">
         <div class="col-md-12 d-block d-sm-none">
-                <div class="col-md-12 panel_mid p-3">
-                    <script>
-                        document.write('<a style="font-weight:600; color:grey;" id="backbutton" href="' + document.referrer + '"> <i class="fas fa-chevron-left" ></i><span>Wróć do ogłoszeń</span></a>');
-                    </script>
-                </div>
+            <div class="col-md-12 panel_mid p-3">
+                <script>
+                    document.write('<a style="font-weight:600; color:grey;" id="backbutton" href="' + document.referrer + '"> <i class="fas fa-chevron-left" ></i><span>Wróć do ogłoszeń</span></a>');
+                </script>
             </div>
+        </div>
         <div class="col-md-8">
             <div class="col-md-12 rounded panel_mid text-center p-3" style="">
                 <div id="carouselExampleControls" class="carousel slide" data-interval="false">
@@ -47,7 +47,7 @@
                         <span class="sr-only">Next</span>
                     </a>
                 </div>
-                
+
             </div>
         </div>
         <div class="col-md-4">
@@ -64,41 +64,48 @@
                     <h2 class="text-muted">@Html.DisplayFor(model => model.AdvertDetails.PRICE) zł</h2>
                 }
                 <br>
-                @{
-                    if (Session["ID"] != null)
-                    {
-                        if (Model.FAV != null)
+                <div id="button">
+                    <button id="button" class="btn btn-custom " onclick="showhide()">Pokaż telefon</button>
+                    </div>
+                    <div id="newpost" style="display:none">
+                        <button id="button" class="btn btn-custom " onclick="showhide()">@Html.DisplayFor(model => model.AdvertDetails.USERS.PHONE_NUMBER)</button>
+                    </div>
+                    <br>
+                    @{
+                        if (Session["ID"] != null)
                         {
-                            using (Html.BeginForm("Obserwuj", "Adverts", new { id = Model.AdvertDetails.ID }, FormMethod.Post))
+                            if (Model.FAV != null)
                             {
-                                <button class="btn btn-custom "><i class="fas fa-bookmark"></i>Obserwowane</button>
+                                using (Html.BeginForm("Obserwuj", "Adverts", new { id = Model.AdvertDetails.ID }, FormMethod.Post))
+                                {
+                                    <button class="btn btn-custom "><i class="fas fa-bookmark"></i>Obserwowane</button>
+                                }
                             }
+                            else
+                            {
+                                using (Html.BeginForm("Obserwuj", "Adverts", new { id = Model.AdvertDetails.ID }, FormMethod.Post))
+                                {
+                                    <button class="btn btn-custom "><i class="far fa-bookmark"></i>Obserwuj</button>
+                                }
+                            }
+
                         }
                         else
                         {
-                            using (Html.BeginForm("Obserwuj", "Adverts", new { id = Model.AdvertDetails.ID }, FormMethod.Post))
-                            {
-                                <button class="btn btn-custom "><i class="far fa-bookmark"></i>Obserwuj</button>
-                            }
+
+                            <a class="btn btn-custom" href="@Url.Action("Logowanie", "Home")" target="_blank">Zaloguj się aby obserwować</a>
+
+
                         }
 
                     }
-                    else
-                    {
+                    <hr>
+                    <p><i class="far fa-user"></i>@Html.DisplayFor(model => model.AdvertDetails.USERS.FNAME)</p>
 
-                        <a class="btn btn-custom" href="@Url.Action("Logowanie", "Home")" target="_blank">Zaloguj się aby obserwować</a>
+                    <p><i class="far fa-list-alt"></i><a href="@Url.Action("OgloszeniaUsera", "Adverts", new { id = @Html.DisplayFor(model => model.AdvertDetails.USER_ID)})">Zobacz ogłoszenia użytkownika</a>
 
-
-                    }
-
-                }
-                <hr>
-                <p><i class="far fa-user"></i>@Html.DisplayFor(model => model.AdvertDetails.USERS.FNAME)</p>
-
-                <p><i class="far fa-list-alt"></i><a href="@Url.Action("OgloszeniaUsera", "Adverts", new { id = @Html.DisplayFor(model => model.AdvertDetails.USER_ID)})" target="_blank">Zobacz ogłoszenia użytkownika</a>
-
+                </div>
             </div>
-        </div>
         <div class="col-md-8">
             <div class="col-md-12 rounded panel_mid p-3">
                 <h3>Opis</h3>
@@ -143,3 +150,21 @@
     </div>
 </div>
 
+<script>
+    function showhide() {
+        var div = document.getElementById("newpost");
+        if (div.style.display !== "none") {
+            div.style.display = "none";
+        }
+        else {
+            div.style.display = "block";
+        }
+        var div = document.getElementById("button");
+        if (div.style.display !== "none") {
+            div.style.display = "none";
+        }
+        else {
+            div.style.display = "block";
+        }
+    }
+</script>
