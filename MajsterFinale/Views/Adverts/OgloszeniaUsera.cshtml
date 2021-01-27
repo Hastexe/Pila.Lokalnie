@@ -4,9 +4,17 @@
 @model MajsterFinale.Models.DisplayAdsRepository
 @using PagedList;
 @using PagedList.Mvc;
-<div class="container-fluid cat_main">
-    <div class="row">
-        <div class="col-md-12 rounded index_searchbar">
+
+<div class="container-fluid panel_mo">
+    <div class="row no-gutters">
+        <div class="col-md-12 rounded panel_top p-2">
+            @foreach (var category in Model.ADVERTS)
+            {
+                <h2 class="pt-2 pb-2">Ogłoszenia użytkownika @Html.DisplayFor(x => category.USERS.FNAME)</h2>
+                break;
+            }
+        </div>
+        <div class="col-md-12 rounded index_searchbar mb-2">
             <div class="searchbarbox">
                 @using (Html.BeginForm("OgloszeniaUsera", "Adverts", FormMethod.Get))
                 {
@@ -21,48 +29,55 @@
                 }
             </div>
         </div>
-
-        <div class="col-md-12 ">
-
-            <div class="col-12 rounded cat_adv">
-
-                @{
-                    bool print = true;
-                }
-                <div class="col-md-3 rounded cat_side">
-                    <p><i class="fas fa-chevron-left" style="font-size: 1rem;"><a href="@Url.Action("Index", "Home", null)"> Wróć do Strony głównej</a></i></p>
+        <div class="col-md-12 rounded panel_mid p-3">
+            <div class="row no-gutters">
+                <div class="col-md-6">
+                    <script>
+                        document.write('<a id="backbutton" href="' + document.referrer + '"><i class="fas fa-chevron-left" style="font-size: 1rem; margin-top:0.6rem;"></i><span id="backbuttontext">Cofnij</span></a>');
+                    </script>
                 </div>
-                @foreach (var category in Model.ADVERTS)
+                <div class="col-md-6 col-sm-12 text-right">
+                    <div class="dropdown">
+                        <button class="btn btn-custom dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Sortowanie
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            @Html.ActionLink("Sortuj po Nazwie", "OgloszeniaUsera", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter },new { @class = "dropdown-item" })
+                            @Html.ActionLink("Sortuj po Cenie", "OgloszeniaUsera", new { sortOrder = ViewBag.PriceSortParm, currentFilter = ViewBag.CurrentFilter }, new { @class = "dropdown-item" })
+                            @Html.ActionLink("Sortuj po Dacie", "OgloszeniaUsera", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter }, new { @class = "dropdown-item" })
+                        </div>
+                    </div>
+                </div>  
+            </div>
+        </div>
+        <div class="col-md-12 col-sm-12 panel_bottom rounded">
+            @{
+                bool print = true;
+            }
+            @foreach (var item in Model.ADVERTS)
+            {
+                print = true;
+                using (Html.BeginForm())
                 {
-                    <h2>Ogłoszenia użytkownika @Html.DisplayFor(x => category.USERS.FNAME)</h2>
-                    break;
-                }
-                <a>@Html.ActionLink("Sortuj po Nazwie", "OgloszeniaUsera", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter }) \ </a>
-
-                <a>@Html.ActionLink("Sortuj po Cenie", "OgloszeniaUsera", new { sortOrder = ViewBag.PriceSortParm, currentFilter = ViewBag.CurrentFilter }) \ </a>
-
-                <a>@Html.ActionLink("Sortuj po Dacie", "OgloszeniaUsera", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })</a>
-
-                @foreach (var item in Model.ADVERTS)
-                {
-                    print = true;
-                    <div class="card bg-light border-0 mb-2">
-                        <div class="card-horizontal p-2">
-                            <div class="img-square-wrapper">
-                                @foreach (var itemImage in Model.IMAGES)
-                                {
-                                    if (item.ID == itemImage.ADVERT_ID)
+                    <div class="card bg-light border-0 mb-3 mt-3 ">
+                        <div class="card-horizontal p-2 border border-light">
+                            <div class="imgpoz">
+                                <a href="@Url.Action("Details", "Adverts", new { id = item.ID })">
+                                    @foreach (var itemImage in Model.IMAGES)
                                     {
-                                        if (print == true)
+                                        if (item.ID == itemImage.ADVERT_ID)
                                         {
-                                            <img src="@itemImage.IMAGE_PATH" style="width: 200px; height: 200px" alt="my pic" />
-                                            print = false;
+                                            if (print == true)
+                                            {
+                                                <img class="imgsize" src="@itemImage.IMAGE_PATH" alt="my pic" />
+                                                print = false;
+                                            }
                                         }
                                     }
-                                }
+                                </a>
                             </div>
                             <div class="card-body">
-                                <div style="float:left">
+                                <div class="imgtitle">
                                     <h4 class="card-title">
                                         <a href="@Url.Action("Details", "Adverts", new { id = item.ID })">
                                             @if (item.TITLE.Length < 50)
@@ -73,45 +88,42 @@
                                             {
                                                 @item.TITLE.Substring(0, 100)
                                             }
-                                            ...
+
                                         </a>
                                     </h4>
-                                    <h6 class="card-subtitle mb-2 text-muted">
-                                    </h6>
+                                    <h5 class="card-subtitle mb-2 text-muted">
+                                        @if (item.PRICE == "0")
+                                        {
+                                            <span>Cena do ustalenia</span>
+                                        }
+                                        else
+                                        {
+                                            <span>@Html.DisplayFor(x => item.PRICE) zł</span>
+                                        }
+                                    </h5>
                                 </div>
-                                <div style="float:right">
-                                    @if (item.PRICE == "0")
-                                    {
-                                        <span>Cena do ustalenia</span>
-                                    }
-                                    else
-                                    {
-                                        <a>@Html.DisplayFor(x => item.PRICE) zł</a>
-                                    }
+                                <div class="imgbutton">
+                                    <button class="btn btn-custom "><i class="far fa-bookmark"></i>Obserwuj</button>
                                 </div>
-                                <div style="position: absolute;bottom: 0;">
+
+                                <div class="imgdate">
                                     @{
                                         string Data = item.DATE.Date.ToShortDateString();
                                     }
-                                    <h6 class="card-subtitle mb-2 text-muted">@Html.DisplayFor(m => Data)</h6>
+                                    <p class="card-subtitle mb-2 text-muted">Dodane: @Html.DisplayFor(m => Data)</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 }
-                <div class="col-md-12 text-center" style="background-color:transparent;">
-                    Strona @(Model.ADVERTS.PageCount < Model.ADVERTS.PageNumber ? 0 : Model.ADVERTS.PageNumber) z @Model.ADVERTS.PageCount
-
-                    @Html.PagedListPager(Model.ADVERTS, page => Url.Action("OgloszeniaUsera", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
-
-
-                </div>
+            }
+            <div class="col-md-12 text-center" style="background-color:transparent;">
+                Strona @(Model.ADVERTS.PageCount < Model.ADVERTS.PageNumber ? 0 : Model.ADVERTS.PageNumber) z @Model.ADVERTS.PageCount
+                @Html.PagedListPager(Model.ADVERTS, page => Url.Action("MojeOgloszenia", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
             </div>
         </div>
     </div>
 </div>
-
-
 
 
 

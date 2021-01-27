@@ -24,8 +24,6 @@ namespace MajsterFinale
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/CSS/Bootstrap/bootstrap.min.css",
-                      "~/Content/CSS/Bootstrap/bootstrap-grid.min.css",
-                      "~/Content/CSS/Bootstrap/bootstrap-reboot.min.css",
                       "~/Content/CSS/PagedList.css",
                       "~/Content/CSS/main_adv.css",
                       "~/Content/CSS/main_advcard.css",
@@ -35,6 +33,7 @@ namespace MajsterFinale
                       "~/Content/CSS/main_nav.css",
                       "~/Content/CSS/main_reglog.css",
                        "~/Content/CSS/main_panel.css",
+                        "~/Content/CSS/main_addadv.css",
                       "~/Content/CSS/main_adv.css"
                       ));
         }

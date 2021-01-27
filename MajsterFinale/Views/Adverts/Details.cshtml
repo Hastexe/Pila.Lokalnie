@@ -2,6 +2,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @model MajsterFinale.Models.DisplayRepository
+
 <script>
     function checkFilesCount(id) {
         if (id.files.length > 4) {
@@ -10,37 +11,51 @@
         }
     }
 </script>
+
 @if (!string.IsNullOrEmpty(ViewBag.Message))
 {
     <script type="text/javascript">
         alert("@ViewBag.Message");
     </script>
 }
-<div class="container-fluid details_main">
+
+<div class="container-fluid panel_mo">
     <div class="row">
-        @*<div class="col-md-12 rounded">
-            <script>
-                document.write('<a id="backbutton" href="' + document.referrer + '"> <i class="fas fa-chevron-left" style="font-size: 1.5rem;"></i><span id="backbuttontext"></span></a>');
-            </script>
-        </div>*@
-        <div class="col-md-8 details_img rounded text-center">
-            @foreach (var item in Model.Images)
-            {
-                <img class="img-fluid" src="@item.IMAGE_PATH" alt="my pic" />
-            }
+        <div class="col-md-8">
+            <div class="col-md-12 rounded panel_mid text-center p-3" style="">
+                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner" style="width: auto; height: 35rem; ">
+                        @foreach (var item in Model.Images)
+                        {
+                            <div class="carousel-item @(item == Model.Images.First() ? "active" : "")">
+                                <img  style=" max-height: 100%; object-fit: scale-down; display: block; " src="@item.IMAGE_PATH" class="" alt="...">
+                            </div>
+                        }
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+                
+            </div>
         </div>
         <div class="col-md-4">
-            <div class="col-md-12 rounded details_info">
+            <div class="col-md-12 rounded panel_mid p-3">
                 <h3 class="">@Html.DisplayFor(model => model.AdvertDetails.TITLE)</h3>
                 <p>Kategoria:  @Html.DisplayFor(model => model.AdvertDetails.CATEGORIES.NAME)</p>
 
                 @if (Model.AdvertDetails.PRICE == "0")
                 {
-                    <h1 class="">Cena do ustalenia</h1>
+                    <h2 class="text-muted">Cena do ustalenia</h2>
                 }
                 else
                 {
-                    <h1 class="">@Html.DisplayFor(model => model.AdvertDetails.PRICE) zł</h1>
+                    <h2 class="text-muted">@Html.DisplayFor(model => model.AdvertDetails.PRICE) zł</h2>
                 }
                 <br>
                 @{
@@ -64,57 +79,67 @@
                     }
                     else
                     {
-                        <div class="alert alert-warning" role="alert">
-                            <a href="@Url.Action("Logowanie", "Home")" target="_blank"><button class="btn btn-custom ">Zaloguj się aby obserwować</button></a>
-                        </div>
+
+                        <a class="btn btn-custom" href="@Url.Action("Logowanie", "Home")" target="_blank">Zaloguj się aby obserwować</a>
+
 
                     }
 
                 }
                 <hr>
                 <p><i class="far fa-user"></i>@Html.DisplayFor(model => model.AdvertDetails.USERS.FNAME)</p>
-                <p class="d-block d-lg-none"><i class="far fa-list-alt"></i>
-                <p class="d-none d-lg-block"><i class="far fa-list-alt"></i><a href="@Url.Action("OgloszeniaUsera", "Adverts", new { id = @Html.DisplayFor(model => model.AdvertDetails.USER_ID)})" target="_blank">Zobacz ogłoszenia użytkownika</a>
+
+                <p><i class="far fa-list-alt"></i><a href="@Url.Action("OgloszeniaUsera", "Adverts", new { id = @Html.DisplayFor(model => model.AdvertDetails.USER_ID)})" target="_blank">Zobacz ogłoszenia użytkownika</a>
+
             </div>
         </div>
-        <div class="col-md-8 rounded details_desc">
-            <h3>Opis</h3>
-            @Html.DisplayFor(model => model.AdvertDetails.DESCRIPTION)
-            <hr>
-            <p class="text-muted">Dodano: @Model.AdvertDetails.DATE.Date.ToShortDateString()</p>
+        <div class="col-md-8">
+            <div class="col-md-12 rounded panel_mid p-3">
+                <h3>Opis</h3>
+                @Html.DisplayFor(model => model.AdvertDetails.DESCRIPTION)
+                <hr>
+                <p class="text-muted">Dodano: @Model.AdvertDetails.DATE.Date.ToShortDateString()</p>
+            </div>
         </div>
-        <div class="col-md-8 rounded details_msg">
-            @{
-                if (Convert.ToInt32(Session["ID"]) != Model.AdvertDetails.USER_ID)
-                {
-                    <h3>Wiadomość</h3>
-                    if (Session["ID"] != null)
+        <div class="col-md-8">
+            <div class="col-md-12rounded panel_mid p-3">
+                @{
+                    if (Convert.ToInt32(Session["ID"]) != Model.AdvertDetails.USER_ID)
                     {
-                        using (Html.BeginForm("Details", "Adverts", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        <h3>Wiadomość</h3>
+                        if (Session["ID"] != null)
+                        {
+                            using (Html.BeginForm("Details", "Adverts", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+                                <form>
+                                    <!--<input type="text" name="message" />-->
+                                    <!--<input type="submit" value="wyślij" />-->
+                                    <textarea class="form-control" rows="5" minlength="5" name="message" placeholder="Napisz wiadomość! (min. 5 znaków)"></textarea>
+                                    <input type="file" id="f" name="files" multiple onchange="checkFilesCount(this)" />
+                                    <br>
+                                    <button class="btn btn-custom mt-2" type="submit" value="Wyślij">Wyślij</button>
+                                </form>
+                            }
+                        }
+                        else
                         {
                             <form>
                                 <!--<input type="text" name="message" />-->
                                 <!--<input type="submit" value="wyślij" />-->
-                                <textarea class="form-control" rows="5" minlength="5" name="message" placeholder="Napisz wiadomość! (min. 5 znaków)"></textarea>
-                                <input type="file" id="f" name="files" multiple onchange="checkFilesCount(this)" />
-                                <br>
-                                <button class="btn btn-custom mt-2" type="submit" value="Wyślij">Wyślij</button>
+                                <textarea class="form-control" rows="5" name="message" placeholder="Zaloguj się, aby wysłać wiadomość."></textarea>
                             </form>
+
                         }
                     }
-                    else
-                    {
-                        <form>
-                            <!--<input type="text" name="message" />-->
-                            <!--<input type="submit" value="wyślij" />-->
-                            <textarea class="form-control" rows="5" name="message" placeholder="Zaloguj się, aby wysłać wiadomość."></textarea>
-                        </form>
-
-                    }
                 }
-            }
+            </div>
         </div>
     </div>
 </div>
 
+@*<div class="col-md-12 rounded">
+        <script>
+            document.write('<a id="backbutton" href="' + document.referrer + '"> <i class="fas fa-chevron-left" style="font-size: 1.5rem;"></i><span id="backbuttontext"></span></a>');
+        </script>
+    </div>*@
 

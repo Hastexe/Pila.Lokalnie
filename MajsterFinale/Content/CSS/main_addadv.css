@@ -1,0 +1,105 @@
+﻿@media (max-width: 767px) {
+    .addadv_main {
+        width: 92%;
+        margin-top: -1rem;
+    }
+    .dppc {
+        display: none;
+    }
+
+    .dpmb {
+        display: block;
+    }
+
+    .ef {
+        width: 19rem;
+    }
+
+    .efsmall {
+        width: 19rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .addadv_main {
+        width: 66%;
+        margin-top: 2rem;
+    }
+
+    .dppc {
+        display: block;
+    }
+
+    .dpmb {
+        display: none;
+    }
+
+    .ef {
+        width: 25rem;
+    }
+
+    .efsmall {
+        width: 20rem;
+    }
+}
+
+.dp {
+    width: 100%;
+    min-width: 15ch;
+    max-width: 30ch;
+    border: 1px solid var(--select-border);
+    border-radius: 0.25em;
+    padding: 0.25em 0.5em;
+    font-size: 1.25rem;
+    cursor: pointer;
+    line-height: 1.1;
+    background-color: #0B3c5d;
+    color: white;
+}
+
+ta1 {
+    background-color: lightgray;
+}
+
+.addadv_title {
+    background-color: #0B3c5d;
+    color: white
+}
+
+.addadv_sec1 {
+    background-color: white;
+}
+
+.addadv_sec2 {
+    background-color: white;
+}
+
+.addadv_sec3 {
+    background-color: white;
+}
+
+.addadv_sec4 {
+    background-color: white;
+}
+
+.addadv_sec5 {
+    background-color: white;
+    float: right;
+}
+
+.btn-custom2 {
+    background-color: #0B3c5d;
+    color: white;
+}
+
+.btn-custom2:hover {
+    background-color: #0B3c5d;
+    color: whitesmoke;
+}
+
+.custom-file-upload {
+    color: grey;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}

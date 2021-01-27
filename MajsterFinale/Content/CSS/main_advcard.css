@@ -18,29 +18,32 @@
     background-color: whitesmoke;
     text-align: center;
 }
+
 .imgsize {
-    max-width: 100%;
-    max-height: 100%;
-}
-.imgtitle{
-    float:left;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-.imgbutton{
-    float:right;
+.imgtitle {
+    float: left;
 }
 
-.imgbutton i {
-   margin-left: auto;
-   margin-right: auto;
-   display: inline-block !important; 
+.imgbutton {
+    float: right;
 }
 
+    .imgbutton i {
+        margin-left: auto;
+        margin-right: auto;
+        display: inline-block !important;
+    }
 .imgdate {
     position: absolute;
     bottom: 0;
 }
-.imgdate p{
-    font-size:12px;
-    font-weight:600;
-}
+
+    .imgdate p {
+        font-size: 12px;
+        font-weight: 600;
+    }

@@ -14,117 +14,83 @@
     @Html.HiddenFor(model => model.PHONE_NUMBER)
     @Html.HiddenFor(model => model.DATE)
     @Html.HiddenFor(model => model.CATEGORY)
-    <div class="container">
-        <div class="row" style="margin-top:1rem;">
-            <div class="col-md-12">
-                <div class="col-md-6">
-                    <h1>Edytuj ogłoszenie!</h1>
-                </div>
-            </div>
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="col-md-12 " style="margin-top:1rem;">
-                <div class="col-md-4">
-                    <h3>Tytuł ogłoszenia</h3>
-                    <div class="form-group name">
-                        @Html.EditorFor(model => model.TITLE, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.TITLE, "", new { @class = "text-danger" })
-                        <small class="form-text text-muted">
-                            <sup style="color:red">&#42;</sup>Edytuj tytuł ogłoszenia
-                        </small>
-                    </div>
-                </div>
-            </div>
-            <!--<div class="col-md-12">
-                <div class="col-md-4">
-                    <div class="form-group name">-->
-                        @*@Html.DropDownListFor(model => model.CATEGORY, new SelectList(Model.CATEGORIES, "ID", "Name"), htmlAttributes: new { @class = "form-control" })*@
-                        @*Html.ValidationMessageFor(model => model.CATEGORY, "", new { @class = "text-danger" })*@
-                        <!--<small class="form-text text-muted">
-                            <sup style="color:red">&#42;</sup>Edytuj kategorię
-                        </small>
-                    </div>
-                </div>
-            </div>-->
 
-            <div class="col-md-12" style="margin-top:5rem;">
-                <div class="col-md-4">
-                    <h3>Cena</h3>
-                    <div class="form-group name">
-                        @Html.EditorFor(model => model.PRICE, new { htmlAttributes = new { @class = "form-control" } })
+<div class="container-fluid addadv_main">
+    <div class="row">
+        <div class="col-md-12 addadv_title rounded p-3"><h1>Edytuj ogłoszenie!</h1></div>
+        <div class="col-md-12 addadv_sec1 rounded mt-3 p-3">
+            <div class="col-md-12 mb-3">
+                <h3>Tytuł</h3>
+                @Html.EditorFor(model => model.TITLE, new { htmlAttributes = new { @class = "form-control ef" } })
+                @Html.ValidationMessageFor(model => model.TITLE, "", new { @class = "text-danger" })
+                <small class="form-text text-muted">
+                    <sup style="color:red">&#42;</sup>Edytuj tytuł ogłoszenia
+                </small>
+            </div>
+            @*<div class="col-md-12 mb-3">
+                <h3>Kategoria</h3>
+                @Html.ValidationMessage("CATEGORY", new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.CategoryID, new SelectList(Model.Categories, "ID", "NAME"), htmlAttributes: new { @class = "dp" })
+                <small class="form-text text-muted">
+                    <sup style="color:red">&#42;</sup>Wybierz kategorię
+                </small>
+            </div>*@
+            <div class="col-md-12">
+                <h3>Cena</h3>
+                @Html.EditorFor(model => model.PRICE, new { htmlAttributes = new { @class = "form-control efsmall" } })
                         @Html.ValidationMessageFor(model => model.PRICE, "", new { @class = "text-danger" })
                         <small class="form-text text-muted">
                             <sup style="color:red">&#42;</sup>Edytuj Cenę
                         </small>
-                    </div>
+            </div>
+        </div>
+        @*<div class="col-md-12 addadv_sec2 rounded mt-3 p-3">
+            <div class="col-md-12">
+                <h3>Zdjęcia</h3>
+                <div class="imgpoz">
+                    <label class="custom-file-upload mt-5">
+                        <input type="file" id="f" name="files" multiple onchange="checkFilesCount(this)" />
+                        @Html.ValidationMessage("IMAGE", new { @class = "text-danger" })
+                        <i class="fas fa-plus"></i>Dodaj zdjęcie
+                    </label>
                 </div>
             </div>
-            @*<div class="col-md-12">
-                <div class="col-md-4">
-                    <h3>Edytuj zdjęcia (PLACEHOLDER)</h3>
-                    <form>
-                        <div class="form-group">
-                            @Html.EditorFor(model => model.IMAGE, new { htmlAttributes = new { @class = "form-control" } })
-                            <small class="form-text text-muted">
-                                Edytuj zdjęcie do ogłoszenia
-                            </small>
-                        </div>
-                    </form>
-                </div>
-            </div>*@
-
-            <br>
-            <div class=" col-md-12">
-                <div class=" col-md-4">
-                    <h3>Opis</h3>
-                    <div class="form-group name">
-                        @Html.TextAreaFor(model => model.DESCRIPTION, new { cols = "75", rows = "10", htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.DESCRIPTION, "", new { @class = "text-danger" })
-                        <small class="form-text text-muted">
-                            <sup style="color:red">&#42;</sup>Edytuj opis
-                        </small>
-                    </div>
+        </div>*@
+        <div class="col-md-12 addadv_sec3 rounded mt-3 p-3">
+            <div class="col-md-12 dppc">
+                <h3>Opis</h3>
+                @Html.TextAreaFor(model => model.DESCRIPTION, new { @cols = "80", @rows = "10", htmlAttributes = new { @class = "form-control ta1" } })
+                @Html.ValidationMessageFor(model => model.DESCRIPTION, "", new { @class = "text-danger" })
+            <small class="form-text text-muted">
+                <sup style="color:red">&#42;</sup>Edytuj opis
+            </small>
+            </div>
+            <div class="col-md-12 dpmb">
+                <h3>Opis</h3>
+                @Html.TextAreaFor(model => model.DESCRIPTION, new { @cols = 40, @rows = 5, htmlAttributes = new { @class = "form-control ta1" } })
+                @Html.ValidationMessageFor(model => model.DESCRIPTION, "", new { @class = "text-danger" })
+            <small class="form-text text-muted">
+                <sup style="color:red">&#42;</sup>Edytuj opis
+            </small>
+            </div>
+        </div>
+        <div class="col-md-12 addadv_sec4 rounded mt-3 p-3">
+            <div class="col-md-12">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">Akceptuje regulamin</label><br>
+                    <small class="form-text text-muted">
+                        Nullam tincidunt est a est eleifend venenatis. Mauris sit amet maximus diam. Vestibulum iaculis pharetra nibh, eget ullamcorper magna laoreet vel. Curabitur eu quam sem. Praesent et viverra felis. Sed faucibus ultrices enim malesuada venenatis. Duis pretium nisi nec erat lobortis blandit. In pretium id mauris eu tempor. Phasellus vehicula, nibh quis tincidunt ultricies, dui magna aliquet ante, nec tincidunt ligula tellus congue justo.
+                    </small>
                 </div>
             </div>
-            <div class=" col-md-12" style="margin-top:1rem;">
-                <div class=" col-md-6">
-                    <div class="form-group">
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                            <label class="form-check-label" for="exampleCheck1">Akceptuje regulamin</label><br>
-                            <small class="form-text text-muted">
-                                Nullam tincidunt est a est eleifend venenatis. Mauris sit amet maximus diam. Vestibulum iaculis pharetra nibh, eget ullamcorper magna laoreet vel. Curabitur eu quam sem. Praesent et viverra felis. Sed faucibus ultrices enim malesuada venenatis. Duis pretium nisi nec erat lobortis blandit. In pretium id mauris eu tempor. Phasellus vehicula, nibh quis tincidunt ultricies, dui magna aliquet ante, nec tincidunt ligula tellus congue justo.
-                            </small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class=" col-md-12" style="margin-top:1rem;">
-                <div class=" col-md-6">
-                    <div class="form-group">
-                        <input type="submit" value="Edytuj ogłoszenie" class="btn btn-custom" />
-                    </div>
-                </div>
+        </div>
+        <div class="col-md-12 addadv_sec5 rounded mt-3 p-3 mb-5">
+            <div class="form-group">
+                <input type="submit" value="Edytuj ogłoszenie" class="btn btn-custom float-right " />
             </div>
         </div>
     </div>
+</div>
 }
 
-
-@*<div class="form-group">
-        @Html.LabelFor(model => model.CATEGORY, "CATEGORY", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownListFor("CATEGORY", SelectListItem(Model.CATEGORIES), htmlAttributes: new { @class = "form-control" });
-            @Html.ValidationMessageFor(model => model.CATEGORY, "", new { @class = "text-danger" })
-        </div>
-    </div>*@
-
-@*<div class="col-md-12">
-        <h3>Wybierz kategorię</h3>
-        <div class="form-group name">
-            @Html.DropDownListFor(model => model.CATEGORY,new SelectList(Model.CATEGORIES, "ID", "Name"), htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.CATEGORY, "", new { @class = "text-danger" })
-            <small class="form-text text-muted">
-                <sup style="color:red">&#42;</sup>Wybierz kategorię
-            </small>
-        </div>
-    </div>*@
