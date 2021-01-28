@@ -5,49 +5,51 @@
 @using PagedList;
 @using PagedList.Mvc;
 
-<div class="container-fluid panel_mo">
+<div class="container-fluid panel_mo mt-1">
     <div class="row no-gutters">
-        <div class="col-md-12 rounded panel_top p-2">
+        <div class="col-md-12 rounded panel_top p-3">
             @foreach (var category in Model.ADVERTS)
             {
                 <h2 class="pt-2 pb-2">Ogłoszenia użytkownika @Html.DisplayFor(x => category.USERS.FNAME)</h2>
                 break;
             }
         </div>
-        <div class="col-md-12 rounded index_searchbar mb-2">
-            <div class="searchbarbox">
-                @using (Html.BeginForm("OgloszeniaUsera", "Adverts", FormMethod.Get))
-                {
-                    <form action="">
-                        <div class="input-group justify-content-center">
-                            @Html.TextBox("searchString", null, new { @class = "searchbartext" })
-                            <div class="input-group-append">
-                                <button class="btn btn-custom" type="submit"><i class="fas fa-search"></i></button>
-                            </div>
-                        </div>
-                    </form>
-                }
+        <div class="col-md-12 d-block d-sm-none">
+            <div class="col-md-12 panel_mid p-3">
+                <script>
+                    document.write('<a style="font-weight:600; color:grey;" id="backbutton" href="' + document.referrer + '"> <i class="fas fa-chevron-left" ></i><span>Wróć do ogłoszeń</span></a>');
+                </script>
             </div>
         </div>
+        @*<div class="col-md-12 panel_mid rounded mt-2 mb-2">
+        <div class="searchbarbox">
+            @using (Html.BeginForm("Wyszukiwanie", "Home", FormMethod.Get))
+            {
+                <form action="">
+                    <div class="input-group justify-content-center">
+                        @Html.TextBox("search", null, new { @class = "searchbartext" })
+                        <div class="input-group-append">
+                            <button class="btn btn-custom" type="submit"><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            }
+        </div>*@
+    </div>
         <div class="col-md-12 rounded panel_mid p-3">
-            <div class="row no-gutters">
-                <div class="col-md-6">
-                    <script>
-                        document.write('<a id="backbutton" href="' + document.referrer + '"><i class="fas fa-chevron-left" style="font-size: 1rem; margin-top:0.6rem;"></i><span id="backbuttontext">Cofnij</span></a>');
-                    </script>
-                </div>
-                <div class="col-md-6 col-sm-12 text-right">
+            <div class="row ">
+                <div class="col-md-12 text-right">
                     <div class="dropdown">
-                        <button class="btn btn-custom dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button class="btn btn-custom2 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Sortowanie
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            @Html.ActionLink("Sortuj po Nazwie", "OgloszeniaUsera", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter },new { @class = "dropdown-item" })
+                            @Html.ActionLink("Sortuj po Nazwie", "OgloszeniaUsera", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter }, new { @class = "dropdown-item" })
                             @Html.ActionLink("Sortuj po Cenie", "OgloszeniaUsera", new { sortOrder = ViewBag.PriceSortParm, currentFilter = ViewBag.CurrentFilter }, new { @class = "dropdown-item" })
                             @Html.ActionLink("Sortuj po Dacie", "OgloszeniaUsera", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter }, new { @class = "dropdown-item" })
                         </div>
                     </div>
-                </div>  
+                </div>
             </div>
         </div>
         <div class="col-md-12 col-sm-12 panel_bottom rounded">
@@ -103,7 +105,7 @@
                                     </h5>
                                 </div>
                                 <div class="imgbutton">
-                                    <button class="btn btn-custom "><i class="far fa-bookmark"></i>Obserwuj</button>
+                                    <a href=""><i class="far fa-bookmark" style="color:#f3b136"></i></a>
                                 </div>
 
                                 <div class="imgdate">

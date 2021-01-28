@@ -4,27 +4,31 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    <div class="container loginreg">
-        <div class="row">
-            <div class="col-sm-12 d-flex justify-content-center">
-                <div class="card mb-3 form-signin">
-                    <h1 class="h2 mt-2">Zresetuj hasło</h1>
-                    
-                    <span class="logp"><p>Wpisz email:</p></span>
-                    <div class="form-group">
-                        <div>
-                            @Html.TextBox("MAIL", "", new { @class = "form-control" })
-                        </div>
-                    </div>           
-                    <div class="form-group">
-                        @Html.ValidationMessage("MAIL", new { @class = "text-danger" })
-                        <label class="label-success" style="color: green;">@ViewBag.SuccessMessage</label>
-                    </div>
-                    <div class="form-group">
-                        <input type="submit" value="Wyślij" class="btn btn-lg btn-custom btn-block" />
-                    </div>
-                </div>
+<div class="container-fluid main_loginreg">
+    <div class="row">
+        <div class="col-md-12 panel_mid p-3">
+            <script>
+                    document.write('<a style="font-weight:600; color:grey;" id="backbutton" href="' + document.referrer + '"> <i class="fas fa-chevron-left" ></i><span>Wróć</span></a>');
+            </script>
+        </div>
+        <div class="col-md-12 mid_loginreg rounded p-3">
+            <h2 class="text-center mt-2">Zresetuj hasło</h2>
+            <div class="form-group">
+                @Html.ValidationMessage("MAIL", new { @class = "text-danger" })
+                <label class="label-success" style="color: green;">@ViewBag.SuccessMessage</label>
+            </div>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group p-2">
+                <p>Email</p>
+                @Html.TextBox("MAIL", "", new { @class = "form-control" })
+                <small class="form-text text-muted">
+                    <sup style="color:red">&#42;</sup>Podaj email
+                </small>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Wyślij" class="btn btn-lg btn-custom btn-block" />
             </div>
         </div>
     </div>
+</div>
 }

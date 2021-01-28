@@ -1,70 +1,44 @@
 
-.form-signin {
-    width: 100%;
-    max-width: 330px;
-    padding: 20px;
-    margin: 10 auto;
-}
-
-    .form-signin .checkbox {
-        font-weight: 400;
+@media (max-width: 767px) {
+    .ver {
+        margin-top: 3rem;
+        max-width: 80%;
+    }
+    .main_loginreg {
+        width: 90%;
+        margin-top: 0.3rem;
+    }
+    .mid_loginreg {
+        background-color:white;
+    }
+    .mid_loginreg p{
+        font-weight:600;
+    }
+    .mid_loginreg p1{
+        font-weight:600;
+        font-size:12px;
     }
 
-    .form-signin .form-control {
-        position: relative;
-        box-sizing: border-box;
-        height: auto;
-        padding: 10px;
-        font-size: 16px;
-    }
-
-        .form-signin .form-control:focus {
-            z-index: 2;
-        }
-
-    .form-signin input[type="email"] {
-        margin-bottom: -1px;
-        border-bottom-right-radius: 0;
-        border-bottom-left-radius: 0;
-    }
-
-    .form-signin input[type="password"] {
-        margin-bottom: 10px;
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
-    }
-
-
-.checkreq {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    text-align: left;
 }
 
-.smalltext {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    font-weight: 400;
-    text-align: center;
-    font-size: small
-}
-
-.loginreg {
-    margin-top: 1rem;
-}
-
-    .loginreg a:hover {
-        text-decoration: underline;
+@media (min-width: 768px) {
+    .ver {
+        margin-top: 3rem;
+        max-width: 20rem;
+    }
+    .main_loginreg {
+        width: 17%;
+        margin-top: 1rem;
+    }
+    .mid_loginreg {
+        background-color:white;
+    }
+    .mid_loginreg p{
+        font-weight:600;
+    }
+    .mid_loginreg p1{
+        font-weight:600;
+        font-size:12px;
     }
 
-
-.logp p {
-    font-weight: 600;
-    font-size: 16px;
-}
-
-.loginreg h1 {
-    text-align: center;
-    font-weight: 400;
-    margin-bottom: 2rem;
 }

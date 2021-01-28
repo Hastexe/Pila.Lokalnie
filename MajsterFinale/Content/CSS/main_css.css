@@ -1,17 +1,13 @@
-* {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    outline: 0;
-    font-size: 100%;
-    background: transparent;
-}
 
 .btn-custom {
     background-color: #f3b136;
     color: white;
     font-weight: 600;
 }
+    .btn-custom:hover {
+        color: white !important;
+        
+    }
 
 .btn-outline-custom {
     border-color: #f3b136;
@@ -21,11 +17,6 @@
 
 i {
     margin-right: 1rem;
-    font-size: 1.1em;
-}
-
-.categories i {
-    margin-right: 0rem;
     font-size: 1.1em;
 }
 
@@ -41,32 +32,10 @@ i {
     }
 
 
-.container-fluid {
-    padding: 0 !important;
-}
-
-.carousel-inner {
-    width: 100%;
-    max-height: 500px !important;
-}
-
 .icontex {
     color: white;
     margin-top: 14px;
 }
-
-
-.cat-title {
-    height: 100px;
-    text-align: center;
-}
-
-    .cat-title h1 {
-        font-weight: 500;
-        font-size: 32px;
-        margin-top: 30px;
-        font-weight: 700;
-    }
 
 
 .index_steps {
@@ -85,15 +54,6 @@ i {
         font-size: 1rem;
         font-weight: 400;
     }
-
-.grow {
-    transition: all .2s ease-in-out;
-}
-
-    .grow:hover {
-        transform: scale(1.1);
-    }
-
 
 
 textarea {
@@ -114,20 +74,14 @@ textarea {
     font-weight: 400;
 }
 
-
 .navpanelcolor {
     color: black;
 }
 
-    .navpanelcolor:hover {
-        color: white;
-        background-color: #0B3c5d;
-    }
-
-.active {
-    color: white;
+.navpanelcolor:hover {
+     color: white;
+     background-color: #0B3c5d;
 }
-
 
 @media (max-width: 816px) {
     .navpanel {
@@ -144,37 +98,6 @@ textarea {
         margin-top: 5rem;
     }
 }
-
-
-#catPC {
-    display: block;
-}
-
-#catMob {
-    display: none;
-}
-
-@media screen and (max-width: 768px) {
-
-    #catPC {
-        display: none;
-    }
-
-    #catMob {
-        display: block;
-    }
-}
-
-.index_index {
-    margin-top: 1rem;
-    width: 66%;
-}
-
-.index_searchbar {
-    background-color: white;
-    margin-bottom: 1rem;
-}
-
 .searchbartext {
     padding: 8px !important;
     background: whitesmoke;
@@ -184,82 +107,53 @@ textarea {
     outline: none;
     width: 75%;
 }
-
 .searchbardrop {
     width: 11rem;
 }
-
 .searchbarbox {
     margin-top: 2rem;
     margin-bottom: 2rem;
 }
 
-.index_cat {
-    background-color: white;
-}
-
-    .index_cat a {
-        color: black;
-        font-weight: 400;
-        line-height: 1.5rem;
-        ;
-    }
-
-
-        .index_cat a:hover {
-            color: grey;
-            font-weight: 600;
-            text-decoration: none
-        }
-
-.index_image {
-    background-color: white;
-    padding: 1rem;
-}
-
-.index_newadded {
-    height: 20rem;
-    background-color: white;
-    margin-top: 1rem;
-}
-
-
-.cat_main {
-    margin-top: 1rem;
-    width: 70%;
-}
-
-.cat_side {
-    background-color: white;
-    max-height: 24rem !important;
-}
-
-    .cat_side h1 {
-        font-size: 28px;
-        margin-top: 1rem;
-        margin-left: 1rem;
-    }
-
-    .cat_side a {
-        color: black;
-        text-decoration: none;
-    }
-
-        .cat_side a:hover {
-            color: grey;
-            text-decoration: none;
-        }
-
-    .cat_side .active {
-        font-weight: 700;
-        color: black;
-    }
-
-.cat_adv {
-    padding-top: 1rem;
-    padding-bottom: 0.5rem;
-}
-
 .backarrow {
     font-size: small;
+}
+
+.tab-content {
+    color: white;
+    background-color: white !important;
+}
+
+.list-item {
+    background-color:white !important;
+}
+
+    .list-item a {
+        font-weight: 400;
+        text-decoration: none;
+        color: black;
+        line-height: 2em;
+        font-size:16px;
+    }
+        .list-item a:hover {
+            font-weight: 500;
+        }
+
+.nav-pills .nav-link {
+    
+    font-weight: 700;
+}
+
+.nav-pills .nav-link:hover {
+    background-color: whitesmoke !important;
+    color: black !important;
+  
+}
+    .nav-pills .nav-link.active {
+        background-color: #f3b136 !important;  
+    }
+
+.asize {
+    line-height: 2em;
+  
 }

@@ -6,80 +6,80 @@
 @using (Html.BeginForm("Rejestracja", "Home", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    <div class="col-sm-12 loginreg d-flex justify-content-center">
-        <div class="card mb-3 form-signin">
-            <h1 class="h2 mb-5 mt-2">Zarejestruj się</h1>
+<div class="container-fluid main_loginreg">
+    <div class="row">
+        <div class="col-md-12 panel_mid p-3">
+            <script>
+                document.write('<a style="font-weight:600; color:grey;" id="backbutton" href="' + document.referrer + '"> <i class="fas fa-chevron-left" ></i><span>Wróć</span></a>');
+            </script>
+        </div>
+        <div class="col-md-12 mid_loginreg rounded p-3">
+            <h2 class="text-center mt-2">Zarejestruj się</h2>
             <div class="form-group">
                 <label class="label-success" style="color: green;">@ViewBag.SuccessMessage</label>
             </div>
-            <span class="logp"><p>E-mail:</p></span>
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.MAIL, htmlAttributes: new { @class = "control-label sr-only" })
-                <div class="">
-                    @Html.EditorFor(model => model.MAIL, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessage("MAIL", new { @class = "text-danger" })
-                </div>
+            <div class="form-group p-2">
+                <p>Email</p>
+                @Html.EditorFor(model => model.MAIL, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessage("MAIL", new { @class = "text-danger" })
+                <small class="form-text text-muted">
+                    <sup style="color:red">&#42;</sup>Podaj email
+                </small>
             </div>
-            <span class="logp"><p>Imię:</p></span>
-            <div class="form-group">
-                @Html.LabelFor(model => model.FNAME, htmlAttributes: new { @class = "control-label sr-only" })
-                <div class="">
-                    @Html.EditorFor(model => model.FNAME, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.FNAME, "", new { @class = "text-danger" })
-                </div>
+            <div class="form-group p-2">
+                <p>Imię</p>
+                @Html.EditorFor(model => model.FNAME, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FNAME, "", new { @class = "text-danger" })
+                <small class="form-text text-muted">
+                    <sup style="color:red">&#42;</sup>Podaj imię
+                </small>
             </div>
-            <span class="logp"><p>Hasło:</p></span>
-            <div class="form-group">
-                @Html.LabelFor(model => model.REGISTERPASSWORD, htmlAttributes: new { @class = "control-label sr-only" })
-                <div class="">
-                    @Html.EditorFor(model => model.REGISTERPASSWORD, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessage("REGISTERPASSWORD", new { @class = "text-danger" })
-                </div>
+            <div class="form-group p-2">
+                <p>Hasło</p>
+                @Html.EditorFor(model => model.REGISTERPASSWORD, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessage("REGISTERPASSWORD", new { @class = "text-danger" })
+                <small class="form-text text-muted">
+                    <sup style="color:red">&#42;</sup>Podaj hasło
+                </small>
             </div>
-            <span class="logp"><p>Powtórz hasło:</p></span>
-            <div class="form-group">
-                @Html.LabelFor(model => model.REPASSWORD, htmlAttributes: new { @class = "control-label sr-only" })
-                <div class="">
-                    @Html.EditorFor(model => model.REPASSWORD, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessage("REPASSWORD", new { @class = "text-danger" })
-                </div>
+            <div class="form-group p-2">
+                <p>Powtórz hasło</p>
+                @Html.EditorFor(model => model.REPASSWORD, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessage("REPASSWORD", new { @class = "text-danger" })
+                <small class="form-text text-muted">
+                    <sup style="color:red">&#42;</sup>Powtórz hasło
+                </small>
             </div>
-            <div class="form-group">
-                <span>
-                    @Html.CheckBoxFor(model => model.TERMS) Akceptuję <a href="@Url.Action("Regulamin", "home", null)">regulamin</a>
-                </span>
-                <p class="reg">Oświadczam, iż zapoznałem się z treścią @Html.ActionLink("Regulaminu", "regulamin", null, new { target = "_blank" }) i akceptuję jego wszystkie postanowienia. Akceptuję @Html.ActionLink("Politykę Ochrony Prywatności", "polityka", null, new { target = "_blank" }) - ogólne standardy ochrony.</p>
-                <div class="">
+            <div class="form-group p-2">
+                <p>@Html.CheckBoxFor(model => model.TERMS) Akceptuję<a href="@Url.Action("Regulamin", "home", null)"> regulamin<sup style="color:red">&#42;</sup></a><p>
                     @Html.ValidationMessage("TERMS", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Zarejestruj się" class="btn btn-lg btn-custom btn-block" />
+                <div class="form-group text-center mt-3">
+                    <p><a href="@Url.Action("Logowanie", "home", null)">Masz konto? Zaloguj się</a></p>
+                    <p1>Oświadczam, iż zapoznałem się z treścią @Html.ActionLink("Regulaminu", "regulamin", null, new { target = "_blank" }) i akceptuję jego wszystkie postanowienia. Akceptuję @Html.ActionLink("Politykę Ochrony Prywatności", "polityka", null, new { target = "_blank" }) - ogólne standardy ochrony.</p1>
                 </div>
             </div>
-
-            <div class="form-group">
-                <button type="submit" value="Załóż konto" class="btn btn-lg btn-custom btn-block">Załóż konto</button>
-            </div>
-            <div class="text-center">
-                <a class="" href="@Url.Action("Logowanie", "home", null)">Masz już konto? Zaloguj się</a>
-            </div>
-
         </div>
     </div>
-    <script>
-        // extend range validator method to treat checkboxes differently
-        var defaultRangeValidator = $.validator.methods.range;
-        $.validator.methods.range = function (value, element, param) {
-            if (element.type === 'checkbox') {
-                // if it's a checkbox return true if it is checked
-                return element.checked;
-            } else {
-                // otherwise run the default validation function
-                return defaultRangeValidator.call(this, value, element, param);
+</div>
+        <script>
+            // extend range validator method to treat checkboxes differently
+            var defaultRangeValidator = $.validator.methods.range;
+            $.validator.methods.range = function (value, element, param) {
+                if (element.type === 'checkbox') {
+                    // if it's a checkbox return true if it is checked
+                    return element.checked;
+                } else {
+                    // otherwise run the default validation function
+                    return defaultRangeValidator.call(this, value, element, param);
+                }
             }
+        </script>
+
+
         }
-    </script>
-
-
-}
 
 

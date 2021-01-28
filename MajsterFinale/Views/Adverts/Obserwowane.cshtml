@@ -4,7 +4,7 @@
 @model MajsterFinale.Models.DisplayAdsRepository
 @using PagedList;
 @using PagedList.Mvc;
-<div class="container-fluid panel_mo">
+<div class="container-fluid panel_mo mt-1">
     <div class="row no-gutters">
         <div class="col-md-12 panel_top rounded p-3">
             <b>Witaj, @Session["MAIL"]</b>
@@ -72,7 +72,7 @@
                                     </h5>
                                 </div>
                                 <div class="imgbutton">
-                                    <button class="btn btn-danger" type="submit" value="@item.ID" name="Delete" onclick="return @item.ID;"><i class="fas fa-times"></i></button>
+                                    <button class="btn btn-custom" type="submit" value="@item.ID" name="Delete" onclick="return @item.ID;"><i class="fas fa-bookmark"></i></button>
                                 </div>
 
                                 <div class="imgdate">

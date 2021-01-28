@@ -15,7 +15,7 @@
     @Html.HiddenFor(model => model.DATE)
     @Html.HiddenFor(model => model.CATEGORY)
 
-<div class="container-fluid addadv_main">
+<div class="container-fluid addadv_main mt-1">
     <div class="row no-gutters">
 
         <div class="col-md-12 addadv_title rounded p-3"><h1>Edytuj ogłoszenie!</h1></div>
@@ -75,7 +75,7 @@
             </div>
             <div class="col-md-12 dpmb">
                 <h3>Opis</h3>
-                @Html.TextAreaFor(model => model.DESCRIPTION, new { @cols = 40, @rows = 5, htmlAttributes = new { @class = "form-control ta1" } })
+                @Html.TextAreaFor(model => model.DESCRIPTION, new { @cols = "40", @rows = "5", htmlAttributes = new { @class = "form-control ta1" } })
                 @Html.ValidationMessageFor(model => model.DESCRIPTION, "", new { @class = "text-danger" })
                 <small class="form-text text-muted">
                     <sup style="color:red">&#42;</sup>Edytuj opis
