@@ -88,7 +88,7 @@
             }
             <div class="col-md-12 text-center" style="background-color:transparent;">
                 Strona @(Model.ADVERTS.PageCount < Model.ADVERTS.PageNumber ? 0 : Model.ADVERTS.PageNumber) z @Model.ADVERTS.PageCount
-                @Html.PagedListPager(Model.ADVERTS, page => Url.Action("OgloszeniaUsera", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+                @Html.PagedListPager(Model.ADVERTS, page => Url.Action("Obserwowane", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
             </div>
         </div>
     </div>

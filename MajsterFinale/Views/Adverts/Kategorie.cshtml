@@ -44,12 +44,12 @@
                         }
                         else if (ViewBag.id == 997)
                         {
-                            <h2>Wszystkie ogłoszenia z Motoryzacja <i class="fas fa-car" style="color:blue"></h2>
+                            <h2>Wszystkie ogłoszenia z Motoryzacja <i class="fas fa-car" style="color:blue"></i></h2>
                             break;
                         }
                         else if (ViewBag.id == 996)
                         {
-                            <h2>Wszystkie ogłoszenia z Usługi <i class="fas fa-concierge-bell" style="color:purple"></h2>
+                            <h2>Wszystkie ogłoszenia z Usługi <i class="fas fa-concierge-bell" style="color:purple"></i></h2>
                             break;
                         }
                         else
@@ -185,7 +185,7 @@
                     else if (ViewBag.id >= 2 && ViewBag.id <= 9)
                     {
                         <div>
-                            <i class="fas fa-chevron-left"></i><span>Cofnij do <a href="@Url.Action("Index", "Home", null)" style="color:grey;">Dom</a></span>
+                            <i class="fas fa-chevron-left"></i><span>Cofnij do <a href="@Url.Action("Kategorie", "Adverts", new { id = 999})" style="color:grey;">Dom</a></span>
                         </div>
                         <h3 class="ml-3 mt-3">Dom</h3>
                         <ul class="nav flex-column" style="line-height: 85%; ">
@@ -218,7 +218,7 @@
                     else if (ViewBag.id >= 10 && ViewBag.id <= 15)
                     {
                         <div>
-                            <i class="fas fa-chevron-left"></i><span>Cofnij do <a href="@Url.Action("Index", "Home", null)" style="color:grey;">Ogród</a></span>
+                            <i class="fas fa-chevron-left"></i><span>Cofnij do <a href="@Url.Action("Kategorie", "Adverts", new { id = 998})" style="color:grey;">Ogród</a></span>
                         </div>
                         <h3 class="ml-3 mt-3">Ogród</h3>
                         <ul class="nav flex-column" style="line-height: 85%; ">
@@ -245,7 +245,7 @@
                     else if (ViewBag.id >= 16 && ViewBag.id <= 21)
                     {
                         <div>
-                            <i class="fas fa-chevron-left"></i><span>Cofnij do <a href="@Url.Action("Index", "Home", null)" style="color:grey;">Motoryzacji</a></span>
+                            <i class="fas fa-chevron-left"></i><span>Cofnij do <a href="@Url.Action("Kategorie", "Adverts", new { id = 997})" style="color:grey;">Motoryzacji</a></span>
                         </div>
                         <h3 class="ml-3 mt-3">Motoryzacja</h3>
                         <ul class="nav flex-column" style="line-height: 85%; ">
@@ -272,7 +272,7 @@
                     else if (ViewBag.id >= 22 && ViewBag.id <= 28)
                     {
                         <div>
-                            <i class="fas fa-chevron-left"></i><span>Cofnij do <a href="@Url.Action("Index", "Home", null)" style="color:grey;">Usług</a></span>
+                            <i class="fas fa-chevron-left"></i><span>Cofnij do <a href="@Url.Action("Kategorie", "Adverts", new { id = 996})" style="color:grey;">Usług</a></span>
                         </div>
                         <h3 class="ml-3 mt-3">Usługi</h3>
                         <ul class="nav flex-column" style="line-height: 85%; ">
