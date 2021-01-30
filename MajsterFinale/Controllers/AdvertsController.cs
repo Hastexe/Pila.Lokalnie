@@ -126,6 +126,10 @@ namespace MajsterFinale.Controllers
             {
                 page = 1;
             }
+            else if (searchString == null)
+            {
+                searchString = currentFilter;
+            }
             else
             {
                 searchString = currentFilter;
@@ -156,8 +160,12 @@ namespace MajsterFinale.Controllers
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                adverts = adverts.Where(s => s.TITLE.Contains(searchString)
-                                       || s.DESCRIPTION.Contains(searchString));
+                adverts = adverts.Where(s => s.IS_ARCHIVED == false && ((s.TITLE.Contains(searchString))
+                                       || (s.DESCRIPTION.Contains(searchString))));
+            }
+            else if (String.IsNullOrEmpty(searchString))
+            {
+                adverts = adverts.Where(s => s.IS_ARCHIVED == false);
             }
             switch (sortOrder)
             {
@@ -465,6 +473,7 @@ namespace MajsterFinale.Controllers
         {
             int AdID = Int32.Parse(id);
             db.ADVERTS.Remove(db.ADVERTS.Single(s => s.ID == AdID));
+            db.FAV.Remove(db.FAV.Single(x => x.ADV == AdID));
             db.IMAGES_ADVERT.RemoveRange(db.IMAGES_ADVERT.Where(x => x.ADVERT_ID == AdID));
             db.SaveChanges();
             int uID = Convert.ToInt32(Session["ID"]);
@@ -519,7 +528,7 @@ namespace MajsterFinale.Controllers
                 List<ADVERTS> adverts = new List<ADVERTS>();
                 foreach (int item in fav)
                 {
-                    adverts.AddRange(db.ADVERTS.Where(a => a.ID == item).OrderBy(x => x.ID).ToList());
+                    adverts.AddRange(db.ADVERTS.Where(a => a.ID == item && a.IS_ARCHIVED == false).OrderBy(x => x.ID).ToList());
                 }
                 displayAdsRepository.ADVERTS = adverts.ToPagedList(pageNumber, pageSize);
                 displayAdsRepository.IMAGES = new AdvertRepository().GetAdsImages().ToList();

@@ -14,7 +14,7 @@
                     {
                         <form action="">
                             <div class="input-group justify-content-center">
-                                @Html.TextBox("searchString", null, new { @class = "searchbartext" })
+                                @Html.TextBox("searchString", ViewBag.CurrentFilter as string, new { @class = "searchbartext" })
                                 <div class="input-group-append">
                                     <button class="btn btn-custom" type="submit"><i class="fas fa-search"></i></button>
                                 </div>

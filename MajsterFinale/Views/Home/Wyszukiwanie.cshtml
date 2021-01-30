@@ -9,11 +9,11 @@
         <div class="col-md-12">
             <div class="col-md-12 panel_mid rounded p-1">
                 <div class="searchbarbox">
-                    @using (Html.BeginForm("Kategorie", "Adverts", FormMethod.Get))
+                    @using (Html.BeginForm("Wyszukiwanie", "Home", FormMethod.Get))
                     {
                         <form action="">
                             <div class="input-group justify-content-center">
-                                @Html.TextBox("searchString", null, new { @class = "searchbartext" })
+                                @Html.TextBox("search", ViewBag.CurrentFilter as string, new { @class = "searchbartext" })
                                 <div class="input-group-append">
                                     <button class="btn btn-custom" type="submit"><i class="fas fa-search"></i></button>
                                 </div>

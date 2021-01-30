@@ -54,11 +54,15 @@ namespace MajsterFinale.Controllers
                 search = currentFilter;
             }
             ViewBag.CurrentFilter = search;
-            var adverts = db.ADVERTS.Where(x => x.IS_ARCHIVED == false && ((x.TITLE.Contains(search)) || (x.DESCRIPTION.Contains(search))));
-            
+            var adverts = db.ADVERTS.Where(x => x.IS_ARCHIVED == false);
+
             if (!String.IsNullOrEmpty(search))
             {
                 adverts = adverts.Where(s => s.IS_ARCHIVED == false && ((s.TITLE.Contains(search)) || (s.DESCRIPTION.Contains(search))));
+            }
+            else if (String.IsNullOrEmpty(search))
+            {
+                adverts = adverts.Where(s => s.IS_ARCHIVED == false);
             }
             switch (sortOrder)
             {
