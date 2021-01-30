@@ -46,7 +46,6 @@ namespace MajsterFinale.Controllers
             ViewBag.PriceSortParm = sortOrder == "Price" ? "Price_desc" : "Price";
             if (search != null)
             {
-                search = " ";
                 page = 1;
             }
             else
@@ -55,7 +54,6 @@ namespace MajsterFinale.Controllers
             }
             ViewBag.CurrentFilter = search;
             var adverts = db.ADVERTS.Where(x => x.IS_ARCHIVED == false);
-
             if (!String.IsNullOrEmpty(search))
             {
                 adverts = adverts.Where(s => s.IS_ARCHIVED == false && ((s.TITLE.Contains(search)) || (s.DESCRIPTION.Contains(search))));
