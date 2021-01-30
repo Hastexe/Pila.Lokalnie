@@ -189,7 +189,7 @@ namespace MajsterFinale.Controllers
                     }
                     else if (areTermsAccepted)
                     {
-                        ModelState.AddModelError("TERMS", "Należy zaakceptować warunki");
+                        ModelState.AddModelError("TERMS", "Należy zaakceptować regulamin");
                         return View();
                     }
                     else
