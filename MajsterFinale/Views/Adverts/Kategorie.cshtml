@@ -5,10 +5,10 @@
 @using PagedList;
 @using PagedList.Mvc;
 
-<div class="container-fluid panel_mo mt-1">
+<div class="container-fluid panel_mo">
     <div class="row">
-        <div class="col-md-12">
-            <div class="col-md-12 panel_mid rounded p-1">
+        <div class="col-md-12 panel_mid rounded">
+            <div class="col-md-12  ">
                 <div class="searchbarbox">
                     @using (Html.BeginForm("Kategorie", "Adverts", FormMethod.Get))
                     {
@@ -24,9 +24,9 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-12">
+        <div class="col-md-12 panel_mid rounded">
             <div class="row no-gutters">
-                <div class="col-md-12 panel_mid rounded p-3">
+                <div class="col-md-12  p-3">
                     @{
                         bool print = true;
                     }
@@ -62,13 +62,13 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="col-md-12 panel_mid rounded p-3">
+        <div class="col-md-3 panel_mid rounded p-3">
+            
                 @{
                     if (ViewBag.id == 999)
                     {
                         <div>
-                            <i class="fas fa-chevron-left"></i><span>Cofnij do <a href="@Url.Action("Index", "Home", null)" style="color:grey; font-weight:600;">Strony głównej</a></span>
+                            <span><a href="@Url.Action("Index", "Home", null)" style="color:grey; font-weight:600; padding-left:1rem;"><i class="fas fa-chevron-left"></i>Strona główna</a></span>
                         </div>
                         <h3 class="ml-3 mt-3">Dom</h3>
                         <ul class="nav flex-column" style="line-height: 90%;">
@@ -300,14 +300,10 @@
                         </ul>
                     }
                 }
-            </div>
+            
         </div>
-        <div class="col-md-9">
-            <div class="col-md-12 panel_mid rounded p-3">
-                @*Sortowanie nie działa
-                @Html.ActionLink("Sortuj po Nazwie", "OgloszeniaUsera", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
-                @Html.ActionLink("Sortuj po Cenie", "OgloszeniaUsera", new { sortOrder = ViewBag.PriceSortParm, currentFilter = ViewBag.CurrentFilter })
-                @Html.ActionLink("Sortuj po Dacie", "OgloszeniaUsera", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })*@
+        <div class="col-md-9 panel_mid rounded">
+            <div class="col-md-12 p-3">
                 <div class="dropdown">
                     <button class="btn btn-custom2 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Sortowanie

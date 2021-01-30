@@ -4,13 +4,13 @@
 }
 <div class="container-fluid panel_mo">
     <div class="row">
-        <div class="col-md-12 panel_mid rounded p-1">
+        <div class="col-md-12 panel_mid rounded p-3">
             <div class="searchbarbox">
                 @using (Html.BeginForm("Wyszukiwanie", "Home", FormMethod.Get))
                 {
                     <form action="">
                         <div class="input-group justify-content-center">
-                            @Html.TextBox("search", null, new { @class = "searchbartext" })
+                            @Html.TextBox("search", null, new { placeholder = "Czego szukasz?",@class = "searchbartext" })
                             <div class="input-group-append">
                                 <button class="btn btn-custom" type="submit"><i class="fas fa-search"></i></button>
                             </div>
@@ -19,7 +19,7 @@
                 }
             </div>
         </div>
-        <div class="col-md-12 panel_mid panel_mid_size rounded">
+        <div class="col-md-12 panel_mid rounded panel_mid_size">
             <div class="row">
                 <div class="col-md-4 p-3">
                     <div class="nav flex-column nav-pills red" id="v-pills-tab" role="tablist" aria-orientation="vertical">
@@ -42,7 +42,7 @@
                                         <img src="@Url.Content("~/Content/IMAGES/slider2.jpg")" class="w-100" alt="...">
                                     </div>
                                     <div class="carousel-item text-center">
-                                        <img src="@Url.Content("~/Content/IMAGES/slider3.jpg")" class="w-100" alt="...">
+                                       <img src="@Url.Content("~/Content/IMAGES/slider3.jpg")" class="w-100" alt="...">
                                     </div>
                                 </div>
                                 <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
@@ -106,40 +106,45 @@
                 </div>
             </div>
         </div>
-
         <div class="row">
-            <div class="col-md-4 ">
-                <div class="col-md-12 index_steps d-flex justify-content-center rounded">
-                    <figure>
-                        <img src="@Url.Content("~/Content/IMAGES/create.svg")" style="height:130px;" alt="Image" />
-                        <figcaption>
-                            <h1>Załóż konto</h1>
-                            <p>Posiadanie konta zapewnia dużo korzyści, w szczególności utworzenie ogłoszenia.</p>
-                        </figcaption>
-                    </figure>
-                </div>
+            <div class="col-md-4 link">
+                <a href="@Url.Action("Rejestracja", "Home", null)">
+                    <div class="col-md-12 index_stepsh index_steps justify-content-center rounded">
+                        <figure>
+                            <img src="@Url.Content("~/Content/IMAGES/create.svg")" style="height:130px;" alt="Image" />
+                            <figcaption>
+                                <h1>Załóż konto</h1>
+                                <p>Posiadanie konta zapewnia dużo korzyści, w szczególności utworzenie ogłoszenia.</p>
+                            </figcaption>
+                        </figure>
+                    </div>
+                </a>
             </div>
-            <div class="col-md-4 ">
-                <div class="col-md-12 index_steps d-flex justify-content-center rounded ">
-                    <figure>
-                        <img src="@Url.Content("~/Content/IMAGES/edit.svg")" style="height: 130px;" alt="Image" />
-                        <figcaption>
-                            <h1>Uzupełnij profil</h1>
-                            <p>Dodaj informacje do swojego konta, przeprowadzimy weryfikację i zatwierdzimy Twój profil.</p>
-                        </figcaption>
-                    </figure>
-                </div>
+            <div class="col-md-4 link">
+                <a href="@Url.Action("AddAdvertisement", "Adverts", null)">
+                    <div class="col-md-12 index_steps index_stepsh justify-content-center rounded ">
+                        <figure>
+                            <img src="@Url.Content("~/Content/IMAGES/edit.svg")" style="height: 130px;" alt="Image" />
+                            <figcaption>
+                                <h1>Uzupełnij profil</h1>
+                                <p>Dodaj informacje do swojego konta, przeprowadzimy weryfikację i zatwierdzimy Twój profil.</p>
+                            </figcaption>
+                        </figure>
+                    </div>
+                </a>
             </div>
-            <div class="col-md-4">
-                <div class="col-md-12 index_steps d-flex justify-content-center rounded ">
-                    <figure>
-                        <img src="@Url.Content("~/Content/IMAGES/add.svg")" style="height: 130px;" alt="Image" />
-                        <figcaption>
-                            <h1>Utwórz ogłoszenie</h1>
-                            <p>Zarabiaj na zleceniach od użytkowników. Twoje ogłoszenie zostanie do przydzielonej kategorii.</p>
-                        </figcaption>
-                    </figure>
-                </div>
+            <div class="col-md-4 link">
+                <a href="@Url.Action("EditData", "User", null)">
+                    <div class="col-md-12 index_steps index_stepsh justify-content-center rounded ">
+                        <figure>
+                            <img src="@Url.Content("~/Content/IMAGES/add.svg")" style="height: 130px;" alt="Image" />
+                            <figcaption>
+                                <h1>Utwórz ogłoszenie</h1>
+                                <p>Zarabiaj na zleceniach od użytkowników. Twoje ogłoszenie zostanie do przydzielonej kategorii.</p>
+                            </figcaption>
+                        </figure>
+                    </div>
+                   </a>
             </div>
         </div>
     </div>

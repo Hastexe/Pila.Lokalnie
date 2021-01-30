@@ -38,18 +38,28 @@
     .navbar-toggler:focus {
         box-shadow: none;
     }
-
-@media (max-width: 767px) {
+@media (max-width: 766px) {
     .main-navsize {
         margin-left: 0%;
         margin-right: 0%;
     }
 }
-
-@media (min-width: 768px) {
+@media (min-width: 767px) {
     .main-navsize {
-        margin-left: 12%;
-        margin-right: 12%;
+        margin-left: 6%;
+        margin-right: 6%;
+    }
+}
+@media (min-width: 769px) {
+    .main-navsize {
+        margin-left: 8%;
+        margin-right: 8%;
+    }
+}
+@media (min-width: 859px){
+    .main-navsize {
+        margin-left:10%;
+        margin-right:10%;
     }
 }
 

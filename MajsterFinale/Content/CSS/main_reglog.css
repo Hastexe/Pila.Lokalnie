@@ -27,7 +27,7 @@
         max-width: 20rem;
     }
     .main_loginreg {
-        width: 17%;
+        width: 40%;
         margin-top: 1rem;
     }
     .mid_loginreg {
@@ -41,4 +41,101 @@
         font-size:12px;
     }
 
+}
+
+@media (min-width: 1023px) {
+    .ver {
+        margin-top: 3rem;
+        max-width: 20rem;
+    }
+
+    .main_loginreg {
+        width: 30%;
+        margin-top: 1rem;
+    }
+
+    .mid_loginreg {
+        background-color: white;
+    }
+
+        .mid_loginreg p {
+            font-weight: 600;
+        }
+
+        .mid_loginreg p1 {
+            font-weight: 600;
+            font-size: 12px;
+        }
+}
+@media (min-width: 1439px) {
+    .ver {
+        margin-top: 3rem;
+        max-width: 20rem;
+    }
+
+    .main_loginreg {
+        width: 20%;
+        margin-top: 1rem;
+    }
+
+    .mid_loginreg {
+        background-color: white;
+    }
+
+        .mid_loginreg p {
+            font-weight: 600;
+        }
+
+        .mid_loginreg p1 {
+            font-weight: 600;
+            font-size: 12px;
+        }
+}
+@media (min-width: 1919px) {
+    .ver {
+        margin-top: 3rem;
+        max-width: 20rem;
+    }
+
+    .main_loginreg {
+        width: 16%;
+        margin-top: 1rem;
+    }
+
+    .mid_loginreg {
+        background-color: white;
+    }
+
+        .mid_loginreg p {
+            font-weight: 600;
+        }
+
+        .mid_loginreg p1 {
+            font-weight: 600;
+            font-size: 12px;
+        }
+}
+@media (min-width: 1921px) {
+    .ver {
+        margin-top: 3rem;
+        max-width: 20rem;
+    }
+
+    .main_loginreg {
+        width: 11%;
+        margin-top: 1rem;
+    }
+
+    .mid_loginreg {
+        background-color: white;
+    }
+
+        .mid_loginreg p {
+            font-weight: 600;
+        }
+
+        .mid_loginreg p1 {
+            font-weight: 600;
+            font-size: 12px;
+        }
 }

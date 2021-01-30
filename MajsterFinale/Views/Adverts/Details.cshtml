@@ -18,9 +18,9 @@
     </script>
 }
 
-<div class="container-fluid panel_mo mt-1">
+<div class="container-fluid panel_mo mt-3">
     <div class="row">
-        <div class="col-md-12 d-block d-sm-none">
+        <div class="col-md-12 d-block d-lg-none mb-1">
             <div class="col-md-12 panel_mid p-3">
                 <script>
                     document.write('<a style="font-weight:600; color:grey;" id="backbutton" href="' + document.referrer + '"> <i class="fas fa-chevron-left" ></i><span>Wróć do ogłoszeń</span></a>');
@@ -50,8 +50,8 @@
 
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="col-md-12 rounded panel_mid p-3 ">
+        <div class="col-md-4 rounded panel_mid p-2">
+            <div class="col-md-12">
                 <h3 class="">@Html.DisplayFor(model => model.AdvertDetails.TITLE)</h3>
                 <p>Kategoria:  @Html.DisplayFor(model => model.AdvertDetails.CATEGORIES.NAME)</p>
 

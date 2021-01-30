@@ -1,4 +1,4 @@
-﻿@media (max-width: 767px) {
+﻿@media (max-width: 960px) {
     .addadv_main {
         width: 100%;
         margin-top: -1rem;
@@ -20,7 +20,7 @@
     }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 961px) {
     .addadv_main {
         width: 66%;
         margin-top: 2rem;
