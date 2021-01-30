@@ -363,9 +363,32 @@
                                             }
                                         </h5>
                                     </div>
-                                    <div class="imgbutton">
-                                        <a href=""><i class="far fa-bookmark" style="color:#f3b136"></i></a>
-                                    </div>
+                                    @{
+                                        if (Session["ID"] != null)
+                                        {
+
+                                            bool wyswietl = true;
+                                            wyswietl = true;
+                                            foreach (var itemFAV in Model.FavUsera)
+                                            {
+                                                if (item.ID == itemFAV.ADV)
+                                                {
+
+                                                    if (wyswietl == true)
+                                                    {
+                                                        <button class="btn" type="submit" value="@item.ID" name="Obserwuj" onclick="return @item.ID;"><i class="fas fa-bookmark"></i></button>
+                                                        wyswietl = false;
+                                                    }
+
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <button class="btn btn-custom " href="@Url.Action("Logowanie", "Home")" target="_blank"><i class="far fa-bookmark"></i></button>
+                                        }
+                                    }
+
 
                                     <div class="imgdate">
                                         @{

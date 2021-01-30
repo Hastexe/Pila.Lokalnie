@@ -65,6 +65,10 @@ namespace MajsterFinale.Models
         {
             return db.USERS.SingleOrDefault(x => x.USER_ID == uID);
         }
+        public List<FAV> GetUserFav(int uID)
+        {
+            return db.FAV.Where(x => x.USER == uID).ToList();
+        }
         public List<ADVERTS> GetUserAdverts(int uID)
         {
             return db.ADVERTS.Where(x => x.USER_ID == uID && x.IS_ARCHIVED==false).ToList();

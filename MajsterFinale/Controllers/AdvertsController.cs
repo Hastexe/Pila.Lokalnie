@@ -118,6 +118,12 @@ namespace MajsterFinale.Controllers
 
         public ActionResult Kategorie(int id, int? page, string sortOrder, string searchString, string currentFilter)
         {
+            if (Session["ID"] != null)
+            {
+                int uID = Convert.ToInt32(Session["ID"]);
+                displayAdsRepository.LoggedUser = advertRepository.GetUserData(uID);
+                displayAdsRepository.FavUsera = advertRepository.GetUserFav(uID);
+            }
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
@@ -197,6 +203,18 @@ namespace MajsterFinale.Controllers
             displayAdsRepository.IMAGES = new AdvertRepository().GetAdsImages().ToList();
             return View(displayAdsRepository);
         }
+        [HttpPost]
+        public ActionResult Kategorie(string Obserwuj)
+        {
+            if (Obserwuj != null)
+            {
+                return (AddToFavFromList(Obserwuj));
+            }
+            else
+            {
+                return View();
+            }
+        }
 
         public ActionResult OgloszeniaUsera(int? page, int id, string sortOrder, string searchString, string currentFilter)
         {
@@ -204,8 +222,13 @@ namespace MajsterFinale.Controllers
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
             ViewBag.PriceSortParm = sortOrder == "Price" ? "Price_desc" : "Price";
-            if (searchString != null)
+           if (searchString != null)
             {
+                page = 1;
+            }
+            else if (searchString == null)
+            {
+                searchString = "";
                 page = 1;
             }
             else
@@ -218,6 +241,10 @@ namespace MajsterFinale.Controllers
             {
                 adverts = adverts.Where(s => s.TITLE.Contains(searchString)
                                        || s.DESCRIPTION.Contains(searchString));
+            }
+            else if (String.IsNullOrEmpty(searchString))
+            {
+                adverts = adverts.Where(s => s.IS_ARCHIVED == false);
             }
             switch (sortOrder)
             {
@@ -396,6 +423,34 @@ namespace MajsterFinale.Controllers
             displayRepository.LoggedUser = advertRepository.GetUserData(uID);
             return Content("<script language='javascript' type='text/javascript'>location = location;alert('Ogłoszenie zostało przeniesione do archiwum');</script>");
         }
+
+        private ActionResult AddToFavFromList(string id)
+        {
+            if (Session["ID"] != null)
+            {
+                int AdID = Convert.ToInt32(id);
+                int uID = Convert.ToInt32(Session["ID"]);
+                FAV fAV = new FAV();
+                int check = db.FAV.Count(x => x.USER == uID && x.ADV == AdID);
+                if (check == 0)
+                {
+                    fAV.USER = uID;
+                    fAV.ADV = AdID;
+                    db.FAV.Add(fAV);
+                    db.SaveChanges();
+                    return RedirectToAction("Details", "Adverts", new { id = id });
+                }
+                else
+                {
+                    db.FAV.Remove(db.FAV.Single(x => x.ADV == AdID && x.USER == uID));
+                    db.SaveChanges();
+                    return RedirectToAction("Details", "Adverts", new { id = id });
+                }
+            }
+            else
+                return RedirectToAction("Logowanie", "home");
+        }
+
         [HttpGet]
         public ActionResult EditAdvertisement(EditAdModel obj)
         {
@@ -511,6 +566,32 @@ namespace MajsterFinale.Controllers
                     db.FAV.Remove(db.FAV.Single(x => x.ADV == AdID && x.USER == uID));
                     db.SaveChanges();
                     return RedirectToAction("Details", "Adverts", new { id = id });
+                }
+            }
+            else
+                return RedirectToAction("Logowanie", "home");
+        }
+        public ActionResult Obserwujv2(int id)
+        {
+            if (Session["ID"] != null)
+            {
+                int AdID = id;
+                int uID = Convert.ToInt32(Session["ID"]);
+                FAV fAV = new FAV();
+                int check = db.FAV.Count(x => x.USER == uID && x.ADV == AdID);
+                if (check == 0)
+                {
+                    fAV.USER = uID;
+                    fAV.ADV = AdID;
+                    db.FAV.Add(fAV);
+                    db.SaveChanges();
+                    return RedirectToAction("Obserwowane", "Adverts");
+                }
+                else
+                {
+                    db.FAV.Remove(db.FAV.Single(x => x.ADV == AdID && x.USER == uID));
+                    db.SaveChanges();
+                    return RedirectToAction("Obserwowane", "Adverts");
                 }
             }
             else
