@@ -29,6 +29,7 @@
                 <div class="col-md-12  p-3">
                     @{
                         bool print = true;
+                        bool wyswietl = true;
                     }
                     @foreach (var category in Model.ADVERTS)
                     {
@@ -366,22 +367,25 @@
                                     @{
                                         if (Session["ID"] != null)
                                         {
-
-                                            bool wyswietl = true;
-                                            wyswietl = true;
+                                            wyswietl = false;
                                             foreach (var itemFAV in Model.FavUsera)
                                             {
                                                 if (item.ID == itemFAV.ADV)
                                                 {
-
-                                                    if (wyswietl == true)
-                                                    {
-                                                        <button class="btn" type="submit" value="@item.ID" name="Obserwuj" onclick="return @item.ID;"><i class="fas fa-bookmark"></i></button>
-                                                        wyswietl = false;
-                                                    }
+                                                    wyswietl = true;
+                                                    continue;
 
                                                 }
                                             }
+                                            if (wyswietl == true)
+                                            {
+                                                <button class="btn" type="submit" value="@item.ID" name="Obserwuj" onclick="return @item.ID;"><i class="fas fa-bookmark"></i></button>
+                                            }
+                                            else
+                                            {
+                                                <button class="btn" type="submit" value="@item.ID" name="Obserwuj" onclick="return @item.ID;"><i class="far fa-bookmark"></i></button>
+                                            }
+
                                         }
                                         else
                                         {
