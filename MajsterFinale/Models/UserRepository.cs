@@ -19,7 +19,7 @@ namespace MajsterFinale.Models
         }
         public List<MESSAGE> GetConversation(int AdvertId, int UserA, int UserB)
         {
-            return db.MESSAGE.Where(x => x.ADVERT_ID == AdvertId && ((x.MSG_TO == UserA && x.MSG_FROM == UserB) || (x.MSG_TO == UserB && x.MSG_FROM == UserA))).OrderByDescending(x => x.ID).ToList();
+            return db.MESSAGE.Where(x => x.ADVERT_ID == AdvertId && ((x.MSG_TO == UserA && x.MSG_FROM == UserB) || (x.MSG_TO == UserB && x.MSG_FROM == UserA))).OrderBy(x => x.ID).ToList();
         }
         public List<MESSAGE> GetUserNotReadMessages(int uID)
         {

@@ -21,21 +21,6 @@ namespace MajsterFinale.Controllers
         private RegisterRepository registerRepository = new RegisterRepository();
         private UserEditPassword userEditPassword = new UserEditPassword();
         // GET: User
-        public ActionResult Index()
-        {
-            return View();
-        }
-        public ActionResult Panel()
-        {
-            if (Session["ID"] != null)
-            {
-                int uID = Convert.ToInt32(Session["ID"]);
-                USERS Currentuser = new UserRepository().GetUserData(uID);
-                return View(Currentuser);
-            }
-            else return RedirectToAction("Logowanie", "Home");
-        }
-
         public ActionResult Messages()
         {
             if (Session["ID"] != null)
@@ -142,7 +127,6 @@ namespace MajsterFinale.Controllers
                         if (supportedTypes.Contains(fileExt))
                         {
                             file.SaveAs(Server.MapPath("/UploadImage/" + filename));
-                            BinaryReader reader = new BinaryReader(file.InputStream);
                             IMAGES_MESSAGE img = new IMAGES_MESSAGE
                             {
                                 IMAGE_TITLE = filename,
