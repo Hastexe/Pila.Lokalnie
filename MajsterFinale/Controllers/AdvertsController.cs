@@ -124,84 +124,93 @@ namespace MajsterFinale.Controllers
                 displayAdsRepository.LoggedUser = advertRepository.GetUserData(uID);
                 displayAdsRepository.FavUsera = advertRepository.GetUserFav(uID);
             }
-            ViewBag.CurrentSort = sortOrder;
-            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
-            ViewBag.PriceSortParm = sortOrder == "Price" ? "Price_desc" : "Price";
-            if (searchString != null)
+            if (id == 1 || id >= 29 && id <= 995)
             {
-                page = 1;
-            }
-            else if (searchString == null)
-            {
-                searchString = currentFilter;
+                return RedirectToAction("Wyszukiwanie", "Home");
             }
             else
             {
-                searchString = currentFilter;
-            }
+                ViewBag.CurrentSort = sortOrder;
+                ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+                ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+                ViewBag.PriceSortParm = sortOrder == "Price" ? "Price_desc" : "Price";
+                if (searchString != null)
+                {
+                    page = 1;
+                }
+                else if (searchString == null)
+                {
+                    searchString = currentFilter;
+                }
+                else
+                {
+                    searchString = currentFilter;
+                }
 
-            ViewBag.CurrentFilter = searchString;
-            var adverts = db.ADVERTS.Where(a => a.CATEGORY == id);
-            if (id == 999)
-            {
-                adverts = db.ADVERTS.Where(a => a.CATEGORY >= 2 && a.CATEGORY <= 9);
-            }
-            else if (id == 998)
-            {
-                adverts = db.ADVERTS.Where(a => a.CATEGORY >= 10 && a.CATEGORY <= 15);
-            }
-            else if (id == 997)
-            {
-                adverts = db.ADVERTS.Where(a => a.CATEGORY >= 16 && a.CATEGORY <= 21);
-            }
-            else if (id == 996)
-            {
-                adverts = db.ADVERTS.Where(a => a.CATEGORY >= 22 && a.CATEGORY <= 28);
-            }
-            else
-            {
-                adverts = db.ADVERTS.Where(a => a.CATEGORY == id);
-            }
+                ViewBag.CurrentFilter = searchString;
+                var adverts = db.ADVERTS.Where(a => a.CATEGORY == id);
+                if (id == 999)
+                {
+                    adverts = db.ADVERTS.Where(a => a.CATEGORY >= 2 && a.CATEGORY <= 9);
+                }
+                else if (id == 998)
+                {
+                    adverts = db.ADVERTS.Where(a => a.CATEGORY >= 10 && a.CATEGORY <= 15);
+                }
+                else if (id == 997)
+                {
+                    adverts = db.ADVERTS.Where(a => a.CATEGORY >= 16 && a.CATEGORY <= 21);
+                }
+                else if (id == 996)
+                {
+                    adverts = db.ADVERTS.Where(a => a.CATEGORY >= 22 && a.CATEGORY <= 28);
+                }
+                else
+                {
+                    adverts = db.ADVERTS.Where(a => a.CATEGORY == id);
+                }
 
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                adverts = adverts.Where(s => s.IS_ARCHIVED == false && ((s.TITLE.Contains(searchString))
-                                       || (s.DESCRIPTION.Contains(searchString))));
-            }
-            else if (String.IsNullOrEmpty(searchString))
-            {
-                adverts = adverts.Where(s => s.IS_ARCHIVED == false);
-            }
-            switch (sortOrder)
-            {
 
-                case "name_desc":
-                    adverts = adverts.OrderByDescending(s => s.TITLE);
-                    break;
-                case "Date":
-                    adverts = adverts.OrderBy(s => s.DATE);
-                    break;
-                case "date_desc":
-                    adverts = adverts.OrderByDescending(s => s.DATE);
-                    break;
-                case "Price":
-                    adverts = adverts.OrderBy(s => s.PRICE);
-                    break;
-                case "Price_desc":
-                    adverts = adverts.OrderByDescending(s => s.PRICE);
-                    break;
-                default:
-                    adverts = adverts.OrderBy(s => s.TITLE);
-                    break;
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    adverts = adverts.Where(s => s.IS_ARCHIVED == false && ((s.TITLE.Contains(searchString))
+                                           || (s.DESCRIPTION.Contains(searchString))));
+                }
+                else if (String.IsNullOrEmpty(searchString))
+                {
+                    adverts = adverts.Where(s => s.IS_ARCHIVED == false);
+                }
+                switch (sortOrder)
+                {
+
+                    case "name_desc":
+                        adverts = adverts.OrderByDescending(s => s.TITLE);
+                        break;
+                    case "Date":
+                        adverts = adverts.OrderBy(s => s.DATE);
+                        break;
+                    case "date_desc":
+                        adverts = adverts.OrderByDescending(s => s.DATE);
+                        break;
+                    case "Price":
+                        adverts = adverts.OrderBy(s => s.PRICE);
+                        break;
+                    case "Price_desc":
+                        adverts = adverts.OrderByDescending(s => s.PRICE);
+                        break;
+                    default:
+                        adverts = adverts.OrderBy(s => s.TITLE);
+                        break;
+                }
+                int pageSize = 10;
+                int pageNumber = (page ?? 1);
+                ViewBag.id = id;
+                //return View(adverts.ToPagedList(pageNumber, pageSize));
+                displayAdsRepository.ADVERTS = adverts.ToPagedList(pageNumber, pageSize);
+                displayAdsRepository.IMAGES = new AdvertRepository().GetAdsImages().ToList();
+                return View(displayAdsRepository);
             }
-            int pageSize = 10;
-            int pageNumber = (page ?? 1);
-            ViewBag.id = id;
-            //return View(adverts.ToPagedList(pageNumber, pageSize));
-            displayAdsRepository.ADVERTS = adverts.ToPagedList(pageNumber, pageSize);
-            displayAdsRepository.IMAGES = new AdvertRepository().GetAdsImages().ToList();
-            return View(displayAdsRepository);
+            
         }
         [HttpPost]
         public ActionResult Kategorie(string Obserwuj)
