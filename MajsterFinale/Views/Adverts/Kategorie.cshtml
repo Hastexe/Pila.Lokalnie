@@ -4,17 +4,16 @@
 @model MajsterFinale.Models.DisplayAdsRepository
 @using PagedList;
 @using PagedList.Mvc;
-
 <div class="container-fluid panel_mo">
     <div class="row">
         <div class="col-md-12 panel_mid rounded">
-            <div class="col-md-12  ">
+            <div class="col-md-12 p-3">
                 <div class="searchbarbox">
                     @using (Html.BeginForm("Kategorie", "Adverts", FormMethod.Get))
                     {
                         <form action="">
                             <div class="input-group justify-content-center">
-                                @Html.TextBox("searchString", ViewBag.CurrentFilter as string, new { @class = "searchbartext" })
+                                @Html.TextBox("searchString", ViewBag.CurrentFilter as string, new { placeholder = "Czego szukasz?", @class = "searchbartext" })
                                 <div class="input-group-append">
                                     <button class="btn btn-custom" type="submit"><i class="fas fa-search"></i></button>
                                 </div>
@@ -102,10 +101,10 @@
                     else if (ViewBag.id == 998)
                     {
                         <div>
-                            <i class="fas fa-chevron-left"></i><span>Cofnij do <a href="@Url.Action("Index", "Home", null)" style="color:grey;">Strony głównej</a></span>
+                            <i class="fas fa-chevron-left"></i><span><a href="@Url.Action("Index", "Home", null)" style="color:grey;">Strona główna</a></span>
                         </div>
                         <h3 class="ml-3 mt-3">Ogród</h3>
-                        <ul class="nav flex-column" style="line-height: 85%; ">
+                        <ul class="nav flex-column" style="line-height: 90%; ">
                             <li class="nav-item">
                                 <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 10 })">Aranżacja Ogrodów</a>
                             </li>
@@ -129,10 +128,10 @@
                     else if (ViewBag.id == 997)
                     {
                         <div>
-                            <i class="fas fa-chevron-left"></i><span>Cofnij do <a href="@Url.Action("Index", "Home", null)" style="color:grey;">Strony głównej</a></span>
+                            <i class="fas fa-chevron-left"></i><span><a href="@Url.Action("Index", "Home", null)" style="color:grey;">Strona główna</a></span>
                         </div>
                         <h3 class="ml-3 mt-3">Motoryzacja</h3>
-                        <ul class="nav flex-column" style="line-height: 85%; ">
+                        <ul class="nav flex-column" style="line-height: 90%; ">
                             <li class="nav-item">
                                 <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 16 })">Mechanik </a>
                             </li>
@@ -156,10 +155,10 @@
                     else if (ViewBag.id == 996)
                     {
                         <div>
-                            <i class="fas fa-chevron-left"></i><span>Cofnij do <a href="@Url.Action("Index", "Home", null)" style="color:grey;">Strony głównej</a></span>
+                            <i class="fas fa-chevron-left"></i><span><a href="@Url.Action("Index", "Home", null)" style="color:grey;">Strona główna</a></span>
                         </div>
                         <h3 class="ml-3 mt-3">Usługi</h3>
-                        <ul class="nav flex-column" style="line-height: 85%; ">
+                        <ul class="nav flex-column" style="line-height: 90%; ">
                             <li class="nav-item">
                                 <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 22 })">Korepetycje </a>
                             </li>
@@ -189,7 +188,7 @@
                             <i class="fas fa-chevron-left"></i><span>Cofnij do <a href="@Url.Action("Kategorie", "Adverts", new { id = 999})" style="color:grey;">Dom</a></span>
                         </div>
                         <h3 class="ml-3 mt-3">Dom</h3>
-                        <ul class="nav flex-column" style="line-height: 85%; ">
+                        <ul class="nav flex-column" style="line-height: 90%; ">
                             <li class="nav-item">
                                 <a class="nav-link" href="@Url.Action("Kategorie", "Adverts", new { id = 2 })">Aranżacja Wnętrz</a>
                             </li>
@@ -379,11 +378,15 @@
                                             }
                                             if (wyswietl == true)
                                             {
-                                                <button class="btn" type="submit" value="@item.ID" name="Obserwuj" onclick="return @item.ID;"><i class="fas fa-bookmark"></i></button>
+                                                <div class="imgbutton">
+                                                    <button class="btn btn-custom" type="submit" value="@item.ID" name="Obserwuj" onclick="return @item.ID;"><i class="fas fa-bookmark"></i></button>
+                                                </div>
                                             }
                                             else
                                             {
-                                                <button class="btn" type="submit" value="@item.ID" name="Obserwuj" onclick="return @item.ID;"><i class="far fa-bookmark"></i></button>
+                                               <div class="imgbutton">
+                                                    <button class="btn btn-custom" type="submit" value="@item.ID" name="Obserwuj" onclick="return @item.ID;"><i class="far fa-bookmark"></i></button>
+                                                </div>
                                             }
 
                                         }

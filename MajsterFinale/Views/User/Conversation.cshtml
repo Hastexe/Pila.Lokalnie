@@ -24,7 +24,6 @@
             <a class="nav-link " href="@Url.Action("EditData", "User", null)">Ustawienia</a>
         </nav>
     </div>
-
     <div class="panel_bottom rounded mt-1">
         @if (!string.IsNullOrEmpty(ViewBag.Error))
         {
@@ -40,39 +39,14 @@
                 int LoggedUserID = Convert.ToInt32(Session["ID"]);
                 for (int i = 0; i < Model.CoversationMessages.Count; i++)
                 {
-                    <div class="row ml-auto">
+                    <div class="row">
                         @if (Model.CoversationMessages[i].MSG_FROM == Model.LoggedUser.USER_ID)
                         {
-                            <div class="col-md-5  mr-3">
+                            <div class="col-md-5  ml-auto mt-1 mr-3">
                                 <div class="col-12 p-1">
                                     @*@Model.LoggedUser.FNAME*@ <span style="font-weight:500">Twoja odpowiedź</span>
                                 </div>
                                 <div class="col-12 p-3 rounded" style="background-color: #f3b136;">
-                                    @Html.DisplayFor(modelItem => Model.CoversationMessages[i].TEXT)
-                                    @{
-                                        foreach (var j in Model.Images)
-                                        {
-                                            if (j.MESSAGE_ID == Model.CoversationMessages[i].ID)
-                                            {
-                                                <img class=" img-fluid" src="@j.IMAGE_PATH" alt="my pic" />
-                                            }
-                                        }
-                                    }
-                                </div>
-                                <div class="col-12">
-                                    <span class="text-muted" style="font-size:0.8rem;">Wysłano: @Html.DisplayFor(modelItem => Model.CoversationMessages[i].DATE)</span>
-                                </div>
-                            </div>
-
-                        }
-                        @if (Model.CoversationMessages[i].MSG_FROM == Model.SecondConversationUser.USER_ID)
-                        {
-
-                            <div class="col-md-5 ml-auto mt-1 mr-3">
-                                <div class="col-12 p-1">
-                                    <span style="font-weight:500"> @Model.SecondConversationUser.FNAME </span>
-                                </div>
-                                <div class="col-12 p-3 rounded" style="background-color:whitesmoke;">
                                     @Html.DisplayFor(modelItem => Model.CoversationMessages[i].TEXT)
                                     @{
                                         foreach (var j in Model.Images)
@@ -89,12 +63,34 @@
                                 </div>
                             </div>
                         }
+                        @if (Model.CoversationMessages[i].MSG_FROM == Model.SecondConversationUser.USER_ID)
+                        {
+                            <div class="col-md-5 mt-1 mr-3">
+                                <div class="col-12 p-1">
+                                    <span style="font-weight:500"> @Model.SecondConversationUser.FNAME </span>
+                                </div>
+                                <div class="col-12 p-3 rounded" style="background-color:whitesmoke;">
+                                    @Html.DisplayFor(modelItem => Model.CoversationMessages[i].TEXT)
+                                    @{
+                                        foreach (var j in Model.Images)
+                                        {
+                                            if (j.MESSAGE_ID == Model.CoversationMessages[i].ID)
+                                            {
+                                                <img class=" img-fluid" src="@j.IMAGE_PATH" alt="my pic" />
+                                            }
+                                        }
+                                    }
+                                </div>
+                                <div class="col-12 text-left">
+                                    <span class="text-muted" style="font-size:0.8rem;">Wysłano: @Html.DisplayFor(modelItem => Model.CoversationMessages[i].DATE)</span>
+                                </div>
+                            </div>
+                        }
                     </div>
                 }
             }
         </div>
         @{
-
             using (Html.BeginForm("Conversation", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
                 <div class="col-md-12 panel_mid rounded p-3">
@@ -114,9 +110,7 @@
                 </div>
                 }
                 }
-
             </div>
-
 </div>
    
 

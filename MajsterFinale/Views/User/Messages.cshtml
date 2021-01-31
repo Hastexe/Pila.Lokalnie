@@ -17,8 +17,12 @@
             <a class="nav-link " href="@Url.Action("EditData", "User", null)">Ustawienia</a>
         </nav>
     </div>
+
     
-        <div class="col-md-12 rounded p-3 panel_mid">
+
+    <div class="col-md-12 rounded mt-1 p-2 panel_mid">
+        <div class="row no-gutters align-items-center" style="height:12rem;">
+
             @{
                 int length = Model.UserMessages.Count;
                 int[,] msglist = new int[4, length];
@@ -41,6 +45,7 @@
                         msglist[3, j] = Model.UserMessages[j].ID;
                     }
                 }
+
                 string ConversationWith = "";
                 //string ConversationAdvertTitle = "";
                 string Msg = "";
@@ -50,6 +55,8 @@
                     if (msglist[0, i] > 0)
 
                     {
+
+
                         {
                             var User1 = Model.Users.Where(x => x.USER_ID == msglist[1, i]).Select(x => x.USER_ID).SingleOrDefault();
                             var User2 = Model.Users.Where(x => x.USER_ID == msglist[2, i]).Select(x => x.USER_ID).SingleOrDefault();
@@ -62,7 +69,9 @@
                                 ConversationWith = Model.Users.Where(x => x.USER_ID == msglist[1, i]).Select(x => x.FNAME).SingleOrDefault();
                             }
                         }
-                        @ConversationWith
+                        <div class="col-md-2">
+                           <span style="font-weight:600;"><i class="far fa-user" style="margin:0.5rem;"></i>@ConversationWith</span>
+                        </div>
                         {
                             Msg = Model.UserMessages.Where(x => x.ID == msglist[3, i]).Select(x => x.TEXT).SingleOrDefault();
 
@@ -70,37 +79,51 @@
                             {
                                 if (Model.UserMessages.Where(x => x.ID == msglist[3, i]).Select(x => x.IS_READ).SingleOrDefault() == false)
                                 {
-                                     <span class="badge badge-warning">Nowe</span> @Msg
+                                    <div class="col-md-8">
+                                        <span class="badge badge-warning">Nowe</span> @Msg
+                                    </div>
                                 }
                                 else
                                 {
                                     if (Msg.Length < 20)
                                     {
-                                        @Msg
+                                        <div class="col-md-8">
+                                            <i class="far fa-envelope-open" style="margin:0.5rem;"></i>@Msg
+                                        </div>
                                     }
                                     else
                                     {
-                                        @Msg.Substring(0, 30)
+                                        <div class="col-md-8">
+                                            <i class="far fa-envelope-open" style="margin:0.5rem;"></i>@Msg.Substring(0, 30)
+                                        </div>
                                     }
-
                                 }
                             }
                             else
                             {
                                 if (Msg.Length < 20)
                                 {
-                                    @Msg
+                                    <div class="col-md-8">
+                                        <i class="far fa-envelope-open" style="margin:0.5rem;"></i>@Msg
+                                    </div>
                                 }
                                 else
                                 {
-                                    @Msg.Substring(0, 30)
+                                    <div class="col-md-8">
+                                        <i class="far fa-envelope-open" style="margin:0.5rem;"></i>@Msg.Substring(0, 30)
+                                    </div>
                                 }
                             }
-                            <a class="btn btn-custom2" href="@Url.Action("Conversation", "User", new {AdvertId = msglist[0, i], UserA = msglist[1, i], UserB = msglist[2, i]})">Odpowiedz</a>
+                            <div class="col-md-2">
+                                <a class=" btn btn-custom" href="@Url.Action("Conversation", "User", new {AdvertId = msglist[0, i], UserA = msglist[1, i], UserB = msglist[2, i]})">Odpowiedz</a>
+                            </div>
                         }
 
                     }
+
                 }
+
             }
         </div>
-    </div>
+    </div> 
+</div>
