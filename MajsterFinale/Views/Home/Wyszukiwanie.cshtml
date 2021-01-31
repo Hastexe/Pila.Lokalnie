@@ -27,6 +27,7 @@
                 <div class="col-md-12">
                     @{
                         bool print = true;
+                        bool wyswietl = true;
                     }
                     @foreach (var category in Model.ADVERTS)
                     {
@@ -187,7 +188,40 @@
                                         </h5>
                                     </div>
                                     <div class="imgbutton">
-                                        <a href=""><i class="far fa-bookmark" style="color:#f3b136"></i></a>
+                                        @{
+                                            if (Session["ID"] != null)
+                                            {
+                                                wyswietl = false;
+                                                foreach (var itemFAV in Model.FavUsera)
+                                                {
+                                                    if (item.ID == itemFAV.ADV)
+                                                    {
+                                                        wyswietl = true;
+                                                        continue;
+
+                                                    }
+                                                }
+                                                if (wyswietl == true)
+                                                {
+                                                    <div class="imgbutton">
+                                                        <button class="btn btn-custom" type="submit" value="@item.ID" name="Obserwuj" onclick="return @item.ID;"><i class="fas fa-bookmark"></i></button>
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="imgbutton">
+                                                        <button class="btn btn-custom" type="submit" value="@item.ID" name="Obserwuj" onclick="return @item.ID;"><i class="far fa-bookmark"></i></button>
+                                                    </div>
+                                                }
+
+                                            }
+                                            else
+                                            {
+                                                <div class="imgbutton">
+                                                <button class="btn btn-custom " href="@Url.Action("Logowanie", "Home")" target="_blank"><i class="far fa-bookmark"></i></button>
+                                                </div>
+                                            }
+                                        }
                                     </div>
 
                                     <div class="imgdate">

@@ -231,7 +231,13 @@ namespace MajsterFinale.Controllers
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
             ViewBag.PriceSortParm = sortOrder == "Price" ? "Price_desc" : "Price";
-           if (searchString != null)
+            if (Session["ID"] != null)
+            {
+                int uID = Convert.ToInt32(Session["ID"]);
+                displayAdsRepository.LoggedUser = advertRepository.GetUserData(uID);
+                displayAdsRepository.FavUsera = advertRepository.GetUserFav(uID);
+            }
+            if (searchString != null)
             {
                 page = 1;
             }

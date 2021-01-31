@@ -40,6 +40,12 @@ namespace MajsterFinale.Controllers
 
         public ActionResult Wyszukiwanie(int? page, string search, string sortOrder, string currentFilter)
         {
+            if (Session["ID"] != null)
+            {
+                int uID = Convert.ToInt32(Session["ID"]);
+                displayAdsRepository.LoggedUser = advertRepository.GetUserData(uID);
+                displayAdsRepository.FavUsera = advertRepository.GetUserFav(uID);
+            }
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
@@ -89,6 +95,44 @@ namespace MajsterFinale.Controllers
             displayAdsRepository.ADVERTS = adverts.ToPagedList(pageNumber, pageSize);
             displayAdsRepository.IMAGES = new AdvertRepository().GetAdsImages().ToList(); ;
             return View(displayAdsRepository);
+        }
+        [HttpPost]
+        public ActionResult Wyszukiwanie(string Obserwuj)
+        {
+            if (Obserwuj != null)
+            {
+                return (AddToFavFromList(Obserwuj));
+            }
+            else
+            {
+                return View();
+            }
+        }
+        private ActionResult AddToFavFromList(string id)
+        {
+            if (Session["ID"] != null)
+            {
+                int AdID = Convert.ToInt32(id);
+                int uID = Convert.ToInt32(Session["ID"]);
+                FAV fAV = new FAV();
+                int check = db.FAV.Count(x => x.USER == uID && x.ADV == AdID);
+                if (check == 0)
+                {
+                    fAV.USER = uID;
+                    fAV.ADV = AdID;
+                    db.FAV.Add(fAV);
+                    db.SaveChanges();
+                    return RedirectToAction("Details", "Adverts", new { id = id });
+                }
+                else
+                {
+                    db.FAV.Remove(db.FAV.Single(x => x.ADV == AdID && x.USER == uID));
+                    db.SaveChanges();
+                    return RedirectToAction("Details", "Adverts", new { id = id });
+                }
+            }
+            else
+                return RedirectToAction("Logowanie", "home");
         }
         public ActionResult Logowanie()
         {
