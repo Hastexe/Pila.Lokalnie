@@ -37,7 +37,7 @@ namespace MajsterFinale.Controllers
                 if (Session["ID"] != null)
                 {
                     int uID = Convert.ToInt32(Session["ID"]);
-                    displayRepository.LoggedUser = advertRepository.GetUserData(uID); 
+                    displayRepository.LoggedUser = advertRepository.GetUserData(uID);
                     displayRepository.FAV = db.FAV.SingleOrDefault(x => x.ADV == id && x.USER == uID);
                 }
                 if (displayRepository.AdvertDetails == null)
@@ -173,7 +173,7 @@ namespace MajsterFinale.Controllers
 
                 if (!String.IsNullOrEmpty(searchString))
                 {
-                    adverts = adverts.Where(s => s.IS_ARCHIVED == false && ((s.TITLE.Contains(searchString))
+                    adverts = adverts.Where(s => s.IS_ARCHIVED == false && s.IS_HIDDEN == false && ((s.TITLE.Contains(searchString))
                                            || (s.DESCRIPTION.Contains(searchString))));
                 }
                 else if (String.IsNullOrEmpty(searchString))
@@ -210,7 +210,7 @@ namespace MajsterFinale.Controllers
                 displayAdsRepository.IMAGES = new AdvertRepository().GetAdsImages().ToList();
                 return View(displayAdsRepository);
             }
-            
+
         }
         [HttpPost]
         public ActionResult Kategorie(string Obserwuj)
@@ -251,7 +251,7 @@ namespace MajsterFinale.Controllers
                 searchString = currentFilter;
             }
             ViewBag.CurrentFilter = searchString;
-            var adverts = db.ADVERTS.Where(a => a.USER_ID == id && a.IS_ARCHIVED == false);
+            var adverts = db.ADVERTS.Where(a => a.USER_ID == id && a.IS_ARCHIVED == false && a.IS_HIDDEN == false);
             if (!String.IsNullOrEmpty(searchString))
             {
                 adverts = adverts.Where(s => s.TITLE.Contains(searchString)
@@ -310,7 +310,7 @@ namespace MajsterFinale.Controllers
                 AddingAdsRepository model = new AddingAdsRepository();
                 model.CategoryID = -1;
                 model.Categories = addingAdsRepository.GetList();
-                
+
                 return View(model);
             }
             return RedirectToAction("Logowanie", "home");
@@ -330,6 +330,7 @@ namespace MajsterFinale.Controllers
                 newAdvert.DESCRIPTION = AddingAdsRepository.Advert.DESCRIPTION;
                 newAdvert.DATE = System.DateTime.Now;
                 newAdvert.IS_ARCHIVED = false;
+                newAdvert.IS_HIDDEN = false;
                 Convert.ToString(AddingAdsRepository.Advert.PRICE);
                 var areTermsAccepted = AddingAdsRepository.AreTermsAccepted(AddingAdsRepository);
                 if (AddingAdsRepository.Advert.PRICE == null)
@@ -416,7 +417,7 @@ namespace MajsterFinale.Controllers
             if (Session["ID"] != null)
             {
                 int uID = Convert.ToInt32(Session["ID"]);
-                var adverts = db.ADVERTS.Where(a => a.USER_ID == uID && a.IS_ARCHIVED == false).OrderBy(x => x.ID);
+                var adverts = db.ADVERTS.Where(a => a.USER_ID == uID && a.IS_ARCHIVED == false && a.IS_HIDDEN == false).OrderBy(x => x.ID);
                 displayAdsRepository.ADVERTS = adverts.ToPagedList(pageNumber, pageSize);
                 displayAdsRepository.IMAGES = new AdvertRepository().GetAdsImages().ToList();
                 return View(displayAdsRepository);
@@ -531,7 +532,7 @@ namespace MajsterFinale.Controllers
             if (Session["ID"] != null)
             {
                 int uID = Convert.ToInt32(Session["ID"]);
-                var adverts = db.ADVERTS.Where(a => a.USER_ID == uID && a.IS_ARCHIVED == true).OrderBy(x => x.ID);
+                var adverts = db.ADVERTS.Where(a => a.USER_ID == uID && a.IS_ARCHIVED == true && a.IS_HIDDEN == false).OrderBy(x => x.ID);
                 displayAdsRepository.ADVERTS = adverts.ToPagedList(pageNumber, pageSize);
                 displayAdsRepository.IMAGES = new AdvertRepository().GetAdsImages().ToList();
                 return View(displayAdsRepository);
@@ -560,9 +561,10 @@ namespace MajsterFinale.Controllers
         private ActionResult DeleteAdvertisement(string id)
         {
             int AdID = Int32.Parse(id);
-            db.ADVERTS.Remove(db.ADVERTS.Single(s => s.ID == AdID));
-            db.FAV.RemoveRange(db.FAV.Where(x => x.ADV == AdID));
-            db.IMAGES_ADVERT.RemoveRange(db.IMAGES_ADVERT.Where(x => x.ADVERT_ID == AdID));
+            //db.ADVERTS.Remove(db.ADVERTS.Single(s => s.ID == AdID));
+            //db.FAV.RemoveRange(db.FAV.Where(x => x.ADV == AdID));
+            //db.IMAGES_ADVERT.RemoveRange(db.IMAGES_ADVERT.Where(x => x.ADVERT_ID == AdID));
+            db.ADVERTS.Single(x => x.ID == AdID).IS_HIDDEN = true;
             db.SaveChanges();
             int uID = Convert.ToInt32(Session["ID"]);
             displayRepository.LoggedUser = advertRepository.GetUserData(uID);
@@ -604,7 +606,7 @@ namespace MajsterFinale.Controllers
             else
                 return RedirectToAction("Logowanie", "home");
         }
-        
+
         public ActionResult Obserwowane(int? page)
         {
             int pageSize = 10;
@@ -616,7 +618,7 @@ namespace MajsterFinale.Controllers
                 List<ADVERTS> adverts = new List<ADVERTS>();
                 foreach (int item in fav)
                 {
-                    adverts.AddRange(db.ADVERTS.Where(a => a.ID == item && a.IS_ARCHIVED == false).OrderBy(x => x.ID).ToList());
+                    adverts.AddRange(db.ADVERTS.Where(a => a.ID == item && a.IS_ARCHIVED == false && a.IS_HIDDEN == false).OrderBy(x => x.ID).ToList());
                 }
                 displayAdsRepository.ADVERTS = adverts.ToPagedList(pageNumber, pageSize);
                 displayAdsRepository.IMAGES = new AdvertRepository().GetAdsImages().ToList();
