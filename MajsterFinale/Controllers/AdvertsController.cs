@@ -291,7 +291,18 @@ namespace MajsterFinale.Controllers
             return View(displayAdsRepository);
 
         }
-
+        [HttpPost]
+        public ActionResult OgloszeniaUsera(string Obserwuj)
+        {
+            if (Obserwuj != null)
+            {
+                return (AddToFavFromList(Obserwuj));
+            }
+            else
+            {
+                return View();
+            }
+        }
         public ActionResult AddAdvertisement()
         {
             if (Session["ID"] != null)
@@ -593,33 +604,7 @@ namespace MajsterFinale.Controllers
             else
                 return RedirectToAction("Logowanie", "home");
         }
-        public ActionResult Obserwujv2(int id)
-        {
-            if (Session["ID"] != null)
-            {
-                int AdID = id;
-                int uID = Convert.ToInt32(Session["ID"]);
-                FAV fAV = new FAV();
-                int check = db.FAV.Count(x => x.USER == uID && x.ADV == AdID);
-                if (check == 0)
-                {
-                    fAV.USER = uID;
-                    fAV.ADV = AdID;
-                    db.FAV.Add(fAV);
-                    db.SaveChanges();
-                    return RedirectToAction("Obserwowane", "Adverts");
-                }
-                else
-                {
-                    db.FAV.Remove(db.FAV.Single(x => x.ADV == AdID && x.USER == uID));
-                    db.SaveChanges();
-                    return RedirectToAction("Obserwowane", "Adverts");
-                }
-            }
-            else
-                return RedirectToAction("Logowanie", "home");
-        }
-
+        
         public ActionResult Obserwowane(int? page)
         {
             int pageSize = 10;
