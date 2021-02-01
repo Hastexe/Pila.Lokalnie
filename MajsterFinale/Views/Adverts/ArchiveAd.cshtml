@@ -73,7 +73,7 @@
                                 </div>
                                 <div class="imgbutton">
                                     <button class="btn" type="submit" value="@item.ID" name="Restore" onclick="return @item.ID;"><i class="fas fa-undo-alt" style="color:green"></i></button>
-                                    <button class="btn" type="submit" value="@item.ID" name="Delete" onclick="return @item.ID;"><i class="fas fa-times" style="color:red"></i></button>
+                                    <a onclick="return confirm('Czy na pewno chcesz usunąć to ogłoszenie?')"><button class="btn" type="submit" value="@item.ID" name="Delete" onclick="return @item.ID;"><i class="fas fa-times" style="color:red"></i></button></a>
                                 </div>
 
                                 <div class="imgdate">

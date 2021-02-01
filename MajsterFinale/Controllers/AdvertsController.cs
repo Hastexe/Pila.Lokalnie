@@ -550,7 +550,7 @@ namespace MajsterFinale.Controllers
         {
             int AdID = Int32.Parse(id);
             db.ADVERTS.Remove(db.ADVERTS.Single(s => s.ID == AdID));
-            db.FAV.Remove(db.FAV.Single(x => x.ADV == AdID));
+            db.FAV.RemoveRange(db.FAV.Where(x => x.ADV == AdID));
             db.IMAGES_ADVERT.RemoveRange(db.IMAGES_ADVERT.Where(x => x.ADVERT_ID == AdID));
             db.SaveChanges();
             int uID = Convert.ToInt32(Session["ID"]);
