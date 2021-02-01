@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace MajsterFinale.Models
 {
@@ -15,6 +16,18 @@ namespace MajsterFinale.Models
         public List<CATEGORIES> GetList()
         {
             return db.CATEGORIES.ToList();
+        }
+
+        [NonAction]
+        public bool AreTermsAccepted(AddingAdsRepository AddingAdsRepository)
+        {
+            var terms = AddingAdsRepository.Advert.TERMS;
+
+            if (terms != true)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

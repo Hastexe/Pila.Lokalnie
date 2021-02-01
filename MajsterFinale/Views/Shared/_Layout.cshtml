@@ -157,32 +157,24 @@
                 <div class="col-6 col-md">
                     <h5>Strona główna</h5>
                     <ul class="list-unstyled text-small">
-                        <li><a class="text-muted" href="#">Strona główna</a></li>
-                        <li><a class="text-muted" href="#">Logowanie</a></li>
-                        <li><a class="text-muted" href="#">Rejestracja</a></li>
-                        <li><a class="text-muted" href="#">Dodaj ogłoszenie</a></li>
-                        <li><a class="text-muted" href="#">Wszystkie ogłoszenia</a></li>
+                        <li><a class="text-muted" href="@Url.Action("Index", "Home", null)">Strona główna</a></li>
+                        <li><a class="text-muted" href="@Url.Action("Logowanie", "Home", null)">Logowanie</a></li>
+                        <li><a class="text-muted" href="@Url.Action("Rejestracja", "Home", null)">Rejestracja</a></li>
+                        <li><a class="text-muted" href="@Url.Action("AddAdvertisement", "Adverts", null)">Dodaj ogłoszenie</a></li>
+                        <li><a class="text-muted" href="@Url.Action("Wyszukiwanie", "Home", new { search = "" })">Wszystkie ogłoszenia</a></li>
                     </ul>
                 </div>
                 <div class="col-6 col-md">
                     <h5>Regulamin</h5>
                     <ul class="list-unstyled text-small">
-                        <li><a class="text-muted" href="#">Regulamin</a></li>
-                        <li><a class="text-muted" href="#">Polityka</a></li>
-                    </ul>
-                </div>
-                <div class="col-6 col-md">
-                    <h5>Kontakt</h5>
-                    <ul class="list-unstyled text-small">
-                        <li><a class="text-muted" href="#">Pomoc techniczna</a></li>
-                        <li><a class="text-muted" href="#">Kontakt</a></li>
+                        <li><a class="text-muted" href="@Url.Action("regulamin", "Home", null)">Regulamin</a></li>
+                        <li><a class="text-muted" href="@Url.Action("polityka", "Home", null)">Polityka</a></li>
                     </ul>
                 </div>
                 <div class="col-6 col-md">
                     <h5>O nas</h5>
                     <ul class="list-unstyled text-small">
-                        <li><a class="text-muted" href="#">Kim jesteśmy?</a></li>
-                        <li><a class="text-muted" href="#">Czym jest Piłalokalnie?</a></li>
+                        <li><a class="text-muted" href="@Url.Action("PilaLokalnie", "Home", null)">Czym jest Piłalokalnie?</a></li>
                     </ul>
                 </div>
             </div>

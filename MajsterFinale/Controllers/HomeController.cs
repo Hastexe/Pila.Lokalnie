@@ -37,7 +37,10 @@ namespace MajsterFinale.Controllers
             model.Categories = addingAdsRepository.GetList();
             return View(model);
         }
-
+        public ActionResult PilaLokalnie()
+        {
+            return View();
+        }
         public ActionResult Wyszukiwanie(int? page, string search, string sortOrder, string currentFilter)
         {
             if (Session["ID"] != null)

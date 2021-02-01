@@ -488,6 +488,7 @@
     <Content Include="Views\Shared\Searchbar.cshtml" />
     <Content Include="Views\Home\Odzyskaj.cshtml" />
     <Content Include="Views\Home\NoweHaslo.cshtml" />
+    <Content Include="Views\Home\PilaLokalnie.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

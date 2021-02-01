@@ -27,6 +27,7 @@
             </div>
             <div class="col-md-12 addadv_sec1 rounded mt-3 p-3">
                 <div class="col-md-12 mb-3">
+                    @Html.ValidationMessage("TERMS", new { @class = "text-danger" })
                     <h3>Tytuł</h3>
                     @Html.EditorFor(model => model.Advert.TITLE, new { htmlAttributes = new { @class = "form-control ef" } })
                     @Html.ValidationMessageFor(model => model.Advert.TITLE, "", new { @class = "text-danger" })
@@ -47,7 +48,7 @@
                     @Html.EditorFor(model => model.Advert.PRICE, new { rows = "1", htmlAttributes = new { @class = "form-control efsmall" } })
                     @*@Html.ValidationMessageFor(model => model.Advert.PRICE, "", new { @class = "text-danger" })*@
                     <small class="form-text text-muted">
-                        <sup style="color:red">&#42;</sup>Podaj Cenę lub zostaw puste jeżeli cena do uzgodnienia
+                        <sup style="color:red">&#42;</sup>Podaj Cenę lub zostaw puste jeżeli Cena do uzgodnienia
                     </small>
                 </div>
             </div>
@@ -75,11 +76,10 @@
             <div class="col-md-12 addadv_sec4 rounded mt-3 p-3">
                 <div class="col-md-12">
                     <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label" for="exampleCheck1">Akceptuje regulamin<sup style="color:red">&#42;</sup></label><br>
+                        <p>@Html.CheckBoxFor(model => model.Advert.TERMS) Akceptuję<a href="@Url.Action("Regulamin", "home", null)"> regulamin<sup style="color:red">&#42;</sup></a><p>  
                         <small class="form-text text-muted">
-                            Nullam tincidunt est a est eleifend venenatis. Mauris sit amet maximus diam. Vestibulum iaculis pharetra nibh, eget ullamcorper magna laoreet vel. Curabitur eu quam sem. Praesent et viverra felis. Sed faucibus ultrices enim malesuada venenatis. Duis pretium nisi nec erat lobortis blandit. In pretium id mauris eu tempor. Phasellus vehicula, nibh quis tincidunt ultricies, dui magna aliquet ante, nec tincidunt ligula tellus congue justo.
-                        </small>
+                            <p1>Oświadczam, iż zapoznałem się z treścią @Html.ActionLink("Regulaminu", "regulamin", null, new { target = "_blank" }) i akceptuję jego wszystkie postanowienia. Akceptuję @Html.ActionLink("Politykę Ochrony Prywatności", "polityka", null, new { target = "_blank" }) - ogólne standardy ochrony.</p1>
+                            </small>
                     </div>
                 </div>
             </div>

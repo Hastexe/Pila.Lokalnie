@@ -54,6 +54,7 @@ namespace MajsterFinale.Models
         public virtual ICollection<MESSAGE> MESSAGE { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<IMAGES_ADVERT> IMAGES_ADVERT { get; set; }
+        public bool TERMS { get; set; }
 
         internal class MustBeTrueAttribute : ValidationAttribute
         {

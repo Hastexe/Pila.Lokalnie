@@ -29,34 +29,7 @@
                         bool print = true;
                         bool wyswietl = true;
                     }
-                    @foreach (var category in Model.ADVERTS)
-                    {
-                        if (ViewBag.id == 999)
-                        {
-                            <h2>Wszystkie ogłoszenia z Dom <i class="fas fa-home" style="color:orange"></i></h2>
-                            break;
-                        }
-                        else if (ViewBag.id == 998)
-                        {
-                            <h2>Wszystkie ogłoszenia z Ogród <i class="fas fa-leaf" style="color:green"></i></h2>
-                            break;
-                        }
-                        else if (ViewBag.id == 997)
-                        {
-                            <h2>Wszystkie ogłoszenia z Motoryzacja <i class="fas fa-car" style="color:blue"></h2>
-                            break;
-                        }
-                        else if (ViewBag.id == 996)
-                        {
-                            <h2>Wszystkie ogłoszenia z Usługi <i class="fas fa-concierge-bell" style="color:purple"></h2>
-                            break;
-                        }
-                        else
-                        {
-                            <h2>Wyszukiwane:</h2>
-                            break;
-                        }
-                    }
+                    
             </div>
         </div>
         <div class="col-md-3  panel_mid rounded p-3">
@@ -213,13 +186,13 @@
                                                         <button class="btn btn-custom" type="submit" value="@item.ID" name="Obserwuj" onclick="return @item.ID;"><i class="far fa-bookmark"></i></button>
                                                     </div>
                                                 }
-
                                             }
                                             else
                                             {
                                                 <div class="imgbutton">
-                                                <button class="btn btn-custom " href="@Url.Action("Logowanie", "Home")" target="_blank"><i class="far fa-bookmark"></i></button>
+                                                    <a class="btn btn-custom" href="@Url.Action("Logowanie", "Home")" target="_blank"><i class="far fa-bookmark"></i></a>
                                                 </div>
+
                                             }
                                         }
                                     </div>

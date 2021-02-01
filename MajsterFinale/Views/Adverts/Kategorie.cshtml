@@ -384,7 +384,7 @@
                                             }
                                             else
                                             {
-                                               <div class="imgbutton">
+                                                <div class="imgbutton">
                                                     <button class="btn btn-custom" type="submit" value="@item.ID" name="Obserwuj" onclick="return @item.ID;"><i class="far fa-bookmark"></i></button>
                                                 </div>
                                             }
@@ -393,9 +393,11 @@
                                         else
                                         {
                                             <div class="imgbutton">
-                                            <button class="btn btn-custom " href="@Url.Action("Logowanie", "Home")" target="_blank"><i class="far fa-bookmark"></i></button>
+                                                <a class="btn btn-custom" href="@Url.Action("Logowanie", "Home")" target="_blank"><i class="far fa-bookmark"></i></a>
                                             </div>
+                                             
                                         }
+
                                     }
 
 

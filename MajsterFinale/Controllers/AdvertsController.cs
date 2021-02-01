@@ -306,32 +306,39 @@ namespace MajsterFinale.Controllers
 
         }
         [HttpPost]
-        public ActionResult AddAdvertisement(AddingAdsRepository obj, IEnumerable<HttpPostedFileBase> files)
+        public ActionResult AddAdvertisement(AddingAdsRepository AddingAdsRepository, IEnumerable<HttpPostedFileBase> files)
         {
             if (ModelState.IsValid)
             {
                 int uID = Convert.ToInt32(Session["ID"]);
                 ADVERTS newAdvert = new ADVERTS();
 
-                newAdvert.CATEGORY = obj.CategoryID;
-                newAdvert.TITLE = obj.Advert.TITLE;
+                newAdvert.CATEGORY = AddingAdsRepository.CategoryID;
+                newAdvert.TITLE = AddingAdsRepository.Advert.TITLE;
                 newAdvert.USER_ID = uID;
-                newAdvert.DESCRIPTION = obj.Advert.DESCRIPTION;
+                newAdvert.DESCRIPTION = AddingAdsRepository.Advert.DESCRIPTION;
                 newAdvert.DATE = System.DateTime.Now;
                 newAdvert.IS_ARCHIVED = false;
-                Convert.ToString(obj.Advert.PRICE);
-                if (obj.Advert.PRICE == null)
+                Convert.ToString(AddingAdsRepository.Advert.PRICE);
+                var areTermsAccepted = AddingAdsRepository.AreTermsAccepted(AddingAdsRepository);
+                if (AddingAdsRepository.Advert.PRICE == null)
                 {
                     newAdvert.PRICE = 0;
                 }
                 else
                 {
-                    newAdvert.PRICE = obj.Advert.PRICE;
+                    newAdvert.PRICE = AddingAdsRepository.Advert.PRICE;
                 }
 
 
-
-                if (newAdvert.CATEGORY != 1)
+                if (areTermsAccepted)
+                {
+                    AddingAdsRepository.Categories = addingAdsRepository.GetList();
+                    AddingAdsRepository.CategoryID = -1;
+                    ModelState.AddModelError("TERMS", "Należy zaakceptować regulamin");
+                    return View(AddingAdsRepository);
+                }
+                else if (newAdvert.CATEGORY != 1)
                 {
 
                     foreach (var file in files)
@@ -379,15 +386,15 @@ namespace MajsterFinale.Controllers
                 }
                 else
                 {
-                    obj.Categories = addingAdsRepository.GetList();
-                    obj.CategoryID = -1;
+                    AddingAdsRepository.Categories = addingAdsRepository.GetList();
+                    AddingAdsRepository.CategoryID = -1;
                     ModelState.AddModelError("CATEGORY", "Musisz wybrać kategorię z listy.");
-                    return View(obj);
+                    return View(AddingAdsRepository);
                 }
             }
-            obj.Categories = addingAdsRepository.GetList();
-            obj.CategoryID = -1;
-            return View(obj);
+            AddingAdsRepository.Categories = addingAdsRepository.GetList();
+            AddingAdsRepository.CategoryID = -1;
+            return View(AddingAdsRepository);
 
         }
 
