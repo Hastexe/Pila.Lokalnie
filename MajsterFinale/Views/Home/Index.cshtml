@@ -36,13 +36,19 @@
                             <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
                                 <div class="carousel-inner">
                                     <div class="carousel-item active text-center">
+                                        <a  href="@Url.Action("Wyszukiwanie", "Home", null)">
                                         <img src="@Url.Content("~/Content/IMAGES/slider1.jpg")" class="w-100 h-75" alt="...">
+                                         </a>
                                     </div>
                                     <div class="carousel-item text-center">
+                                         <a  href="@Url.Action("Rejestracja", "Home", null)">
                                         <img src="@Url.Content("~/Content/IMAGES/slider2.jpg")" class="w-100" alt="...">
+                                         </a>
                                     </div>
                                     <div class="carousel-item text-center">
-                                       <img src="@Url.Content("~/Content/IMAGES/slider3.jpg")" class="w-100" alt="...">
+                                           <a  href="@Url.Action("Wyszukiwanie", "Home", null)">
+                                           <img src="@Url.Content("~/Content/IMAGES/slider3.jpg")" class="w-100" alt="...">
+                                           </a>
                                     </div>
                                 </div>
                                 <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
@@ -57,49 +63,49 @@
                         </div>
                         <div class="tab-pane fade" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-2-tab">
                             <ul class="list-unstyled">
-                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 999})" style="font-weight:600; color:orange; font-size:24px;"> Wszystkie ogłoszenia</a></li>
-                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 2})">Aranżacja Wnętrz</a></li>
-                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 3})">Hydraulika</a></li>
-                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 4})">Elektryka</a></li>
-                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 5})">Gazownictwo</a></li>
-                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 6})">Malarstwo</a></li>
-                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 7})">Kominiarstwo</a></li>
-                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 8})">Stolarstwo</a></li>
-                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 9})">Dom Inne</a></li>
+                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 999})" style="font-weight:600; color:orange; font-size:24px;">Wszystkie ogłoszenia</a></li>
+                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 2})"><i class="fas fa-angle-right" style="color:orange"></i>Aranżacja Wnętrz</a></li>
+                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 3})"><i class="fas fa-angle-right" style="color:orange"></i>Hydraulika</a></li>
+                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 4})"><i class="fas fa-angle-right" style="color:orange"></i>Elektryka</a></li>
+                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 5})"><i class="fas fa-angle-right" style="color:orange"></i>Gazownictwo</a></li>
+                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 6})"><i class="fas fa-angle-right" style="color:orange"></i>Malarstwo</a></li>
+                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 7})"><i class="fas fa-angle-right" style="color:orange"></i>Kominiarstwo</a></li>
+                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 8})"><i class="fas fa-angle-right" style="color:orange"></i>Stolarstwo</a></li>
+                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 9})"><i class="fas fa-angle-right" style="color:orange"></i>Dom Inne</a></li>
                             </ul>
                         </div>
                         <div class="tab-pane fade" id="v-pills-3" role="tabpanel" aria-labelledby="v-pills-3-tab">
                             <ul class="list-unstyled ">
-                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 998})" style="font-weight:600; color:green; font-size:24px;"> Wszystkie ogłoszenia</a></li>
-                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 10})">Aranżacja Ogrodów</a></li>
-                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 11})">Ogrodnictwo</a></li>
-                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 12})">Brukarstwo</a></li>
-                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 13})">Ogrodzenia</a></li>
-                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 14})">Kamieniarstwo</a></li>
-                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 15})">Ogród Inne</a></li>
+                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 998})" style="font-weight:600; color:green; font-size:24px;">Wszystkie ogłoszenia</a></li>
+                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 10})"><i class="fas fa-angle-right" style="color:green"></i>Aranżacja Ogrodów</a></li>
+                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 11})"><i class="fas fa-angle-right" style="color:green"></i>Ogrodnictwo</a></li>
+                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 12})"><i class="fas fa-angle-right" style="color:green"></i>Brukarstwo</a></li>
+                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 13})"><i class="fas fa-angle-right" style="color:green"></i>Ogrodzenia</a></li>
+                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 14})"><i class="fas fa-angle-right" style="color:green"></i>Kamieniarstwo</a></li>
+                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 15})"><i class="fas fa-angle-right" style="color:green"></i>Ogród Inne</a></li>
                             </ul>
                         </div>
                         <div class="tab-pane fade" id="v-pills-4" role="tabpanel" aria-labelledby="v-pills-4-tab">
                             <ul class="list-unstyled">
-                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 997})" style="font-weight: bold; color:blue; font-size:24px;"> Wszystkie ogłoszenia</a></li>
-                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 16})"> Mechanik </a></li>
-                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 17})"> Blacharz </a></li>
-                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 18})"> Lakiernik </a></li>
-                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 19})"> Detaling </a></li>
-                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 20})"> Wulkanizacja </a></li>
-                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 21})"> Motoryzacja Inne </a></li>
+                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 997})" style="font-weight: bold; color:blue; font-size:24px;">Wszystkie ogłoszenia</a></li>
+                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 16})"><i class="fas fa-angle-right" style="color:blue"></i>Mechanik </a></li>
+                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 17})"><i class="fas fa-angle-right" style="color:blue"></i>Blacharz </a></li>
+                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 18})"><i class="fas fa-angle-right" style="color:blue"></i>Lakiernik</a></li>
+                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 19})"><i class="fas fa-angle-right" style="color:blue"></i>Detaling </a></li>
+                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 20})"><i class="fas fa-angle-right" style="color:blue"></i>Wulkanizacja </a></li>
+                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 21})"><i class="fas fa-angle-right" style="color:blue"></i>Motoryzacja Inne </a></li>
                             </ul>
                         </div>
                         <div class="tab-pane fade" id="v-pills-5" role="tabpanel" aria-labelledby="v-pills-5-tab">
                             <ul class="list-unstyled underCat">
-                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 996})" style="font-weight: bold; color:purple; font-size:24px;"> Wszystkie ogłoszenia</a></li>
-                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 22})"> Korepetycje </a></li>
-                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 23})"> Informatyka </a></li>
-                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 24})"> Uroda </a></li>
-                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 25})"> Naprawa i Serwis </a></li>
-                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 26})"> Transport </a></li>
-                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 27})"> Monter </a></li>
-                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 28})"> Usługi Inne </a></li>
+                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 996})" style="font-weight: bold; color:purple; font-size:24px;">Wszystkie ogłoszenia</a></li>
+                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 22})"><i class="fas fa-angle-right" style="color:purple"></i>Korepetycje</a></li>
+                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 23})"><i class="fas fa-angle-right" style="color:purple"></i>Informatyka</a></li>
+                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 24})"><i class="fas fa-angle-right" style="color:purple"></i>Uroda</a></li>
+                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 25})"><i class="fas fa-angle-right" style="color:purple"></i>Naprawa i Serwis</a></li>
+                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 26})"><i class="fas fa-angle-right" style="color:purple"></i>Transport</a></li>
+                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 27})"><i class="fas fa-angle-right" style="color:purple"></i>Monter</a></li>
+                                <li class="list-item col-sm-12"><a href="@Url.Action("Kategorie", "Adverts", new { id = 28})"><i class="fas fa-angle-right" style="color:purple"></i>Usługi Inne</a></li>
                             </ul>
                         </div>
                     </div>
@@ -121,7 +127,7 @@
                 </a>
             </div>
             <div class="col-md-4 link">
-                <a href="@Url.Action("AddAdvertisement", "Adverts", null)">
+                <a href="@Url.Action("EditData", "User", null)">
                     <div class="col-md-12 index_steps index_stepsh justify-content-center rounded ">
                         <figure>
                             <img src="@Url.Content("~/Content/IMAGES/edit.svg")" style="height: 130px;" alt="Image" />
@@ -134,7 +140,7 @@
                 </a>
             </div>
             <div class="col-md-4 link">
-                <a href="@Url.Action("EditData", "User", null)">
+                <a href="@Url.Action("AddAdvertisement", "Adverts", null)">
                     <div class="col-md-12 index_steps index_stepsh justify-content-center rounded ">
                         <figure>
                             <img src="@Url.Content("~/Content/IMAGES/add.svg")" style="height: 130px;" alt="Image" />

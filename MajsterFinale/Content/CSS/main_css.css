@@ -37,7 +37,7 @@ i {
     margin-top: 14px;
 }
 .index_stepsh {
-   height:20rem;
+   height:21rem;
    background-color: white;
 }
 
@@ -66,6 +66,8 @@ i {
  
     font-weight: 600;
 }
+
+
 textarea {
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -156,18 +158,18 @@ textarea {
 
 /* Mobile nav */
 .sidenav {
-    height: 100%; /* 100% Full-height */
-    width: 0; /* 0 width - change this with JavaScript */
-    position: fixed; /* Stay in place */
-    z-index: 3 !important; /* Stay on top */
-    top: 0 !important; /* Stay at the top */
+    height: 100%; 
+    width: 0; 
+    position: fixed;
+    z-index: 3 !important; 
+    top: 0 !important; 
     right: 0;
-    background-color: #0B3c5d; /* Black*/
-    overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 60px; /* Place content 60px from the top */
-    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+    background-color: #0B3c5d; 
+    overflow-x: hidden; 
+    padding-top: 60px; 
+    transition: 0.5s; 
 }
-    /* The navigation menu links */
+
     .sidenav a {
         padding: 8px 8px 8px 32px;
         text-decoration: none;
@@ -177,12 +179,12 @@ textarea {
         transition: 0.3s;
     }
 
-        /* When you mouse over the navigation links, change their color */
+
         .sidenav a:hover {
             color: #f1f1f1;
         }
 
-    /* Position and style the close button (top right corner) */
+
     .sidenav .closebtn {
         position: absolute;
         top: 0;
@@ -191,13 +193,13 @@ textarea {
         margin-left: 50px;
     }
 
-/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+
 #main {
     transition: margin-right .5s;
    
 }
 
-/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+
 @media screen and (max-height: 450px) {
     .sidenav {
         padding-top: 15px;
@@ -230,3 +232,53 @@ footer{
     }
 }
 
+.blockquote-custom {
+    position: relative;
+    font-size: 1.1rem;
+}
+
+.blockquote-custom-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: -25px;
+    left: 50px;
+}
+#upload {
+    opacity: 0;
+}
+
+#upload-label {
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    transform: translateY(-50%);
+}
+
+.image-area {
+    border: 2px dashed rgba(255, 255, 255, 0.7);
+    padding: 1rem;
+    position: relative;
+}
+
+    .image-area::before {
+        content: 'Uploaded image result';
+        color: #fff;
+        font-weight: bold;
+        text-transform: uppercase;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 0.8rem;
+        z-index: 1;
+    }
+
+    .image-area img {
+        z-index: 2;
+        position: relative;
+    }

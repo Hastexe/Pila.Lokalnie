@@ -9,5 +9,6 @@ namespace MajsterFinale.Models
         public USERS SecondConversationUser { get; set; }
         public List<MESSAGE> CoversationMessages { get; set; }
         public List<IMAGES_MESSAGE> Images { get; set; }
+        public List<ADVERTS> MessageAdvertDetails { get; set; }
     }
 }

@@ -290,14 +290,13 @@
     <Content Include="Content\CSS\main_panel.css" />
     <Content Include="Content\CSS\main_reglog.css" />
     <Content Include="Content\CSS\PagedList.css" />
+    <Content Include="Content\IMAGES\35.png" />
     <Content Include="Content\IMAGES\add.svg" />
     <Content Include="Content\IMAGES\background.png" />
     <Content Include="Content\IMAGES\create.svg" />
     <Content Include="Content\IMAGES\edit.svg" />
     <Content Include="Content\IMAGES\logo.png" />
     <Content Include="Content\IMAGES\logotyp.png" />
-    <Content Include="Content\IMAGES\logotyp2.png" />
-    <Content Include="Content\IMAGES\logo_nav.png" />
     <Content Include="Content\IMAGES\slider1.jpg" />
     <Content Include="Content\IMAGES\slider2.jpg" />
     <Content Include="Content\IMAGES\slider3.jpg" />

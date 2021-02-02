@@ -31,10 +31,16 @@
         alert("@ViewBag.Error");
             </script>
         }
-    <div class="col-md-12 panel_mid rounded p-3">
-        <h1>Miejsce na ogłoszenie:</h1>
-    </div>
-        <div class="col-md-12 panel_mid rounded p-4">
+        @{
+            int adnumber = 0;
+            adnumber = @Model.CoversationMessages[0].ADVERT_ID;
+            string ConversationAdvertTitle = "";
+            ConversationAdvertTitle = Model.MessageAdvertDetails.Where(x => x.ID == adnumber).Select(x => x.TITLE).SingleOrDefault();
+            <div class="col-md-12 panel_mid rounded p-3 ">
+                  <h3>Ogłoszenie: <a href="@Url.Action("Details", "Adverts", new { id = @Model.CoversationMessages[0].ADVERT_ID }) " style="color:grey">@ConversationAdvertTitle</a></h3>
+            </div>
+        }
+        <div class="col-md-12 panel_mid rounded p-4 mt-2">
             @{
                 int LoggedUserID = Convert.ToInt32(Session["ID"]);
                 for (int i = 0; i < Model.CoversationMessages.Count; i++)
@@ -46,7 +52,7 @@
                                 <div class="col-12 p-1">
                                     @*@Model.LoggedUser.FNAME*@ <span style="font-weight:500">Twoja odpowiedź</span>
                                 </div>
-                                <div class="col-12 p-3 rounded" style="background-color: #f3b136;">
+                                <div class="col-12 p-3 rounded" style="background-color: #f3b136; color:white;">
                                     @Html.DisplayFor(modelItem => Model.CoversationMessages[i].TEXT)
                                     @{
                                         foreach (var j in Model.Images)
@@ -96,21 +102,21 @@
                 <div class="col-md-12 panel_mid rounded p-3">
                     <h4>Odpowiedz: </h4>
                     <textarea class="form-control" rows="5" minlength="5" name="message" placeholder="Napisz wiadomość! (min. 5 znaków)"></textarea>
-                    <br/>
+                    <br />
                     <div class="row">
-                       <div class="col-6">
-                         <input type="file" id="f" name="files" multiple onchange="checkFilesCount(this)" />
-                         <input type="hidden" name="AdvertId" value="@Model.CoversationMessages[0].ADVERT_ID" />
-                         <input type="hidden" name="UserTo" value="@Model.SecondConversationUser.USER_ID" />
-                       </div>
-                       <div class="col-6 text-right">
-                         <button class="btn btn-custom mr-auto">Wyślij</button>
-                       </div>
+                        <div class="col-6">
+                            <input type="file" id="f" name="files" multiple onchange="checkFilesCount(this)" />
+                            <input type="hidden" name="AdvertId" value="@Model.CoversationMessages[0].ADVERT_ID" />
+                            <input type="hidden" name="UserTo" value="@Model.SecondConversationUser.USER_ID" />
+                        </div>
+                        <div class="col-6 text-right">
+                            <button class="btn btn-custom mr-auto">Wyślij</button>
+                        </div>
                     </div>
                 </div>
-                }
-                }
-            </div>
+            }
+        }
+    </div>
 </div>
    
 

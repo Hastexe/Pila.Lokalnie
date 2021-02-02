@@ -23,15 +23,13 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-12 panel_mid rounded p-3">
-                <div class="col-md-12">
+        
                     @{
                         bool print = true;
                         bool wyswietl = true;
                     }
                     
-            </div>
-        </div>
+       
         <div class="col-md-3  panel_mid rounded p-3">
             <div class="col-md-12">
                 <h3>Główne Kategorie</h3>
@@ -212,7 +210,7 @@
         </div>
         <div class="col-md-12">
             <div class="col-md-12 mt-3 rounded text-center">
-                Strona @(Model.ADVERTS.PageCount < Model.ADVERTS.PageNumber ? 0 : Model.ADVERTS.PageNumber) z @Model.ADVERTS.PageCount
+                @*Strona @(Model.ADVERTS.PageCount < Model.ADVERTS.PageNumber ? 0 : Model.ADVERTS.PageNumber) z @Model.ADVERTS.PageCount*@
                 @Html.PagedListPager(Model.ADVERTS, page => Url.Action("Wyszukiwanie", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
             </div>
         </div>

@@ -41,9 +41,15 @@
     <!--Navbar-->
 <nav class="navbar navbar-dark bg-custom navbar-expand-lg shadow">
     <div class="container-fluid main-navsize">
-        <a class="navbar-brand" href="@Url.Action("Index", "home", null)">
-            @*<img src="~/Content/IMAGES/logotyp.png" height="50" class="d-inline-block align-top mobile-logo" alt="Logo">*@
-            <img src="~/Content/IMAGES/logo.png" height="50" class="d-inline-block align-top mobile-logo" alt="Logo">
+        <a id="displayPC" class="navbar-brand" href="@Url.Action("Index", "home", null)">
+            <img src="~/Content/IMAGES/logotyp.png" height="50" class="d-inline-block align-top" alt="Logo">
+           
+            @*<img src="~/Content/IMAGES/logo.png" height="50" class="d-inline-block align-top mobile-logo" alt="Logo">*@
+        </a>
+        <a id="displayMob" class="navbar-brand mt-2" href="@Url.Action("Index", "home", null)">
+     
+            <img src="~/Content/IMAGES/35.png" height="35" class="d-inline-block align-top" alt="Logo">
+            @*<img src="~/Content/IMAGES/logo.png" height="50" class="d-inline-block align-top mobile-logo" alt="Logo">*@
         </a>
         <!--Navbar mobile-->
         <div id="mySidenav" class="sidenav">
@@ -60,9 +66,8 @@
                     using (Html.BeginForm("LogOff", "home", FormMethod.Post, new { role = "form" }))
                     {
                         @Html.AntiForgeryToken()
-
+                        <br>
                         <span style="margin-left:2rem;"><input type="submit" value="Wyloguj się" class="btn btn-custom w-75" /></span>
-
                     }
                 }
                 else

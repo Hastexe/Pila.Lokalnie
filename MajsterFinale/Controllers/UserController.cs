@@ -66,6 +66,7 @@ namespace MajsterFinale.Controllers
                         }
                         messageModel.CoversationMessages = new UserRepository().GetConversation((int)AdvertId, (int)UserA, (int)UserB).ToList();
                         messageModel.Images = new UserRepository().GetConversationImages((int)AdvertId, (int)UserA, (int)UserB).ToList();
+                        messageModel.MessageAdvertDetails = db.ADVERTS.Where(x => x.ID == (int)AdvertId).ToList();
                         foreach (var item in messageModel.CoversationMessages)
                         {
                             var msgID = (item.ID);

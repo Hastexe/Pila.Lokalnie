@@ -1,8 +1,6 @@
-﻿
-@{
-    Layout = null;
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <!DOCTYPE html>
 
 <html>
@@ -11,8 +9,35 @@
     <title>PilaLokalnie</title>
 </head>
 <body>
-    <div>
-        <p>Tutaj będzie opis czym jest piła lokalnie</p>
+    <div class="container-fluid panel_mo">
+      
+            <section class="py-5">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6 mx-auto">
+                            <header class="text-center pb-5">
+                                <h1 class="h2">Czym jest Piłalokalnie?</h1>
+                            </header>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 mx-auto">
+                            <blockquote class="blockquote blockquote-custom bg-white p-5 shadow rounded">
+                                <div class="blockquote-custom-icon bg-custom"><i class="fa fa-quote-left "></i></div>
+                                <p class="mb-0 mt-2 font-italic">
+                                    "Celem projektu było zapewnienie darmowego i samodzielnego portalu ogłoszeń lokalnych nie będącego częścią innego portalu społecznościowego lub aplikacji. Jednym z głównych powodów powstawania aplikacji, był brak lokalnego portalu ogłoszeń dostępnego dla osób postronnych, anonimowych, które nie chciały rejestrować się na portalach społecznościowych, bądź takich, które nie były zainteresowane zakupami czy usługami wykonywanymi poza obrębem powiatu Pilskiego i jego okolic. Możliwość ułatwienia procesu przeglądania ogłoszeń bez konieczności logowania czy filtrowania ogłoszeń pod względem odległości od miejsca zamieszkania pozwala uniknąć nadmiernej irytacji przeciętnego użytkownika z powiatu Pilskiego.
+                                    Dodatkowo warto wspomnieć, że projekt wspiera lokalnych przedsiębiorców oraz wymiany towarów z drugiej ręki. Ważnym z punktu widzenia nas, jako twórców było dostarczenie aplikacji równie prostej i przyjemnej w odbiorze i obsłudze dla użytkownika, jak te które obecnie występują ale mającej służyć całej lokalnej społeczności.
+                                    "
+                                </p>
+                                <footer class="blockquote-footer pt-4 mt-4 border-top">
+                                    Jakub Góra, Adrian Gruszecki, Mateusz Kłos, Radosław Michałek 
+                                </footer>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    <div class="col-md-12 text-center" style="background-color:transparent; margin-top:27rem;">
     </div>
 </body>
 </html>

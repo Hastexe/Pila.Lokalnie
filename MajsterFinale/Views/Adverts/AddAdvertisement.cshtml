@@ -56,18 +56,17 @@
                 <div class="col-md-12">
                     <h3>Zdjęcia</h3>
                     <div class="imgpoz">
-                        <label class="custom-file-upload mt-5">
-                            <input style="display: none;" type="file" id="f" name="files" multiple onchange="checkFilesCount(this) " />
-                            @Html.ValidationMessage("IMAGE", new { @class = "text-danger" })
-                            <i class="fas fa-plus"></i>Dodaj zdjęcie
-                        </label>
-                    </div>
+                            <label class="custom-file-upload mt-5">
+                                    <input style="" type="file" id="f" name="files" multiple onchange="checkFilesCount(this) " />
+                                    @Html.ValidationMessage("IMAGE", new { @class = "text-danger" })
+                            </label>
+                        </div>
                 </div>
             </div>
             <div class="col-md-12 addadv_sec3 rounded mt-3 p-3">
                 <div class="col-md-12">
                     <h3>Opis</h3>
-                        @Html.TextAreaFor(model => model.Advert.DESCRIPTION, new { @cols = "45", @rows = "10", htmlAttributes = new { @class = "form-control" } })
+                    @Html.TextAreaFor(model => model.Advert.DESCRIPTION, new { @cols = "45", @rows = "10", htmlAttributes = new { @class = "form-control" } })
                     <small class="form-text text-muted">
                         <sup style="color:red">&#42;</sup>Dodaj opis
                     </small>
@@ -76,9 +75,9 @@
             <div class="col-md-12 addadv_sec4 rounded mt-3 p-3">
                 <div class="col-md-12">
                     <div class="form-check">
-                        <p>@Html.CheckBoxFor(model => model.Advert.TERMS) Akceptuję<a href="@Url.Action("Regulamin", "home", null)"> regulamin<sup style="color:red">&#42;</sup></a><p>  
-                        <small class="form-text text-muted">
-                            <p1>Oświadczam, iż zapoznałem się z treścią @Html.ActionLink("Regulaminu", "regulamin", null, new { target = "_blank" }) i akceptuję jego wszystkie postanowienia. Akceptuję @Html.ActionLink("Politykę Ochrony Prywatności", "polityka", null, new { target = "_blank" }) - ogólne standardy ochrony.</p1>
+                        <p>@Html.CheckBoxFor(model => model.Advert.TERMS) Akceptuję<a href="@Url.Action("Regulamin", "home", null)"> regulamin<sup style="color:red">&#42;</sup></a><p>
+                            <small class="form-text text-muted">
+                                <p1>Oświadczam, iż zapoznałem się z treścią @Html.ActionLink("Regulaminu", "regulamin", null, new { target = "_blank" }) i akceptuję jego wszystkie postanowienia. Akceptuję @Html.ActionLink("Politykę Ochrony Prywatności", "polityka", null, new { target = "_blank" }) - ogólne standardy ochrony.</p1>
                             </small>
                     </div>
                 </div>
@@ -91,18 +90,3 @@
         </div>
     </div>
 }
-<script type="text/javascript">
-    function readfile(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function (e) {
-                $('#image_preview').attr('src', e.target.result);
-            }
-
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-</script>
-
-

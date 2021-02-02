@@ -1,4 +1,4 @@
-﻿@media (max-width: 767px) {
+﻿@media (max-width: 766px) {
     .panel_mo {
         width: 95%;
         margin-top: 0rem;
@@ -33,9 +33,24 @@
     .panel_mid_size {
         min-height: 23rem !important;
     }
+    .panel_ms {
+        background-color: white;      
+
+    }
+    #displayPC{
+        display:none;
+    }
+    #displayMob{
+        display:block;
+        margin-bottom:1rem;
+    }
+    #displayMob2 {
+        display: none;
+    }
+
 }
 
-@media (min-width: 768px) {
+@media (min-width: 767px) {
 
     .panel_mo {
         width: 90%;
@@ -71,10 +86,26 @@
         }
 
     .panel_mid_size {
-        min-height: 15rem !important;
+        min-height: 22rem !important;
+    }
+    .panel_ms {
+        background-color: white;
+        height:5rem !important;
+        margin-top:0.5rem;
+    }
+    #displayPC {
+        display: block;
+    }
+
+    #displayMob {
+        display: none;
+    }
+
+    #displayMob2 {
+        display: block;
     }
 }
-@media (min-width: 1210px) {
+@media (min-width: 1023px) {
 
     .panel_mo {
         width: 70%;
@@ -108,8 +139,59 @@
         }
 
     .panel_mid_size {
-        min-height: 25rem !important;
+        min-height: 22rem !important;
     }
+    .panel_ms {
+        background-color: white;
+        margin-top: 0.5rem;
+    }
+    #displayMob2 {
+        display: block;
+    }
+
+}
+@media (min-width: 1440px) {
+
+    .panel_mo {
+        width: 70%;
+        margin-top: 0.2rem;
+    }
+
+    .panel_top {
+        color: white;
+        background-color: #0B3c5d;
+        margin-top: 2rem;
+    }
+
+    .panel_mid {
+        margin-top: 0.5rem;
+        background-color: white;
+    }
+
+        .panel_mid .nav a {
+            color: black;
+            font-weight: 400;
+        }
+
+        .panel_mid .nav-link:hover {
+            color: white;
+            background-color: #0B3c5d;
+        }
+
+        .panel_mid .active {
+            color: white !important;
+            background-color: #0B3c5d;
+        }
+
+    .panel_mid_size {
+        min-height: 30rem !important;
+    }
+    .panel_ms {
+        background-color: white;
+        padding: 1rem;
+        margin-top: 0.5rem;
+    }
+
 }
 @media (min-width: 1660px) {
 
@@ -144,6 +226,12 @@
     .panel_mid_size {
         min-height: 34rem !important;
     }
+    .panel_ms {
+        background-color: white;
+        padding: 1rem;
+        margin-top: 0.5rem;
+    }
+
 }
 @media (min-width: 1919px) {
 
@@ -180,6 +268,12 @@
     .panel_mid_size {
         min-height: 37rem !important;
     }
+    .panel_ms {
+        background-color: white;
+        padding: 1rem;
+        margin-top: 0.5rem;
+    }
+ 
 }
 @media (min-width: 2559px) {
 
@@ -218,4 +312,11 @@
     .panel_mid_size {
         min-height: 60rem !important;
     }
+    .panel_ms {
+        background-color: white;
+        padding: 1rem;
+        margin-top: 0.5rem;
+    }
+
 }
+
