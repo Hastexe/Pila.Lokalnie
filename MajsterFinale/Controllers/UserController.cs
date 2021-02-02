@@ -122,7 +122,7 @@ namespace MajsterFinale.Controllers
                 if (file != null)
                 {
                         var filename = Guid.NewGuid() + file.FileName;
-                        var supportedTypes = new[] { "jpg", "jpeg", "png" };
+                        var supportedTypes = new[] { "jpg", "jpeg", "png", "JPG", "JPEG", "PNG" };
                         var fileExt = System.IO.Path.GetExtension(filename).Substring(1);
                         if (supportedTypes.Contains(fileExt))
                         {

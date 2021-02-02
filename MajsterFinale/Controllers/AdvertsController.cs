@@ -88,7 +88,7 @@ namespace MajsterFinale.Controllers
                 if (file != null)
                 {
                     var filename = Guid.NewGuid() + file.FileName;
-                    var supportedTypes = new[] { "jpg", "jpeg", "png" };
+                    var supportedTypes = new[] { "jpg", "jpeg", "png", "JPG", "JPEG", "PNG" };
                     var fileExt = System.IO.Path.GetExtension(filename).Substring(1);
                     if (supportedTypes.Contains(fileExt))
                     {
@@ -359,11 +359,11 @@ namespace MajsterFinale.Controllers
                         {
                             //var file = model.ImageFile;
                             var filename = Guid.NewGuid() + file.FileName;
-                            var supportedTypes = new[] { "jpg", "jpeg", "png" };
+                            var supportedTypes = new[] { "jpg", "jpeg", "png", "JPG", "JPEG", "PNG" };
                             var fileExt = System.IO.Path.GetExtension(file.FileName).Substring(1);
                             if (!supportedTypes.Contains(fileExt))
                             {
-                                return Content("<script language='javascript' type='text/javascript'>alert('Niebsługiwany typ pliku');location = location;</script>");
+                                return Content("<script language='javascript' type='text/javascript'>alert('Niebsługiwany typ pliku. Dozwolone formaty: .jpg .jpeg .png');location = location;</script>");
                             }
                             else
                             {
