@@ -508,6 +508,7 @@ namespace MajsterFinale.Controllers
         {
             if (ModelState.IsValid)
             {
+                obj.IS_HIDDEN = false;
                 db.Entry(obj).State = System.Data.Entity.EntityState.Modified;
                 // model.Categories = addingAdsRepository.GetList();
                 //model.CategoryID = -1;
