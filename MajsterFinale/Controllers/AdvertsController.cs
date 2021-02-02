@@ -131,7 +131,7 @@ namespace MajsterFinale.Controllers
             else
             {
                 ViewBag.CurrentSort = sortOrder;
-                ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+                ViewBag.NameSortParm = sortOrder == "name" ? "name_desc" : "name";
                 ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
                 ViewBag.PriceSortParm = sortOrder == "Price" ? "Price_desc" : "Price";
                 if (searchString != null)
@@ -186,11 +186,8 @@ namespace MajsterFinale.Controllers
                     case "name_desc":
                         adverts = adverts.OrderByDescending(s => s.TITLE);
                         break;
-                    case "Date":
-                        adverts = adverts.OrderBy(s => s.DATE);
-                        break;
-                    case "date_desc":
-                        adverts = adverts.OrderByDescending(s => s.DATE);
+                    case "name":
+                        adverts = adverts.OrderBy(s => s.TITLE);
                         break;
                     case "Price":
                         adverts = adverts.OrderBy(s => s.PRICE);
@@ -198,9 +195,16 @@ namespace MajsterFinale.Controllers
                     case "Price_desc":
                         adverts = adverts.OrderByDescending(s => s.PRICE);
                         break;
-                    default:
-                        adverts = adverts.OrderBy(s => s.TITLE);
+                    case "Date":
+                        adverts = adverts.OrderBy(s => s.DATE);
                         break;
+                    case "date_desc":
+                        adverts = adverts.OrderByDescending(s => s.DATE);
+                        break;
+                    default:
+                        adverts = adverts.OrderByDescending(s => s.DATE);
+                        break;
+
                 }
                 int pageSize = 10;
                 int pageNumber = (page ?? 1);
@@ -228,7 +232,7 @@ namespace MajsterFinale.Controllers
         public ActionResult OgloszeniaUsera(int? page, int id, string sortOrder, string searchString, string currentFilter)
         {
             ViewBag.CurrentSort = sortOrder;
-            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.NameSortParm = sortOrder == "name" ? "name_desc" : "name";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
             ViewBag.PriceSortParm = sortOrder == "Price" ? "Price_desc" : "Price";
             if (Session["ID"] != null)
@@ -267,11 +271,8 @@ namespace MajsterFinale.Controllers
                 case "name_desc":
                     adverts = adverts.OrderByDescending(s => s.TITLE);
                     break;
-                case "Date":
-                    adverts = adverts.OrderBy(s => s.DATE);
-                    break;
-                case "date_desc":
-                    adverts = adverts.OrderByDescending(s => s.DATE);
+                case "name":
+                    adverts = adverts.OrderBy(s => s.TITLE);
                     break;
                 case "Price":
                     adverts = adverts.OrderBy(s => s.PRICE);
@@ -279,9 +280,16 @@ namespace MajsterFinale.Controllers
                 case "Price_desc":
                     adverts = adverts.OrderByDescending(s => s.PRICE);
                     break;
-                default:
-                    adverts = adverts.OrderBy(s => s.TITLE);
+                case "Date":
+                    adverts = adverts.OrderBy(s => s.DATE);
                     break;
+                case "date_desc":
+                    adverts = adverts.OrderByDescending(s => s.DATE);
+                    break;
+                default:
+                    adverts = adverts.OrderByDescending(s => s.DATE);
+                    break;
+
             }
             int pageSize = 10;
             int pageNumber = (page ?? 1);
@@ -417,7 +425,7 @@ namespace MajsterFinale.Controllers
             if (Session["ID"] != null)
             {
                 int uID = Convert.ToInt32(Session["ID"]);
-                var adverts = db.ADVERTS.Where(a => a.USER_ID == uID && a.IS_ARCHIVED == false && a.IS_HIDDEN == false).OrderBy(x => x.ID);
+                var adverts = db.ADVERTS.Where(a => a.USER_ID == uID && a.IS_ARCHIVED == false && a.IS_HIDDEN == false).OrderBy(x => x.DATE);
                 displayAdsRepository.ADVERTS = adverts.ToPagedList(pageNumber, pageSize);
                 displayAdsRepository.IMAGES = new AdvertRepository().GetAdsImages().ToList();
                 return View(displayAdsRepository);
