@@ -126,8 +126,23 @@
                                         </div>
                                     }
                                 }
-                            }
 
+                            }
+                            else
+                            {
+                                if (Msg.Length < 31)
+                                {
+                                    <div class="col-md-5 panel_ms p-3">
+                                        <i class="far fa-envelope-open"></i>@Msg
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="col-md-5 panel_ms p-3">
+                                        <i class="far fa-envelope-open"></i>@Msg.Substring(0, 30)
+                                    </div>
+                                }
+                            }
                             <div class="col-md-2 panel_ms p-3" id="displayPC">
                                 <i class="fas fa-reply" style="color:#f3b136"></i> <a href="@Url.Action("Conversation", "User", new {AdvertId = msglist[0, i], UserA = msglist[1, i], UserB = msglist[2, i]})" style="color:black">Przejdź</a>
                             </div>
