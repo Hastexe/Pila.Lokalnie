@@ -65,17 +65,9 @@
             </div>
         </div>*@
             <div class="col-md-12 addadv_sec3 rounded mt-3 p-3">
-                <div class="col-md-12 dppc">
+                <div class="col-md-12">
                     <h3>Opis</h3>
-                    @Html.TextAreaFor(model => model.DESCRIPTION, new { @cols = "80", @rows = "10", htmlAttributes = new { @class = "form-control ta1" } })
-                    @Html.ValidationMessageFor(model => model.DESCRIPTION, "", new { @class = "text-danger" })
-                    <small class="form-text text-muted">
-                        <sup style="color:red">&#42;</sup>Edytuj opis
-                    </small>
-                </div>
-                <div class="col-md-12 dpmb">
-                    <h3>Opis</h3>
-                    @Html.TextAreaFor(model => model.DESCRIPTION, new { @cols = "40", @rows = "5", htmlAttributes = new { @class = "form-control ta1" } })
+                    @Html.TextAreaFor(model => model.DESCRIPTION, new { @cols = "45", @rows = "10", htmlAttributes = new { @class = "form-control ta1" } })
                     @Html.ValidationMessageFor(model => model.DESCRIPTION, "", new { @class = "text-danger" })
                     <small class="form-text text-muted">
                         <sup style="color:red">&#42;</sup>Edytuj opis
